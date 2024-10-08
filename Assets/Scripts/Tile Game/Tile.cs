@@ -23,10 +23,10 @@ public class Tile : MonoBehaviour{
     }
 
     private void SubstituteComponent(GameObject current, GameObject old){
-        current.transform.parent = gameObject.transform;
-        current.transform.localPosition = old.transform.localPosition;
-        current.transform.localRotation = old.transform.localRotation;
-        current.transform.localScale = old.transform.localScale;
+        // current.transform.parent = gameObject.transform;
+        // current.transform.localPosition = old.transform.localPosition;
+        // current.transform.localRotation = old.transform.localRotation;
+        // current.transform.localScale = old.transform.localScale;
         Destroy(old);
     }
 
