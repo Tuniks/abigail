@@ -463,6 +463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1187288448}
   - component: {fileID: 1187288447}
+  - component: {fileID: 1187288449}
   - component: {fileID: 1187288446}
   - component: {fileID: 1187288445}
   m_Layer: 0
@@ -532,21 +533,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e251934e1ceea641b3b0003a1684066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  challengeScreen: {fileID: 8307102749554315941}
-  challengeScreenText: {fileID: 1992743475459755498}
-  challengeList: {fileID: 1434758378352477863}
-  challengeListText: {fileID: 7862279748904437358}
   playerHand: {fileID: 338133326}
   playerActive: {fileID: 306961831}
   enemyHand: {fileID: 657377600}
   enemyActive: {fileID: 1926141076}
-  roundWonDialog: {fileID: 6119662192158856434}
-  roundWonDialogText: {fileID: 5806189106510723886}
-  gameWon: {fileID: 810459966875858971}
-  gameWonText: {fileID: 7272940716309023294}
   p1Active: {fileID: 306961832}
   p2Active: {fileID: 1926141077}
   p2Hand: {fileID: 657377601}
+  challengePresets: 
 --- !u!4 &1187288448
 Transform:
   m_ObjectHideFlags: 0
@@ -562,6 +556,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1187288449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187288444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acacfb23ca50be948b7ee7d62ec379a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  challengeScreen: {fileID: 8307102749554315941}
+  challengeList: {fileID: 1434758378352477863}
+  roundWonDialog: {fileID: 6119662192158856434}
+  gameWon: {fileID: 810459966875858971}
+  challengeScreenText: {fileID: 1992743475459755498}
+  challengeListText: {fileID: 7862279748904437358}
+  roundWonDialogText: {fileID: 5806189106510723886}
+  gameWonText: {fileID: 7272940716309023294}
+  challengesManager: {fileID: 1187288445}
 --- !u!1 &1379022437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,8 +1049,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1. whos the prettiest \n2. whos the ugliest\n3. whos the smelliest
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: badc025403a2cf0438a2cb10613aad1a, type: 2}
-  m_sharedMaterial: {fileID: 4508595060633383356, guid: badc025403a2cf0438a2cb10613aad1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1355,7 +1370,7 @@ MonoBehaviour:
   m_text: ok
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 4508595060633383356, guid: badc025403a2cf0438a2cb10613aad1a, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1420,7 +1435,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!224 &3854296743762626331
@@ -1505,7 +1520,7 @@ MonoBehaviour:
   m_text: ok
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 4508595060633383356, guid: badc025403a2cf0438a2cb10613aad1a, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1570,7 +1585,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!224 &4229444203406322053
@@ -2188,10 +2203,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: today's competition
+  m_text: You won!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 4508595060633383356, guid: badc025403a2cf0438a2cb10613aad1a, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2256,7 +2271,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!224 &7305087977007079610
@@ -2358,7 +2373,7 @@ MonoBehaviour:
   m_text: today's competition
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 4508595060633383356, guid: badc025403a2cf0438a2cb10613aad1a, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2423,7 +2438,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7409158975214351639
