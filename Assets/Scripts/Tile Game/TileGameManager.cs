@@ -72,6 +72,7 @@ public class TileGameManager : MonoBehaviour{
                 break;
 
             case State.Pick:
+                UIManager.UpdateChallengeBubble(challenges[currentChallengeIndex]);
                 playerHand.SetActive(true);
                 enemyHand.SetActive(true);
                 break;

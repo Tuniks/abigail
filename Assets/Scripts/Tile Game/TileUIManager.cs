@@ -62,13 +62,19 @@ public class TileUIManager : MonoBehaviour{
             challengesManager.GetChallengeDescription(challenges[2]);
         
         challengeScreenText.text = challengesString;
+    }
+
+    public void UpdateChallengeBubble(int challenge){
+        string challengesString = "Ok, so the challenge is <b>" +
+            challengesManager.GetChallengeDescription(challenge).ToLower() + "</b>";
+        
         challengeListText.text = challengesString;
     }
 
     public void UpdateRoundWinner(bool playerWon){
         if(playerWon){
-            roundWonDialogText.text = "You win this round!";
-        } else roundWonDialogText.text = "Your opponent wins this round!";
+            roundWonDialogText.text = "Hmmm... I gotta give this one to my girl <b>Abigail</b>";
+        } else roundWonDialogText.text = "Yeah, this round <b>Oz</b> takes it!";
     }
 
     public void UpdateGameWinner(bool playerWon){
