@@ -58,6 +58,7 @@ Margarette: Hello!
 title: OutsideHouse
 tags:
 ---
+<<if visited("OutsideHouse") is false>>
 Abigail: Good morning Mrs. Palmer.
 Margarette: Abigail, honey! I knew I would see you today!
 Abigail:	Did my mom tell you I was here already?
@@ -75,4 +76,7 @@ Margarette: But anyway, I don't mean to bother you too much.
 Margarette: A young lady like you must have places to go and people to see!
 Abigail: It was nice seeing you, Mrs. Palmer, I'll catch you later
 Margarette: I will be here waiting!
+<<else>>
+Margarette: Hihihihihi
+<<endif>>
 ===
