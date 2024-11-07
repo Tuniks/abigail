@@ -44,47 +44,6 @@ Abigail: Okay, yeah, let’s play.
 // Example: <<ShowLetter GameManager>>
 <<StartTileGame GameManager>>
 ===
-title: OutsideHouse
-tags:
----
-<<if visited("OutsideHouse") is false>>
-Abigail: Good morning Mrs. Palmer.
-Margarette: Abigail, honey! I knew I would see you today!
-Abigail: Did my mom tell you I was here already?
-Margarette:	No, that's not it.
-Margarette:	I feel it in my joints when the city changes.
-Margarette:	That's how I could tell you would be here.
-Abigail: Oh...
--> I didn't know I was important enough to be felt in the joints.
-	Margarette: Honey, we all are!
--> And what else can your joints tell me?
-	Margarette: That you can't wait to go back to the big city!
-	Margarette: Okay that one your mom did tell me.
-	Margarette: Hehehe
-Margarette: But anyway, I don't mean to bother you too much.
-Margarette: A young lady like you must have places to go and people to see!
-Abigail: It was nice seeing you, Mrs. Palmer, I'll catch you later
-Margarette: I will be here waiting!
-<<else>>
-Margarette:	Abigail, honey, you know you are always in my prayers, right?
-Abigail: That's very nice of you, Mrs. Palmer.
-Margarette:	Your mom tells me of all of your adventures out there!
-Abigail: All of them?
-Margarette:	Every single one!
-Margarette:	I am sorry about your last romantic encounter, by the way!
-Margarette:	That must've been so embarrassing...
-Abigail: ...
-Margarette:	Paolo almost choked laughing with that one!
-Abigail: Oh my god, Mr. Palmer too??
-Margarette:	Of course!
-Margarette:	Ever since the accident he needs all the distraction he can get!
-Abigail: ...
--> I am going to assassinate my mother.
--> I can't show my face around these parts anymore...
-Margarette: Hehehe
-<<ChangeStartNode Margarette OusideHouse2>>
-<<endif>>
-===
 title: OutsideHouse2
 tags:
 ---
@@ -158,3 +117,54 @@ Abigail: Huh, yeah thanks I’ll look it up...
 Tourist: My pals on the forums are gonna be soooo jealous.
 <<endif>>
 ===
+title: OutsideHouse
+tags:
+---
+
+<<declare $talkedonce = false as bool>>
+<<declare $talkedtwice = false as bool>>
+
+<<if visited("OutsideHouse") is false and not $talkedonce>>
+    Abigail: Good morning Mrs. Palmer.
+    Margarette: Abigail, honey! I knew I would see you today!
+    Abigail: Did my mom tell you I was here already?
+    Margarette: No, that's not it.
+    Margarette: I feel it in my joints when the city changes.
+    Margarette: That's how I could tell you would be here.
+    Abigail: Oh...
+        -> I didn't know I was important enough to be felt in the joints.
+        Margarette: Honey, we all are!
+        -> And what else can your joints tell me?
+        Margarette: That you can't wait to go back to the big city!
+        Margarette: Okay, that one your mom did tell me.
+        Margarette: Hehehe
+    Margarette: But anyway, I don't mean to bother you too much.
+    Margarette: A young lady like you must have places to go and people to see!
+    Abigail: It was nice seeing you, Mrs. Palmer, I'll catch you later
+    Margarette: I will be here waiting!
+    <<set $talkedonce = true>>
+
+<<elseif $talkedonce and not $talkedtwice>>
+    Margarette: Abigail, honey, you know you are always in my prayers, right?
+    Abigail: That's very nice of you, Mrs. Palmer.
+    Margarette: Your mom tells me of all of your adventures out there!
+    Abigail: All of them?
+    Margarette: Every single one!
+    Margarette: I am sorry about your last romantic encounter, by the way!
+    Margarette: That must've been so embarrassing...
+    Abigail: ...
+    Margarette: Paolo almost choked laughing with that one!
+    Abigail: Oh my god, Mr. Palmer too??
+    Margarette: Of course!
+    Margarette: Ever since the accident he needs all the distraction he can get!
+    Abigail: ...
+        -> I am going to assassinate my mother.
+        -> I can't show my face around these parts anymore...
+    Margarette: Hehehe
+    <<set $talkedtwice = true>>
+
+<<elseif $talkedtwice>>
+    Margarette: Hehehe
+<<endif>>
+===
+
