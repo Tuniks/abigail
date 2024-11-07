@@ -39,6 +39,8 @@ public class TileGameManager : MonoBehaviour{
     private int challengesCount = 3;
     private int currentChallengeIndex = 0;
 
+    private List<(Attributes, string, float)> currentArguments;
+
     private int score = 0;
 
 
@@ -95,11 +97,13 @@ public class TileGameManager : MonoBehaviour{
         UIManager.SetUIState(current);
     }
 
+    // Set Up Phase
     public void StartSetup(){
         UIManager.UpdateChallengesList(challenges);
         SetState(State.Setup);
     }
 
+    // Pick Phase
     public void StartRound(){
         if(currentChallengeIndex >2){
             RevealResult();
@@ -108,9 +112,41 @@ public class TileGameManager : MonoBehaviour{
         SetState(State.Pick);
     }
 
-    public void RevealWinner(){
+    // Argument Phase
+    public void RevealPreArgumentWinner(){
+        if(current != State.Pick) return;
+
         // Select card for opponent
         p2Hand.ActivateRandomCard();
+
+        // Check result
+        bool result = CheckResult();
+        Debug.Log(result);
+
+        // Get Arguments
+        List<(Attributes, string, float)> arguments = challengesManager.Get3ResponsesFromChallenge(challenges[currentChallengeIndex], result);
+        currentArguments = arguments;
+        string[] argumentsText = new string[3]{
+            arguments[0].Item2,
+            arguments[1].Item2,
+            arguments[2].Item2
+        };
+
+        // Update UI
+        UIManager.UpdatePreArgumentRoundWinner(result);
+        UIManager.UpdateArgumentBubbles(argumentsText, p1Active.activeTile.GetName());
+        SetState(State.Argument);
+    }
+
+    public void OnArgumentPicked(int arg){
+        (Attributes, string, float) chosen = currentArguments[arg];
+        p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
+        RevealWinner();
+    }
+
+    // Winner Phase
+    public void RevealWinner(){
+        // Select argument for opponent
 
         // Check result
         bool result = CheckResult();
@@ -123,11 +159,13 @@ public class TileGameManager : MonoBehaviour{
         currentChallengeIndex++;
     }
 
+    // Result Phase
     public void RevealResult(){
         UIManager.UpdateGameWinner(score>=0);
         SetState(State.Result);
     }
 
+    // General
     private bool CheckResult(){
         int index = challenges[currentChallengeIndex];
         float p1 = challengesManager.EvaluateTile(index, p1Active.activeTile);

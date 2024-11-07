@@ -43,8 +43,6 @@ public class PlayerHand : MonoBehaviour{
         hand.Remove(tile);
         DrawHand();
         activeSpot.ActivateTile(tile);
-        TileGameManager.instance.RevealWinner();
+        TileGameManager.instance.RevealPreArgumentWinner();
     }
-
-    
 }

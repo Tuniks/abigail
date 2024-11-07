@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ public class Challenges : MonoBehaviour{
         Dictionary<int, string> currentList = new Dictionary<int, string>(challenges);
 
         for(int i = 0; i < count; i++){
-            result[i] = currentList.ElementAt(Random.Range(0, currentList.Count)).Key;
+            result[i] = currentList.ElementAt(UnityEngine.Random.Range(0, currentList.Count)).Key;
             currentList.Remove(result[i]);
         }
         
@@ -28,6 +29,7 @@ public class Challenges : MonoBehaviour{
         return challenges[id];
     }
 
+    // Calculation for each individual challenge, based on tiles
     public float EvaluateTile(int id, Tile tile){
         float result = 0;
         
@@ -49,8 +51,62 @@ public class Challenges : MonoBehaviour{
                 break;
         }
 
-
         return result;
+    }
+
+    // Returns which attributes are related to each challenge's calculation
+    private List<Attributes> GetChallengeAttributes(int id){
+        switch(id){
+            case 0:
+                return new List<Attributes>{Attributes.Strength, Attributes.Magic};
+            case 1:
+                return new List<Attributes>{Attributes.Beauty};
+            case 2:
+                return new List<Attributes>{Attributes.Speed, Attributes.Stamina};
+            case 3:
+                return new List<Attributes>{Attributes.Beauty, Attributes.Magic, Attributes.Stamina};
+            case 4:
+                return new List<Attributes>{Attributes.Beauty, Attributes.Stamina};
+        }
+
+        return new List<Attributes>{};
+    }
+
+    // Returns a list of 3 attributes based on id, at most 2 based on the challenge, 1 random
+    private List<Attributes> Get3AttributesFromChallenge(int id){
+        List<Attributes> attributes = new List<Attributes>();
+        
+        List<Attributes> challengeAttributes = GetChallengeAttributes(id);
+        List<Attributes> allAttributes = new List<Attributes>((Attributes[])Enum.GetValues(typeof(Attributes)));
+
+        int nonrand = 0;
+        for(int i = 0; i < 3; i++){
+            if(nonrand < 2 && challengeAttributes.Count > 0){
+                Attributes att = challengeAttributes[UnityEngine.Random.Range(0, challengeAttributes.Count)];
+                challengeAttributes.Remove(att);
+                allAttributes.Remove(att);
+                attributes.Add(att);
+                nonrand++;
+            } else {
+                Attributes att = allAttributes[UnityEngine.Random.Range(0, allAttributes.Count)];
+                allAttributes.Remove(att);
+                attributes.Add(att);
+            }
+        }
+
+        return attributes;
+    }
+
+    // Return a list of responses for arguing phase
+    public List<(Attributes, string, float)> Get3ResponsesFromChallenge(int id, bool isPositive){
+        List<(Attributes, string, float)> responses = new List<(Attributes, string, float)>();
+        List<Attributes> attributes = Get3AttributesFromChallenge(id);
+
+        foreach(Attributes att in attributes){
+            responses.Add(Arguments.GetRandomResponseFromAttribute(att, isPositive));
+        }
+
+        return responses;
     }
 }
  
