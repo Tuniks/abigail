@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3908153217243319016}
-  - component: {fileID: 3849268909006319199}
   m_Layer: 6
   m_Name: BubbleAnchor
   m_TagString: Untagged
@@ -32,22 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7820359193267115439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3849268909006319199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4612013928946272180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterName: 
-  bubblePosition: {fileID: 0}
-  characterBubbleData: {fileID: 0}
-  characterBubblePrefab: {fileID: 0}
 --- !u!1 &9060565390355709345
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +42,7 @@ GameObject:
   - component: {fileID: 7820359193267115439}
   - component: {fileID: 6254102667326263335}
   - component: {fileID: 5876414281527260128}
+  - component: {fileID: 6048308188309185360}
   m_Layer: 6
   m_Name: NPC
   m_TagString: NPC
@@ -120,6 +104,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueNode:
   - Friend1
+--- !u!114 &6048308188309185360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060565390355709345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: 
+  bubblePosition: {fileID: 0}
+  characterBubbleData: {fileID: 0}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &9133940620788002872
 GameObject:
   m_ObjectHideFlags: 0
