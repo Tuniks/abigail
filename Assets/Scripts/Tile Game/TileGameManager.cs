@@ -180,6 +180,6 @@ public class TileGameManager : MonoBehaviour{
     }
 
     public void ResetGame(){
-        SceneManager.LoadScene("TileGame");
+        SceneManager.LoadScene("Start");
     }
 }
