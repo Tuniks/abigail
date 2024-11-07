@@ -16,4 +16,6 @@ public class TileComponent : MonoBehaviour{
     public float stamina = 0f;
     public float magic = 0f;
     public float speed = 0f;
+
+    public string title = "";
 }

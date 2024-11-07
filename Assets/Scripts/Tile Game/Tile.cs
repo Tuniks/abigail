@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour{
 
     private PlayerHand playerHand;
 
+    private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
+
     public void Initialize(GameObject _face, GameObject _bg, GameObject _mat, GameObject _glz){
         SubstituteComponent(_face, face.gameObject);
         SubstituteComponent(_bg, background.gameObject);
@@ -23,10 +25,6 @@ public class Tile : MonoBehaviour{
     }
 
     private void SubstituteComponent(GameObject current, GameObject old){
-        // current.transform.parent = gameObject.transform;
-        // current.transform.localPosition = old.transform.localPosition;
-        // current.transform.localRotation = old.transform.localRotation;
-        // current.transform.localScale = old.transform.localScale;
         Destroy(old);
     }
 
@@ -40,24 +38,39 @@ public class Tile : MonoBehaviour{
         playerHand.Activate(this);
     }
 
+    public void AddMultiplier(Attributes att, float value){
+        if(multipliers.ContainsKey(att)){
+            multipliers[att] = multipliers[att] * value;
+        } else multipliers[att] = value;
+    }
+
+    public string GetName(){
+        return face.title;
+    }
+
     public float GetBeauty(){
-        return face.beauty + background.beauty + material.beauty + glaze.beauty;
+        float mult = multipliers.ContainsKey(Attributes.Beauty) ? multipliers[Attributes.Beauty] : 1f;
+        return mult * (face.beauty + background.beauty + material.beauty + glaze.beauty);
     }
 
     public float GetStrength(){
-        return face.strength + background.strength + material.strength + glaze.strength;
+        float mult = multipliers.ContainsKey(Attributes.Strength) ? multipliers[Attributes.Strength] : 1f;
+        return mult * (face.strength + background.strength + material.strength + glaze.strength);
     }
 
     public float GetStamina(){
-        return face.stamina + background.stamina + material.stamina + glaze.stamina;
+        float mult = multipliers.ContainsKey(Attributes.Stamina) ? multipliers[Attributes.Stamina] : 1f;
+        return mult * (face.stamina + background.stamina + material.stamina + glaze.stamina);
     }
 
     public float GetMagic(){
-        return face.magic + background.magic + material.magic + glaze.magic;
+        float mult = multipliers.ContainsKey(Attributes.Magic) ? multipliers[Attributes.Magic] : 1f;
+        return mult * (face.magic + background.magic + material.magic + glaze.magic);
     }
 
     public float GetSpeed(){
-        return face.speed + background.speed + material.speed + glaze.speed;
+        float mult = multipliers.ContainsKey(Attributes.Speed) ? multipliers[Attributes.Speed] : 1f;
+        return mult * (face.speed + background.speed + material.speed + glaze.speed);
     }
 
 
