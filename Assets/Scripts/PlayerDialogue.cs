@@ -19,10 +19,16 @@ public class PlayerDialogue : MonoBehaviour{
 
     void Update(){
         if(Input.GetKeyDown("e")){
-            if(!dialogueRunner.IsDialogueRunning){
+            if(!isTalking){
                 AttemptConversation();
             } 
         }
+    }
+
+    void LateUpdate(){
+        if(dialogueRunner.IsDialogueRunning){
+            isTalking = true;
+        } else isTalking = false;
     }
 
     private void AttemptConversation(){
