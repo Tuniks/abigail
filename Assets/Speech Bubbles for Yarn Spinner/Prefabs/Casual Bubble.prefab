@@ -103,10 +103,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7260786462009290414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 161.245, y: -47.355}
-  m_SizeDelta: {x: 322.49, y: 94.71}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8829818616493675866
 CanvasRenderer:
@@ -138,8 +138,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Character Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c65990f5386ae4fbe922c2e7ce2bf5d9, type: 2}
-  m_sharedMaterial: {fileID: 6886671350852145964, guid: c65990f5386ae4fbe922c2e7ce2bf5d9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
+  m_sharedMaterial: {fileID: 2177152658935365370, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -163,8 +163,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -226,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7260786462009290414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -245,7 +245,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 322.49, y: 94.71}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.25}
 --- !u!222 &1223461548600239587
 CanvasRenderer:
@@ -355,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 19}
   m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1852205881440887665
@@ -388,8 +388,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wow, a speech bubble!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 06c379b65993c45abaf81fc4b5c74732, type: 2}
-  m_sharedMaterial: {fileID: -7103018377456932686, guid: 06c379b65993c45abaf81fc4b5c74732, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
+  m_sharedMaterial: {fileID: 2177152658935365370, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -932,7 +932,7 @@ MonoBehaviour:
   sideIndicatorPadding: 25
   dotIndicatorPadding: 0
   namePlatePadding: 0
-  typewriterLettersPerSecond: 20
+  typewriterLettersPerSecond: 30
   presentationCurve:
     serializedVersion: 2
     m_Curve:
