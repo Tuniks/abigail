@@ -22,4 +22,8 @@ public class PlayerController : MonoBehaviour{
         // rb.velocity = dir.normalized * movementSpeed * Time.fixedDeltaTime;
         rb.MovePosition(transform.position + (dir.normalized * movementSpeed * Time.fixedDeltaTime));
     }
+
+    public Vector2 GetDirection(){
+        return new Vector2(dir.x, dir.z);
+    }
 }
