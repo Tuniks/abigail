@@ -25,6 +25,7 @@ public class RoundManager : MonoBehaviour
     private int NPC4score = 0;
     private int NPC5score = 0;
     private bool isDecisionComplete = false;
+    private string selectedChallengeText; // Variable to store the selected text
 
     // Public references
     public TextMeshProUGUI winnerText;
@@ -104,6 +105,8 @@ public class RoundManager : MonoBehaviour
 
     private void HandleSetChallengeText()
     {
+        ClearText(); // Clear text before displaying new challenge text
+
         if (roundCount < challengeTexts.Length)
         {
             bubbleText.text = challengeTexts[roundCount];
@@ -124,13 +127,30 @@ public class RoundManager : MonoBehaviour
 
     private void HandleChallengeSelection()
     {
-        Debug.Log($"Current State: {currentState}, Waiting for button selection.");
+            // Store the selected text based on the option
+            if (option1Selected)
+            {
+                selectedChallengeText = buttonOption1Text.text;
+            }
+            else
+            {
+                selectedChallengeText = buttonOption2Text.text;
+            }
+
+            // Optionally, log the selected text for debugging
+            Debug.Log("Selected Challenge Text: " + selectedChallengeText);
     }
+    
 
     public void OnOption1Click()
     {
         option1Selected = true;
         Debug.Log("Option 1 clicked!");
+
+        // Store the selected text immediately here
+        selectedChallengeText = buttonOption1Text.text;
+    
+        // Transition to the next state
         TransitionToChallengeReaction();
     }
 
@@ -138,11 +158,19 @@ public class RoundManager : MonoBehaviour
     {
         option1Selected = false;
         Debug.Log("Option 2 clicked!");
+
+        // Store the selected text immediately here
+        selectedChallengeText = buttonOption2Text.text;
+
+        // Transition to the next state
         TransitionToChallengeReaction();
     }
 
+
     private void TransitionToChallengeReaction()
     {
+        ClearText(); // Clear text before transitioning
+
         option1Button.gameObject.SetActive(false);
         option2Button.gameObject.SetActive(false);
         currentState = GameState.ChallengeReaction;
@@ -151,6 +179,8 @@ public class RoundManager : MonoBehaviour
 
     private void HandleChallengeReaction()
     {
+        ClearText(); // Clear text before displaying new reaction text
+
         if (roundCount >= maxRounds)
         {
             bubbleText.text = "";
@@ -188,91 +218,95 @@ public class RoundManager : MonoBehaviour
 
             // Hide the challenge reaction text and transition to the TileSubmission state
             bubbleText.text = "";
-            uiContainer.SetActive(false);
+            //uiContainer.SetActive(false);
             currentState = GameState.TileSubmission;
             Debug.Log($"State changed to: {currentState}");
         }
     }
 
-
     private void HandleTileSubmission()
-{
-    // Determine which round's option to activate based on the selected option
-    GameObject activeRoundOption = null;
+    {
+        ClearText(); // Clear text before displaying new challenge text
 
-    // Assign the correct round/option based on the roundCount and option1Selected
-    if (roundCount == 0)
-    {
-        activeRoundOption = option1Selected ? Round1Option1 : Round1Option2;
-    }
-    else if (roundCount == 1)
-    {
-        activeRoundOption = option1Selected ? Round2Option1 : Round2Option2;
-    }
-    else if (roundCount == 2)
-    {
-        activeRoundOption = option1Selected ? Round3Option1 : Round3Option2;
-    }
+        // Determine which round's option to activate based on the selected option
+        GameObject activeRoundOption = null;
 
-    // Activate the selected option GameObject
-    activeRoundOption.SetActive(true);
-
-    // Set the current challenge text to match the selected option
-    if (option1Selected)
-    {
-        CurrentChallenge.text = buttonOption1Text.text;
-    }
-    else
-    {
-        CurrentChallenge.text = buttonOption2Text.text;
-    }
-
-    // Detect player interaction
-    if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the camera to the mouse position
-        if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit
+        // Assign the correct round/option based on the roundCount and option1Selected
+        if (roundCount == 0)
         {
-            // Loop through all children of the active round option
-            foreach (Transform child in activeRoundOption.transform) // Update here to use activeRoundOption's children
+            activeRoundOption = option1Selected ? Round1Option1 : Round1Option2;
+        }
+        else if (roundCount == 1)
+        {
+            activeRoundOption = option1Selected ? Round2Option1 : Round2Option2;
+        }
+        else if (roundCount == 2)
+        {
+            activeRoundOption = option1Selected ? Round3Option1 : Round3Option2;
+        }
+
+        // Activate the selected option GameObject
+        activeRoundOption.SetActive(true);
+
+        // Set the current challenge text to match the selected option
+        if (selectedChallengeText != null)
+        {
+            CurrentChallenge.text = selectedChallengeText; // Use the stored challenge text
+        }
+        else
+        {
+            // Fallback in case no text has been selected
+            CurrentChallenge.text = "No challenge selected";
+        }
+
+        // Detect player interaction
+        if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the camera to the mouse position
+            if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit
             {
-                if (hit.collider.gameObject == child.gameObject) // Check if the clicked object is a child
+                // Loop through all children of the active round option
+                foreach (Transform child in activeRoundOption.transform) // Update here to use activeRoundOption's children
                 {
-                    Debug.Log($"Tile clicked: {child.gameObject.name}"); // Log the clicked tile's name
-                    activeRoundOption.SetActive(false); // Hide the selected round option tiles
+                    if (hit.collider.gameObject == child.gameObject) // Check if the clicked object is a child
+                    {
+                        Debug.Log($"Tile clicked: {child.gameObject.name}"); // Log the clicked tile's name
+                        activeRoundOption.SetActive(false); // Hide the selected round option tiles
 
-                    // Increment the score based on the tile's tag
-                    if (child.CompareTag("NPC1"))
-                    {
-                        NPC1score++;
-                    }
-                    else if (child.CompareTag("NPC2"))
-                    {
-                        NPC2score++;
-                    }
-                    else if (child.CompareTag("NPC3"))
-                    {
-                        NPC3score++;
-                    }
-                    else if (child.CompareTag("NPC4"))
-                    {
-                        NPC4score++;
-                    }
-                    else if (child.CompareTag("NPC5"))
-                    {
-                        NPC5score++;
-                    }
+                        // Increment the score based on the tile's tag
+                        if (child.CompareTag("NPC1"))
+                        {
+                            NPC1score++;
+                        }
+                        else if (child.CompareTag("NPC2"))
+                        {
+                            NPC2score++;
+                        }
+                        else if (child.CompareTag("NPC3"))
+                        {
+                            NPC3score++;
+                        }
+                        else if (child.CompareTag("NPC4"))
+                        {
+                            NPC4score++;
+                        }
+                        else if (child.CompareTag("NPC5"))
+                        {
+                            NPC5score++;
+                        }
 
-                    currentState = GameState.DecisionReaction; // Move to the new state
-                    return; // Exit the loop after processing
+                        currentState = GameState.DecisionReaction; // Move to the new state
+                        return; // Exit the loop after processing
+                    }
                 }
             }
         }
     }
-}
 
     private void HandleDecisionReaction()
     {
+        ClearText(); // Clear text before displaying new decision reaction text
+
         Round1Option1.SetActive(false);
         Round2Option1.SetActive(false);
         Round3Option1.SetActive(false);
@@ -341,5 +375,27 @@ public class RoundManager : MonoBehaviour
             Debug.Log("Game Complete!");
         }
     }
+
+    // Helper method to clear text
+    private void ClearText()
+    {
+        bubbleText.text = "";
+        buttonOption1Text.text = "";
+        buttonOption2Text.text = "";
+        CurrentChallenge.text = "";
+    }
+    
+    private void OnOptionSelected(bool isOption1Selected)
+    {
+        // Set which option was selected
+        option1Selected = isOption1Selected;
+
+        // Call the function to store the selected challenge text
+        HandleChallengeSelection();
+
+        // Transition to the next state or round if needed
+        currentState = GameState.TileSubmission;
+    }
+
 }
 
