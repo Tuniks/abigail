@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     void Update(){
-        dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0 , Input.GetAxisRaw("Vertical"));
+        dir = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") , 0);
         // rb.velocity = dir.normalized * movementSpeed * Time.deltaTime;
     }
 
@@ -24,6 +24,6 @@ public class PlayerController : MonoBehaviour{
     }
 
     public Vector2 GetDirection(){
-        return new Vector2(dir.x, dir.z);
+        return new Vector2(dir.x, dir.y);
     }
 }
