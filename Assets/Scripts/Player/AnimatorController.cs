@@ -16,6 +16,5 @@ public class AnimatorController : MonoBehaviour{
 
         animator.SetFloat("Horizontal", dir.x);
         animator.SetFloat("Vertical", dir.y);
-        Debug.Log(dir.y);
     }
 }
