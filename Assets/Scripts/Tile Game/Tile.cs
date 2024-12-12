@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour{
+    [Header("Prefabs for Generation")]
+    public GameObject facePrefab;
+    public GameObject bgPrefab;
+    public GameObject matPrefab;
+    public GameObject glzPrefab;
+
+    [Header("Generated Components")]
     public TileComponent face;
     public TileComponent background;
     public TileComponent material;
@@ -12,20 +19,48 @@ public class Tile : MonoBehaviour{
 
     private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
 
-    public void Initialize(GameObject _face, GameObject _bg, GameObject _mat, GameObject _glz){
-        SubstituteComponent(_face, face.gameObject);
-        SubstituteComponent(_bg, background.gameObject);
-        SubstituteComponent(_mat, material.gameObject);
-        SubstituteComponent(_glz, glaze.gameObject);
+    // ==== BUILDING THE COMPONENT ====
+    public void Initialize(GameObject _facePrefab, GameObject _bgPrefab, GameObject _matPrefab, GameObject _glzPrefab){
+        facePrefab = _facePrefab;
+        bgPrefab = _bgPrefab;
+        matPrefab = _matPrefab;
+        glzPrefab = _glzPrefab;
 
-        face = _face.GetComponent<TileComponent>();
-        background = _bg.GetComponent<TileComponent>();
-        material = _mat.GetComponent<TileComponent>();
-        glaze = _glz.GetComponent<TileComponent>();
+        RebuildTile();
     }
 
-    private void SubstituteComponent(GameObject current, GameObject old){
-        Destroy(old);
+    private void RebuildTile(){
+        // Removing old components
+        if(face) DestroyImmediate(face.gameObject);
+        if(background) DestroyImmediate(background.gameObject);
+        if(material) DestroyImmediate(material.gameObject);
+        if(glaze) DestroyImmediate(glaze.gameObject);
+
+        // Adding new components from prefab
+        GameObject faceObj = AddTileComponent(facePrefab);
+        GameObject bgObj = AddTileComponent(bgPrefab);
+        GameObject matObj = AddTileComponent(matPrefab);
+        GameObject glzObj = AddTileComponent(glzPrefab);
+
+        // Getting component's component
+        face = faceObj.GetComponent<TileComponent>();
+        background = bgObj.GetComponent<TileComponent>();
+        material = matObj.GetComponent<TileComponent>();
+        glaze = glzObj.GetComponent<TileComponent>();
+    }
+
+    private GameObject AddTileComponent(GameObject prefab){
+        GameObject component = Instantiate(prefab);
+        component.transform.parent = transform;
+        component.transform.localPosition = prefab.transform.localPosition;
+        component.transform.localRotation = prefab.transform.localRotation;
+        component.transform.localScale = prefab.transform.localScale;
+        return component;
+    }
+
+    public void OnGeneratePressed(){
+        if(facePrefab == null || bgPrefab == null || matPrefab == null || glzPrefab == null) return;
+        RebuildTile();
     }
 
     public void SetHand(PlayerHand hand){
@@ -71,8 +106,5 @@ public class Tile : MonoBehaviour{
     public float GetSpeed(){
         float mult = multipliers.ContainsKey(Attributes.Speed) ? multipliers[Attributes.Speed] : 1f;
         return mult * (face.speed + background.speed + material.speed + glaze.speed);
-    }
-
-
-    
+    }    
 }
