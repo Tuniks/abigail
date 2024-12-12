@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     void FixedUpdate(){
+        rb.velocity = Vector3.zero;
         rb.MovePosition(transform.position + (dir.normalized * movementSpeed * Time.fixedDeltaTime));
     }
 
