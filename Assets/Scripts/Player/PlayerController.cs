@@ -15,11 +15,9 @@ public class PlayerController : MonoBehaviour{
 
     void Update(){
         dir = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") , 0);
-        // rb.velocity = dir.normalized * movementSpeed * Time.deltaTime;
     }
 
     void FixedUpdate(){
-        // rb.velocity = dir.normalized * movementSpeed * Time.fixedDeltaTime;
         rb.MovePosition(transform.position + (dir.normalized * movementSpeed * Time.fixedDeltaTime));
     }
 
