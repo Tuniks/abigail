@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tile : MonoBehaviour{
@@ -31,10 +32,15 @@ public class Tile : MonoBehaviour{
 
     private void RebuildTile(){
         // Removing old components
-        if(face) DestroyImmediate(face.gameObject);
-        if(background) DestroyImmediate(background.gameObject);
-        if(material) DestroyImmediate(material.gameObject);
-        if(glaze) DestroyImmediate(glaze.gameObject);
+        List<GameObject> toDestroy = new List<GameObject>();
+        foreach(Transform child in transform){
+            if(child.gameObject.GetComponent<TileComponent>() != null){
+                toDestroy.Add(child.gameObject);
+            }
+        }
+        foreach(GameObject child in toDestroy){
+            DestroyImmediate(child);
+        }
 
         // Adding new components from prefab
         GameObject faceObj = AddTileComponent(facePrefab);
@@ -62,6 +68,30 @@ public class Tile : MonoBehaviour{
         if(facePrefab == null || bgPrefab == null || matPrefab == null || glzPrefab == null) return;
         RebuildTile();
     }
+
+    // === HELPER OVERRIDES ===
+
+    public static bool operator == (Tile t1, Tile t2){
+        return (t1.facePrefab == t2.facePrefab) && (t1.bgPrefab == t2.bgPrefab) && (t1.matPrefab == t2.matPrefab) && (t1.glzPrefab == t2.glzPrefab);
+    }
+
+    public static bool operator != (Tile t1, Tile t2){
+        return !(t1 == t2);
+    }
+
+    public override bool Equals(object obj){
+        if(obj == null) return false;
+        if(GetType() != obj.GetType()) return false;
+
+        Tile t2 = obj as Tile;
+        return this == t2;
+    }
+
+    public override int GetHashCode(){
+        return facePrefab.GetHashCode() ^ bgPrefab.GetHashCode() ^ matPrefab.GetHashCode() ^ glzPrefab.GetHashCode();
+    }
+
+    // === FUNCTIONS FOR AZULEJO GAME ===
 
     public void SetHand(PlayerHand hand){
         playerHand = hand;

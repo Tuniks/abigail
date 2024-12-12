@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
     private PlayerUIManager ui;
+    public bool isActive = false;
     
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();

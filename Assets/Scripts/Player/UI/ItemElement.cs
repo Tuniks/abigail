@@ -25,6 +25,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = 10.0f; 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+
+        UpdateSpriteOrder(10);
     }
 
     public void OnDrag(PointerEventData eventData){
@@ -36,6 +38,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public void OnPointerUp(PointerEventData eventData){
         cg.blocksRaycasts = true;
         ui.DropItemElement(this);
+        UpdateSpriteOrder(-10);
     }
 
     public void ReturnToPreviousParent(){
@@ -56,5 +59,16 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         tileCopy.transform.localScale = tileScale;
 
         tileCopy.SetActive(true);
+    }
+
+    public Tile GetTile(){
+        return GetComponentInChildren<Tile>();
+    }
+
+    private void UpdateSpriteOrder(int order){
+        SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer spr in sprs){
+            spr.sortingOrder += order;
+        }
     }
 }

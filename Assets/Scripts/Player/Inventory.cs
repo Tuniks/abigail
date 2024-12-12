@@ -44,4 +44,28 @@ public class Inventory : MonoBehaviour{
         return activeTiles;
     }
 
+    public void MoveTile(Tile tile, bool toActive){
+        if(toActive){
+            foreach(GameObject child in tileCollection){
+                Tile childTile = child.GetComponent<Tile>();
+                if(childTile == tile){
+                    tileCollection.Remove(child);
+                    activeTiles.Add(child);
+                    child.transform.SetParent(activeTilesParent);
+                    return;
+                }
+            }
+        } else {
+            foreach(GameObject child in activeTiles){
+                Tile childTile = child.GetComponent<Tile>();
+                if(childTile == tile){
+                    activeTiles.Remove(child);
+                    tileCollection.Add(child);
+                    child.transform.SetParent(tileCollectionParent);
+                    return;
+                }
+            }
+        }
+    }
+
 }

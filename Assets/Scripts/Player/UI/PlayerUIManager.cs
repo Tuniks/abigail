@@ -33,19 +33,30 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     public void DropItemElement(ItemElement element){
+        // If not hovering a new slot, return to previous place
         if(currentItemSlot == null){
             element.ReturnToPreviousParent();
             return;
         }
 
+        // Getting tile from element
+        Tile tile = element.GetTile();
+
+        // If hovering empty slot, move to that slot and update inventory once
         ItemElement currentElement = currentItemSlot.GetComponentInChildren<ItemElement>();
         if(currentElement == null){
             element.SetNewParent(currentItemSlot.transform);
+            playerInventory.MoveTile(tile, currentItemSlot.isActive);
             return;
         }
 
+        // If hovering occupied slot, swap to that slot and update inventory twice
         currentElement.SetNewParent(element.GetPreviousParent());
+        Tile currentElementTile = currentElement.GetTile();
+        playerInventory.MoveTile(currentElementTile, element.GetPreviousParent().GetComponent<ItemSlot>().isActive);
+
         element.SetNewParent(currentItemSlot.transform);
+        playerInventory.MoveTile(tile, currentItemSlot.isActive); 
     }
 
     public Transform GetNextFreeSlotCollection(){
