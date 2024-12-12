@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
@@ -30,12 +31,17 @@ public class RoundManager : MonoBehaviour
     // Public references
     public TextMeshProUGUI winnerText;
     public GameObject uiContainer;
-    public TextMeshProUGUI bubbleText;
+    [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
+    public TextMeshProUGUI MomTextHolder;
+    public TextMeshProUGUI ChaseTextHolder;
     public TextMeshProUGUI buttonOption1Text;
     public TextMeshProUGUI buttonOption2Text;
     public Button option1Button;
     public Button option2Button;
     public TextMeshProUGUI CurrentChallenge;
+    public GameObject ChaseBubble;
+    public GameObject MomBubble;
+    public GameObject GabeBubble;
 
     // Round Option GameObjects
     public GameObject Round1Option1; // Assigned in Inspector
@@ -49,7 +55,7 @@ public class RoundManager : MonoBehaviour
 
     private string[] challengeTexts =
     {
-        "What's the challenge for this round?", "Please pick something I can use my foot tile for!",
+        "Hit us with a challenge Abigail!", "Please pick something I can use my foot tile for!",
         "You've always taken sooooooo long to pick the challenges."
     };
 
@@ -59,23 +65,22 @@ public class RoundManager : MonoBehaviour
         { "Who would steal the moon right out of the sky?", "Who would make kombucha from scratch?" }, // Round 2
         {
             "Who would reshape the craters of the earth when they jump?",
-            "Most likely to slip and fall on a banana peel?"
+            "Most likely to slip on a banana peel?"
         } // Round 3
     };
 
-    private string[,] reactionTexts =
+    private string[] chaseTexts =
     {
-        {
-            "Here comes Abigail with her big city challenges...",
-            "Is this your subtle way of bragging that you've never had a cavity?"
-        }, // Round 1
-        {
-            "My tiles are never good for these poetic challenges.",
-            "That reminds me I need to bring you some of my homemade hibiscus kombucha."
-        }, // Round 2
-        {
-            "Dude, I'm always thinking about how bonkers craters are.", "They should invent non-slippery banana peels."
-        } // Round 3
+        "Here comes Abigail with her big city challenges...",
+        "I feel like if I were a huge nerd I'd love this one.",
+        "Dude what does that even mean?"
+    };
+
+    private string[] momTexts =
+    {
+        "You know whose never had a cavity? My Abigail!",
+        "Oh maybe that can be my next little project!",
+        "They should invent a banana that's impossible to slip on."
     };
 
     private void Update()
@@ -106,16 +111,17 @@ public class RoundManager : MonoBehaviour
     private void HandleSetChallengeText()
     {
         ClearText(); // Clear text before displaying new challenge text
+        GabeBubble.SetActive(true); // Activate GabeBubble when GabeText is shown
 
         if (roundCount < challengeTexts.Length)
         {
-            bubbleText.text = challengeTexts[roundCount];
+            GabeText.text = challengeTexts[roundCount];
             buttonOption1Text.text = buttonTexts[roundCount, 0];
             buttonOption2Text.text = buttonTexts[roundCount, 1];
         }
         else
         {
-            bubbleText.text = "The game is over!";
+            GabeText.text = "The game is over!";
             buttonOption1Text.text = "No more challenges";
             buttonOption2Text.text = "No more challenges";
         }
@@ -173,56 +179,76 @@ public class RoundManager : MonoBehaviour
 
         option1Button.gameObject.SetActive(false);
         option2Button.gameObject.SetActive(false);
+        GabeBubble.SetActive(false);
         currentState = GameState.ChallengeReaction;
         Debug.Log("Transitioning to ChallengeReaction state");
     }
 
-    private void HandleChallengeReaction()
+  private void HandleChallengeReaction()
+{
+    ClearText(); // Clear text before displaying new reaction text
+
+    if (roundCount >= maxRounds)
     {
-        ClearText(); // Clear text before displaying new reaction text
+        GabeText.text = "";
+        return;
+    }
 
-        if (roundCount >= maxRounds)
+    // Display the appropriate reaction text and activate corresponding bubble
+    if (option1Selected)
+    {
+        ChaseTextHolder.text = chaseTexts[roundCount];
+        MomTextHolder.text = ""; // Clear MomTextHolder if ChaseText is displayed
+        ChaseBubble.SetActive(true);
+        MomBubble.SetActive(false); // Ensure MomBubble is off
+        Debug.Log($"Chase Text Displayed: {chaseTexts[roundCount]}");
+    }
+    else
+    {
+        MomTextHolder.text = momTexts[roundCount];
+        ChaseTextHolder.text = ""; // Clear ChaseTextHolder if MomText is displayed
+        MomBubble.SetActive(true);
+        ChaseBubble.SetActive(false); // Ensure ChaseBubble is off
+        Debug.Log($"Mom Text Displayed: {momTexts[roundCount]}");
+    }
+
+    // Wait until the player presses 'E' before activating the round options
+    if (Input.GetKeyDown(KeyCode.E))
+    {
+        // Activate the correct Round/Option GameObject based on the round and selection
+        switch (roundCount)
         {
-            bubbleText.text = "";
-            return;
-        }
-
-        bubbleText.text = reactionTexts[roundCount, option1Selected ? 0 : 1];
-        Debug.Log($"Reaction Text Displayed: {bubbleText.text}");
-
-        // Wait until the player presses 'E' before activating the round options
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // Activate the correct Round/Option GameObject
-            if (roundCount == 0)
-            {
+            case 0:
                 if (option1Selected)
                     Round1Option1.SetActive(true);
                 else
                     Round1Option2.SetActive(true);
-            }
-            else if (roundCount == 1)
-            {
+                break;
+            case 1:
                 if (option1Selected)
                     Round2Option1.SetActive(true);
                 else
                     Round2Option2.SetActive(true);
-            }
-            else if (roundCount == 2)
-            {
+                break;
+            case 2:
                 if (option1Selected)
                     Round3Option1.SetActive(true);
                 else
                     Round3Option2.SetActive(true);
-            }
-
-            // Hide the challenge reaction text and transition to the TileSubmission state
-            bubbleText.text = "";
-            //uiContainer.SetActive(false);
-            currentState = GameState.TileSubmission;
-            Debug.Log($"State changed to: {currentState}");
+                break;
         }
+
+        // Transition to the TileSubmission state and turn off both bubbles
+        MomTextHolder.text = "";
+        ChaseTextHolder.text = "";
+        MomBubble.SetActive(false);
+        ChaseBubble.SetActive(false);
+        currentState = GameState.TileSubmission;
+        Debug.Log($"State changed to: {currentState}");
     }
+}
+
+
 
     private void HandleTileSubmission()
     {
@@ -307,18 +333,33 @@ public class RoundManager : MonoBehaviour
     {
         ClearText(); // Clear text before displaying new decision reaction text
 
+        // Deactivate specific round-related options
         Round1Option1.SetActive(false);
         Round2Option1.SetActive(false);
         Round3Option1.SetActive(false);
         Round1Option2.SetActive(false);
         Round2Option2.SetActive(false);
         Round3Option2.SetActive(false);
+    
         uiContainer.SetActive(true);
         CurrentChallenge.text = "";
-        bubbleText.text = "We like Abigail's decision";
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // Deactivate all objects with the tag "bubble"
+            GameObject[] bubbles = GameObject.FindGameObjectsWithTag("bubble");
+            foreach (GameObject bubble in bubbles)
+            {
+                bubble.SetActive(false);
+            }
+
+            // Clear all TextMeshPro text elements on the canvas
+            TextMeshProUGUI[] textElements = FindObjectsOfType<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI textElement in textElements)
+            {
+                textElement.text = "";
+            }
+
             IncrementRound();
             if (roundCount >= maxRounds)
             {
@@ -379,7 +420,9 @@ public class RoundManager : MonoBehaviour
     // Helper method to clear text
     private void ClearText()
     {
-        bubbleText.text = "";
+        GabeText.text = "";
+        MomTextHolder.text = "";
+        ChaseTextHolder.text = "";
         buttonOption1Text.text = "";
         buttonOption2Text.text = "";
         CurrentChallenge.text = "";
