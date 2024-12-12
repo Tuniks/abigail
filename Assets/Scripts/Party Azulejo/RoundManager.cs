@@ -56,7 +56,7 @@ public class RoundManager : MonoBehaviour
     private string[] challengeTexts =
     {
         "Hit us with a challenge Abigail!", "Please pick something I can use my foot tile for!",
-        "You've always taken sooooooo long to pick the challenges."
+        "You always take soooo long to pick the challenges."
     };
 
     private string[,] buttonTexts =
@@ -80,7 +80,7 @@ public class RoundManager : MonoBehaviour
     {
         "You know whose never had a cavity? My Abigail!",
         "Oh maybe that can be my next little project!",
-        "They should invent a banana that's impossible to slip on."
+        "Mmm now I'm thinking about making banana bread."
     };
 
     private void Update()
