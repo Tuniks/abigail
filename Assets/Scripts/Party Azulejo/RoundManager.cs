@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
@@ -10,9 +11,8 @@ public class RoundManager : MonoBehaviour
         ChallengeSelection,
         ChallengeReaction,
         TileSubmission,
-        DecisionReaction 
+        DecisionReaction
     }
-
 
     private GameState currentState = GameState.SetChallengeText;
 
@@ -22,26 +22,41 @@ public class RoundManager : MonoBehaviour
 
     private int NPC1score = 0;
     private int NPC2score = 0;
+    private int NPC3score = 0;
+    private int NPC4score = 0;
+    private int NPC5score = 0;
     private bool isDecisionComplete = false;
+    private string selectedChallengeText; // Variable to store the selected text
 
     // Public references
     public TextMeshProUGUI winnerText;
-    public GameObject uiContainer; // Assign the UI container (panel with text and buttons)
-    public TextMeshProUGUI bubbleText; // Assign the TextMeshPro for the bubble text
-    public TextMeshProUGUI buttonOption1Text; // Assign Button 1's text object
-    public TextMeshProUGUI buttonOption2Text; // Assign Button 2's text object
-    public Button option1Button; // Changed from GameObject to Button
-    public Button option2Button; // Changed from GameObject to Button
-    public GameObject tileOption1; // Assign the Tile GameObject for Option 1
-    public GameObject tileOption2; // Assign the Tile GameObject for Option 2
-    public TextMeshProUGUI CurrentChallenge; // Assign this in the Inspector
+    public GameObject uiContainer;
+    [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
+    public TextMeshProUGUI MomTextHolder;
+    public TextMeshProUGUI ChaseTextHolder;
+    public TextMeshProUGUI buttonOption1Text;
+    public TextMeshProUGUI buttonOption2Text;
+    public Button option1Button;
+    public Button option2Button;
+    public TextMeshProUGUI CurrentChallenge;
+    public GameObject ChaseBubble;
+    public GameObject MomBubble;
+    public GameObject GabeBubble;
 
+    // Round Option GameObjects
+    public GameObject Round1Option1; // Assigned in Inspector
+    public GameObject Round1Option2; // Assigned in Inspector
+    public GameObject Round2Option1; // Assigned in Inspector
+    public GameObject Round2Option2; // Assigned in Inspector
+    public GameObject Round3Option1; // Assigned in Inspector
+    public GameObject Round3Option2; // Assigned in Inspector
 
-    // Text data for each round
+    private bool option1Selected = false;
+
     private string[] challengeTexts =
     {
-        "What's the challenge for this round?", "Please please pick something that I can use my foot tile for!",
-        "You've always taken sooooooo long to pick the challenges Abigail."
+        "Hit us with a challenge Abigail!", "Please pick something I can use my foot tile for!",
+        "You always take soooo long to pick the challenges."
     };
 
     private string[,] buttonTexts =
@@ -50,31 +65,26 @@ public class RoundManager : MonoBehaviour
         { "Who would steal the moon right out of the sky?", "Who would make kombucha from scratch?" }, // Round 2
         {
             "Who would reshape the craters of the earth when they jump?",
-            "Most likely to slip and fall on a banana peel?"
+            "Most likely to slip on a banana peel?"
         } // Round 3
     };
 
-    private string[,] reactionTexts =
+    private string[] chaseTexts =
     {
-        {
-            "Here comes Abigail with her big city challenges...",
-            "Is this your subtle way of bragging that you've never had a cavity?"
-        }, // Round 1
-        {
-            "My tiles are never good for these poetic challenges.",
-            "That reminds me I need to bring you some of my homemade hibiscus kombucha."
-        }, // Round 2
-        {
-            "Dude, I'm always thinking about how bonkers craters are.", "They should invent non slippery banana peels."
-        } // Round 3
+        "Here comes Abigail with her big city challenges...",
+        "I feel like if I were a huge nerd I'd love this one.",
+        "Dude what does that even mean?"
     };
 
-    private bool option1Selected = false; // Tracks which option was chosen
+    private string[] momTexts =
+    {
+        "You know whose never had a cavity? My Abigail!",
+        "Oh maybe that can be my next little project!",
+        "Mmm now I'm thinking about making banana bread."
+    };
 
     private void Update()
     {
-        //Debug.Log($"Update called. Current State: {currentState}");
-
         switch (currentState)
         {
             case GameState.SetChallengeText:
@@ -89,228 +99,346 @@ public class RoundManager : MonoBehaviour
             case GameState.TileSubmission:
                 HandleTileSubmission();
                 break;
-            case GameState.DecisionReaction: // Add the new state
+            case GameState.DecisionReaction:
                 HandleDecisionReaction();
                 break;
             default:
                 Debug.Log("Unknown state!");
                 break;
         }
-
     }
 
-    // State: SetChallengeText
     private void HandleSetChallengeText()
     {
-        // Ensure that the roundCount does not exceed the number of available challenge texts
+        ClearText(); // Clear text before displaying new challenge text
+        GabeBubble.SetActive(true); // Activate GabeBubble when GabeText is shown
+
         if (roundCount < challengeTexts.Length)
         {
-            bubbleText.text = challengeTexts[roundCount];
+            GabeText.text = challengeTexts[roundCount];
             buttonOption1Text.text = buttonTexts[roundCount, 0];
             buttonOption2Text.text = buttonTexts[roundCount, 1];
         }
         else
         {
-            // Handle the case where rounds exceed available data (game over or final decision)
-            bubbleText.text = "The game is over!";
+            GabeText.text = "The game is over!";
             buttonOption1Text.text = "No more challenges";
             buttonOption2Text.text = "No more challenges";
         }
 
-        option1Button.gameObject.SetActive(true); // Use gameObject to set active status
-        option2Button.gameObject.SetActive(true); // Use gameObject to set active status
+        option1Button.gameObject.SetActive(true);
+        option2Button.gameObject.SetActive(true);
         uiContainer.SetActive(true);
-
-        // Do not transition immediately, wait for button click to change the state
     }
 
-    // State: ChallengeSelection
     private void HandleChallengeSelection()
     {
-        Debug.Log($"Current State: {currentState}, Waiting for button selection.");
+            // Store the selected text based on the option
+            if (option1Selected)
+            {
+                selectedChallengeText = buttonOption1Text.text;
+            }
+            else
+            {
+                selectedChallengeText = buttonOption2Text.text;
+            }
 
-        // Since the state transition is now handled by the button clicks, 
-        // we don't need to check for keyboard input anymore.
-
-        // Option 1 and Option 2 button clicks are now handled in their respective methods
-        Debug.Log("Waiting for button selection.");
+            // Optionally, log the selected text for debugging
+            Debug.Log("Selected Challenge Text: " + selectedChallengeText);
     }
+    
 
     public void OnOption1Click()
     {
-        option1Selected = true; // Option 1 selected
-        Debug.Log("Option 1 clicked!"); // Log for debugging
+        option1Selected = true;
+        Debug.Log("Option 1 clicked!");
+
+        // Store the selected text immediately here
+        selectedChallengeText = buttonOption1Text.text;
+    
+        // Transition to the next state
         TransitionToChallengeReaction();
     }
 
     public void OnOption2Click()
     {
-        option1Selected = false; // Option 2 selected
-        Debug.Log("Option 2 clicked!"); // Log for debugging
+        option1Selected = false;
+        Debug.Log("Option 2 clicked!");
+
+        // Store the selected text immediately here
+        selectedChallengeText = buttonOption2Text.text;
+
+        // Transition to the next state
         TransitionToChallengeReaction();
     }
 
+
     private void TransitionToChallengeReaction()
     {
-        option1Button.gameObject.SetActive(false); // Deactivate the button
-        option2Button.gameObject.SetActive(false); // Deactivate the button
+        ClearText(); // Clear text before transitioning
+
+        option1Button.gameObject.SetActive(false);
+        option2Button.gameObject.SetActive(false);
+        GabeBubble.SetActive(false);
         currentState = GameState.ChallengeReaction;
         Debug.Log("Transitioning to ChallengeReaction state");
     }
-private void HandleChallengeReaction()
-{
-    Debug.Log($"Current State: {currentState}, Round: {roundCount}"); // Log current state and round
 
-    // Check if we have exceeded the number of rounds
+  private void HandleChallengeReaction()
+{
+    ClearText(); // Clear text before displaying new reaction text
+
     if (roundCount >= maxRounds)
     {
-        // Game over, no more challenges
-        bubbleText.text = ""; // Clear the reaction text
+        GabeText.text = "";
         return;
     }
 
-    // Otherwise, display the reaction text based on the round and selection
-    bubbleText.text = reactionTexts[roundCount, option1Selected ? 0 : 1];
-    Debug.Log($"Reaction Text Displayed: {bubbleText.text}"); // Log the reaction text being displayed
-
-    // Check if E is pressed
-    if (Input.GetKeyDown(KeyCode.E))
+    // Display the appropriate reaction text and activate corresponding bubble
+    if (option1Selected)
     {
-        Debug.Log("E key pressed! Transitioning to TileSubmission state."); // Log E key press
-        bubbleText.text = ""; // Clear the bubble text (optional)
-        uiContainer.SetActive(false); // Hide the UI container
-        currentState = GameState.TileSubmission; // Move to TileSubmission state
-        Debug.Log($"State changed to: {currentState}"); // Log the state change
+        ChaseTextHolder.text = chaseTexts[roundCount];
+        MomTextHolder.text = ""; // Clear MomTextHolder if ChaseText is displayed
+        ChaseBubble.SetActive(true);
+        MomBubble.SetActive(false); // Ensure MomBubble is off
+        Debug.Log($"Chase Text Displayed: {chaseTexts[roundCount]}");
     }
     else
     {
-        Debug.Log("E key not pressed yet."); // Log if E is not detected
+        MomTextHolder.text = momTexts[roundCount];
+        ChaseTextHolder.text = ""; // Clear ChaseTextHolder if MomText is displayed
+        MomBubble.SetActive(true);
+        ChaseBubble.SetActive(false); // Ensure ChaseBubble is off
+        Debug.Log($"Mom Text Displayed: {momTexts[roundCount]}");
+    }
+
+    // Wait until the player presses 'E' before activating the round options
+    if (Input.GetKeyDown(KeyCode.E))
+    {
+        // Activate the correct Round/Option GameObject based on the round and selection
+        switch (roundCount)
+        {
+            case 0:
+                if (option1Selected)
+                    Round1Option1.SetActive(true);
+                else
+                    Round1Option2.SetActive(true);
+                break;
+            case 1:
+                if (option1Selected)
+                    Round2Option1.SetActive(true);
+                else
+                    Round2Option2.SetActive(true);
+                break;
+            case 2:
+                if (option1Selected)
+                    Round3Option1.SetActive(true);
+                else
+                    Round3Option2.SetActive(true);
+                break;
+        }
+
+        // Transition to the TileSubmission state and turn off both bubbles
+        MomTextHolder.text = "";
+        ChaseTextHolder.text = "";
+        MomBubble.SetActive(false);
+        ChaseBubble.SetActive(false);
+        currentState = GameState.TileSubmission;
+        Debug.Log($"State changed to: {currentState}");
     }
 }
 
 
 
-private void HandleTileSubmission()
-{
-    // Determine the active tile set based on the selected option
-    GameObject activeTileParent = option1Selected ? tileOption1 : tileOption2;
-    activeTileParent.SetActive(true); // Ensure the correct tile set is visible
+    private void HandleTileSubmission()
+    {
+        ClearText(); // Clear text before displaying new challenge text
 
-    // Set the text of the CurrentChallenge text object based on the selected option
-    if (option1Selected)
-    {
-        CurrentChallenge.text = buttonOption1Text.text; // Show the text of the selected option
-    }
-    else
-    {
-        CurrentChallenge.text = buttonOption2Text.text; // Show the text of the selected option
-    }
+        // Determine which round's option to activate based on the selected option
+        GameObject activeRoundOption = null;
 
-    // Detect player interaction
-    if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the camera to the mouse position
-        if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit
+        // Assign the correct round/option based on the roundCount and option1Selected
+        if (roundCount == 0)
         {
-            // Loop through all children of the active tile parent
-            foreach (Transform child in activeTileParent.transform)
+            activeRoundOption = option1Selected ? Round1Option1 : Round1Option2;
+        }
+        else if (roundCount == 1)
+        {
+            activeRoundOption = option1Selected ? Round2Option1 : Round2Option2;
+        }
+        else if (roundCount == 2)
+        {
+            activeRoundOption = option1Selected ? Round3Option1 : Round3Option2;
+        }
+
+        // Activate the selected option GameObject
+        activeRoundOption.SetActive(true);
+
+        // Set the current challenge text to match the selected option
+        if (selectedChallengeText != null)
+        {
+            CurrentChallenge.text = selectedChallengeText; // Use the stored challenge text
+        }
+        else
+        {
+            // Fallback in case no text has been selected
+            CurrentChallenge.text = "No challenge selected";
+        }
+
+        // Detect player interaction
+        if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the camera to the mouse position
+            if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit
             {
-                if (hit.collider.gameObject == child.gameObject) // Check if the clicked object is a child
+                // Loop through all children of the active round option
+                foreach (Transform child in activeRoundOption.transform) // Update here to use activeRoundOption's children
                 {
-                    Debug.Log($"Tile clicked: {child.gameObject.name}"); // Log the clicked tile's name
-                    activeTileParent.SetActive(false); // Hide all tiles
-
-                    // Increment the score based on the tile's tag
-                    if (child.CompareTag("NPC1"))
+                    if (hit.collider.gameObject == child.gameObject) // Check if the clicked object is a child
                     {
-                        NPC1score++;
-                    }
-                    else if (child.CompareTag("NPC2"))
-                    {
-                        NPC2score++;
-                    }
+                        Debug.Log($"Tile clicked: {child.gameObject.name}"); // Log the clicked tile's name
+                        activeRoundOption.SetActive(false); // Hide the selected round option tiles
 
-                    currentState = GameState.DecisionReaction; // Move to the new state
-                    return; // Exit the loop after processing
+                        // Increment the score based on the tile's tag
+                        if (child.CompareTag("NPC1"))
+                        {
+                            NPC1score++;
+                        }
+                        else if (child.CompareTag("NPC2"))
+                        {
+                            NPC2score++;
+                        }
+                        else if (child.CompareTag("NPC3"))
+                        {
+                            NPC3score++;
+                        }
+                        else if (child.CompareTag("NPC4"))
+                        {
+                            NPC4score++;
+                        }
+                        else if (child.CompareTag("NPC5"))
+                        {
+                            NPC5score++;
+                        }
+
+                        currentState = GameState.DecisionReaction; // Move to the new state
+                        return; // Exit the loop after processing
+                    }
                 }
             }
         }
     }
-}
 
-
-private void HandleDecisionReaction()
-{
-    // Turn off the tile option game objects
-    tileOption1.SetActive(false);
-    tileOption2.SetActive(false);
-
-    // Turn the UI back on
-    uiContainer.SetActive(true);
-
-    // Reset the CurrentChallenge text when the state changes to DecisionReaction
-    CurrentChallenge.text = ""; // Clear the text
-
-    // Update the bubble text
-    bubbleText.text = "We like Abigail's decision";
-
-    // Wait for the player to press the space bar to move to the next state
-    if (Input.GetKeyDown(KeyCode.E))
+    private void HandleDecisionReaction()
     {
-        // Increment the round count
-        IncrementRound();
+        ClearText(); // Clear text before displaying new decision reaction text
 
-        // If 3 rounds have been played, end the game and show the winner
-        if (roundCount >= maxRounds)
-        {
-            // Call DisplayWinnerText to show the winner and stop the game
-            DisplayWinnerText();
-            return; // Stop the game here by returning
-        }
-
-        // Otherwise, restart from the first state of the cycle
-        currentState = GameState.SetChallengeText;
-    }
-}
-
+        // Deactivate specific round-related options
+        Round1Option1.SetActive(false);
+        Round2Option1.SetActive(false);
+        Round3Option1.SetActive(false);
+        Round1Option2.SetActive(false);
+        Round2Option2.SetActive(false);
+        Round3Option2.SetActive(false);
     
+        uiContainer.SetActive(true);
+        CurrentChallenge.text = "";
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // Deactivate all objects with the tag "bubble"
+            GameObject[] bubbles = GameObject.FindGameObjectsWithTag("bubble");
+            foreach (GameObject bubble in bubbles)
+            {
+                bubble.SetActive(false);
+            }
+
+            // Clear all TextMeshPro text elements on the canvas
+            TextMeshProUGUI[] textElements = FindObjectsOfType<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI textElement in textElements)
+            {
+                textElement.text = "";
+            }
+
+            IncrementRound();
+            if (roundCount >= maxRounds)
+            {
+                DisplayWinnerText();
+                return;
+            }
+            currentState = GameState.SetChallengeText;
+        }
+    }
+
     private void DisplayWinnerText()
     {
-        // Determine the winner based on the scores
-        if (NPC1score > NPC2score)
+        int maxScore = Mathf.Max(NPC1score, NPC2score, NPC3score, NPC4score, NPC5score);
+        int tieCount = 0;
+        if (NPC1score == maxScore) tieCount++;
+        if (NPC2score == maxScore) tieCount++;
+        if (NPC3score == maxScore) tieCount++;
+        if (NPC4score == maxScore) tieCount++;
+        if (NPC5score == maxScore) tieCount++;
+
+        if (tieCount > 1)
         {
-            winnerText.text = "NPC 1 won!"; // Display the winner on WinnerText
+            winnerText.text = "It's a tie!";
         }
-        else if (NPC2score > NPC1score)
+        else if (NPC1score == maxScore)
         {
-            winnerText.text = "NPC 2 won!"; // Display the winner on WinnerText
+            winnerText.text = "Gabe won!";
         }
-        else
+        else if (NPC2score == maxScore)
         {
-            winnerText.text = "It's a tie!"; // Display a tie message on WinnerText
+            winnerText.text = "Kate won!";
+        }
+        else if (NPC3score == maxScore)
+        {
+            winnerText.text = "Dani won!";
+        }
+        else if (NPC4score == maxScore)
+        {
+            winnerText.text = "Chase won!";
+        }
+        else if (NPC5score == maxScore)
+        {
+            winnerText.text = "Joanna won!";
         }
 
-        // Optionally stop the game here by returning (this will halt further state transitions)
         Debug.Log("Game Complete!");
     }
-
-
 
     private void IncrementRound()
     {
         roundCount++;
-
-        // Ensure that the round count doesn't exceed maxRounds
         if (roundCount >= maxRounds)
         {
             Debug.Log("Game Complete!");
-            // Optionally stop the game or display final message here
-            // This will ensure the game doesn't loop after round 3
-        }
-        else
-        {
-            // Continue to the next round
-            currentState = GameState.SetChallengeText; // Restart the cycle with the new round
         }
     }
+
+    // Helper method to clear text
+    private void ClearText()
+    {
+        GabeText.text = "";
+        MomTextHolder.text = "";
+        ChaseTextHolder.text = "";
+        buttonOption1Text.text = "";
+        buttonOption2Text.text = "";
+        CurrentChallenge.text = "";
+    }
+    
+    private void OnOptionSelected(bool isOption1Selected)
+    {
+        // Set which option was selected
+        option1Selected = isOption1Selected;
+
+        // Call the function to store the selected challenge text
+        HandleChallengeSelection();
+
+        // Transition to the next state or round if needed
+        currentState = GameState.TileSubmission;
+    }
+
 }
+
