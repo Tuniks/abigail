@@ -138,6 +138,7 @@ public class TileGameManager : MonoBehaviour{
     }
 
     public void OnArgumentPicked(int arg){
+        Debug.Log(arg);
         (Attributes, string, float) chosen = currentArguments[arg];
         p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
         RevealWinner();
@@ -179,6 +180,6 @@ public class TileGameManager : MonoBehaviour{
     }
 
     public void ResetGame(){
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("FeltAreaPostAzulejo");
     }
 }
