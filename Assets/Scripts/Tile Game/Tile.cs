@@ -21,6 +21,10 @@ public class Tile : MonoBehaviour{
     private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
 
     // ==== BUILDING THE COMPONENT ====
+    void Start(){
+        RebuildTile();
+    }
+
     public void Initialize(GameObject _facePrefab, GameObject _bgPrefab, GameObject _matPrefab, GameObject _glzPrefab){
         facePrefab = _facePrefab;
         bgPrefab = _bgPrefab;
@@ -72,6 +76,8 @@ public class Tile : MonoBehaviour{
     // === HELPER OVERRIDES ===
 
     public static bool operator == (Tile t1, Tile t2){
+        if(!t1 && !t2) return true;
+        if(!t1 || !t2) return false;
         return (t1.facePrefab == t2.facePrefab) && (t1.bgPrefab == t2.bgPrefab) && (t1.matPrefab == t2.matPrefab) && (t1.glzPrefab == t2.glzPrefab);
     }
 

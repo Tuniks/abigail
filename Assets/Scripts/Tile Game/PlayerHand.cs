@@ -13,18 +13,31 @@ public class PlayerHand : MonoBehaviour{
     public float tileSpacing = .5f;
 
     void Start(){
-        GenerateRandomHand();
+        BuildHand();
         DrawHand();
     }
 
-    void GenerateRandomHand(){
+    private void BuildHand(){
+        PlayerInventory inv = PlayerInventory.Instance;
+        if (inv != null) hand = inv.GetHandOfTiles(maxHandSize);
+        if(hand.Count < maxHandSize) GenerateRandomHand(maxHandSize - hand.Count);
+        SetHand();
+    }
+
+    void GenerateRandomHand(int handCount){
         hand = new List<Tile>();
 
-        for (int i = 0; i < maxHandSize; i++){
+        for (int i = 0; i < handCount; i++){
             Tile tile = TileMaker.instance.GetRandomTile();
+            hand.Add(tile);
+        }
+    }
+
+    private void SetHand(){
+        foreach(Tile tile in hand){
             tile.SetHand(this);
             tile.transform.SetParent(transform);
-            hand.Add(tile);
+            tile.gameObject.SetActive(true);
         }
     }
 

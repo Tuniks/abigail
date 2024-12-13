@@ -8,9 +8,15 @@ public class PlayerUIManager : MonoBehaviour{
     public Transform collectionParent;
     public Transform activeParent;
     public Transform heldItemParent;
-    public Inventory playerInventory;
     public GameObject itemElementPrefab;
+
+    private Inventory playerInventory;
     private ItemSlot currentItemSlot = null;
+
+    void Start(){
+        playerInventory = PlayerInventory.Instance;
+        SetInventoryUI();
+    }
 
     void Update(){
         if(Input.GetKeyDown("i") || Input.GetKeyDown(KeyCode.Tab)){
@@ -77,7 +83,7 @@ public class PlayerUIManager : MonoBehaviour{
         return GetNextFreeSlotCollection();
     }
 
-    public void SetInventoryUI(){
+    private void SetInventoryUI(){
         List<GameObject> collection = playerInventory.GetTileCollection();
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
