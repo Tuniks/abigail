@@ -68,7 +68,8 @@ Vendor:	Yeah
 Vendor:	...
 Vendor:	My dad calls these ones “perfect son” tiles.
 Abigail: That’s incredibly sweet.
-Vendor:	And a little embarrassing
+Vendor:	And a little embarrassing.
+Vendor: You're not allowed to buy one.
 Abigail: My mom has socks with my face on them. 
 Vendor:	...
 Abigail: ...
@@ -86,21 +87,22 @@ Mom: Well if it isn't my favorite daughter!
 Mom: I was just telling Margarette down the road that I miss you, you remember Margarette?
 Mom: Her husband got into that terrible accident?
 Mom: Do you remember? Poor man hasn't been able to look at a ceiling fan since...
-Abigail: Mom! Why am I here?
 Mom: Oh look at me going on and on! How are you my dear?
-Abigail: I need to get back home.
-Mom: Oh well you know how flights are it could be a week.
-Abigail: I can't stay here for a week this is the worst time this could've happened. 
+Abigail: I'm not sure how I got here.
+Abigail: I was falling asleep, thinking about this tile I used to have. 
+Abigail: And now I'm home? 
 Mom: I already told everyone you're here you have a lot of people to see this week!
 Abigail: Mom you just found out I was here a few seconds ago
 Mom: Oh baby you know me I can't keep a good thing hidden
-Abigail: This is a lot I'm going to head to the travel office and see about flights 
-Mom: Jim doesn't come in on Mondays
-Abigail: Jim? Mom what- I'm going for a walk anyway then. 
-Mom: Swing by the cafe! I know Chase would be thrilled to see you!
+Mom: I think you should go check up on Chase, I'm worried about that boy.
+Abigail: This is a lot I'm going to head to the travel office and see about flights.
+Mom: Jim doesn't come in on Mondays.
+Mom: Swing by the Neptune Cafe! I know Chase would be thrilled to see you!
+Mom: You should borrow a few tiles from my collection in case he wants to play Azueljo. 
+Mom: But not too many! I'm going to play with Margarette later.
 <<ExitPossible ExitManager>>
 <<else>>
-Mom: Your hair looks a bit dry. It's not a big deal if you're just going to the cafe. 
+Mom: Your hair looks a bit dry. It's not a big deal if you're just going to the Neptune Cafe. 
 <<endif>>
 ===
 title: Tourist
@@ -314,84 +316,126 @@ Albert: I don't know! Quit asking me.
 title: KateChaseParty
 tags:
 ---
-//function to increment so that when everyone has been talked to party Azulejo starts 
-Kate: Okay so I have a favor to ask.
-Chase: What’s up?
-Kate: Next Wednesday at 11am we’re doing a big load in a day at the venue. 
-Kate: We could use some extra hands to move equipment?
-Chase: When is this?
-Kate: Next Wednesday at 11am.
-Chase: Hmm maybe I could...
-Kate: It’s okay, no worries.
-Chase: If you absolutely can’t find anyone else, let me know.
-Kate: I’ll figure it out.
-Abigail: You suddenly have a 9-5 or something Chase?
-Chase: Me? Never.
-Kate: His latest thing has been carpentry.
-Chase: I’ve been feeling a lot like Jesus lately.
-Abigail: You’ve never been to church in your life.
-Chase: But I would look good on a cross!
-Chase: If one of you backs me up there could be a new coffee table in your future.
-Kate: Not sure if that’s worth it, the birdhouse you made for my birthday was unfortunately short lived.
-Chase: I did not build it with a high weight limit!
-Chase: No one could have predicted an entire family of squirrels would move in!
-Kate: Jesus could have predicted that…
+<<if visited("KateChaseParty") is false>>
+    Kate: Okay so I have a favor to ask.
+    Chase: What’s up?
+    Kate: Next Wednesday at 11am we’re doing a big load in a day at the venue. 
+    Kate: We could use some extra hands to move equipment?
+    Chase: When is this?
+    Kate: Next Wednesday at 11am.
+    Chase: Hmm maybe I could...
+    Kate: It’s okay, no worries.
+    Chase: If you absolutely can’t find anyone else, let me know.
+    Kate: I’ll figure it out.
+    Abigail: You suddenly have a 9-5 or something Chase?
+    Chase: Me? Never.
+    Kate: His latest thing has been carpentry.
+    Chase: I’ve been feeling a lot like Jesus lately.
+    Abigail: You’ve never been to church in your life.
+    Chase: But I would look good on a cross!
+    Chase: If one of you backs me up there could be a new coffee table in your future.
+    Kate: Not sure if that’s worth it, the birdhouse you made for my birthday was unfortunately short lived.
+    Chase: I did not build it with a high weight limit!
+    Chase: No one could have predicted an entire family of squirrels would move in!
+    Kate: Jesus could have predicted that…
+    <<set $peopletalkedto = $peopletalkedto + 1>>
+    <<if $peopletalkedto > 2>>
+        Gabe:Alright party people! Let's play some Azulejo.
+        Joanna: Abigail should judge!
+    <<else>>
+        Abigail: I should talk to more people.
+    <<endif>>
+<<else>>
+    Chase: I can try repairing the bridhouse if you want?
+    Kate: It's cool Chase, don't worry about it.
+<<endif>>
 ===
 title: DaniMomParty
 tags:
 ---
-Abigail: Wow, my two favorite people in the whole world!
-Abigail: What are you guys chatting about?
-Mom: Dani was just telling me about their time living away
-Mom: It seems like a very lonely experience
-Mom: Your parents must be so happy you decided to come back...
-Abigail: Mom.
-Mom: I'm joking! It warms my heart seeing you growing and living out your dream!
-Mom: But moms get lonely too
-Mom: But go on, Dani, tell me: what have you been doing since you came back?
-Dani: I've been helping my parents around the restaurant a bit
-Dani: Not much else going on...
-Mom: That's so sweet!
-Mom: And what are the next steps?
-Mom: What's in store for one of the most brilliant and kind young minds I know?
-Dani: Oh... I don't know,
-Dani: I think I'm still figuring things out
-Mom: And the dates? Someone pretty like you must be charming the whole town!
-Abigail: MOM!
-Dani: Haha, it's ok, Abbs
-Dani: I just haven't been in the mood for that either I guess
-Dani: I think I need to...
-Dani: I don't know what I need to, actually...
-Mom: It's okay, honey, you have time! It's a marathon, not a race!
-Abigail: Are we done with the interrogation, Mom?
-Mom: Afraid I'm gonna steal your friends, Abigail?
-Dani: It's ok, Abbs, really
-Mom: If you are ever bored, Dani, know that there's a lonely old lady in this house that would love the company!
-Mom: And then we can gossip to our heart's content, without the fun police nagging us!
-Dani: Haha, thank you, I appreciate it
+<<if visited("DaniMomParty") is false>>
+    Abigail: Wow, my two favorite people in the whole world!
+    Abigail: What are you guys chatting about?
+    Mom: Dani was just telling me about their time living away
+    Mom: It seems like a very lonely experience
+    Mom: Your parents must be so happy you decided to come back...
+    Abigail: Mom.
+    Mom: I'm joking! It warms my heart seeing you growing and living out your dream!
+    Mom: But moms get lonely too
+    Mom: But go on, Dani, tell me: what have you been doing since you came back?
+    Dani: I've been helping my parents around the restaurant a bit
+    Dani: Not much else going on...
+    Mom: That's so sweet!
+    Mom: And what are the next steps?
+    Mom: What's in store for one of the most brilliant and kind young minds I know?
+    Dani: Oh... I don't know,
+    Dani: I think I'm still figuring things out
+    Mom: And the dates? Someone pretty like you must be charming the whole town!
+    Abigail: MOM!
+    Dani: Haha, it's ok, Abbs
+    Dani: I just haven't been in the mood for that either I guess
+    Dani: I think I need to...
+    Dani: I don't know what I need to, actually...
+    Mom: It's okay, honey, you have time! It's a marathon, not a race!
+    Abigail: Are we done with the interrogation, Mom?
+    Mom: Afraid I'm gonna steal your friends, Abigail?
+    Dani: It's ok, Abbs, really
+    Mom: If you are ever bored, Dani, know that there's a lonely old lady in this house that would love the company!
+    Mom: And then we can gossip to our heart's content, without the fun police nagging us!
+    Dani: Haha, thank you, I appreciate it
+    <<set $peopletalkedto = $peopletalkedto + 1>>
+    <<if $peopletalkedto > 2>>
+        Gabe:Alright party people! Let's play some Azulejo.
+        Joanna: Abigail should judge!
+    <<else>>
+        Abigail: I should talk to more people.
+    <<endif>>
+<<else>>
+    Mom: Maybe I could try setting you up!
+    Dani: I think I'm good. Thanks though.
+<<endif>>
+
 ===
 title: GabeJoannaParty
 tags:
 ---
-Joanna: Gabe didn't you just get a promotion?
-Gabe: I'm co-manager of the newly formed logistics and efficiency department. 
-Abigail: There's two managers of the efficiency department?
-Gabe: logistics and efficiency Abbi-gal. Also co is just a title.
-Gabe: There's five of us and two managers.
-Joanna: So what are you actually doing?
-Gabe: Well a lot of different stuff but mostly
-Gabe: your mom.
-Abigail: Gabriel you suck so much. 
-Joanna: Hahahahaha
-Abigail: No way that made you laugh dude. 
-Joanna: I'm easy to please. 
-Gabe: That's what sh-
-Abigial: Nope. Try again. 
-Joanna: Hahahahahahahahahaha
-Abigail: You guys are so embarassing. 
-Gabe: You love us right jojo?
-Abigail: Big on nicknames today?
-Joanna: He's been on a kick lately. 
-Abigail: We both can agree Jojo isn't going to stick right?
-Joanna: Definitely not. 
+<<if visited("GabeJoannaParty") is false>>
+    Joanna: Gabe didn't you just get a promotion?
+    Gabe: I'm co-manager of the newly formed logistics and efficiency department. 
+    Abigail: There's two managers of the efficiency department?
+    Gabe: logistics and efficiency Abbi-gal. Also co is just a title.
+    Gabe: There's five of us and two managers.
+    Joanna: So what are you actually doing?
+    Gabe: Well a lot of different stuff but mostly
+    Gabe: your mom.
+    Abigail: Gabriel you suck so much. 
+    Joanna: Hahahahaha
+    Abigail: No way that made you laugh dude. 
+    Joanna: I'm easy to please. 
+    Gabe: That's what sh-
+    Abigail: Nope. Try again. 
+    Joanna: Hahahahahahahahahaha
+    Abigail: You guys are so embarassing. 
+    Gabe: You love us right jojo?
+    Abigail: Big on nicknames today?
+    Joanna: He's been on a kick lately. 
+    Abigail: We both can agree Jojo isn't going to stick right?
+    Joanna: Definitely not.
+    <<set $peopletalkedto = $peopletalkedto + 1>>
+    <<if $peopletalkedto > 2>>
+        Gabe:Alright party people! Let's play some Azulejo.
+        Joanna: Abigail should judge!
+    <<else>>
+        Abigail: I should talk to more people.
+    <<endif>>
+<<else>>
+    Gabe: What do we think of Jujube?
+    Joanna: You're getting better at this nickname thing.
+<<endif>>
+===
+title: PartyStart
+tags:
+---
+<<declare $peopletalkedto = 0>>
+Abigail: Well I might as well say hi to everyone.
 ===
