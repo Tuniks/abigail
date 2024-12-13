@@ -21,7 +21,7 @@ public class Tile : MonoBehaviour{
     private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
 
     // ==== BUILDING THE COMPONENT ====
-    void Start(){
+    void Awake(){
         RebuildTile();
     }
 

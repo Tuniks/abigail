@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour{
     
     private const int activeCount = 8;
 
-    protected virtual void Start(){
+    protected virtual void Awake(){
         InitializeActiveTiles();
         InitializeTileCollection();
     }

@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : Inventory{
     public static PlayerInventory Instance;    
     
-    void Awake(){        
+    protected override void Awake(){        
         DontDestroyOnLoad(gameObject);
         if(Instance == null){
             Instance = this;
-        } else Destroy(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+
+        base.Awake();
     }
     
     void Update(){
