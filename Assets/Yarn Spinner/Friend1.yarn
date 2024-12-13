@@ -12,7 +12,7 @@ Oz: I guess this is the star of the good old days!
 Chase: This is Oz, my friend from work.
 Abigail: Yeah, super nice to meet you.
 Chase: Staff is a little swamped today, you cool with a little wait?
--> Why did you pick this place anyway?
+-> Why did you pick this place?
 	Abigail: We never used to come here.
 	Chase: They have a lava cake that's hella good.
 	Chase: And now we can afford it!
@@ -23,25 +23,30 @@ Chase: Staff is a little swamped today, you cool with a little wait?
 	Abigail: Who’s Sarah?
 	Oz: Oh, she’s just this girl who…it’s kind of a long story.
 -> Sure, sounds good
-	Chase: 	Awesome, you are gonna love it.
-	Chase: You gotta get the blackberry pancakes! You love those, right?
-	Abigail: Not really, I think blackberrys are kinda whatever...
-	Chase: No way! We used to pick them every summer.
-	Abigail: Maybe that was Oliver...
-	Chase: I would never get you and Oliver mixed up.
-	Abigail: Have you guys talked lately?
-	Chase: Not for a while.
-Chase: I almost forgot!
-Chase: I was cleaning out my old room the other day and found some of those tiles you gave me.
-Abigail: You kept those?
-Oz: Wow you had so many. Why didn't you take them when you moved?
-Abigail: I’m not really sure? I guess I got a little sick of playing…
-Oz: What? How is that even possible?
-Chase: I think we should play a quick game, just while we wait.
-Oz: Yes! Who's judging?
-Chase: You know I love to judge.
-Abigail: Okay, yeah, let’s play.
-// Example: <<ShowLetter GameManager>>
+    Chase: Awesome, you're gonna love it
+    Chase: You gotta get the blackberry pancakes! You love those, right?
+    Abigail: Not really, I think blackberries are kinda whatever...
+    Chase: No way! We used to pick them every summer
+    Abigail: Maybe that was Joanna...
+    Chase: I would never get you and Joanna mixed up.
+    Abigail: Have you guys talked lately?
+    Chase: I talk to everyone abbs. 
+Chase: So how've you been?
+Abigail: Oh well you know there's good and bad.
+Oz: Big city blues?
+Abigail: Um, sure?
+Oz: I hear that sister. 
+Chase: Anyway, mostly good I assume?
+Abigail: Yeah, yeah lots of good. 
+Chase: That was really convincing! 
+Abigail: Ok head detective how've you been? 
+Chase: Living the dream as always.
+Abigail: Lots of good. 
+Oz: Abigail do you remember how to play Azulejo?
+Abigail: I moved Oz, I didn't get lobotomized.
+Chase: I'd love to judge if you two are playing.
+Oz: If you remember how. 
+Abigial: Yeah I remember fine. Let's play. 
 <<StartTileGame FeltManager>>
 ===
 title: OutsideHouse2
@@ -204,10 +209,14 @@ Kate: Maybe the best!
 Chase:...
 Abigail:...
 Kate:...
-Abigail: You know what, I was just telling Chase how much I wanted to play Azulejo, down for a round?
-Kate: Always. Sounds amazing.
-Chase: Amazing!
-//YarnCommand to start Azulejo game
+Abigail: I should probably get home.
+Chase: Sick, we'll come with.
+Abigail: Uh, why?
+Chase: We’re going to the party at your house.
+Kate: Your mom invited the whole gang.
+Abigail: Tell me you're joking.
+Chase: More time to have completely normal not weird at all conversation
+Abigail: I hate you I hate you I hate you.
 <<GoToPartyScene ClayManager>>
 ===
 title: PostClayAzulejo
@@ -344,6 +353,7 @@ tags:
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
         Joanna: Abigail should judge!
+        <<StartPartyAzulejo PartyTransitionManager>>
     <<else>>
         Abigail: I should talk to more people.
     <<endif>>
@@ -389,6 +399,7 @@ tags:
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
         Joanna: Abigail should judge!
+        <<StartPartyAzulejo PartyTransitionManager>>
     <<else>>
         Abigail: I should talk to more people.
     <<endif>>
@@ -427,6 +438,7 @@ tags:
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
         Joanna: Abigail should judge!
+        <<StartPartyAzulejo PartyTransitionManager>>
     <<else>>
         Abigail: I should talk to more people.
     <<endif>>
