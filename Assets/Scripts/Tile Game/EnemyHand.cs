@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHand : MonoBehaviour{
+    public Inventory enemyInventory;
+    
     public List<Tile> hand;
     public int maxHandSize;
 
@@ -12,17 +14,30 @@ public class EnemyHand : MonoBehaviour{
     public float tileSpacing = .5f;
 
     void Start(){
-        GenerateRandomHand();
+        BuildHand();
         DrawHand();
     }
 
-    void GenerateRandomHand(){
+    private void BuildHand(){
+        if (enemyInventory != null) hand = enemyInventory.GetHandOfTiles(maxHandSize);
+        if(hand.Count < maxHandSize) GenerateRandomHand(maxHandSize - hand.Count);   
+        SetHand();
+    }
+
+    void GenerateRandomHand(int handCount){
         hand = new List<Tile>();
 
-        for (int i = 0; i < maxHandSize; i++){
+        for (int i = 0; i < handCount; i++){
             Tile tile = TileMaker.instance.GetRandomTile();
             tile.transform.SetParent(transform);
             hand.Add(tile);
+        }
+    }
+
+    private void SetHand(){
+        foreach(Tile tile in hand){
+            tile.transform.SetParent(transform);
+            tile.gameObject.SetActive(true);
         }
     }
 

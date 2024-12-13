@@ -121,7 +121,6 @@ public class TileGameManager : MonoBehaviour{
 
         // Check result
         bool result = CheckResult();
-        Debug.Log(result);
 
         // Get Arguments
         List<(Attributes, string, float)> arguments = challengesManager.Get3ResponsesFromChallenge(challenges[currentChallengeIndex], result);

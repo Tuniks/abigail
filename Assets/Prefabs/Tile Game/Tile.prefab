@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7746848998911024562}
-  - component: {fileID: 553045761282813282}
   - component: {fileID: 4189103552167242879}
+  - component: {fileID: 553045761282813282}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,22 +37,6 @@ Transform:
   - {fileID: 2402815975695081706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &553045761282813282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3189066301315731933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  face: {fileID: 5503789551960948700}
-  background: {fileID: 5903447564008036569}
-  material: {fileID: 5006102086965200466}
-  glaze: {fileID: 8574891134524987065}
 --- !u!61 &4189103552167242879
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -99,6 +83,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.15, y: 1.15}
   m_EdgeRadius: 0
+--- !u!114 &553045761282813282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facePrefab: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
+  bgPrefab: {fileID: 2261535418968657354, guid: 290e4a984cc172b429fa70770f74e3d0, type: 3}
+  matPrefab: {fileID: 5026170306021494907, guid: 681d28e9242ad604188197239a6bcf75, type: 3}
+  glzPrefab: {fileID: 3242234408703996857, guid: df0f009e93cd79245a44da4061183f11, type: 3}
+  face: {fileID: 5503789551960948700}
+  background: {fileID: 5903447564008036569}
+  material: {fileID: 5006102086965200466}
+  glaze: {fileID: 8574891134524987065}
 --- !u!1001 &1023349803638662595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,6 +151,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3716134665099956942, guid: 5295db223a58f514b8159078fd00547f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
       propertyPath: m_Name
       value: Face Gianlucas
@@ -183,6 +191,10 @@ PrefabInstance:
     - target: {fileID: 3242234408703996857, guid: df0f009e93cd79245a44da4061183f11, type: 3}
       propertyPath: m_Name
       value: Glaze
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242234408703996857, guid: df0f009e93cd79245a44da4061183f11, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7362558158695575334, guid: df0f009e93cd79245a44da4061183f11, type: 3}
       propertyPath: m_LocalPosition.x
@@ -297,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Material
       objectReference: {fileID: 0}
+    - target: {fileID: 6795750796473711918, guid: 681d28e9242ad604188197239a6bcf75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -369,6 +385,10 @@ PrefabInstance:
     - target: {fileID: 5840568006235611562, guid: 290e4a984cc172b429fa70770f74e3d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519672393106046574, guid: 290e4a984cc172b429fa70770f74e3d0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
