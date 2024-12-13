@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RoundManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class RoundManager : MonoBehaviour
     // Round data
     private int roundCount = 0;
     private const int maxRounds = 3;
+    private bool winnerDisplayed = false;
 
     private int NPC1score = 0;
     private int NPC2score = 0;
@@ -30,6 +32,7 @@ public class RoundManager : MonoBehaviour
 
     // Public references
     public TextMeshProUGUI winnerText;
+    public TextMeshProUGUI GabeWinText;
     public GameObject uiContainer;
     [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
     public TextMeshProUGUI MomTextHolder;
@@ -42,6 +45,21 @@ public class RoundManager : MonoBehaviour
     public GameObject ChaseBubble;
     public GameObject MomBubble;
     public GameObject GabeBubble;
+    public GameObject KateBubble;
+    public GameObject DaniBubble;
+    public GameObject JoannaBubble;
+    public TextMeshProUGUI DaniWinText;
+    public TextMeshProUGUI KateWinText;
+    public TextMeshProUGUI JoannaWinText;
+    public TextMeshProUGUI ChaseWinText;
+    public GameObject GabeStar;
+    public GameObject KateStar;
+    public GameObject DaniStar;
+    public GameObject JoannaStar;
+    public GameObject ChaseStar;
+    public GameObject ChallengeCloud;
+    public GameObject OptionsClouds;
+    public GameObject WillThisWork;
 
     // Round Option GameObjects
     public GameObject Round1Option1; // Assigned in Inspector
@@ -116,6 +134,7 @@ public class RoundManager : MonoBehaviour
         if (roundCount < challengeTexts.Length)
         {
             GabeText.text = challengeTexts[roundCount];
+            OptionsClouds.SetActive(true);
             buttonOption1Text.text = buttonTexts[roundCount, 0];
             buttonOption2Text.text = buttonTexts[roundCount, 1];
         }
@@ -179,6 +198,7 @@ public class RoundManager : MonoBehaviour
 
         option1Button.gameObject.SetActive(false);
         option2Button.gameObject.SetActive(false);
+        OptionsClouds.SetActive(false);
         GabeBubble.SetActive(false);
         currentState = GameState.ChallengeReaction;
         Debug.Log("Transitioning to ChallengeReaction state");
@@ -278,6 +298,7 @@ public class RoundManager : MonoBehaviour
         if (selectedChallengeText != null)
         {
             CurrentChallenge.text = selectedChallengeText; // Use the stored challenge text
+            ChallengeCloud.SetActive(true);
         }
         else
         {
@@ -340,6 +361,7 @@ public class RoundManager : MonoBehaviour
         Round1Option2.SetActive(false);
         Round2Option2.SetActive(false);
         Round3Option2.SetActive(false);
+        ChallengeCloud.SetActive(false);
     
         uiContainer.SetActive(true);
         CurrentChallenge.text = "";
@@ -382,30 +404,48 @@ public class RoundManager : MonoBehaviour
 
         if (tieCount > 1)
         {
-            winnerText.text = "It's a tie!";
+            GabeBubble.SetActive(true);
+            GabeWinText.text = "Come on! A tie is like no one won!";
         }
         else if (NPC1score == maxScore)
         {
-            winnerText.text = "Gabe won!";
+            GabeBubble.SetActive(true);
+            GabeStar.SetActive(true);
+            GabeWinText.text = "It's all cause of my lucky foot tile!";
         }
         else if (NPC2score == maxScore)
         {
-            winnerText.text = "Kate won!";
+            KateBubble.SetActive(true);
+            KateStar.SetActive(true);
+            KateWinText.text = "Great minds think alike Abigail!";
         }
         else if (NPC3score == maxScore)
         {
-            winnerText.text = "Dani won!";
+            DaniBubble.SetActive(true);
+            DaniStar.SetActive(true);
+            DaniWinText.text = "This win goes out to Gianluca!";
         }
         else if (NPC4score == maxScore)
         {
-            winnerText.text = "Chase won!";
+            ChaseBubble.SetActive(true);
+            ChaseStar.SetActive(true);
+            ChaseWinText.text = "Good game guys!";
         }
         else if (NPC5score == maxScore)
         {
-            winnerText.text = "Joanna won!";
+            JoannaBubble.SetActive(true);
+            JoannaStar.SetActive(true);
+            JoannaWinText.text = "Yes! I knew I could do it.";
         }
 
         Debug.Log("Game Complete!");
+        winnerDisplayed = true;
+        WillThisWork.SetActive(true);
+        
+       // if (winnerDisplayed && Input.GetKeyDown(KeyCode.E))
+        {
+          //  SceneManager.LoadScene("Start");
+        }
     }
 
     private void IncrementRound()
