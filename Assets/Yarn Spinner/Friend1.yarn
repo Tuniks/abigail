@@ -98,6 +98,7 @@ Abigail: This is a lot I'm going to head to the travel office and see about flig
 Mom: Jim doesn't come in on Mondays
 Abigail: Jim? Mom what- I'm going for a walk anyway then. 
 Mom: Swing by the cafe! I know Chase would be thrilled to see you!
+<<ExitPossible ExitManager>>
 <<else>>
 Mom: Your hair looks a bit dry. It's not a big deal if you're just going to the cafe. 
 <<endif>>
@@ -167,4 +168,230 @@ tags:
     Margarette: Hehehe
 <<endif>>
 ===
-
+title: ClayStart
+tags:
+---
+<<if visited("ClayStart") is false>>
+Kate: Abigail! It is so wonderful to see your face!
+Abigail: Your face is awesome to see as well. Really good face.
+Chase: Not weird at all…
+Kate: What did you say?
+Abigail: Um nothing, I'm going to check out the antique shop!
+<<else>>
+Chase: Do we think the antique shop owner made the building look like him?
+Chase: Or did he make himself look like the building?
+Kate: This feels like a chicken or the egg type of situation. 
+<<endif>>
+===
+title: PostAntiqueShop
+tags:
+---
+Chase: You find what you were looking for?
+Abigail: Not really.
+Kate: How’s the big city treating you these days?
+Abigail: You know…good…bad…both at once.
+Kate: Yeah, totally.
+Abigail: How are...how is your life going?
+Kate: It’s pretty good these days! I’m working at the public library.
+Kate: And I’ve been organizing that yearly punk festival on the beach, which is so much work but it's gonna be amazing.
+Abigail: That’s amazing. You’re amazing.
+Chase: Amazing!
+Chase: What? I wanted to say it too.
+Chase: Good adjective.
+Kate: Maybe the best!
+Chase:...
+Abigail:...
+Kate:...
+Abigail: You know what, I was just telling Chase how much I wanted to play Azulejo, down for a round?
+Kate: Always. Sounds amazing.
+Chase: Amazing!
+//YarnCommand to start Azulejo game
+===
+title: PostClayAzulejo
+tags:
+---
+Abigail: I should probably get home.
+Chase: Sick, we'll come with.
+Abigail: Uh, why?
+Chase: We’re going to the party at your house.
+Kate: Your mom invited the whole gang.
+Abigail: Tell me you're joking.
+Chase: More time to have completely normal not weird at all conversation
+Abigail: I hate you I hate you I hate you.
+//Yarncommand to change scene to Party
+===
+title: PostFeltAzulejo
+tags:
+---
+Oz: I gotta dip, duty calls.
+Chase: Have fun at the mines!
+Oz: I always do.
+//Yarncommand to hide Oz?
+Abigail: Chase, do you remember this one tile, it has kinda like a swirl on it?
+-> Holding it felt like holding someone’s hand
+-> Tracing its lines felt like scratching an itch
+Chase: No? I don’t think so?
+Abigail: I feel like I need to find it.
+Chase: We could try looking at the antique shop? I’m headed over there right now to meet Kate, wanna come?
+Abigail: My Kate?
+Chase: Yeah?
+Abigail: Cool.
+Chase: You sure it won’t be weird?
+Abigail: No. Definitely not. There is no reason in the world for it to be weird.
+//Yarncommand to change scene to Clay
+===
+title: WeirdHouse
+tags:
+---
+<<if visited("WeirdHouse") is false>>
+HOA President: I am just asking you, no begging you to listen to me!						
+HOA President: STOP MAKING YOUR HOUSE LOOK STRANGER!						
+HOA President: Every time I leave my house you’ve added a decoration, plant, trim, coat of paint.						
+HOA President: It makes my head hurt! It makes my tummy upset!						
+Amelia: I don’t know what to tell you. It makes my heart soar!						
+HOA President: Every other member of this neighborhood has no problem following the guidelines we’ve outlined?						
+Amelia: Oh sweet silly neighbor, comparisons are a waste of your time.		
+<<else>>
+Amelia: Don't listen to what anyone says house, you look astonishing!
+<<endif>>
+===
+title: PlaygroundKids
+tags:
+---
+<<if visited("PlaygroundKids") is false>>
+Ryan 1: Abigail hello!
+Abigail: Hey, Ryan! What's up, buddy?
+Ryan 2: Who's the old lady, Ryan?
+Ryan 1: That's Abigail, she's my neighbor.
+Abigail: was*, it's been a while since I moved away
+Abigail: And also
+Abigail: I'm not an old lady, I'm in my mid-twenties!
+Ryan 2: That's old enough to be a grandmother
+Abigail: No, it's not?
+Ryan 1: I think I've seen grandmothers in their twenties
+Abigail: No, You have not. Ryan, who is this clown?
+Ryan 2: I'm Ryan
+Abigail: No, HE is Ryan
+Ryan 2: I'm Ryan too
+Ryan 1: He's Ryan too
+Ryan 2: Have you never seen two people with the same name?
+Abigail: Oh... Is that why you two are friends? Same name?
+Ryan 2: No? Do you pick your friends based on their names?
+Ryan 1: We are friends because we both like the color purple
+Ryan 2: And bugs
+Ryan 1: Yeah bugs are awesome
+-> I like purple too!
+-> I like bugs too!
+Ryan 2: Ok, grandma, no one asked
+Abigail: Ok, I never asked to be tormented by babies, I'm leaving!
+<<else>>
+Ryan 1: So, what is your favorite bug?
+Ryan 2: Every bug!
+Ryan 1: Mine too!!
+<<endif>>
+===
+title: HauntedHouseTeens
+tags: 
+---
+<<if visited("HauntedHouseTeens") is false>>
+Albert: I see a poem.
+Fellini: I see a film.
+Abigail: I see two losers. 
+Albert: Abigail! Long time no see! 
+Fellini: Art is cool lady. 
+Abigail: Sorry, losers non-pejorative. 
+Fellini: Pejorateive?
+Albert: How've you been Abigail? Do you miss babysitting me?
+Abigail: Not at all you were such a weird kid. 
+Fellini: What does perjorative mean?
+Albert: I was not a weird kid I was, I am, eclectic. 
+Abigail: Whatever you say Albert I'll catch you later.
+<<else>>
+Fellini: Dude what does pejorative mean?
+Albert: I don't know! Quit asking me. 
+<<endif>>
+===
+title: KateChaseParty
+tags:
+---
+//function to increment so that when everyone has been talked to party Azulejo starts 
+Kate: Okay so I have a favor to ask.
+Chase: What’s up?
+Kate: Next Wednesday at 11am we’re doing a big load in a day at the venue. 
+Kate: We could use some extra hands to move equipment?
+Chase: When is this?
+Kate: Next Wednesday at 11am.
+Chase: Hmm maybe I could...
+Kate: It’s okay, no worries.
+Chase: If you absolutely can’t find anyone else, let me know.
+Kate: I’ll figure it out.
+Abigail: You suddenly have a 9-5 or something Chase?
+Chase: Me? Never.
+Kate: His latest thing has been carpentry.
+Chase: I’ve been feeling a lot like Jesus lately.
+Abigail: You’ve never been to church in your life.
+Chase: But I would look good on a cross!
+Chase: If one of you backs me up there could be a new coffee table in your future.
+Kate: Not sure if that’s worth it, the birdhouse you made for my birthday was unfortunately short lived.
+Chase: I did not build it with a high weight limit!
+Chase: No one could have predicted an entire family of squirrels would move in!
+Kate: Jesus could have predicted that…
+===
+title: DaniMomParty
+tags:
+---
+Abigail: Wow, my two favorite people in the whole world!
+Abigail: What are you guys chatting about?
+Mom: Dani was just telling me about their time living away
+Mom: It seems like a very lonely experience
+Mom: Your parents must be so happy you decided to come back...
+Abigail: Mom.
+Mom: I'm joking! It warms my heart seeing you growing and living out your dream!
+Mom: But moms get lonely too
+Mom: But go on, Dani, tell me: what have you been doing since you came back?
+Dani: I've been helping my parents around the restaurant a bit
+Dani: Not much else going on...
+Mom: That's so sweet!
+Mom: And what are the next steps?
+Mom: What's in store for one of the most brilliant and kind young minds I know?
+Dani: Oh... I don't know,
+Dani: I think I'm still figuring things out
+Mom: And the dates? Someone pretty like you must be charming the whole town!
+Abigail: MOM!
+Dani: Haha, it's ok, Abbs
+Dani: I just haven't been in the mood for that either I guess
+Dani: I think I need to...
+Dani: I don't know what I need to, actually...
+Mom: It's okay, honey, you have time! It's a marathon, not a race!
+Abigail: Are we done with the interrogation, Mom?
+Mom: Afraid I'm gonna steal your friends, Abigail?
+Dani: It's ok, Abbs, really
+Mom: If you are ever bored, Dani, know that there's a lonely old lady in this house that would love the company!
+Mom: And then we can gossip to our heart's content, without the fun police nagging us!
+Dani: Haha, thank you, I appreciate it
+===
+title: GabeJoannaParty
+tags:
+---
+Joanna: Gabe didn't you just get a promotion?
+Gabe: I'm co-manager of the newly formed logistics and efficiency department. 
+Abigail: There's two managers of the efficiency department?
+Gabe: logistics and efficiency Abbi-gal. Also co is just a title.
+Gabe: There's five of us and two managers.
+Joanna: So what are you actually doing?
+Gabe: Well a lot of different stuff but mostly
+Gabe: your mom.
+Abigail: Gabriel you suck so much. 
+Joanna: Hahahahaha
+Abigail: No way that made you laugh dude. 
+Joanna: I'm easy to please. 
+Gabe: That's what sh-
+Abigial: Nope. Try again. 
+Joanna: Hahahahahahahahahaha
+Abigail: You guys are so embarassing. 
+Gabe: You love us right jojo?
+Abigail: Big on nicknames today?
+Joanna: He's been on a kick lately. 
+Abigail: We both can agree Jojo isn't going to stick right?
+Joanna: Definitely not. 
+===
