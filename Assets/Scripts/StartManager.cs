@@ -34,7 +34,7 @@ public class StartManager : MonoBehaviour{
         }
 
         if(canStart && Input.anyKey){
-            SceneManager.LoadScene("HomeInterior");
+            SceneManager.LoadScene("MomsHouse");
         }
     }
 

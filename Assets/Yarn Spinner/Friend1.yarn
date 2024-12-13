@@ -42,7 +42,7 @@ Oz: Yes! Who's judging?
 Chase: You know I love to judge.
 Abigail: Okay, yeah, let’s play.
 // Example: <<ShowLetter GameManager>>
-<<StartTileGame GameManager>>
+<<StartTileGame FeltManager>>
 ===
 title: OutsideHouse2
 tags:
@@ -208,6 +208,7 @@ Abigail: You know what, I was just telling Chase how much I wanted to play Azule
 Kate: Always. Sounds amazing.
 Chase: Amazing!
 //YarnCommand to start Azulejo game
+<<GoToPartyScene ClayManager>>
 ===
 title: PostClayAzulejo
 tags:
@@ -241,6 +242,7 @@ Abigail: Cool.
 Chase: You sure it won’t be weird?
 Abigail: No. Definitely not. There is no reason in the world for it to be weird.
 //Yarncommand to change scene to Clay
+<<GoToClay FeltManager>>
 ===
 title: WeirdHouse
 tags:

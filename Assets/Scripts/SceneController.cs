@@ -12,8 +12,8 @@ public class SceneController : MonoBehaviour{
         }
     }
     
-    [YarnCommand]
-    public void StartTileGame(){
-        SceneManager.LoadScene("TileGame");
-    }
+    // [YarnCommand]
+    // public void StartTileGame(){
+    //     SceneManager.LoadScene("TileGame");
+    // }
 }

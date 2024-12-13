@@ -23,31 +23,14 @@ public class TileMaker : MonoBehaviour{
         GameObject glzPrefab = glazes[Random.Range(0, glazes.Length)];
 
         GameObject tile = Instantiate(tilePrefab);
-        // tile.GetComponent<Tile>().Initialize(
-        //     Instantiate(facePrefab),
-        //     Instantiate(bgPrefab),
-        //     Instantiate(matPrefab),
-        //     Instantiate(glzPrefab)
-        // );
 
         tile.GetComponent<Tile>().Initialize(
-            GetTileComponent(tile, facePrefab),
-            GetTileComponent(tile, bgPrefab),
-            GetTileComponent(tile, matPrefab),
-            GetTileComponent(tile, glzPrefab)
+            facePrefab,
+            bgPrefab,
+            matPrefab,
+            glzPrefab
         );
 
-
         return tile.GetComponent<Tile>();
-    }
-
-    private GameObject GetTileComponent(GameObject parent, GameObject prefab){
-        GameObject component = Instantiate(prefab);
-        component.transform.parent = parent.transform;
-        component.transform.localPosition = prefab.transform.localPosition;
-        component.transform.localRotation = prefab.transform.localRotation;
-        component.transform.localScale = prefab.transform.localScale;
-        return component;
-
     }
 }
