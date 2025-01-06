@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 121260351}
   - component: {fileID: 121260353}
   - component: {fileID: 121260352}
-  - component: {fileID: 121260354}
+  - component: {fileID: 121260355}
   m_Layer: 0
   m_Name: toe
   m_TagString: NPC1
@@ -385,7 +385,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &121260354
+--- !u!114 &121260355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,12 +394,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 121260350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: 'I''ve been training my feet I could do this easy. '
+  nodeName: Round2Option1Toe
 --- !u!1 &136299543
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,12 +728,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 166148330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 922238532}
-  textDisplay: {fileID: 958636112}
-  inspectorText: What can I say? Crabs are cool!
+  nodeName: Round3Option1Crab
 --- !u!1 &168311164
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 182166288}
   - component: {fileID: 182166289}
+  - component: {fileID: 182166290}
   m_Layer: 0
   m_Name: Abigail
   m_TagString: Untagged
@@ -958,6 +955,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &182166290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182166287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: eaebf5c4700e462438f6e1a85cf393c6, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Dialogue
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &191327677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,7 +1330,7 @@ GameObject:
   - component: {fileID: 259350997}
   - component: {fileID: 259350999}
   - component: {fileID: 259350998}
-  - component: {fileID: 259351000}
+  - component: {fileID: 259351001}
   m_Layer: 0
   m_Name: clock
   m_TagString: NPC4
@@ -1401,7 +1428,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &259351000
+--- !u!114 &259351001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1410,12 +1437,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 259350996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1697428835}
-  textDisplay: {fileID: 241043278}
-  inspectorText: Sometimes you just have the perfect tile!
+  nodeName: Round1Option1Clock
 --- !u!1 &311169685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1452,7 @@ GameObject:
   - component: {fileID: 311169686}
   - component: {fileID: 311169688}
   - component: {fileID: 311169687}
-  - component: {fileID: 311169689}
+  - component: {fileID: 311169690}
   m_Layer: 0
   m_Name: tree
   m_TagString: NPC2
@@ -1525,7 +1550,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &311169689
+--- !u!114 &311169690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1534,12 +1559,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 311169685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 922238532}
-  textDisplay: {fileID: 958636112}
-  inspectorText: If a branch is the arm, then are the leaves the hands?
+  nodeName: Round1Option1Tree
 --- !u!1 &328144192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328144193}
   - component: {fileID: 328144194}
+  - component: {fileID: 328144195}
   m_Layer: 0
   m_Name: Chase
   m_TagString: Untagged
@@ -1569,7 +1593,8 @@ Transform:
   m_LocalPosition: {x: 2.98, y: 1.7468624, z: 3.4589705}
   m_LocalScale: {x: 0.28, y: 0.36, z: 0.24000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1179019757}
   m_Father: {fileID: 96696874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &328144194
@@ -1626,6 +1651,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &328144195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328144192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Chase
+  bubblePosition: {fileID: 1179019757}
+  characterBubbleData: {fileID: 11400000, guid: 9486bea30d28c0044844f040ae07adb6, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &331336406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,6 +2221,37 @@ Transform:
   - {fileID: 879613687}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &437358318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437358319}
+  m_Layer: 0
+  m_Name: GabeAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437358319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437358318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1396581369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &583711066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,7 +2471,7 @@ GameObject:
   - component: {fileID: 609407047}
   - component: {fileID: 609407049}
   - component: {fileID: 609407048}
-  - component: {fileID: 609407050}
+  - component: {fileID: 609407051}
   m_Layer: 0
   m_Name: waterslide
   m_TagString: NPC4
@@ -2497,7 +2569,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &609407050
+--- !u!114 &609407051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2506,12 +2578,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 609407046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: That an inside joke? Care to share with the class?
+  nodeName: Round2Option1Waterslide
 --- !u!1 &624739687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,12 +2786,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 647163039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: 'I thought the challenge was JUMP not bite. '
+  nodeName: Round3Option1Tooth
 --- !u!1 &649171290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,6 +2902,37 @@ Transform:
   - {fileID: 1218477398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &672853699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672853700}
+  m_Layer: 0
+  m_Name: KateAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672853700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672853699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1519857231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &674779228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,13 +2976,6 @@ MonoBehaviour:
   ChaseBubble: {fileID: 1688534247}
   MomBubble: {fileID: 1310563745}
   GabeBubble: {fileID: 743727151}
-  KateBubble: {fileID: 1537830656}
-  DaniBubble: {fileID: 2046493963}
-  JoannaBubble: {fileID: 922238532}
-  DaniWinText: {fileID: 1935093677}
-  KateWinText: {fileID: 1165963815}
-  JoannaWinText: {fileID: 1343953533}
-  ChaseWinText: {fileID: 593733310}
   GabeStar: {fileID: 1194653789}
   KateStar: {fileID: 703617980}
   DaniStar: {fileID: 424331181}
@@ -3146,7 +3238,7 @@ GameObject:
   - component: {fileID: 715173719}
   - component: {fileID: 715173721}
   - component: {fileID: 715173720}
-  - component: {fileID: 715173722}
+  - component: {fileID: 715173723}
   m_Layer: 0
   m_Name: toe
   m_TagString: NPC2
@@ -3244,7 +3336,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &715173722
+--- !u!114 &715173723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3253,12 +3345,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 715173718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: 'I could never slip on a banana peel      I''m too agile. '
+  nodeName: Round3Option2Toe
 --- !u!1 &718228415
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,7 +3496,7 @@ GameObject:
   - component: {fileID: 727415042}
   - component: {fileID: 727415044}
   - component: {fileID: 727415043}
-  - component: {fileID: 727415045}
+  - component: {fileID: 727415046}
   m_Layer: 0
   m_Name: lemonade
   m_TagString: NPC1
@@ -3504,7 +3594,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &727415045
+--- !u!114 &727415046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3513,12 +3603,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 727415041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: Slurp on that suckers!
+  nodeName: Round1Option1Lemonade
 --- !u!1 &743727151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3767,6 +3855,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781045043}
   m_CullTransparentMesh: 1
+--- !u!1 &790984983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 790984984}
+  m_Layer: 0
+  m_Name: MomAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &790984984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790984983}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1384806428}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818988980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,6 +3972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 822924587}
   - component: {fileID: 822924588}
+  - component: {fileID: 822924589}
   m_Layer: 0
   m_Name: Dani
   m_TagString: Untagged
@@ -3872,7 +3992,8 @@ Transform:
   m_LocalPosition: {x: 1.22, y: 2.0968628, z: 3.4589705}
   m_LocalScale: {x: 0.28, y: 0.36, z: 0.24000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1354164533}
   m_Father: {fileID: 96696874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &822924588
@@ -3929,6 +4050,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &822924589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822924586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Dani
+  bubblePosition: {fileID: 1354164533}
+  characterBubbleData: {fileID: 11400000, guid: 85ae99dfa6b2a6c49bcfbbf18cbdfea0, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &849231910
 GameObject:
   m_ObjectHideFlags: 0
@@ -4626,7 +4763,7 @@ GameObject:
   - component: {fileID: 966344484}
   - component: {fileID: 966344486}
   - component: {fileID: 966344485}
-  - component: {fileID: 966344487}
+  - component: {fileID: 966344488}
   m_Layer: 0
   m_Name: gianluca
   m_TagString: NPC3
@@ -4724,7 +4861,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &966344487
+--- !u!114 &966344488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4733,12 +4870,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 966344483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 2046493963}
-  textDisplay: {fileID: 168311166}
-  inspectorText: 'GianLuca is always telling everyone how often he brushes. '
+  nodeName: Round1Option2Gianluca
 --- !u!1 &989565759
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,7 +5269,7 @@ GameObject:
   - component: {fileID: 1070111250}
   - component: {fileID: 1070111252}
   - component: {fileID: 1070111251}
-  - component: {fileID: 1070111253}
+  - component: {fileID: 1070111254}
   m_Layer: 0
   m_Name: spider
   m_TagString: NPC5
@@ -5232,7 +5367,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1070111253
+--- !u!114 &1070111254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5241,12 +5376,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070111249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1537830656}
-  textDisplay: {fileID: 1094635254}
-  inspectorText: 'You''d think it would balance better with all those legs. '
+  nodeName: Round3Option2Spider
+--- !u!1 &1072347025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072347026}
+  m_Layer: 0
+  m_Name: JoannaAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072347026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072347025}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1151014152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072731832
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,7 +5422,7 @@ GameObject:
   - component: {fileID: 1072731833}
   - component: {fileID: 1072731835}
   - component: {fileID: 1072731834}
-  - component: {fileID: 1072731836}
+  - component: {fileID: 1072731837}
   m_Layer: 0
   m_Name: tooth
   m_TagString: NPC4
@@ -5356,7 +5520,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1072731836
+--- !u!114 &1072731837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5365,12 +5529,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072731832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1697428835}
-  textDisplay: {fileID: 241043278}
-  inspectorText: Someone remembers the tooth debacle of sixth grade.
+  nodeName: Round3Option2Tooth
 --- !u!1 &1084638660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5742,12 +5904,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117182609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: Those things don't even have thumbs.
+  nodeName: Round2Option2Crab
 --- !u!1 &1122432904
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,6 +5994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151014152}
   - component: {fileID: 1151014153}
+  - component: {fileID: 1151014154}
   m_Layer: 0
   m_Name: Joanna
   m_TagString: Untagged
@@ -5853,7 +6014,8 @@ Transform:
   m_LocalPosition: {x: 4.09, y: 0.9, z: 3.4589705}
   m_LocalScale: {x: 0.28, y: 0.36, z: 0.24000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1072347026}
   m_Father: {fileID: 96696874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1151014153
@@ -5910,6 +6072,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1151014154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151014151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Joanna
+  bubblePosition: {fileID: 1072347026}
+  characterBubbleData: {fileID: 11400000, guid: 6d960a7c2cf0f2a4bba3f91e6fc81a92, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &1165963812
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,6 +6257,37 @@ Transform:
   - {fileID: 1688534249}
   - {fileID: 1310563747}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1179019756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179019757}
+  m_Layer: 0
+  m_Name: ChaseAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179019757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179019756}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 328144193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1194653789
 GameObject:
@@ -6263,7 +6472,7 @@ GameObject:
   - component: {fileID: 1218477398}
   - component: {fileID: 1218477400}
   - component: {fileID: 1218477399}
-  - component: {fileID: 1218477401}
+  - component: {fileID: 1218477402}
   m_Layer: 0
   m_Name: spider
   m_TagString: NPC5
@@ -6361,7 +6570,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1218477401
+--- !u!114 &1218477402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6370,12 +6579,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1218477397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 2046493963}
-  textDisplay: {fileID: 168311166}
-  inspectorText: ' I feel like you choose based on quanitity and not quality.'
+  nodeName: Round1Option1Spider
 --- !u!1 &1284902904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6494,12 +6701,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1284902904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1537830656}
-  textDisplay: {fileID: 1094635254}
-  inspectorText: 'Constellations kinda give that new wave health vibe sometimes. '
+  nodeName: Round2Option2Constellation
 --- !u!1 &1295989043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6673,7 +6878,7 @@ GameObject:
   - component: {fileID: 1333541615}
   - component: {fileID: 1333541617}
   - component: {fileID: 1333541616}
-  - component: {fileID: 1333541618}
+  - component: {fileID: 1333541619}
   m_Layer: 0
   m_Name: Constellations
   m_TagString: NPC2
@@ -6771,7 +6976,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1333541618
+--- !u!114 &1333541619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6780,12 +6985,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1333541614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 2046493963}
-  textDisplay: {fileID: 168311166}
-  inspectorText: 'I think a star with a cavity would be kinda beautiful . '
+  nodeName: Round1Option2Constellation
 --- !u!1 &1343953530
 GameObject:
   m_ObjectHideFlags: 0
@@ -7040,12 +7243,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1348782729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1697428835}
-  textDisplay: {fileID: 241043278}
-  inspectorText: ' I don''t think Joanna or Abigail know how tall trees get. '
+  nodeName: Round2Option1Tree
 --- !u!1 &1352908752
 GameObject:
   m_ObjectHideFlags: 0
@@ -7097,7 +7298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7122,6 +7323,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352908752}
   m_CullTransparentMesh: 1
+--- !u!1 &1354164532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354164533}
+  m_Layer: 0
+  m_Name: DaniAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1354164533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354164532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.74, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 822924587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1371779073
 GameObject:
   m_ObjectHideFlags: 0
@@ -7133,7 +7365,7 @@ GameObject:
   - component: {fileID: 1371779074}
   - component: {fileID: 1371779076}
   - component: {fileID: 1371779075}
-  - component: {fileID: 1371779077}
+  - component: {fileID: 1371779078}
   m_Layer: 0
   m_Name: waterslide
   m_TagString: NPC1
@@ -7231,7 +7463,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1371779077
+--- !u!114 &1371779078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7240,12 +7472,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371779073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1697428835}
-  textDisplay: {fileID: 241043278}
-  inspectorText: Pick the most obvious one much?
+  nodeName: Round3Option2Waterslide
 --- !u!1 &1384806427
 GameObject:
   m_ObjectHideFlags: 0
@@ -7256,6 +7486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384806428}
   - component: {fileID: 1384806429}
+  - component: {fileID: 1384806430}
   m_Layer: 0
   m_Name: Mom
   m_TagString: Untagged
@@ -7275,7 +7506,8 @@ Transform:
   m_LocalPosition: {x: -4.228302, y: 2.436863, z: 3.4589705}
   m_LocalScale: {x: 0.28, y: 0.36, z: 0.24000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 790984984}
   m_Father: {fileID: 96696874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1384806429
@@ -7332,6 +7564,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1384806430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384806427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Mom
+  bubblePosition: {fileID: 790984984}
+  characterBubbleData: {fileID: 11400000, guid: dc9f2ff540523ce4bb98462e430682fc, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &1396581368
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,6 +7590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1396581369}
   - component: {fileID: 1396581370}
+  - component: {fileID: 1396581371}
   m_Layer: 0
   m_Name: Gabe
   m_TagString: Untagged
@@ -7361,7 +7610,8 @@ Transform:
   m_LocalPosition: {x: -2.16, y: 2.436863, z: 3.4589705}
   m_LocalScale: {x: 0.28, y: 0.36, z: 0.24000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 437358319}
   m_Father: {fileID: 96696874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1396581370
@@ -7418,6 +7668,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1396581371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396581368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Gabe
+  bubblePosition: {fileID: 437358319}
+  characterBubbleData: {fileID: 11400000, guid: 977cbf57dd1964e4ab3b6c419b7b41a1, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &1405949909
 GameObject:
   m_ObjectHideFlags: 0
@@ -7570,6 +7836,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423878492}
   m_CullTransparentMesh: 1
+--- !u!1001 &1446374412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 318551904225904435, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_Name
+      value: Bubble Dialogue System Variant Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040805246480020813, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436938499517747022, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: startNode
+      value: GabeChoiceRound1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436938499517747022, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: yarnProject
+      value: 
+      objectReference: {fileID: 7545569452688597077, guid: ba91565f1d71c124780c9654e1d01749, type: 3}
+    - target: {fileID: 1436938499517747022, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
+      propertyPath: startAutomatically
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
 --- !u!1 &1501618237
 GameObject:
   m_ObjectHideFlags: 0
@@ -7666,6 +8001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519857231}
   - component: {fileID: 1519857232}
+  - component: {fileID: 1519857233}
   m_Layer: 0
   m_Name: Kate
   m_TagString: Untagged
@@ -7685,7 +8021,8 @@ Transform:
   m_LocalPosition: {x: -0.37, y: 2.436863, z: 3.4589705}
   m_LocalScale: {x: 0.28, y: 0.36, z: 0.24000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 672853700}
   m_Father: {fileID: 96696874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1519857232
@@ -7742,6 +8079,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1519857233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519857230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Kate
+  bubblePosition: {fileID: 672853700}
+  characterBubbleData: {fileID: 11400000, guid: a9c38b38902831241a8a2edd91055524, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &1537175094
 GameObject:
   m_ObjectHideFlags: 0
@@ -8032,12 +8385,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1555430637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 2046493963}
-  textDisplay: {fileID: 168311166}
-  inspectorText: 'I mean he makes good pizza right? '
+  nodeName: Round2Option2Gianluca
 --- !u!1 &1566035407
 GameObject:
   m_ObjectHideFlags: 0
@@ -8049,7 +8400,7 @@ GameObject:
   - component: {fileID: 1566035408}
   - component: {fileID: 1566035410}
   - component: {fileID: 1566035409}
-  - component: {fileID: 1566035411}
+  - component: {fileID: 1566035412}
   m_Layer: 0
   m_Name: lemonade
   m_TagString: NPC3
@@ -8147,7 +8498,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1566035411
+--- !u!114 &1566035412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8156,12 +8507,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1566035407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: Is that a pity pick?
+  nodeName: Round3Option2Lemonade
 --- !u!1 &1570857692
 GameObject:
   m_ObjectHideFlags: 0
@@ -8173,7 +8522,7 @@ GameObject:
   - component: {fileID: 1570857693}
   - component: {fileID: 1570857695}
   - component: {fileID: 1570857694}
-  - component: {fileID: 1570857696}
+  - component: {fileID: 1570857697}
   m_Layer: 0
   m_Name: tooth
   m_TagString: NPC1
@@ -8271,7 +8620,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1570857696
+--- !u!114 &1570857697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8280,12 +8629,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1570857692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: 'Duh, idiots you all think too much. '
+  nodeName: Round1Option2Tooth
 --- !u!1 &1576646990
 GameObject:
   m_ObjectHideFlags: 0
@@ -8297,7 +8644,7 @@ GameObject:
   - component: {fileID: 1576646991}
   - component: {fileID: 1576646993}
   - component: {fileID: 1576646992}
-  - component: {fileID: 1576646994}
+  - component: {fileID: 1576646995}
   m_Layer: 0
   m_Name: toe
   m_TagString: NPC1
@@ -8395,7 +8742,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1576646994
+--- !u!114 &1576646995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8404,12 +8751,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1576646990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1537830656}
-  textDisplay: {fileID: 1094635254}
-  inspectorText: Ok foot boy.
+  nodeName: Round3Option1Toe
 --- !u!1 &1588983567
 GameObject:
   m_ObjectHideFlags: 0
@@ -8697,12 +9042,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607480645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 922238532}
-  textDisplay: {fileID: 958636112}
-  inspectorText: ' I don''t think either of you know what kombucha is.'
+  nodeName: Round2Option2Tree
 --- !u!1 &1670526167
 GameObject:
   m_ObjectHideFlags: 0
@@ -9280,12 +9623,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1780290548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 2046493963}
-  textDisplay: {fileID: 168311166}
-  inspectorText: Both spiders and giant craters freak me out!
+  nodeName: Round3Option1Spider
 --- !u!1 &1782430167
 GameObject:
   m_ObjectHideFlags: 0
@@ -9469,7 +9810,7 @@ GameObject:
   - component: {fileID: 1816131620}
   - component: {fileID: 1816131622}
   - component: {fileID: 1816131621}
-  - component: {fileID: 1816131623}
+  - component: {fileID: 1816131624}
   m_Layer: 0
   m_Name: clock
   m_TagString: NPC4
@@ -9567,7 +9908,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1816131623
+--- !u!114 &1816131624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9576,12 +9917,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816131619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 879613685}
-  textDisplay: {fileID: 140033071}
-  inspectorText: Honey, why didn't you pick Dani's?
+  nodeName: Round1Option2Clock
 --- !u!1 &1824407674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9736,12 +10075,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835662433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 922238532}
-  textDisplay: {fileID: 958636112}
-  inspectorText: Abigail. Squids don't jump.
+  nodeName: Round3Option1Squid
 --- !u!1 &1849588906
 GameObject:
   m_ObjectHideFlags: 0
@@ -9860,12 +10197,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1849588906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 989565759}
-  textDisplay: {fileID: 718228417}
-  inspectorText: A clock would never ever make kombucha.
+  nodeName: Round2Option2Clock
 --- !u!1 &1903729945
 GameObject:
   m_ObjectHideFlags: 0
@@ -9877,7 +10212,7 @@ GameObject:
   - component: {fileID: 1903729946}
   - component: {fileID: 1903729948}
   - component: {fileID: 1903729947}
-  - component: {fileID: 1903729949}
+  - component: {fileID: 1903729950}
   m_Layer: 0
   m_Name: crab
   m_TagString: NPC3
@@ -9975,7 +10310,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1903729949
+--- !u!114 &1903729950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9984,12 +10319,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903729945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1697428835}
-  textDisplay: {fileID: 241043278}
-  inspectorText: C'mon man! A clock is all business!
+  nodeName: Round1Option1Crab
 --- !u!1 &1904014618
 GameObject:
   m_ObjectHideFlags: 0
@@ -10001,7 +10334,7 @@ GameObject:
   - component: {fileID: 1904014619}
   - component: {fileID: 1904014621}
   - component: {fileID: 1904014620}
-  - component: {fileID: 1904014622}
+  - component: {fileID: 1904014623}
   m_Layer: 0
   m_Name: spider
   m_TagString: NPC2
@@ -10099,7 +10432,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1904014622
+--- !u!114 &1904014623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10108,12 +10441,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1904014618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1537830656}
-  textDisplay: {fileID: 1094635254}
-  inspectorText: 'I mean if it can weave webs it can steal moons. '
+  nodeName: Round2Option1Spider
 --- !u!1 &1935093674
 GameObject:
   m_ObjectHideFlags: 0
@@ -10894,7 +11225,7 @@ GameObject:
   - component: {fileID: 2055018068}
   - component: {fileID: 2055018070}
   - component: {fileID: 2055018069}
-  - component: {fileID: 2055018071}
+  - component: {fileID: 2055018072}
   m_Layer: 0
   m_Name: squid
   m_TagString: NPC5
@@ -10992,7 +11323,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2055018071
+--- !u!114 &2055018072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11001,12 +11332,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2055018067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 922238532}
-  textDisplay: {fileID: 958636112}
-  inspectorText: 'Pretty sure it''s biologically impossible. '
+  nodeName: Round1Option2Squid
 --- !u!1 &2062988180
 GameObject:
   m_ObjectHideFlags: 0
@@ -11018,7 +11347,7 @@ GameObject:
   - component: {fileID: 2062988181}
   - component: {fileID: 2062988183}
   - component: {fileID: 2062988182}
-  - component: {fileID: 2062988184}
+  - component: {fileID: 2062988185}
   m_Layer: 0
   m_Name: gianluca
   m_TagString: NPC3
@@ -11116,7 +11445,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2062988184
+--- !u!114 &2062988185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11125,12 +11454,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2062988180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7e22d9176be9a439e396f34ba08d41, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 2046493963}
-  textDisplay: {fileID: 168311166}
-  inspectorText: 'I just think Gianluca could do anything. '
+  nodeName: Round2Option1Gianluca
 --- !u!1 &2143738779
 GameObject:
   m_ObjectHideFlags: 0
@@ -11290,3 +11617,4 @@ SceneRoots:
   - {fileID: 1987131293}
   - {fileID: 1588983568}
   - {fileID: 951732766}
+  - {fileID: 1446374412}
