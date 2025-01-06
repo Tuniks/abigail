@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class RoundManager : MonoBehaviour
 {
@@ -45,13 +46,6 @@ public class RoundManager : MonoBehaviour
     public GameObject ChaseBubble;
     public GameObject MomBubble;
     public GameObject GabeBubble;
-    public GameObject KateBubble;
-    public GameObject DaniBubble;
-    public GameObject JoannaBubble;
-    public TextMeshProUGUI DaniWinText;
-    public TextMeshProUGUI KateWinText;
-    public TextMeshProUGUI JoannaWinText;
-    public TextMeshProUGUI ChaseWinText;
     public GameObject GabeStar;
     public GameObject KateStar;
     public GameObject DaniStar;
@@ -60,6 +54,7 @@ public class RoundManager : MonoBehaviour
     public GameObject ChallengeCloud;
     public GameObject OptionsClouds;
     public GameObject WillThisWork;
+    private DialogueRunner dialogueRunner;
 
     // Round Option GameObjects
     public GameObject Round1Option1; // Assigned in Inspector
@@ -70,6 +65,12 @@ public class RoundManager : MonoBehaviour
     public GameObject Round3Option2; // Assigned in Inspector
 
     private bool option1Selected = false;
+    
+    // Add an array to track whether each round's dialogue has been triggered
+    private bool[] challengeDialogueTriggered = new bool[3];
+    private bool[] chaseDialogueTriggered = new bool[3];
+    private bool[] momDialogueTriggered = new bool[3];
+
 
     private string[] challengeTexts =
     {
@@ -100,6 +101,17 @@ public class RoundManager : MonoBehaviour
         "Oh maybe that can be my next little project!",
         "Mmm now I'm thinking about making banana bread."
     };
+    
+    void Start()
+    {
+        // Find the DialogueRunner in the scene
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+
+        if (dialogueRunner == null)
+        {
+            Debug.LogError("No DialogueRunner found in the scene!");
+        }
+    }
 
     private void Update()
     {
@@ -129,14 +141,15 @@ public class RoundManager : MonoBehaviour
     private void HandleSetChallengeText()
     {
         ClearText(); // Clear text before displaying new challenge text
-        GabeBubble.SetActive(true); // Activate GabeBubble when GabeText is shown
+        //GabeBubble.SetActive(true); // Activate GabeBubble when GabeText is shown
 
         if (roundCount < challengeTexts.Length)
         {
-            GabeText.text = challengeTexts[roundCount];
+            //GabeText.text = challengeTexts[roundCount];
             OptionsClouds.SetActive(true);
             buttonOption1Text.text = buttonTexts[roundCount, 0];
             buttonOption2Text.text = buttonTexts[roundCount, 1];
+            TriggerChallengeDialogue(roundCount);
         }
         else
         {
@@ -148,6 +161,75 @@ public class RoundManager : MonoBehaviour
         option1Button.gameObject.SetActive(true);
         option2Button.gameObject.SetActive(true);
         uiContainer.SetActive(true);
+    }
+    
+    void TriggerChallengeDialogue(int round)
+    {
+        if (!challengeDialogueTriggered[round]) // Check if the dialogue has already been triggered
+        {
+            switch (round)
+            {
+                case 0:
+                    //dialogueRunner.StartDialogue("GabeChoiceRound1");
+                    break;
+                case 1:
+                    dialogueRunner.StartDialogue("GabeChoiceRound2");
+                    break;
+                case 2:
+                    dialogueRunner.StartDialogue("GabeChoiceRound3");
+                    break;
+                default:
+                    Debug.LogWarning("Invalid round number!");
+                    break;
+            }
+            challengeDialogueTriggered[round] = true; // Mark this round's dialogue as triggered
+        }
+    }
+
+    void TriggerChaseDialogue(int round)
+    {
+        if (!chaseDialogueTriggered[round]) // Check if the dialogue has already been triggered
+        {
+            switch (round)
+            {
+                case 0:
+                    dialogueRunner.StartDialogue("Round1Chase");
+                    break;
+                case 1:
+                    dialogueRunner.StartDialogue("Round2Chase");
+                    break;
+                case 2:
+                    dialogueRunner.StartDialogue("Round3Chase");
+                    break;
+                default:
+                    Debug.LogWarning("Invalid round number!");
+                    break;
+            }
+            chaseDialogueTriggered[round] = true; // Mark this round's dialogue as triggered
+        }
+    }
+
+    void TriggerMomDialogue(int round)
+    {
+        if (!momDialogueTriggered[round]) // Check if the dialogue has already been triggered
+        {
+            switch (round)
+            {
+                case 0:
+                    dialogueRunner.StartDialogue("Round1Mom");
+                    break;
+                case 1:
+                    dialogueRunner.StartDialogue("Round2Mom");
+                    break;
+                case 2:
+                    dialogueRunner.StartDialogue("Round3Mom");
+                    break;
+                default:
+                    Debug.LogWarning("Invalid round number!");
+                    break;
+            }
+            momDialogueTriggered[round] = true; // Mark this round's dialogue as triggered
+        }
     }
 
     private void HandleChallengeSelection()
@@ -217,17 +299,19 @@ public class RoundManager : MonoBehaviour
     // Display the appropriate reaction text and activate corresponding bubble
     if (option1Selected)
     {
-        ChaseTextHolder.text = chaseTexts[roundCount];
+        //ChaseTextHolder.text = chaseTexts[roundCount];
+        TriggerChaseDialogue(roundCount);
         MomTextHolder.text = ""; // Clear MomTextHolder if ChaseText is displayed
-        ChaseBubble.SetActive(true);
+        //ChaseBubble.SetActive(true);
         MomBubble.SetActive(false); // Ensure MomBubble is off
         Debug.Log($"Chase Text Displayed: {chaseTexts[roundCount]}");
     }
     else
     {
-        MomTextHolder.text = momTexts[roundCount];
+        //MomTextHolder.text = momTexts[roundCount];
         ChaseTextHolder.text = ""; // Clear ChaseTextHolder if MomText is displayed
-        MomBubble.SetActive(true);
+        TriggerMomDialogue(roundCount);
+       // MomBubble.SetActive(true);
         ChaseBubble.SetActive(false); // Ensure ChaseBubble is off
         Debug.Log($"Mom Text Displayed: {momTexts[roundCount]}");
     }
@@ -401,51 +485,46 @@ public class RoundManager : MonoBehaviour
         if (NPC3score == maxScore) tieCount++;
         if (NPC4score == maxScore) tieCount++;
         if (NPC5score == maxScore) tieCount++;
-
-        if (tieCount > 1)
+        
         {
-            GabeBubble.SetActive(true);
-            GabeWinText.text = "Come on! A tie is like no one won!";
+            // Check if the player presses the 'E' key
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (tieCount > 1)
+                {
+                    dialogueRunner.StartDialogue("Tie");
+                }
+                else if (NPC1score == maxScore)
+                {
+                    dialogueRunner.StartDialogue("GabeWin");
+                    GabeStar.SetActive(true);
+                }
+                else if (NPC2score == maxScore)
+                {
+                    dialogueRunner.StartDialogue("KateWin");
+                    KateStar.SetActive(true);
+                }
+                else if (NPC3score == maxScore)
+                {
+                    dialogueRunner.StartDialogue("DaniWin");
+                    DaniStar.SetActive(true);
+                }
+                else if (NPC4score == maxScore)
+                {
+                    dialogueRunner.StartDialogue("ChaseWin");
+                    ChaseStar.SetActive(true);
+                }
+                else if (NPC5score == maxScore)
+                {
+                    dialogueRunner.StartDialogue("JoannaWin");
+                    JoannaStar.SetActive(true);
+                }
+            }
         }
-        else if (NPC1score == maxScore)
-        {
-            GabeBubble.SetActive(true);
-            GabeStar.SetActive(true);
-            GabeWinText.text = "It's all cause of my lucky foot tile!";
-        }
-        else if (NPC2score == maxScore)
-        {
-            KateBubble.SetActive(true);
-            KateStar.SetActive(true);
-            KateWinText.text = "Great minds think alike Abigail!";
-        }
-        else if (NPC3score == maxScore)
-        {
-            DaniBubble.SetActive(true);
-            DaniStar.SetActive(true);
-            DaniWinText.text = "This win goes out to Gianluca!";
-        }
-        else if (NPC4score == maxScore)
-        {
-            ChaseBubble.SetActive(true);
-            ChaseStar.SetActive(true);
-            ChaseWinText.text = "Good game guys!";
-        }
-        else if (NPC5score == maxScore)
-        {
-            JoannaBubble.SetActive(true);
-            JoannaStar.SetActive(true);
-            JoannaWinText.text = "Yes! I knew I could do it.";
-        }
-
+        
         Debug.Log("Game Complete!");
         winnerDisplayed = true;
         WillThisWork.SetActive(true);
-        
-       // if (winnerDisplayed && Input.GetKeyDown(KeyCode.E))
-        {
-          //  SceneManager.LoadScene("Start");
-        }
     }
 
     private void IncrementRound()
