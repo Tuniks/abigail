@@ -124,14 +124,9 @@ public class Tile : MonoBehaviour{
         return mult * (face.beauty + background.beauty + material.beauty + glaze.beauty);
     }
 
-    public float GetStrength(){
-        float mult = multipliers.ContainsKey(Attributes.Strength) ? multipliers[Attributes.Strength] : 1f;
-        return mult * (face.strength + background.strength + material.strength + glaze.strength);
-    }
-
-    public float GetStamina(){
-        float mult = multipliers.ContainsKey(Attributes.Stamina) ? multipliers[Attributes.Stamina] : 1f;
-        return mult * (face.stamina + background.stamina + material.stamina + glaze.stamina);
+    public float GetVigor(){
+        float mult = multipliers.ContainsKey(Attributes.Vigor) ? multipliers[Attributes.Vigor] : 1f;
+        return mult * (face.vigor + background.vigor + material.vigor + glaze.vigor);
     }
 
     public float GetMagic(){
@@ -139,8 +134,18 @@ public class Tile : MonoBehaviour{
         return mult * (face.magic + background.magic + material.magic + glaze.magic);
     }
 
-    public float GetSpeed(){
-        float mult = multipliers.ContainsKey(Attributes.Speed) ? multipliers[Attributes.Speed] : 1f;
-        return mult * (face.speed + background.speed + material.speed + glaze.speed);
-    }    
+    public float GetHeart(){
+        float mult = multipliers.ContainsKey(Attributes.Heart) ? multipliers[Attributes.Heart] : 1f;
+        return mult * (face.heart + background.heart + material.heart + glaze.heart);
+    }
+
+    public float GetIntellect(){
+        float mult = multipliers.ContainsKey(Attributes.Intellect) ? multipliers[Attributes.Intellect] : 1f;
+        return mult * (face.intellect + background.intellect + material.intellect + glaze.intellect);
+    }
+
+    public float GetTerror(){
+        float mult = multipliers.ContainsKey(Attributes.Terror) ? multipliers[Attributes.Terror] : 1f;
+        return mult * (face.terror + background.terror + material.terror + glaze.terror);
+    }   
 }

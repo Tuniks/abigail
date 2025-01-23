@@ -12,7 +12,6 @@ public enum State {
     Result,
 }
 
-
 public class TileGameManager : MonoBehaviour{
     public static TileGameManager instance;
 
@@ -64,7 +63,6 @@ public class TileGameManager : MonoBehaviour{
         enemyHand.SetActive(false);
         enemyActive.SetActive(false);
 
-
         // Set
         switch(_state){
             case State.Tutorial:
@@ -90,7 +88,7 @@ public class TileGameManager : MonoBehaviour{
                 break;
 
             case State.Result:
-                break;       
+                break;
         }
 
         // Set UI Elements

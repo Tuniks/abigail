@@ -35,19 +35,19 @@ public class Challenges : MonoBehaviour{
         
         switch(id){
             case 0:
-                result = (tile.GetStrength() + tile.GetMagic())/2f;
+                result = (tile.GetVigor() + tile.GetMagic())/2f;
                 break;
             case 1:
-                result = tile.GetBeauty();
+                result = (tile.GetBeauty() + tile.GetMagic())/2f;
                 break;
             case 2:
-                result = (tile.GetSpeed() + tile.GetStamina())/2f;
+                result = tile.GetVigor();
                 break;
             case 3:
-                result = (tile.GetBeauty() + tile.GetStamina() + tile.GetMagic())/3f;
+                result = (tile.GetBeauty() + tile.GetMagic() + tile.GetHeart())/3f;
                 break;
             case 4:
-                result = (tile.GetBeauty() + tile.GetStamina())/2f;
+                result = (tile.GetBeauty() + tile.GetHeart())/2f;
                 break;
         }
 
@@ -58,15 +58,15 @@ public class Challenges : MonoBehaviour{
     private List<Attributes> GetChallengeAttributes(int id){
         switch(id){
             case 0:
-                return new List<Attributes>{Attributes.Strength, Attributes.Magic};
+                return new List<Attributes>{Attributes.Vigor, Attributes.Magic};
             case 1:
-                return new List<Attributes>{Attributes.Beauty};
+                return new List<Attributes>{Attributes.Beauty, Attributes.Magic};
             case 2:
-                return new List<Attributes>{Attributes.Speed, Attributes.Stamina};
+                return new List<Attributes>{Attributes.Vigor};
             case 3:
-                return new List<Attributes>{Attributes.Beauty, Attributes.Magic, Attributes.Stamina};
+                return new List<Attributes>{Attributes.Beauty, Attributes.Magic, Attributes.Heart};
             case 4:
-                return new List<Attributes>{Attributes.Beauty, Attributes.Stamina};
+                return new List<Attributes>{Attributes.Beauty, Attributes.Heart};
         }
 
         return new List<Attributes>{};
