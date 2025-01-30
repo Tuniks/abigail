@@ -24,6 +24,7 @@ public class ClickToTriggerYarnspinner : MonoBehaviour
         // Check if dialogue is already running
         if (dialogueRunner != null && !dialogueRunner.IsDialogueRunning)
         {
+            dialogueRunner.Stop();
             dialogueRunner.StartDialogue(nodeName);
         }
     }

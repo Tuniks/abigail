@@ -552,6 +552,7 @@ namespace Yarn.Unity.Addons.SpeechBubbles
             {
                 if (stopToken?.WasInterrupted ?? false)
                 {
+                    text.maxVisibleCharacters = characterCount;
                     yield break;
                 }
 
