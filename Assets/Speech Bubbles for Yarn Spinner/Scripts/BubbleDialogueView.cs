@@ -265,13 +265,18 @@ namespace Yarn.Unity.Addons.SpeechBubbles
         /// <inheritdoc />
         public override void InterruptLine(LocalizedLine dialogueLine, System.Action onDialogueLineFinished)
         {
-            // if we can stop any running animations do so
+            
+            // If the dialogue text is still animating, we will interrupt it
             if (currentStopToken.CanInterrupt)
             {
                 currentStopToken.Interrupt();
                 StopAllCoroutines();
             }
-            onDialogueLineFinished();
+            // Else, if the dialogue text has finished appearing, then we go to the next line of dialogue
+            else
+            {
+                onDialogueLineFinished();   
+            }
         }
 
         /// <inheritdoc />
@@ -305,7 +310,7 @@ namespace Yarn.Unity.Addons.SpeechBubbles
                 }
                 return;
             }
-
+            
             // otherwise we in the process of showing a line and want it interrupted
             requestInterrupt?.Invoke();
         }
