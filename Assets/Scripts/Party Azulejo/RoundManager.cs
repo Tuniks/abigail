@@ -30,27 +30,21 @@ public class RoundManager : MonoBehaviour
     private int NPC5score = 0;
     private bool isDecisionComplete = false;
     private string selectedChallengeText; // Variable to store the selected text
-
-    // Public references
-    public TextMeshProUGUI winnerText;
-    public TextMeshProUGUI GabeWinText;
+    private bool winnerStarDisplayed = false; // Track if the star has been displayed
+    
     public GameObject uiContainer;
     [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
-    public TextMeshProUGUI MomTextHolder;
-    public TextMeshProUGUI ChaseTextHolder;
     public TextMeshProUGUI buttonOption1Text;
     public TextMeshProUGUI buttonOption2Text;
     public Button option1Button;
     public Button option2Button;
     public TextMeshProUGUI CurrentChallenge;
-    public GameObject ChaseBubble;
-    public GameObject MomBubble;
-    public GameObject GabeBubble;
     public GameObject GabeStar;
     public GameObject KateStar;
     public GameObject DaniStar;
     public GameObject JoannaStar;
     public GameObject ChaseStar;
+    public GameObject TieStar;
     public GameObject ChallengeCloud;
     public GameObject OptionsClouds;
     public GameObject WillThisWork;
@@ -67,7 +61,6 @@ public class RoundManager : MonoBehaviour
     private bool option1Selected = false;
     
     // Add an array to track whether each round's dialogue has been triggered
-    private bool[] challengeDialogueTriggered = new bool[3];
     private bool[] chaseDialogueTriggered = new bool[3];
     private bool[] momDialogueTriggered = new bool[3];
 
@@ -86,20 +79,6 @@ public class RoundManager : MonoBehaviour
             "Who would reshape the craters of the earth when they jump?",
             "Most likely to slip on a banana peel?"
         } // Round 3
-    };
-
-    private string[] chaseTexts =
-    {
-        "Here comes Abigail with her big city challenges...",
-        "I feel like if I were a huge nerd I'd love this one.",
-        "Dude what does that even mean?"
-    };
-
-    private string[] momTexts =
-    {
-        "You know whose never had a cavity? My Abigail!",
-        "Oh maybe that can be my next little project!",
-        "Mmm now I'm thinking about making banana bread."
     };
     
     void Start()
@@ -145,11 +124,9 @@ public class RoundManager : MonoBehaviour
 
         if (roundCount < challengeTexts.Length)
         {
-            //GabeText.text = challengeTexts[roundCount];
             OptionsClouds.SetActive(true);
             buttonOption1Text.text = buttonTexts[roundCount, 0];
             buttonOption2Text.text = buttonTexts[roundCount, 1];
-            TriggerChallengeDialogue(roundCount);
         }
         else
         {
@@ -161,29 +138,6 @@ public class RoundManager : MonoBehaviour
         option1Button.gameObject.SetActive(true);
         option2Button.gameObject.SetActive(true);
         uiContainer.SetActive(true);
-    }
-    
-    void TriggerChallengeDialogue(int round)
-    {
-        if (!challengeDialogueTriggered[round]) // Check if the dialogue has already been triggered
-        {
-            switch (round)
-            {
-                case 0:
-                    //dialogueRunner.StartDialogue("GabeChoiceRound1");
-                    break;
-                case 1:
-                    dialogueRunner.StartDialogue("GabeChoiceRound2");
-                    break;
-                case 2:
-                    dialogueRunner.StartDialogue("GabeChoiceRound3");
-                    break;
-                default:
-                    Debug.LogWarning("Invalid round number!");
-                    break;
-            }
-            challengeDialogueTriggered[round] = true; // Mark this round's dialogue as triggered
-        }
     }
 
     void TriggerChaseDialogue(int round)
@@ -281,7 +235,6 @@ public class RoundManager : MonoBehaviour
         option1Button.gameObject.SetActive(false);
         option2Button.gameObject.SetActive(false);
         OptionsClouds.SetActive(false);
-        GabeBubble.SetActive(false);
         currentState = GameState.ChallengeReaction;
         Debug.Log("Transitioning to ChallengeReaction state");
     }
@@ -299,21 +252,11 @@ public class RoundManager : MonoBehaviour
     // Display the appropriate reaction text and activate corresponding bubble
     if (option1Selected)
     {
-        //ChaseTextHolder.text = chaseTexts[roundCount];
         TriggerChaseDialogue(roundCount);
-        MomTextHolder.text = ""; // Clear MomTextHolder if ChaseText is displayed
-        //ChaseBubble.SetActive(true);
-        MomBubble.SetActive(false); // Ensure MomBubble is off
-        Debug.Log($"Chase Text Displayed: {chaseTexts[roundCount]}");
     }
     else
     {
-        //MomTextHolder.text = momTexts[roundCount];
-        ChaseTextHolder.text = ""; // Clear ChaseTextHolder if MomText is displayed
         TriggerMomDialogue(roundCount);
-       // MomBubble.SetActive(true);
-        ChaseBubble.SetActive(false); // Ensure ChaseBubble is off
-        Debug.Log($"Mom Text Displayed: {momTexts[roundCount]}");
     }
 
     // Wait until the player presses 'E' before activating the round options
@@ -341,12 +284,6 @@ public class RoundManager : MonoBehaviour
                     Round3Option2.SetActive(true);
                 break;
         }
-
-        // Transition to the TileSubmission state and turn off both bubbles
-        MomTextHolder.text = "";
-        ChaseTextHolder.text = "";
-        MomBubble.SetActive(false);
-        ChaseBubble.SetActive(false);
         currentState = GameState.TileSubmission;
         Debug.Log($"State changed to: {currentState}");
     }
@@ -356,7 +293,7 @@ public class RoundManager : MonoBehaviour
 
     private void HandleTileSubmission()
     {
-        ClearText(); // Clear text before displaying new challenge text
+        ClearText(); 
 
         // Determine which round's option to activate based on the selected option
         GameObject activeRoundOption = null;
@@ -453,11 +390,11 @@ public class RoundManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Deactivate all objects with the tag "bubble"
-            GameObject[] bubbles = GameObject.FindGameObjectsWithTag("bubble");
-            foreach (GameObject bubble in bubbles)
-            {
-                bubble.SetActive(false);
-            }
+            //GameObject[] bubbles = GameObject.FindGameObjectsWithTag("bubble");
+            //foreach (GameObject bubble in bubbles)
+          //  {
+               // bubble.SetActive(false);
+           // }
 
             // Clear all TextMeshPro text elements on the canvas
             TextMeshProUGUI[] textElements = FindObjectsOfType<TextMeshProUGUI>();
@@ -490,8 +427,10 @@ public class RoundManager : MonoBehaviour
             // Check if the player presses the 'E' key
             if (Input.GetKeyDown(KeyCode.E))
             {
+                dialogueRunner.Stop();
                 if (tieCount > 1)
                 {
+                    TieStar.SetActive(true);
                     dialogueRunner.StartDialogue("Tie");
                 }
                 else if (NPC1score == maxScore)
@@ -539,25 +478,11 @@ public class RoundManager : MonoBehaviour
     // Helper method to clear text
     private void ClearText()
     {
-        GabeText.text = "";
-        MomTextHolder.text = "";
-        ChaseTextHolder.text = "";
         buttonOption1Text.text = "";
         buttonOption2Text.text = "";
         CurrentChallenge.text = "";
     }
     
-    private void OnOptionSelected(bool isOption1Selected)
-    {
-        // Set which option was selected
-        option1Selected = isOption1Selected;
-
-        // Call the function to store the selected challenge text
-        HandleChallengeSelection();
-
-        // Transition to the next state or round if needed
-        currentState = GameState.TileSubmission;
-    }
 
 }
 
