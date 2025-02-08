@@ -8,25 +8,33 @@ public class PlayerHand : MonoBehaviour{
     public int maxHandSize;
 
     public ActiveSpot activeSpot;
+    public List<GameObject> activeSpots;
 
     public float tileSize = 2f;
     public float tileSpacing = .5f;
+    
+    // When false the hand behaves as originally written.
+    // When true, selecting a tile is deferred until an active spot is clicked,
+    // and the state machine in ClayGameManager is used.
+    public bool isClay = false;
+    private Tile pendingTile = null;
 
     void Start(){
         BuildHand();
         DrawHand();
     }
 
-    private void BuildHand(){
+    public void BuildHand(){
         PlayerInventory inv = PlayerInventory.Instance;
-        if (inv != null) hand = inv.GetHandOfTiles(maxHandSize);
-        if(hand.Count < maxHandSize) GenerateRandomHand(maxHandSize - hand.Count);
+        if (inv != null) 
+            hand = inv.GetHandOfTiles(maxHandSize);
+        if(hand.Count < maxHandSize) 
+            GenerateRandomHand(maxHandSize - hand.Count);
         SetHand();
     }
 
     void GenerateRandomHand(int handCount){
         hand = new List<Tile>();
-
         for (int i = 0; i < handCount; i++){
             Tile tile = TileMaker.instance.GetRandomTile();
             hand.Add(tile);
@@ -44,7 +52,6 @@ public class PlayerHand : MonoBehaviour{
     void DrawHand(){
         float total = tileSize * hand.Count + (tileSpacing * (hand.Count - 1));
         float startx = tileSize/2f - (total/2f);
-
         for(int i = 0; i < hand.Count; i++){
             hand[i].transform.localPosition = new Vector3(startx + (i*(tileSpacing + tileSize)), 0, 0);
         }
@@ -53,9 +60,56 @@ public class PlayerHand : MonoBehaviour{
     public void Activate(Tile tile){
         if(!hand.Contains(tile)) return;
         
-        hand.Remove(tile);
+        if(isClay){
+            // In Clay mode, ignore input if the ClayGameManager isn’t in PlayerTurn.
+            if(ClayGameManager.instance != null &&
+               ClayGameManager.instance.currentState != ClayGameManager.GameState.PlayerTurn)
+                return;
+            
+            // If another tile is pending, restore its opacity.
+            if(pendingTile != null && pendingTile != tile){
+                SetTileTransparency(pendingTile, 1f);
+            }
+            pendingTile = tile;
+            SetTileTransparency(tile, 0.5f);
+        }
+        else{
+            // Original functionality: immediately remove and assign the tile.
+            hand.Remove(tile);
+            DrawHand();
+            activeSpot.ActivateTile(tile);
+            TileGameManager.instance.RevealPreArgumentWinner();
+        }
+    }
+
+    // Called (by an ActiveSpot) when an active spot is clicked.
+    public void OnActiveSpotSelected(GameObject activeSpotObject){
+        if(!isClay) return;
+        if(ClayGameManager.instance != null &&
+           ClayGameManager.instance.currentState != ClayGameManager.GameState.PlayerTurn)
+            return;
+        if(pendingTile == null) return;
+        
+        ActiveSpot spot = activeSpotObject.GetComponent<ActiveSpot>();
+        if(spot == null) return;
+        
+        SetTileTransparency(pendingTile, 1f);
+        hand.Remove(pendingTile);
         DrawHand();
-        activeSpot.ActivateTile(tile);
-        TileGameManager.instance.RevealPreArgumentWinner();
+        spot.ActivateTile(pendingTile);
+        if(ClayGameManager.instance != null)
+            ClayGameManager.instance.OnTilePlaced();
+        pendingTile = null;
+    }
+
+    private void SetTileTransparency(Tile tile, float alpha){
+        Renderer[] renderers = tile.GetComponentsInChildren<Renderer>();
+        foreach(Renderer renderer in renderers){
+            foreach(Material mat in renderer.materials){
+                Color c = mat.color;
+                c.a = alpha;
+                mat.color = c;
+            }
+        }
     }
 }
