@@ -21,6 +21,11 @@ public class DaniCollageGameManager : MonoBehaviour
     private List<GameObject> selectedItems = new List<GameObject>();  // Track selected items
     
     // Reference to the CollagePlayerHand script
+    public GameObject PromptImages;
+    public GameObject Question;
+    public GameObject EmptySlots;
+    public GameObject LeaveObject;
+    
     public CollagePlayerHand playerHand;
     
     private int judgementSelection = 0;
@@ -31,7 +36,8 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject judgementarrow;
 
     public GameObject DaniBackupTile;
-    
+
+    public GameObject Stars;
     // Reference to the arrow for slot selection
     public GameObject slotArrowSprite;
 
@@ -79,6 +85,8 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject no;
     void Start()
     {
+        PromptImages.SetActive(true);
+        EmptySlots.SetActive(true);
         // Set the initial state
         SwitchState(GameState.PlayerTileChoice1);
     }
@@ -368,6 +376,7 @@ public class DaniCollageGameManager : MonoBehaviour
         {
             yes.SetActive(true);
             no.SetActive(true);
+            Question.SetActive(true);
             judgementarrow.SetActive(true);
 
             // Handle arrow key input to cycle between "Yes" and "No"
@@ -416,6 +425,10 @@ private void HandleSwitchOut()
     slotArrowSprite.SetActive(true);
     arrowSprite.SetActive(false);
     judgementarrow.SetActive(false);
+    yes.SetActive(false);
+    no.SetActive(false);
+    Question.SetActive(false);
+    
 
     // Handle player input for moving the slot selection arrow with WASD or arrow keys
     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -443,6 +456,7 @@ private void HandleSwitchOut()
             DaniBackupTile.SetActive(true);
             DaniHand.Remove(selectedTile);
             Destroy(selectedTile);
+            slotArrowSprite.SetActive(false);
 
             // Add the DaniBackUpTile to DaniHand
             DaniHand.Add(DaniBackupTile);
@@ -491,11 +505,33 @@ private void UpdateSlotDaniArrowPosition()
     private void HandleFinalJudgment()
     {
         yes.SetActive(false);
+        no.SetActive(false);
+        Question.SetActive(false);
+        Stars.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchState(GameState.Leave);
+        }
+        
     }
 
     private void HandleLeave()
     {
-        
+        foreach (GameObject item in DaniHand)
+        {
+            item.SetActive(false);
+        }
+
+        // Deactivate all tiles in PlayedTiles
+        foreach (Tile playedTile in PlayedTiles)
+        {
+            playedTile.gameObject.SetActive(false); // Assuming Tile is a GameObject
+        }
+        PromptImages.SetActive(false);
+        EmptySlots.SetActive(false);
+        Stars.SetActive(false);
+        LeaveObject.SetActive(true);
     }
     
 }
