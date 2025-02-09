@@ -28,20 +28,12 @@ static public class Arguments {
             new ArgumentResponse("Nothing can beat the allure of $name$.", true),
         }},
         
-        // Responses for Strength
-        {Attributes.Strength, new ArgumentResponse[]{
+        // Responses for Vigor
+        {Attributes.Vigor, new ArgumentResponse[]{
             new ArgumentResponse("But $name$ is way stronger!", false),
             new ArgumentResponse("No way, $name$ is so powerful!", false),
             new ArgumentResponse("Of course, look at my $name$'s strength!", true),
             new ArgumentResponse("What can I say, $name$ is a sturdy one!", true),
-        }},
-
-        // Responses for Stamina
-        {Attributes.Stamina, new ArgumentResponse[]{
-            new ArgumentResponse("But $name$ is way more resilient!", false),
-            new ArgumentResponse("Dude, $name$ would never get tired!", false),
-            new ArgumentResponse("$name$ can endure anything!", true),
-            new ArgumentResponse("So much energy is flowing through $name$ right now!", true),
         }},
 
         // Responses for Magic
@@ -52,12 +44,22 @@ static public class Arguments {
             new ArgumentResponse("The hypnotic qualities of $name$ always win.", true),
         }},
 
-        // Responses for Speed
-        {Attributes.Speed, new ArgumentResponse[]{
-            new ArgumentResponse("But $name$ is so fast!", false),
-            new ArgumentResponse("No way, my $name$ is on turbo!", false),
-            new ArgumentResponse("$name$, so nimble and elegant!", true),
-            new ArgumentResponse("Of course, $name$ is the swiftiest one in town!", true),
+        // Responses for Heart
+        {Attributes.Heart, new ArgumentResponse[]{
+            new ArgumentResponse("TEMP_RESPONSE_HEART_NEG", false),
+            new ArgumentResponse("TEMP_RESPONSE_HEART_POS", true),
+        }},
+
+        // Responses for Intellect
+        {Attributes.Intellect, new ArgumentResponse[]{
+            new ArgumentResponse("TEMP_RESPONSE_INTELLECT_NEG", false),
+            new ArgumentResponse("TEMP_RESPONSE_INTELLECT_POS", true),
+        }},
+
+        // Responses for Terror
+        {Attributes.Terror, new ArgumentResponse[]{
+            new ArgumentResponse("TEMP_RESPONSE_TERROR_NEG", false),
+            new ArgumentResponse("TEMP_RESPONSE_TERROR_POS", true),
         }},
     };
 
