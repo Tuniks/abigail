@@ -219,6 +219,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMobile: 0
+--- !u!1 &39740531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6353360310447885206, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
+  m_PrefabInstance: {fileID: 1005639342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &39740534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39740531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 0
+  m_LookaheadIgnoreY: 0
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_TargetMovementOnly: 1
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_CameraDistance: 10
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_DeadZoneDepth: 0
+  m_UnlimitedSoftZone: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+  m_CenterOnActivate: 1
+  m_GroupFramingMode: 2
+  m_AdjustmentMode: 0
+  m_GroupFramingSize: 0.8
+  m_MaxDollyIn: 5000
+  m_MaxDollyOut: 5000
+  m_MinimumDistance: 1
+  m_MaximumDistance: 5000
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
+  m_MinimumOrthoSize: 1
+  m_MaximumOrthoSize: 5000
+--- !u!114 &39740535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39740531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff8a6283cb1d40dea7409f9c38f8722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 217139749}
+  velocityThreshold: 0.1
+  velocitySmoothing: 10
+  movementZoomDelay: 0.3
+  zoomBackDelay: 0.5
+  minCameraDistance: 10
+  maxCameraDistance: 20
+  zoomSpeed: 5
 --- !u!1 &40861086
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,10 +400,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 10
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &51524082
 SpriteRenderer:
@@ -735,10 +804,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &76955320
 SpriteRenderer:
@@ -2360,10 +2430,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 15
-  stamina: 5
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Crab with Knife
 --- !u!212 &305612985
 SpriteRenderer:
@@ -2921,10 +2992,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &403919900
 SpriteRenderer:
@@ -3231,10 +3303,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &418736139
 SpriteRenderer:
@@ -3336,10 +3409,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &419622501
 SpriteRenderer:
@@ -3441,10 +3515,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &425846262
 SpriteRenderer:
@@ -4707,10 +4782,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &538621513
 SpriteRenderer:
@@ -4812,10 +4888,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &543785983
 SpriteRenderer:
@@ -4917,10 +4994,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 10
+  vigor: 0
   magic: 15
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Refreshing Lemonade
 --- !u!212 &549423121
 SpriteRenderer:
@@ -5022,10 +5100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &558002375
 SpriteRenderer:
@@ -5527,10 +5606,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &576914256
 SpriteRenderer:
@@ -5632,10 +5712,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &609925596
 SpriteRenderer:
@@ -6500,10 +6581,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &713292239
 SpriteRenderer:
@@ -7915,10 +7997,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 3
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 3
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &752858901
 SpriteRenderer:
@@ -8120,10 +8203,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &768818715
 SpriteRenderer:
@@ -8225,10 +8309,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &772083258
 SpriteRenderer:
@@ -8430,10 +8515,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &790614750
 SpriteRenderer:
@@ -8635,10 +8721,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &800975731
 SpriteRenderer:
@@ -8840,10 +8927,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &830685285
 SpriteRenderer:
@@ -9045,10 +9133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 10
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 20
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Human Toes
 --- !u!212 &839031834
 SpriteRenderer:
@@ -9250,10 +9339,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &850062901
 SpriteRenderer:
@@ -9455,10 +9545,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &879986702
 SpriteRenderer:
@@ -9560,10 +9651,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &884868334
 SpriteRenderer:
@@ -10351,10 +10443,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &964685897
 SpriteRenderer:
@@ -10456,10 +10549,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &977768423
 SpriteRenderer:
@@ -10661,10 +10755,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1003411645
 SpriteRenderer:
@@ -10762,7 +10857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998252344440750333, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4459667874250200950, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10822,12 +10917,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020004650091786254, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17
+      value: -10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2363420953817181379, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6353360310447885206, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 39740535}
+    - targetCorrespondingSourceObject: {fileID: 6353360310447885206, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 39740534}
+    - targetCorrespondingSourceObject: {fileID: 7976573944438792613, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1846297730}
   m_SourcePrefab: {fileID: 100100000, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
 --- !u!1 &1012549171
 GameObject:
@@ -11261,10 +11366,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1062788199
 SpriteRenderer:
@@ -11583,10 +11689,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1087319517
 SpriteRenderer:
@@ -12041,10 +12148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1132846903
 SpriteRenderer:
@@ -12346,10 +12454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &1159990193
 SpriteRenderer:
@@ -13035,10 +13144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1229702349
 SpriteRenderer:
@@ -14099,10 +14209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 25
+  vigor: 0
   magic: 0
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Kooky Clocky
 --- !u!212 &1326867298
 SpriteRenderer:
@@ -14946,10 +15057,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &1411339402
 SpriteRenderer:
@@ -15051,10 +15163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 15
-  strength: 5
-  stamina: 0
+  vigor: 0
   magic: 15
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Stately Tree
 --- !u!212 &1411902664
 SpriteRenderer:
@@ -15287,10 +15400,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 20
-  stamina: 0
+  vigor: 0
   magic: 5
-  speed: 10
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Spooky Spider
 --- !u!212 &1459880517
 SpriteRenderer:
@@ -15592,10 +15706,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 3
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 3
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1472560839
 SpriteRenderer:
@@ -15802,10 +15917,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1490286096
 SpriteRenderer:
@@ -15907,10 +16023,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &1493029332
 SpriteRenderer:
@@ -16012,10 +16129,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1495794230
 SpriteRenderer:
@@ -16322,10 +16440,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Water Slide
 --- !u!212 &1558501264
 SpriteRenderer:
@@ -16527,10 +16646,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1599789916
 SpriteRenderer:
@@ -16632,10 +16752,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &1604057529
 SpriteRenderer:
@@ -17354,10 +17475,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1674755931
 SpriteRenderer:
@@ -18064,10 +18186,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1767820824
 SpriteRenderer:
@@ -18597,10 +18720,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1803241457
 SpriteRenderer:
@@ -18974,10 +19098,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1829286967
 SpriteRenderer:
@@ -19079,10 +19204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1837434935
 SpriteRenderer:
@@ -19138,6 +19264,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1846297726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7976573944438792613, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
+  m_PrefabInstance: {fileID: 1005639342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1846297730
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846297726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 0
+  m_LookaheadIgnoreY: 0
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_TargetMovementOnly: 1
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_CameraDistance: 10
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_DeadZoneDepth: 0
+  m_UnlimitedSoftZone: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+  m_CenterOnActivate: 1
+  m_GroupFramingMode: 2
+  m_AdjustmentMode: 0
+  m_GroupFramingSize: 0.8
+  m_MaxDollyIn: 5000
+  m_MaxDollyOut: 5000
+  m_MinimumDistance: 1
+  m_MaximumDistance: 5000
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
+  m_MinimumOrthoSize: 1
+  m_MaximumOrthoSize: 5000
 --- !u!1 &1852735900
 GameObject:
   m_ObjectHideFlags: 0
@@ -19184,10 +19358,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1852735903
 SpriteRenderer:
@@ -20200,10 +20375,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 20
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 20
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Cassiopeia Constellation
 --- !u!212 &1933365457
 SpriteRenderer:
@@ -20768,10 +20944,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1971476965
 SpriteRenderer:
@@ -21813,10 +21990,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 10
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &2136901610
 SpriteRenderer:
