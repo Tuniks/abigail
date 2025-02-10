@@ -532,6 +532,7 @@ private void UpdateSlotDaniArrowPosition()
         EmptySlots.SetActive(false);
         Stars.SetActive(false);
         LeaveObject.SetActive(true);
+        arrowSprite.SetActive(true);
     }
     
 }
