@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ArgumentCause{
+    Silence,
     Face,
     Tag,
     Attribute,
@@ -37,6 +38,8 @@ public class Argument : ScriptableObject{
             if(tag == other.tag) return true;
         } else if(cause == ArgumentCause.Attribute){
             if(attribute == other.attribute) return true;
+        } else if(cause == ArgumentCause.Silence){
+            return true;
         }
 
         return false;

@@ -137,18 +137,17 @@ public class TileGameManager : MonoBehaviour{
         // Check result
         bool result = CheckResult();
 
-        // Get Arguments
-        List<(Attributes, string, float)> arguments = challengesManager.Get3ResponsesFromChallenge(challenges[currentChallengeIndex], result);
-        currentArguments = arguments;
-        string[] argumentsText = new string[3]{
-            arguments[0].Item2,
-            arguments[1].Item2,
-            arguments[2].Item2
-        };
+        // Get Argument Overlap
+        Argument[] playerArgs = judgeArguments.GetOverlap(playerArguments.argumentCollection);
+        Argument[] enemyArgs = judgeArguments.GetOverlap(enemyArguments.argumentCollection);
+
+        
+
+
 
         // Update UI
         UIManager.UpdatePreArgumentRoundWinner(result);
-        UIManager.UpdateArgumentBubbles(argumentsText, p1Active.activeTile.GetName());
+        // UIManager.UpdateArgumentBubbles(argumentsText, p1Active.activeTile.GetName());
         SetState(State.Argument);
     }
 
