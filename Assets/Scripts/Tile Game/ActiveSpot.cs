@@ -15,7 +15,7 @@ public class ActiveSpot : MonoBehaviour{
             activeTile.transform.parent = transform;
             activeTile.transform.localPosition = Vector3.zero;
             // Scale the tile to half its size.
-            activeTile.transform.localScale = Vector3.one * size;
+            //activeTile.transform.localScale = Vector3.one * size;
             // Rotate the tile a bit randomly (between -10 and 10 degrees on the Z axis).
             activeTile.transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-10f, 10f));
 
