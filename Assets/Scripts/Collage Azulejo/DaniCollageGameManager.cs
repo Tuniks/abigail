@@ -21,6 +21,22 @@ public class DaniCollageGameManager : MonoBehaviour
     private List<GameObject> selectedItems = new List<GameObject>();  // Track selected items
     
     // Reference to the CollagePlayerHand script
+    public GameObject PromptImages;
+    public GameObject Question;
+    public GameObject EmptySlots;
+    public GameObject LeaveObject;
+    private Transform previouslySelectedTile; // Tracks the last highlighted tile
+    private Vector3 originalScale; // Stores original tile scale
+    private Vector3 originalScaleSlot;  // Store the original scale of the slot
+    private Transform previouslySelectedSlot;  // Keep track of the previously selected slot
+    private int previousSlotIndex = -1;
+    private Transform previousSelectedOption = null;  // Store the previously selected option
+    private Vector3 originalYesScale;
+    private Vector3 originalNoScale;
+    public GameObject DaniComment1;  // Public GameObject for Dani Comment 1
+    public GameObject DaniComment2;  // Public GameObject for Dani Comment 2
+    private int currentRound = 1;    // Track the current round (1 or 2)
+    
     public CollagePlayerHand playerHand;
     
     private int judgementSelection = 0;
@@ -31,7 +47,8 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject judgementarrow;
 
     public GameObject DaniBackupTile;
-    
+
+    public GameObject Stars;
     // Reference to the arrow for slot selection
     public GameObject slotArrowSprite;
 
@@ -79,6 +96,8 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject no;
     void Start()
     {
+        PromptImages.SetActive(true);
+        EmptySlots.SetActive(true);
         // Set the initial state
         SwitchState(GameState.PlayerTileChoice1);
     }
@@ -148,29 +167,34 @@ public class DaniCollageGameManager : MonoBehaviour
         {
             case GameState.PlayerTileChoice1:
                 // Ensure only the tile arrow is active
-                arrowSprite.SetActive(true);
+                //arrowSprite.SetActive(true);
                 slotArrowSprite.SetActive(false);
                 break;
 
             case GameState.PlayerSlotChoice1:
                 // Ensure only the slot arrow is active
-                arrowSprite.SetActive(false);
+                //arrowSprite.SetActive(false);
                 slotArrowSprite.SetActive(true);
                 break;
         }
     }
 
-    // Handle player input in the PlayerTileChoice1 state
+// Handle player input in the PlayerTileChoice1 state
     private void HandleTileChoice()
     {
+        // Ensure player hand has items before processing input
+        if (playerHand.hand.Count == 0) return;
+
         // Handle input for W, S, or arrow keys to move the arrow
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             MoveArrowUp();
+            HighlightSelection();
         }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             MoveArrowDown();
+            HighlightSelection();
         }
 
         // Update the arrow's position based on the current tile index
@@ -183,30 +207,34 @@ public class DaniCollageGameManager : MonoBehaviour
         }
     }
 
-    // Handle player input in the PlayerSlotChoice1 state
-    private void HandleSlotChoice()
+
+// Increase the size of the selected tile by 10% and reset the previous one
+    private void HighlightSelection()
     {
-        // Handle input for W, S, or arrow keys to move the slot selection arrow
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (playerHand.hand.Count == 0) return;
+
+        Transform newSelection = playerHand.hand[currentTileIndex].transform;
+
+        // Ensure we don't scale an already highlighted object again
+        if (previouslySelectedTile != null && previouslySelectedTile != newSelection)
         {
-            MoveSlotArrowUp();
-        }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveSlotArrowDown();
+            previouslySelectedTile.localScale = originalScale; // Reset previous tile
         }
 
-        // Update the slot arrow's position based on the current slot index
-        UpdateSlotArrowPosition();
-
-        // Handle input for E to select the slot under the arrow
-        if (Input.GetKeyDown(KeyCode.E))
+        // Store original scale if selecting a new tile
+        if (newSelection != previouslySelectedTile)
         {
-            SelectSlot();
+            originalScale = newSelection.localScale;
         }
+
+        // Apply the scale increase relative to original scale
+        newSelection.localScale = originalScale * 1.1f;
+
+        // Update the reference
+        previouslySelectedTile = newSelection;
     }
 
-    // Move the arrow up in the PlayerTileChoice1 state
+// Move the arrow up in the PlayerTileChoice1 state
     private void MoveArrowUp()
     {
         if (currentTileIndex > 0)
@@ -215,7 +243,6 @@ public class DaniCollageGameManager : MonoBehaviour
         }
     }
 
-    // Move the arrow down in the PlayerTileChoice1 state
     private void MoveArrowDown()
     {
         if (currentTileIndex < playerHand.hand.Count - 1)
@@ -224,10 +251,11 @@ public class DaniCollageGameManager : MonoBehaviour
         }
     }
 
-    // Update the arrow's position to be over the selected tile
+
+// Update the arrow's position to be over the selected tile
     private void UpdateArrowPosition()
     {
-        if (playerHand.hand.Count > 0)
+        if (playerHand.hand.Count > 0 && currentTileIndex < playerHand.hand.Count)
         {
             // Get the current tile's position
             Vector3 tilePosition = playerHand.hand[currentTileIndex].transform.position;
@@ -237,47 +265,74 @@ public class DaniCollageGameManager : MonoBehaviour
         }
     }
 
-    // Select the tile when the player presses E
-    private void SelectTile()
-    {
-        // Store the selected tile
-        selectedTile = playerHand.hand[currentTileIndex];
 
-        // Transition to the next state: PlayerSlotChoice1
-        SwitchState(GameState.PlayerSlotChoice1);
+// Select the tile when the player presses E
+private void SelectTile()
+{
+    // Store the selected tile
+    selectedTile = playerHand.hand[currentTileIndex];
+
+    // Transition to the next state: PlayerSlotChoice1
+    SwitchState(GameState.PlayerSlotChoice1);
+}
+
+
+private void HandleSlotChoice()
+{
+    // Handle input for W, S, or arrow keys to move the slot selection arrow
+    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+    {
+        MoveSlotArrowUp();
+        //HighlightSlot();
+    }
+    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+    {
+        MoveSlotArrowDown();
+        //HighlightSlot();
     }
 
-    // Move the slot arrow up in the PlayerSlotChoice1 state
-    private void MoveSlotArrowUp()
+    // Update the slot arrow's position based on the current slot index
+    UpdateSlotArrowPosition();
+
+    // Handle input for E to select the slot under the arrow
+    if (Input.GetKeyDown(KeyCode.E))
     {
-        if (currentSlotIndex > 0)
-        {
-            currentSlotIndex--;
-        }
+        SelectSlot();
     }
+}
 
-    // Move the slot arrow down in the PlayerSlotChoice1 state
-    private void MoveSlotArrowDown()
+
+
+// Move the slot arrow up in the PlayerSlotChoice1 state
+private void MoveSlotArrowUp()
+{
+    if (emptySlots.Count > 0 && currentSlotIndex > 0)
     {
-        if (currentSlotIndex < emptySlots.Count - 1)
-        {
-            currentSlotIndex++;
-        }
+        currentSlotIndex--;
     }
+}
 
-    // Update the slot arrow's position to be over the selected slot, with its own offset
-    private void UpdateSlotArrowPosition()
+// Move the slot arrow down in the PlayerSlotChoice1 state
+private void MoveSlotArrowDown()
+{
+    if (emptySlots.Count > 0 && currentSlotIndex < emptySlots.Count - 1)
     {
-        if (emptySlots.Count > 0)
-        {
-            // Get the current slot's position
-            Vector3 slotPosition = emptySlots[currentSlotIndex].transform.position;
-
-            // Move the slot arrow sprite to the current slot's position with the added offset
-            slotArrowSprite.transform.position = new Vector3(slotPosition.x, slotPosition.y + slotArrowOffsetY, slotPosition.z);
-        }
+        currentSlotIndex++;
     }
+}
 
+// Update the slot arrow's position to be over the selected slot, with its own offset
+private void UpdateSlotArrowPosition()
+{
+    if (emptySlots.Count > 0 && currentSlotIndex >= 0 && currentSlotIndex < emptySlots.Count)
+    {
+        // Get the current slot's position
+        Vector3 slotPosition = emptySlots[currentSlotIndex].transform.position;
+
+        // Move the slot arrow sprite to the current slot's position with the added offset
+        slotArrowSprite.transform.position = new Vector3(slotPosition.x, slotPosition.y + slotArrowOffsetY, slotPosition.z);
+    }
+}
     // Select the slot when the player presses E
     private void SelectSlot()
     {
@@ -307,6 +362,7 @@ public class DaniCollageGameManager : MonoBehaviour
         SwitchState(GameState.DaniComment1);
     }
 
+
     private void HandleDaniComment()
     {
         // Ensure DaniBubble is active during DaniComment1 state
@@ -316,11 +372,28 @@ public class DaniCollageGameManager : MonoBehaviour
         arrowSprite.SetActive(false);
         slotArrowSprite.SetActive(false);
 
-        // Wait for the player to press E to move to DaniTurn1
+        // Display the correct Dani comment based on the round
+        if (currentRound == 1)
+        {
+            DaniComment1.SetActive(true);  // Show Dani Comment 1 for the first round
+            DaniComment2.SetActive(false); // Ensure Dani Comment 2 is hidden
+        }
+        else if (currentRound == 2)
+        {
+            DaniComment1.SetActive(false); // Hide Dani Comment 1
+            DaniComment2.SetActive(true);  // Show Dani Comment 2 for the second round
+        }
+
+        // Wait for the player to press E to move to the next state
         if (Input.GetKeyDown(KeyCode.E))
         {
+            DaniComment1.SetActive(false);
+            DaniComment2.SetActive(false);
             // Transition to DaniTurn1 state
             SwitchState(GameState.DaniTurn1);
+
+            // Move to the next round after the player presses E
+            currentRound++;  // Increment the round (1 -> 2 or beyond)
         }
     }
 
@@ -363,51 +436,100 @@ public class DaniCollageGameManager : MonoBehaviour
     }
 
     private void HandleJudgement()
+{
+    if (emptySlots.Count == 0)
     {
-        if (emptySlots.Count == 0)
+        yes.SetActive(true);
+        no.SetActive(true);
+        Question.SetActive(true);
+        judgementarrow.SetActive(true);
+
+        // Store the original scales when first activated
+        if (previousSelectedOption == null)
         {
-            yes.SetActive(true);
-            no.SetActive(true);
-            judgementarrow.SetActive(true);
-
-            // Handle arrow key input to cycle between "Yes" and "No"
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                // Cycle between Yes and No
-                judgementSelection = 1 - judgementSelection; // Toggle between 0 and 1
-                UpdateYesNoArrowPosition(); // Update arrow position (you'll need to define this method)
-            }
-
-            // Confirm the choice with the Enter/E key
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
-            {
-                if (judgementSelection == 0) // Yes was selected
-                {
-                    SwitchState(GameState.SwitchOut);
-                }
-                else if (judgementSelection == 1) // No was selected
-                {
-                    SwitchState(GameState.FinalJudgment);
-                }
-            }
+            originalYesScale = yes.transform.localScale;
+            originalNoScale = no.transform.localScale;
         }
-        else
+
+        // Handle arrow key input to cycle between "Yes" and "No"
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            SwitchState(GameState.PlayerTileChoice1);
+            // Cycle between Yes and No
+            judgementSelection = 1 - judgementSelection; // Toggle between 0 and 1
+            UpdateYesNoArrowPosition(); // Update arrow position
+        }
+
+        // Confirm the choice with the Enter/E key
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
+        {
+            if (judgementSelection == 0) // Yes was selected
+            {
+                SwitchState(GameState.SwitchOut);
+            }
+            else if (judgementSelection == 1) // No was selected
+            {
+                SwitchState(GameState.FinalJudgment);
+            }
         }
     }
-    
-    private void UpdateYesNoArrowPosition()
+    else
     {
-        // Move the arrow to the selected option based on judgementSelection
-        if (judgementSelection == 0) // Yes is selected
+        SwitchState(GameState.PlayerTileChoice1);
+    }
+}
+
+private void UpdateYesNoArrowPosition()
+{
+    // If the arrow is over the "Yes" option
+    if (judgementSelection == 0)
+    {
+        judgementarrow.transform.position = yes.transform.position; // Align the arrow with the "Yes" button
+        ScaleOption(yes);  // Scale "Yes" option to 110%
+
+        if (previousSelectedOption != yes.transform) // Compare with the transform, not the GameObject
         {
-            judgementarrow.transform.position = yes.transform.position; // Align the arrow with the "Yes" button
+            ResetScale(no); // Reset the scale of "No"
+            previousSelectedOption = yes.transform; // Update the previously selected option to "Yes"
         }
-        else if (judgementSelection == 1) // No is selected
+    }
+    // If the arrow is over the "No" option
+    else if (judgementSelection == 1)
+    {
+        judgementarrow.transform.position = no.transform.position; // Align the arrow with the "No" button
+        ScaleOption(no);  // Scale "No" option to 110%
+
+        if (previousSelectedOption != no.transform) // Compare with the transform, not the GameObject
         {
-            judgementarrow.transform.position = no.transform.position; // Align the arrow with the "No" button
+            ResetScale(yes); // Reset the scale of "Yes"
+            previousSelectedOption = no.transform; // Update the previously selected option to "No"
         }
+    }
+}
+
+private void ScaleOption(GameObject option)
+{
+    option.transform.localScale = option.transform.localScale * 1.1f;  // Scale up by 10%
+}
+
+private void ResetScale(GameObject option)
+{
+    if (option != null) // Check if the option exists
+    {
+        option.transform.localScale = originalYesScale; // Reset scale to the original for "Yes"
+        option.transform.localScale = originalNoScale;  // Reset scale to the original for "No"
+    }
+}
+
+// Method to scale an option down by 10% when selected
+    private void ScaleOption(GameObject option, Vector3 originalScale)
+    {
+        option.transform.localScale = originalScale * 1.2f;  // Shrink by 10%
+    }
+
+// Method to reset the scale of an option to its original size
+    private void ResetScale(GameObject option, Vector3 originalScale)
+    {
+        option.transform.localScale = originalScale;  // Reset to original scale
     }
 
 private void HandleSwitchOut()
@@ -416,6 +538,10 @@ private void HandleSwitchOut()
     slotArrowSprite.SetActive(true);
     arrowSprite.SetActive(false);
     judgementarrow.SetActive(false);
+    yes.SetActive(false);
+    no.SetActive(false);
+    Question.SetActive(false);
+    
 
     // Handle player input for moving the slot selection arrow with WASD or arrow keys
     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -443,6 +569,7 @@ private void HandleSwitchOut()
             DaniBackupTile.SetActive(true);
             DaniHand.Remove(selectedTile);
             Destroy(selectedTile);
+            slotArrowSprite.SetActive(false);
 
             // Add the DaniBackUpTile to DaniHand
             DaniHand.Add(DaniBackupTile);
@@ -491,11 +618,34 @@ private void UpdateSlotDaniArrowPosition()
     private void HandleFinalJudgment()
     {
         yes.SetActive(false);
+        no.SetActive(false);
+        Question.SetActive(false);
+        Stars.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchState(GameState.Leave);
+        }
+        
     }
 
     private void HandleLeave()
     {
-        
+        foreach (GameObject item in DaniHand)
+        {
+            item.SetActive(false);
+        }
+
+        // Deactivate all tiles in PlayedTiles
+        foreach (Tile playedTile in PlayedTiles)
+        {
+            playedTile.gameObject.SetActive(false); // Assuming Tile is a GameObject
+        }
+        PromptImages.SetActive(false);
+        EmptySlots.SetActive(false);
+        Stars.SetActive(false);
+        LeaveObject.SetActive(true);
+        arrowSprite.SetActive(true);
     }
     
 }
