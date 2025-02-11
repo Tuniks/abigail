@@ -8,7 +8,26 @@ public enum Attributes {
     Magic,
     Heart,
     Intellect,
-    Terror
+    Terror,
+    All
+}
+
+public enum Tag {
+    Animal,
+    Aquatic,
+    Winged,
+    Life,
+    Death,
+    Flora,
+    Tool,
+    Mystical,
+    Clothing,
+    Surreal,
+    Trash,
+    Insect,
+    Blue,
+    Red,
+    Grey,
 }
 
 public class TileComponent : MonoBehaviour{
@@ -20,4 +39,5 @@ public class TileComponent : MonoBehaviour{
     public float terror = 0f;
 
     public string title = "";
+    public Tag[] tags;
 }

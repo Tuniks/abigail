@@ -5,6 +5,7 @@ using TMPro;
 
 public class TileUIManager : MonoBehaviour{
     [Header("UI Elements")]
+    public GameObject tutorialScreen;
     public GameObject challengeScreen;
     public GameObject challengeList;
     public GameObject argumentScreen;
@@ -23,6 +24,7 @@ public class TileUIManager : MonoBehaviour{
 
     public void SetUIState(State _state){
         // Reset
+        tutorialScreen.SetActive(false);
         challengeScreen.SetActive(false);
         challengeList.SetActive(false);
         argumentScreen.SetActive(false);
@@ -32,6 +34,7 @@ public class TileUIManager : MonoBehaviour{
         // Set
         switch(_state){
             case State.Tutorial:
+                tutorialScreen.SetActive(true);
                 break;
             
             case State.Setup:
@@ -46,7 +49,7 @@ public class TileUIManager : MonoBehaviour{
                 argumentScreen.SetActive(true);
                 break;
             
-            case State.Winner:
+            case State.Decision:
                 challengeList.SetActive(true);
                 roundWonDialog.SetActive(true);
                 break;

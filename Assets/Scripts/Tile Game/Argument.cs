@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum ArgumentCause{
+    Face,
+    Tag,
+    Attribute,
+}
+
+[CreateAssetMenu(fileName = "Argument", menuName = "Custom/Argument")]
+public class Argument : ScriptableObject{
+    [Header("Cause")]
+    public ArgumentCause cause;
+    public GameObject facePrefab;
+    public Tag tag;
+    public Attributes attribute;
+
+    [Header("Dialogue")]
+    public string[] justificationLines = new string[0];
+    public string[] argumentationLines = new string[0];
+    public string[] judgeResponseLines = new string[0];
+
+    [Header("Effect")]
+    public bool isDefensive = true;
+    public Attributes targetAttribute;
+    public float multiplier;
+
+    public bool IsAMatch(Argument other){
+        if(other == null) return false;
+
+        if(cause != other.cause) return false;
+
+        if(cause == ArgumentCause.Face){
+            if(facePrefab.name == other.facePrefab.name) return true;
+        } else if(cause == ArgumentCause.Tag){
+            if(tag == other.tag) return true;
+        } else if(cause == ArgumentCause.Attribute){
+            if(attribute == other.attribute) return true;
+        }
+
+        return false;
+    }
+
+}

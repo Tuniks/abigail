@@ -8,7 +8,7 @@ public enum State {
     Setup,
     Pick,
     Argument,
-    Winner,
+    Decision,
     Result,
 }
 
@@ -25,10 +25,15 @@ public class TileGameManager : MonoBehaviour{
     public ActiveSpot p1Active;
     public ActiveSpot p2Active;
     public EnemyHand p2Hand;
+    public ArgumentCollection playerArguments;
+    public ArgumentCollection enemyArguments;
+    public ArgumentCollection judgeArguments;
 
     // If not empty, these will override random assignement of cards and challenges 
     [Header("Presets")]
     public int[] challengePresets;
+
+    public bool showTutorial = false;
 
     private TileUIManager UIManager;
     private State current = State.Setup;
@@ -51,7 +56,7 @@ public class TileGameManager : MonoBehaviour{
         challenges = challengesManager.GetRandomChallenges(challengesCount);
         currentChallengeIndex = 0;
 
-        StartSetup();
+        StartGame();
     }
 
     private void SetState(State _state){
@@ -82,7 +87,7 @@ public class TileGameManager : MonoBehaviour{
                 enemyActive.SetActive(true);
                 break;
             
-            case State.Winner:
+            case State.Decision:
                 playerActive.SetActive(true);
                 enemyActive.SetActive(true);
                 break;
@@ -94,6 +99,18 @@ public class TileGameManager : MonoBehaviour{
         // Set UI Elements
         UIManager.SetUIState(current);
     }
+
+    public void StartGame(){
+        if(showTutorial){
+            StartTutorial();
+        } else StartSetup();
+    }
+
+    // Tutorial Phase
+    public void StartTutorial(){
+        SetState(State.Tutorial);
+    }
+
 
     // Set Up Phase
     public void StartSetup(){
@@ -136,7 +153,6 @@ public class TileGameManager : MonoBehaviour{
     }
 
     public void OnArgumentPicked(int arg){
-        Debug.Log(arg);
         (Attributes, string, float) chosen = currentArguments[arg];
         p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
         RevealWinner();
@@ -151,7 +167,7 @@ public class TileGameManager : MonoBehaviour{
 
         // Update UI
         UIManager.UpdateRoundWinner(result);
-        SetState(State.Winner);
+        SetState(State.Decision);
 
         // Move to next challenge
         currentChallengeIndex++;
