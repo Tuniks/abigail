@@ -6,7 +6,7 @@ using UnityEngine;
 public class ArgumentCollection : ScriptableObject{
     public Argument[] argumentCollection = new Argument[0];
 
-    public Argument[] GetOverlap(Argument[] other){
+    public List<Argument> GetOverlap(Argument[] other){
         List<Argument> match = new List<Argument>();
         
         foreach(Argument arg in argumentCollection){
@@ -15,6 +15,6 @@ public class ArgumentCollection : ScriptableObject{
             }
         }
 
-        return match.ToArray();
+        return match;
     }
 }

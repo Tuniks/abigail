@@ -28,6 +28,8 @@ public class TileGameManager : MonoBehaviour{
     public ArgumentCollection playerArguments;
     public ArgumentCollection enemyArguments;
     public ArgumentCollection judgeArguments;
+    private List<Argument> currentPlayerArgs;
+    private Argument currentEnemyArg;
 
     // If not empty, these will override random assignement of cards and challenges 
     [Header("Presets")]
@@ -42,8 +44,6 @@ public class TileGameManager : MonoBehaviour{
     private int[] challenges;
     private int challengesCount = 3;
     private int currentChallengeIndex = 0;
-
-    private List<(Attributes, string, float)> currentArguments;
 
     private int score = 0;
 
@@ -137,24 +137,48 @@ public class TileGameManager : MonoBehaviour{
         // Check result
         bool result = CheckResult();
 
-        // Get Argument Overlap
-        Argument[] playerArgs = judgeArguments.GetOverlap(playerArguments.argumentCollection);
-        Argument[] enemyArgs = judgeArguments.GetOverlap(enemyArguments.argumentCollection);
+        // Get Argument overlap
+        List<Argument> playerArgs = judgeArguments.GetOverlap(playerArguments.argumentCollection);
+        List<Argument> enemyArgs = judgeArguments.GetOverlap(enemyArguments.argumentCollection);
 
-        
-
-
+        // Get narrower set of arguments
+        currentPlayerArgs = PickRandomArguments(playerArgs, 5);
+        List<string> playerArgsLines= GetArgumentsText(currentPlayerArgs);
+        enemyArgs = PickRandomArguments(enemyArgs, 1);
+        currentEnemyArg = enemyArgs[0];
 
         // Update UI
         UIManager.UpdatePreArgumentRoundWinner(result);
-        // UIManager.UpdateArgumentBubbles(argumentsText, p1Active.activeTile.GetName());
+        UIManager.UpdateArgumentList(playerArgsLines);
         SetState(State.Argument);
     }
 
     public void OnArgumentPicked(int arg){
-        (Attributes, string, float) chosen = currentArguments[arg];
-        p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
+        Argument chosen = currentPlayerArgs[arg];
+        // p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
         RevealWinner();
+    }
+
+    private List<Argument> PickRandomArguments(List<Argument> args, int count){
+        List<Argument> rand = new List<Argument>();
+        
+        // TO DO ALWAYS PICK SILENCE OPTION
+        while(args.Count > 0 && count > 0){
+            int r = Random.Range(0, args.Count);
+            rand.Add(args[r]);
+            args.RemoveAt(r);
+            count--;
+        }
+
+        return rand;
+    }
+
+    private List<string> GetArgumentsText(List<Argument> args){
+        List<string> lines = new List<string>();
+        foreach(Argument arg in args){
+            lines.Add(arg.GetArgumentationLine());
+        }
+        return lines;
     }
 
     // Winner Phase

@@ -45,4 +45,12 @@ public class Argument : ScriptableObject{
         return false;
     }
 
+    public string GetJustificationLine(){
+        return justificationLines[Random.Range(0, justificationLines.Length)];
+    }
+
+    public string GetArgumentationLine(){
+        return argumentationLines[Random.Range(0, argumentationLines.Length)];
+    }
+
 }

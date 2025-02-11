@@ -2003,7 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyInventory: {fileID: 1800537506}
   hand: []
-  maxHandSize: 5
+  maxHandSize: 3
   activeSpot: {fileID: 1926141077}
   tileSize: 2
   tileSpacing: 0.5
@@ -2638,7 +2638,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 871631552}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187288447}
+        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
+        m_MethodName: OnArgumentPicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &871631552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3394,7 +3406,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1164174637}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187288447}
+        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
+        m_MethodName: OnArgumentPicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1164174637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3806,12 +3830,17 @@ MonoBehaviour:
   challengeScreenText: {fileID: 1992743475459755498}
   challengeListText: {fileID: 1733815013}
   roundPreWonDialogText: {fileID: 1130624596}
-  argumentTexts:
-  - {fileID: 1885878981}
-  - {fileID: 0}
-  - {fileID: 0}
   roundWonDialogText: {fileID: 1721297432}
   gameWonText: {fileID: 7272940716309023294}
+  argumentTexts:
+  - {fileID: 871631552}
+  - {fileID: 1289830298}
+  - {fileID: 1965702148}
+  - {fileID: 1164174637}
+  - {fileID: 1778299676}
+  judgeArgumentText: {fileID: 0}
+  playerArgumentText: {fileID: 0}
+  enemyArgumentText: {fileID: 0}
   challengesManager: {fileID: 1187288445}
 --- !u!1 &1226244374
 GameObject:
@@ -4173,7 +4202,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1289830298}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187288447}
+        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
+        m_MethodName: OnArgumentPicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1289830298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5532,7 +5573,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1778299676}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187288447}
+        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
+        m_MethodName: OnArgumentPicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1778299676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6382,7 +6435,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1965702148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187288447}
+        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
+        m_MethodName: OnArgumentPicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1965702148
 MonoBehaviour:
   m_ObjectHideFlags: 0

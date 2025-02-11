@@ -16,10 +16,18 @@ public class TileUIManager : MonoBehaviour{
     public TextMeshProUGUI challengeScreenText;
     public TextMeshProUGUI challengeListText;
     public TextMeshProUGUI roundPreWonDialogText;
-    public TextMeshProUGUI[] argumentTexts = new TextMeshProUGUI[3];
     public TextMeshProUGUI roundWonDialogText;
     public TextMeshProUGUI gameWonText;
 
+    [Header("Argument Phase")]
+    public TextMeshProUGUI[] argumentTexts = new TextMeshProUGUI[5];
+    public TextMeshProUGUI judgeArgumentText;
+    public TextMeshProUGUI playerArgumentText;
+    public TextMeshProUGUI enemyArgumentText;
+
+    
+    
+    
     public Challenges challengesManager;
 
     public void SetUIState(State _state){
@@ -87,10 +95,15 @@ public class TileUIManager : MonoBehaviour{
         } else roundPreWonDialogText.text = "I think I might go with <b>Oz</b>, what do you say?";
     }
 
-    public void UpdateArgumentBubbles(string[] arguments, string cardName){
-        argumentTexts[0].text = arguments[0].Replace("$name$", cardName);
-        argumentTexts[1].text = arguments[1].Replace("$name$", cardName);
-        argumentTexts[2].text = arguments[2].Replace("$name$", cardName);
+    public void UpdateArgumentList(List<string> arguments){
+        for(int i = 0; i < argumentTexts.Length; i++){
+            if(i < arguments.Count){
+                argumentTexts[i].gameObject.SetActive(true);
+                argumentTexts[i].text = arguments[i];
+            } else {
+                argumentTexts[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     // Winner Phase

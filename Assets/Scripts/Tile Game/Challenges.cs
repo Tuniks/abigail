@@ -103,7 +103,7 @@ public class Challenges : MonoBehaviour{
         List<Attributes> attributes = Get3AttributesFromChallenge(id);
 
         foreach(Attributes att in attributes){
-            responses.Add(Arguments.GetRandomResponseFromAttribute(att, isPositive));
+            // responses.Add(Arguments.GetRandomResponseFromAttribute(att, isPositive)); 
         }
 
         return responses;
