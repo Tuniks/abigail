@@ -24,8 +24,6 @@ public class TileUIManager : MonoBehaviour{
     public TextMeshProUGUI judgeArgumentText;
     public TextMeshProUGUI playerArgumentText;
     public TextMeshProUGUI enemyArgumentText;
-
-    
     
     
     public Challenges challengesManager;
