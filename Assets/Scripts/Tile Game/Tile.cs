@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -110,13 +111,36 @@ public class Tile : MonoBehaviour{
     }
 
     public void AddMultiplier(Attributes att, float value){
+        
         if(multipliers.ContainsKey(att)){
             multipliers[att] = multipliers[att] * value;
         } else multipliers[att] = value;
     }
 
+    // === GETTERS ===
+
     public string GetName(){
         return face.title;
+    }
+
+    public bool HasTag(Tag tag){
+        if(face.tags == null) return false;
+
+        if (face.tags.Contains(tag)) return true;
+
+        return false;
+    }
+
+    public float GetAttribute(Attributes att){
+        return att switch{
+            Attributes.Beauty => GetBeauty(),
+            Attributes.Vigor => GetVigor(),
+            Attributes.Magic => GetMagic(),
+            Attributes.Heart => GetHeart(),
+            Attributes.Intellect => GetIntellect(),
+            Attributes.Terror => GetTerror(),
+            _ => 0,
+        };
     }
 
     public float GetBeauty(){
@@ -147,5 +171,5 @@ public class Tile : MonoBehaviour{
     public float GetTerror(){
         float mult = multipliers.ContainsKey(Attributes.Terror) ? multipliers[Attributes.Terror] : 1f;
         return mult * (face.terror + background.terror + material.terror + glaze.terror);
-    }   
+    }
 }
