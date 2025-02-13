@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class FeltManager : MonoBehaviour{
+    public string azulejoScene = "";
+    public string clayScene = "";
+    public string collageScene = "";
+    
     [YarnCommand]
     public void StartTileGame(){
-        SceneManager.LoadScene("TileGame");
+        SceneManager.LoadScene(azulejoScene);
     }
 
     [YarnCommand]
     public void GoToClay(){
-        SceneManager.LoadScene("ClayArea");
+        SceneManager.LoadScene(clayScene);
+    }
+
+    [YarnCommand]
+    public void GoToCollage(){
+        SceneManager.LoadScene(collageScene);
     }
 }

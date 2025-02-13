@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClayGameManager : MonoBehaviour {
     public static ClayGameManager instance;
@@ -29,6 +30,8 @@ public class ClayGameManager : MonoBehaviour {
 
     // New enemy thinking UI element (assign in the Inspector)
     public GameObject enemyThinkingUI;
+
+    public string nextScene = "CLAY_area_post";
 
     void Awake() {
         if(instance == null) {
@@ -87,7 +90,7 @@ public class ClayGameManager : MonoBehaviour {
         if(tilesPlayed >= maxTilesToPlay) {
             currentState = GameState.Ended;
             EvaluateWinner();
-            Debug.Log("Game Over. Tiles played: " + tilesPlayed);
+            StartCoroutine(OnGameEnd());
         } else {
             currentState = GameState.PlayerTurn;
         }
@@ -124,5 +127,10 @@ public class ClayGameManager : MonoBehaviour {
             if(playerVictorySprite != null)
                 playerVictorySprite.SetActive(false);
         }
+    }
+
+    IEnumerator OnGameEnd(){
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(nextScene);
     }
 }
