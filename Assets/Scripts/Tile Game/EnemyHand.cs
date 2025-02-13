@@ -56,4 +56,12 @@ public class EnemyHand : MonoBehaviour{
         DrawHand();
         activeSpot.ActivateTile(current);
     }
+
+    public void ActivateCard(Tile tile){
+        Tile current = hand[Random.Range(0,hand.Count)];
+        if(hand.Contains(tile)) current = hand[hand.IndexOf(tile)];
+        hand.Remove(current);
+        DrawHand();
+        activeSpot.ActivateTile(current);
+    }
 }

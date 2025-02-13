@@ -11,6 +11,9 @@ public class Challenges : MonoBehaviour{
         {2, "Who would win in a race?"},
         {3, "Who would be the chiller dude at a party?"},
         {4, "Who would be a better lover?"},
+        {5, "Who would overtake my nightmares?"},
+        {6, "Who would require a piñata at their birthday party?"},
+        {7, "Who would worship a star in the sky?"},
     };
 
     public int[] GetRandomChallenges(int count){
@@ -31,31 +34,30 @@ public class Challenges : MonoBehaviour{
 
     // Calculation for each individual challenge, based on tiles
     public float EvaluateTile(int id, Tile tile){
-        float result = 0;
-        
         switch(id){
             case 0:
-                result = (tile.GetVigor() + tile.GetMagic())/2f;
-                break;
+                return (tile.GetVigor() + tile.GetMagic())/2f;
             case 1:
-                result = (tile.GetBeauty() + tile.GetMagic())/2f;
-                break;
+                return (tile.GetBeauty() + tile.GetMagic())/2f;
             case 2:
-                result = tile.GetVigor();
-                break;
+                return tile.GetVigor();
             case 3:
-                result = (tile.GetBeauty() + tile.GetMagic() + tile.GetHeart())/3f;
-                break;
+                return (tile.GetBeauty() + tile.GetMagic() + tile.GetHeart())/3f;
             case 4:
-                result = (tile.GetBeauty() + tile.GetHeart())/2f;
-                break;
+                return (tile.GetBeauty() + tile.GetHeart())/2f;
+            case 5:
+                return tile.GetTerror();
+            case 6:
+                return (tile.GetVigor() + tile.GetHeart())/2f;
+            case 7:
+                return tile.GetMagic();
         }
 
-        return result;
+        return 0;
     }
 
     // Returns which attributes are related to each challenge's calculation
-    private List<Attributes> GetChallengeAttributes(int id){
+    public List<Attributes> GetChallengeAttributes(int id){
         switch(id){
             case 0:
                 return new List<Attributes>{Attributes.Vigor, Attributes.Magic};
@@ -67,46 +69,15 @@ public class Challenges : MonoBehaviour{
                 return new List<Attributes>{Attributes.Beauty, Attributes.Magic, Attributes.Heart};
             case 4:
                 return new List<Attributes>{Attributes.Beauty, Attributes.Heart};
+            case 5:
+                return new List<Attributes>{Attributes.Terror};
+            case 6:
+                return new List<Attributes>{Attributes.Vigor, Attributes.Heart};
+            case 7:
+                return new List<Attributes>{Attributes.Magic};
         }
 
         return new List<Attributes>{};
-    }
-
-    // Returns a list of 3 attributes based on id, at most 2 based on the challenge, 1 random
-    private List<Attributes> Get3AttributesFromChallenge(int id){
-        List<Attributes> attributes = new List<Attributes>();
-        
-        List<Attributes> challengeAttributes = GetChallengeAttributes(id);
-        List<Attributes> allAttributes = new List<Attributes>((Attributes[])Enum.GetValues(typeof(Attributes)));
-
-        int nonrand = 0;
-        for(int i = 0; i < 3; i++){
-            if(nonrand < 2 && challengeAttributes.Count > 0){
-                Attributes att = challengeAttributes[UnityEngine.Random.Range(0, challengeAttributes.Count)];
-                challengeAttributes.Remove(att);
-                allAttributes.Remove(att);
-                attributes.Add(att);
-                nonrand++;
-            } else {
-                Attributes att = allAttributes[UnityEngine.Random.Range(0, allAttributes.Count)];
-                allAttributes.Remove(att);
-                attributes.Add(att);
-            }
-        }
-
-        return attributes;
-    }
-
-    // Return a list of responses for arguing phase
-    public List<(Attributes, string, float)> Get3ResponsesFromChallenge(int id, bool isPositive){
-        List<(Attributes, string, float)> responses = new List<(Attributes, string, float)>();
-        List<Attributes> attributes = Get3AttributesFromChallenge(id);
-
-        foreach(Attributes att in attributes){
-            responses.Add(Arguments.GetRandomResponseFromAttribute(att, isPositive));
-        }
-
-        return responses;
     }
 }
  
