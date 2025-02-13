@@ -6,14 +6,12 @@ using TMPro;
 public class TileUIManager : MonoBehaviour{
     [Header("UI Elements")]
     public GameObject tutorialScreen;
-    public GameObject challengeScreen;
     public GameObject challengeList;
     public GameObject argumentScreen;
     public GameObject roundWonDialog;
     public GameObject gameWon;
 
     [Header("Text Fields")]
-    public TextMeshProUGUI challengeScreenText;
     public TextMeshProUGUI challengeListText;
     public TextMeshProUGUI roundWonDialogText;
     public TextMeshProUGUI gameWonText;
@@ -30,26 +28,54 @@ public class TileUIManager : MonoBehaviour{
     [Header("Challenges")]
     public Challenges challengesManager;
     
+    [Header("Input")]
+    public float inputDebouncerTimer = 0.5f;
+
     // Other
     private State currentState;
+    private float timeSinceLastInput = 0;
+    
 
     void Update(){
-        if(Input.GetKeyDown("e")){
-            Advance();
+        if(timeSinceLastInput < inputDebouncerTimer){
+            timeSinceLastInput += Time.deltaTime;
+        } else {
+            if(Input.GetKeyDown("e") || Input.GetMouseButtonDown(0)){
+                timeSinceLastInput = 0;
+                Advance();
+            }
         }
     }
 
     public void Advance(){
-        if(currentState != State.Argument) return;
-        AdvanceArgumentationDialogue();
+        switch(currentState){
+            case State.Tutorial:
+                TileGameManager.instance.StartRound();
+                break;
+
+            case State.Pick:
+                break;
+            
+            case State.Argument:
+                AdvanceArgumentationDialogue();
+                break;
+            
+            case State.Decision:
+                TileGameManager.instance.StartRound();
+                break;
+
+            case State.Result:
+                TileGameManager.instance.EndGame();
+                break;
+        }
     }
 
     public void SetUIState(State _state){
         currentState = _state;
         
         // Reset
+        timeSinceLastInput = 0;
         tutorialScreen.SetActive(false);
-        challengeScreen.SetActive(false);
         challengeList.SetActive(false);
         argumentScreen.SetActive(false);
         roundWonDialog.SetActive(false);
@@ -59,10 +85,6 @@ public class TileUIManager : MonoBehaviour{
         switch(_state){
             case State.Tutorial:
                 tutorialScreen.SetActive(true);
-                break;
-            
-            case State.Setup:
-                challengeScreen.SetActive(true);
                 break;
 
             case State.Pick:
@@ -83,18 +105,6 @@ public class TileUIManager : MonoBehaviour{
                 gameWon.SetActive(true);
                 break;
         }
-    }
-
-    // Challenge List for Set Up
-    public void UpdateChallengesList(int[] challenges){
-        if(!challengesManager) return;
-
-        string challengesString =
-            challengesManager.GetChallengeDescription(challenges[0]) + "\n" +
-            challengesManager.GetChallengeDescription(challenges[1]) + "\n" +
-            challengesManager.GetChallengeDescription(challenges[2]);
-        
-        challengeScreenText.text = challengesString;
     }
 
     // Challenge Bubble for Pick 
@@ -172,8 +182,8 @@ public class TileUIManager : MonoBehaviour{
     // Winner Phase
     public void UpdateRoundWinner(bool playerWon, string justification){
         if(playerWon){
-            roundWonDialogText.text = "Ok, I gotta give this one to my girl <b>Abigail</b>" + justification;
-        } else roundWonDialogText.text = "Yeah, this round <b>Oz</b> takes it!" + justification;
+            roundWonDialogText.text = "Ok, I gotta give this one to my girl <b>Abigail</b> " + justification;
+        } else roundWonDialogText.text = "Yeah, this round <b>Oz</b> takes it! " + justification;
     }
 
     // Result Phase

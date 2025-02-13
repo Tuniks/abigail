@@ -45,6 +45,20 @@ public class Argument : ScriptableObject{
         return false;
     }
 
+    public bool IsRelevant(List<Attributes> attributes, Tile tile){
+        if(cause == ArgumentCause.Face){
+            if(facePrefab.name == tile.GetName()) return true;
+        } else if(cause == ArgumentCause.Tag){
+            if(tile.HasTag(tag)) return true;
+        } else if(cause == ArgumentCause.Attribute){
+            if(attributes.Contains(attribute)) return true;
+        } else {
+            return true;
+        }
+
+        return false;
+    }
+
     public string GetJustificationLine(){
         return justificationLines[Random.Range(0, justificationLines.Length)];
     }

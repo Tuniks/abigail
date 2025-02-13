@@ -75,9 +75,6 @@ public class TileGameManager : MonoBehaviour{
         switch(_state){
             case State.Tutorial:
                 break;
-            
-            case State.Setup:
-                break;
 
             case State.Pick:
                 UIManager.UpdateChallengeBubble(challenges[currentChallengeIndex]);
@@ -106,19 +103,12 @@ public class TileGameManager : MonoBehaviour{
     public void StartGame(){
         if(showTutorial){
             StartTutorial();
-        } else StartSetup();
+        } else StartRound();
     }
 
     // === Tutorial Phase ===
     public void StartTutorial(){
         SetState(State.Tutorial);
-    }
-
-
-    // === Set Up Phase ===
-    public void StartSetup(){
-        UIManager.UpdateChallengesList(challenges);
-        SetState(State.Setup);
     }
 
     // === Pick Phase ===
@@ -141,8 +131,9 @@ public class TileGameManager : MonoBehaviour{
         bool result = CheckResult();
 
         // Get Argument overlap
-        List<Argument> playerArgs = judgeArguments.GetOverlap(playerArguments.argumentCollection);
-        List<Argument> enemyArgs = judgeArguments.GetOverlap(enemyArguments.argumentCollection);
+        List<Attributes> currentChallengeAttributes = challengesManager.GetChallengeAttributes(challenges[currentChallengeIndex]);
+        List<Argument> playerArgs = judgeArguments.GetRelevantOverlap(playerArguments.argumentCollection, currentChallengeAttributes, p1Active.activeTile);
+        List<Argument> enemyArgs = judgeArguments.GetRelevantOverlap(enemyArguments.argumentCollection, currentChallengeAttributes, p2Active.activeTile);
 
         // Get narrower set of arguments
         currentPlayerArgs = PickRandomArguments(playerArgs, 5);
@@ -182,6 +173,7 @@ public class TileGameManager : MonoBehaviour{
         return lines;
     }
 
+    // adds modifiers and sends dialogue strings to UI manager
     public void OnArgumentPicked(int arg){
         currentChosenArgumentIndex = arg;
         Argument chosen = currentPlayerArgs[arg];
@@ -247,7 +239,7 @@ public class TileGameManager : MonoBehaviour{
         return false;
     }
 
-    public void ResetGame(){
+    public void EndGame(){
         SceneManager.LoadScene("FeltAreaPostAzulejo");
     }
 }

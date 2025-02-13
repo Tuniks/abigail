@@ -17,4 +17,18 @@ public class ArgumentCollection : ScriptableObject{
 
         return match;
     }
+
+    public List<Argument> GetRelevantOverlap(Argument[] other, List<Attributes> attributes, Tile tile){
+        List<Argument> match = new List<Argument>();
+        
+        foreach(Argument arg in argumentCollection){
+            if(arg.IsRelevant(attributes, tile)){
+                foreach(Argument arg2 in other){
+                    if(arg.IsAMatch(arg2)) match.Add(arg2);
+                }
+            }
+        }
+
+        return match;
+    }
 }
