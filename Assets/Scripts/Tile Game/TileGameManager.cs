@@ -39,6 +39,9 @@ public class TileGameManager : MonoBehaviour{
 
     public bool showTutorial = false;
 
+    [Header("Ending")]
+    public string nextScene = "FELT_area_post";
+
     private TileUIManager UIManager;
     private State current = State.Setup;
 
@@ -243,6 +246,6 @@ public class TileGameManager : MonoBehaviour{
     }
 
     public void EndGame(){
-        SceneManager.LoadScene("FeltAreaPostAzulejo");
+        SceneManager.LoadScene(nextScene);
     }
 }

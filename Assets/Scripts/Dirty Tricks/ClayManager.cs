@@ -7,8 +7,10 @@ using Yarn.Unity;
 
 public class ClayManager : MonoBehaviour{
     public GameObject antiqueShop;
-    public NPC Kate;
     public NPC Chase;
+
+    public string azulejoScene = "CLAY_azulejo";
+    public string partyScene = "MomsHousePartyStart";
 
     private bool antiqueShopVisited = false;
 
@@ -27,7 +29,11 @@ public class ClayManager : MonoBehaviour{
         };
         
         Chase.SetNewDialogueNode(nodes);
-        Kate.SetNewDialogueNode(nodes);
+    }
+
+    [YarnCommand]
+    public void GoToClayAzulejo(){
+        SceneManager.LoadScene(azulejoScene);
     }
 
     [YarnCommand]
