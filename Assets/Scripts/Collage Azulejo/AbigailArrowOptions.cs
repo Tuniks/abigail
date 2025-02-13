@@ -58,8 +58,8 @@ public class AbigailArrowOptions : MonoBehaviour
 
     void HighlightSelection()
     {
-        option1.transform.localScale = (selection == 0) ? originalSize1 * 1.1f : originalSize1;
-        option2.transform.localScale = (selection == 1) ? originalSize2 * 1.1f : originalSize2;
+        option1.transform.localScale = (selection == 0) ? originalSize1 * 1.3f : originalSize1;
+        option2.transform.localScale = (selection == 1) ? originalSize2 * 1.3f : originalSize2;
     }
 
     void ConfirmSelection()
