@@ -70,7 +70,6 @@ public class TileUIManager : MonoBehaviour{
                 break;
             
             case State.Argument:
-                argumentList.SetActive(true);
                 judgeArgumentText.transform.parent.gameObject.SetActive(true);
                 argumentScreen.SetActive(true);
                 break;
@@ -129,35 +128,40 @@ public class TileUIManager : MonoBehaviour{
         judgeArgumentText.text = jResp1;
         enemyArgumentText.text = eArg;
         judgeResp2 = jResp2;
-        AdvanceArgumentationDialogue();
+        AdvanceArgumentationDialogue(true);
     }
 
-    private void AdvanceArgumentationDialogue(){
+    private void AdvanceArgumentationDialogue(bool fromPickedArgument = false){
         // VERY DUMB WAY OF DOING IT, DO IT BETTER LATER (list of strings w names, depending on the name choose where to place text..)
         switch(argumentationStep){
             case 0:
-                argumentList.SetActive(false);
+                argumentList.SetActive(true);
                 judgeArgumentText.transform.parent.gameObject.SetActive(false);
+                argumentationStep++;
+                break;
+            case 1:
+                if(!fromPickedArgument) return;
+                argumentList.SetActive(false);
                 playerArgumentText.transform.parent.gameObject.SetActive(true);
                 argumentationStep++; 
                 break;
-            case 1:
+            case 2:
                 playerArgumentText.transform.parent.gameObject.SetActive(false);
                 judgeArgumentText.transform.parent.gameObject.SetActive(true);
                 argumentationStep++;
                 break;
-            case 2:
+            case 3:
                 judgeArgumentText.transform.parent.gameObject.SetActive(false);
                 enemyArgumentText.transform.parent.gameObject.SetActive(true);
                 argumentationStep++;
                 break;
-            case 3:
+            case 4:
                 enemyArgumentText.transform.parent.gameObject.SetActive(false);
                 judgeArgumentText.text = judgeResp2; 
                 judgeArgumentText.transform.parent.gameObject.SetActive(true);
                 argumentationStep++;
                 break;
-            case 4:
+            case 5:
                 judgeArgumentText.transform.parent.gameObject.SetActive(false);
                 argumentationStep = 0;
                 TileGameManager.instance.EndArgument();

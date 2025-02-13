@@ -34,7 +34,7 @@ public class TileGameManager : MonoBehaviour{
 
     // If not empty, these will override random assignement of cards and challenges 
     [Header("Presets")]
-    public int[] challengePresets;
+    public int[] challengesPreset;
 
     public bool showTutorial = false;
 
@@ -54,7 +54,9 @@ public class TileGameManager : MonoBehaviour{
         challengesManager = GetComponent<Challenges>();
         UIManager = GetComponent<TileUIManager>();
 
-        challenges = challengesManager.GetRandomChallenges(challengesCount);
+        if(challengesPreset.Length == challengesCount){
+            challenges = challengesPreset;
+        } else challenges = challengesManager.GetRandomChallenges(challengesCount);
         currentChallengeIndex = 0;
 
         StartGame();
