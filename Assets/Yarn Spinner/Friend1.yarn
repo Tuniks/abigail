@@ -1,52 +1,28 @@
 ﻿title: Friend1
 tags:
 ---
-Abigail: Hey, wow you... 
+Abigail: Chase! You... 
 -> Look the same.
 	Chase: So much for my new haircut...
 	Abigail: I just mean, you look like you, is all.
--> Look so different.
-	Abigail:I almost didn't recognize you.
-	Chase: It’s just my hair, I’m still me I swear.
-Oz: I guess this is the star of the good old days!
-Chase: This is Oz, my friend from work.
-Abigail: Yeah, super nice to meet you.
-Chase: Staff is a little swamped today, you cool with a little wait?
--> Why did you pick this place?
-	Abigail: We never used to come here.
-	Chase: They have a lava cake that's hella good.
-	Chase: And now we can afford it!
-	Oz: Plus, Sarah is working today…
-	Chase: You would so have Sarah’s work schedule memorized.
-	Oz: I don’t have it memorized! I saw her when we were in there!
-	Chase: Sure, sure…
-	Abigail: Who’s Sarah?
-	Oz: Oh, she’s just this girl who…it’s kind of a long story.
--> Sure, sounds good
-    Chase: Awesome, you're gonna love it
-    Chase: You gotta get the blackberry pancakes! You love those, right?
-    Abigail: Not really, I think blackberries are kinda whatever...
-    Chase: No way! We used to pick them every summer
-    Abigail: Maybe that was Joanna...
-    Chase: I would never get you and Joanna mixed up.
-    Abigail: Have you guys talked lately?
-    Chase: I talk to everyone abbs. 
-Chase: So how've you been?
-Abigail: Oh well you know there's good and bad.
-Oz: Big city blues?
-Abigail: Um, sure?
-Oz: I hear that sister. 
-Chase: Anyway, mostly good I assume?
-Abigail: Yeah, yeah lots of good. 
-Chase: That was really convincing! 
-Abigail: Ok head detective how've you been? 
-Chase: Living the dream as always.
-Abigail: Lots of good. 
-Oz: Abigail do you remember how to play Azulejo?
-Abigail: I moved Oz, I didn't get lobotomized.
-Chase: I'd love to judge if you two are playing.
-Oz: If you remember how. 
-Abigial: Yeah I remember fine. Let's play. 
+-> Have changed so much. 
+	Chase: That's what happens when you run away to the big city...
+    Abigail: Wow so you really miss me huh?
+Oz: Ahoy! I'm here too! This must be the famed Abigail I've heard so much about. 
+Abigail: I guess my reputation proceeds me. 
+Chase: This is Oz we work together. 
+Oz: Pleasure to meet you! Milady. 
+Abigail: Yeah ok. It's nice to meet you too Oz.
+Chase: Why don't we grab a table and chat.
+Oz: Oh and play a game of azulejo?
+Abigial: I'm not sure. I might get going... 
+Chase: Come on Abbs are you scared of losing?
+Abigail: ...
+Oz: Wow it just got real. 
+Abigail: ...
+Chase: One game Abbs and we can get a snack!
+Abigail: Chase you're the easiest person to read on Earth I'll play if you judge.
+Chase: Deal. 
 <<StartTileGame FeltManager>>
 ===
 title: OutsideHouse2
@@ -104,6 +80,7 @@ Abigail: This is a lot I'm going to head to the travel office and see about flig
 Mom: Jim doesn't come in on Mondays.
 Mom: Swing by the Neptune Cafe! I know Chase would be thrilled to see you!
 Mom: You should borrow a few tiles from my collection in case he wants to play Azueljo. 
+Mom: They're in that chest over there.
 Mom: But not too many! I'm going to play with Margarette later.
 <<ExitPossible ExitManager>>
 <<else>>
@@ -116,7 +93,7 @@ tags:
 <<if visited("Tourist") is false>>
 Tourist: These are absolutely blowing my mind! My heart is on fire! My soul is delighted!
 Abigail: Yeah these tiles are pretty nice.
-Tourist: All the blogs said that getting out of the old town was where you find the real genuine true authentic azulejo tiles. And oh boy were they right!
+Tourist: All the blogs said that getting out of Acrylic Square where you find the real genuine true authentic azulejo tiles. And oh boy were they right!
 Abigail: The blogs?
 Tourist: That’s how I heard about this city!
 Tourist: Azulejo Addicts dot com! You can find it on the world wide web!
@@ -194,13 +171,13 @@ title: PostAntiqueShop
 tags:
 ---
 Chase: You find what you were looking for?
-Abigail: Not really.
+Abigail: Nope. Plus I didn't have any buttons. 
 Kate: How’s the big city treating you these days?
 Abigail: You know…good…bad…both at once.
 Kate: Yeah, totally.
 Abigail: How are...how is your life going?
-Kate: It’s pretty good these days! I’m working at the public library.
-Kate: And I’ve been organizing that yearly punk festival on the beach, which is so much work but it's gonna be amazing.
+Kate: It’s pretty good these days! I’m working at the library.
+Kate: And I’ve been organizing that music festival on the beach, which is so much work but it's gonna be amazing.
 Abigail: That’s amazing. You’re amazing.
 Chase: Amazing!
 Chase: What? I wanted to say it too.
@@ -209,15 +186,16 @@ Kate: Maybe the best!
 Chase:...
 Abigail:...
 Kate:...
-Abigail: I should probably get home.
-Chase: Sick, we'll come with.
-Abigail: Uh, why?
-Chase: We’re going to the party at your house.
-Kate: Your mom invited the whole gang.
-Abigail: Tell me you're joking.
-Chase: More time to have completely normal not weird at all conversation
-Abigail: I hate you I hate you I hate you.
-<<GoToPartyScene ClayManager>>
+Abigail: You know what, I was just telling Chase how much I wanted to play Azulejo, down for a round?
+Chase: I thought you didn't like this version?
+Kate: Yeah you used to say this one was too woo woo for you?
+Abigail: No, must have me mixed up with someone else. 
+//Start ClayAzulejo
+===
+title: AntiqueShopDay1
+tags:
+---
+Shopkeeper: I only accept buttons here. If you don't have any buttons get lost. 
 ===
 title: PostClayAzulejo
 tags:
@@ -230,28 +208,42 @@ Kate: Your mom invited the whole gang.
 Abigail: Tell me you're joking.
 Chase: More time to have completely normal not weird at all conversation
 Abigail: I hate you I hate you I hate you.
-//Yarncommand to change scene to Party
+<<GoToPartyScene ClayManager>>
 ===
 title: PostFeltAzulejo
 tags:
 ---
+Oz: And that's another win for Oz!
+Chase: Don't rub it in. 
+Chase: Abigail's just a little rusty. 
 Oz: I gotta dip, duty calls.
 Chase: Have fun at the mines!
-Oz: I always do.
-//Yarncommand to hide Oz?
-Abigail: Chase, do you remember this one tile, it has kinda like a swirl on it?
+Oz: I always do
+Abigail: Chase, do you remember this one tile, it has kinda like a swirl on it? And it felt like
 -> Holding it felt like holding someone’s hand
--> Tracing its lines felt like scratching an itch
+-> Smelling saltwater in my hair
 Chase: No? I don’t think so?
 Abigail: I feel like I need to find it.
-Chase: We could try looking at the antique shop? I’m headed over there right now to meet Kate, wanna come?
-Abigail: My Kate?
+Chase: We could try looking at the antique shop? 
+Chase: I’m headed over there right now to meet Kate, wanna come?
+Abigail: My kate?
 Chase: Yeah?
-Abigail: Cool.
-Chase: You sure it won’t be weird?
-Abigail: No. Definitely not. There is no reason in the world for it to be weird.
-//Yarncommand to change scene to Clay
-<<GoToClay FeltManager>>
+Abigail: Um, maybe?
+Abigail: Have you heard from Dani at all?
+Chase: Dani told me they're hanging around in the Jumble District today?
+Chase: You could go say hi if you're not up for seeing Kate. 
+Abigail: I thought Dani moved? For that writing program? 
+Chase: Yeah, it didn't work out. They got back a few weeks ago.
+Chase: Dani might know about the tile you're looking for, and I know they'll want to see you. 
+Chase: What's your heart telling you to do?
+-> Visit Dani in Jumble District
+    Chase: I'll tell Kate you said hi. 
+    Abigail: I hate you I hate you I hate you.
+    //yarncommand to go to 
+-> Hang out with Chase and Kate in The Old Quarter.
+    Chase: Okay so I did tell her I would be there 20 minutes ago. 
+    Abigail: Classic.
+    <<GoToClay FeltManager>>
 ===
 title: WeirdHouse
 tags:
@@ -328,34 +320,36 @@ title: KateChaseParty
 tags:
 ---
 <<if visited("KateChaseParty") is false>>
-    Kate: Okay so I have a favor to ask.
-    Chase: What’s up?
-    Kate: Next Wednesday at 11am we’re doing a big load in a day at the venue. 
-    Kate: We could use some extra hands to move equipment?
-    Chase: When is this?
-    Kate: Next Wednesday at 11am.
-    Chase: Hmm maybe I could...
-    Kate: It’s okay, no worries.
-    Chase: If you absolutely can’t find anyone else, let me know.
-    Kate: I’ll figure it out.
-    Abigail: You suddenly have a 9-5 or something Chase?
-    Chase: Me? Never.
-    Kate: His latest thing has been carpentry.
-    Chase: I’ve been feeling a lot like Jesus lately.
-    Abigail: You’ve never been to church in your life.
-    Chase: But I would look good on a cross!
-    Chase: If one of you backs me up there could be a new coffee table in your future.
-    Kate: Not sure if that’s worth it, the birdhouse you made for my birthday was unfortunately short lived.
-    Chase: I did not build it with a high weight limit!
-    Chase: No one could have predicted an entire family of squirrels would move in!
-    Kate: Jesus could have predicted that…
+Kate: It's nice being back in your house Abigail. 
+Abigail: Yeah it's nice having you back in my house.
+Kate: Oh Chase! I just remembered I have a favor to ask.
+Chase: What’s up?
+Kate: Next Wednesday at 11am we’re doing a big load in a day at the venue. 
+Kate: We could use some extra hands to move equipment?
+Chase: When is this?
+Kate: Next Wednesday at 11am.
+Chase: Hmm maybe I could...
+Kate: It’s okay, no worries.
+Chase: If you absolutely can’t find anyone else, let me know.
+Kate: I’ll figure it out.
+Abigail: You suddenly have a 9-5 or something Chase?
+Chase: Me? Never.
+Kate: His latest thing has been carpentry.
+Chase: I’ve been feeling a lot like Jesus lately.
+Abigail: You’ve never been to church in your life.
+Chase: But I would look good on a cross!
+Chase: If one of you backs me up there could be a new coffee table in your future.
+Kate: Not sure if that’s worth it, the birdhouse you made for my birthday was unfortunately short lived.
+Chase: I did not build it with a high weight limit!
+Chase: No one could have predicted an entire family of squirrels would move in!
+Kate: Maybe Jesus could have predicted that…
     <<set $peopletalkedto = $peopletalkedto + 1>>
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
         Joanna: Abigail should judge!
         <<StartPartyAzulejo PartyTransitionManager>>
     <<else>>
-        Abigail: I should talk to more people.
+        Abigail: I should talk to rest of the gang.
     <<endif>>
 <<else>>
     Chase: I can try repairing the bridhouse if you want?
@@ -366,42 +360,36 @@ title: DaniMomParty
 tags:
 ---
 <<if visited("DaniMomParty") is false>>
-    Abigail: Wow, my two favorite people in the whole world!
-    Abigail: What are you guys chatting about?
-    Mom: Dani was just telling me about their time living away
-    Mom: It seems like a very lonely experience
-    Mom: Your parents must be so happy you decided to come back...
-    Abigail: Mom.
-    Mom: I'm joking! It warms my heart seeing you growing and living out your dream!
-    Mom: But moms get lonely too
-    Mom: But go on, Dani, tell me: what have you been doing since you came back?
-    Dani: I've been helping my parents around the restaurant a bit
-    Dani: Not much else going on...
-    Mom: That's so sweet!
-    Mom: And what are the next steps?
-    Mom: What's in store for one of the most brilliant and kind young minds I know?
-    Dani: Oh... I don't know,
-    Dani: I think I'm still figuring things out
-    Mom: And the dates? Someone pretty like you must be charming the whole town!
-    Abigail: MOM!
-    Dani: Haha, it's ok, Abbs
-    Dani: I just haven't been in the mood for that either I guess
-    Dani: I think I need to...
-    Dani: I don't know what I need to, actually...
-    Mom: It's okay, honey, you have time! It's a marathon, not a race!
-    Abigail: Are we done with the interrogation, Mom?
-    Mom: Afraid I'm gonna steal your friends, Abigail?
-    Dani: It's ok, Abbs, really
-    Mom: If you are ever bored, Dani, know that there's a lonely old lady in this house that would love the company!
-    Mom: And then we can gossip to our heart's content, without the fun police nagging us!
-    Dani: Haha, thank you, I appreciate it
+Abigail: Wow, my two favorite people in the whole world!
+Abigail: What are you guys chatting about?
+Mom: Dani was just telling me about their time living away
+Mom: It seems like a very lonely experience
+Mom: Your parents must be so happy you decided to come back...
+Abigail: Mom.
+Mom: I'm joking! It warms my heart seeing you growing and living out your dream!
+Mom: But moms get lonely too
+Mom: But go on, Dani, tell me: what have you been doing since you came back?
+Dani: I've been helping my parents around the restaurant a bit
+Dani: Not much else going on...
+Mom: That's so sweet!
+Mom: And what are the next steps?
+Mom: What's in store for one of the most brilliant and kind young minds I know?
+Dani: Oh... I don't know,
+Dani: I think I'm still figuring things out
+Mom: It's okay, honey, you have time! It's a marathon, not a race!
+Abigail: Are we done with the interrogation, Mom?
+Mom: Afraid I'm gonna steal your friends, Abigail?
+Dani: It's ok, Abbs, really
+Mom: If you are ever bored, Dani, know that there's a lonely old lady in this house that would love the company!
+Mom: And then we can gossip to our heart's content, without the fun police nagging us!
+Dani: Haha, thank you, I appreciate it
     <<set $peopletalkedto = $peopletalkedto + 1>>
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
         Joanna: Abigail should judge!
         <<StartPartyAzulejo PartyTransitionManager>>
     <<else>>
-        Abigail: I should talk to more people.
+        Abigail: I should talk to rest of the gang.
     <<endif>>
 <<else>>
     Mom: Maybe I could try setting you up!
@@ -413,34 +401,36 @@ title: GabeJoannaParty
 tags:
 ---
 <<if visited("GabeJoannaParty") is false>>
-    Joanna: Gabe didn't you just get a promotion?
-    Gabe: I'm co-manager of the newly formed logistics and efficiency department. 
-    Abigail: There's two managers of the efficiency department?
-    Gabe: logistics and efficiency Abbi-gal. Also co is just a title.
-    Gabe: There's five of us and two managers.
-    Joanna: So what are you actually doing?
-    Gabe: Well a lot of different stuff but mostly
-    Gabe: your mom.
-    Abigail: Gabriel you suck so much. 
-    Joanna: Hahahahaha
-    Abigail: No way that made you laugh dude. 
-    Joanna: I'm easy to please. 
-    Gabe: That's what sh-
-    Abigail: Nope. Try again. 
-    Joanna: Hahahahahahahahahaha
-    Abigail: You guys are so embarassing. 
-    Gabe: You love us right jojo?
-    Abigail: Big on nicknames today?
-    Joanna: He's been on a kick lately. 
-    Abigail: We both can agree Jojo isn't going to stick right?
-    Joanna: Definitely not.
+Joanna: Gabe didn't you just get a promotion?
+Gabe: I'm co-manager of the newly formed logistics and efficiency department. 
+Abigail: There's two managers of the efficiency department?
+Gabe: logistics and efficiency Abbi-gal. Also co is just a title.
+Gabe: There's five of us and two managers.
+Joanna: So what are you actually doing?
+Gabe: Well a lot of different stuff but mostly
+Gabe: your mom.
+Abigail: Gabriel you suck so much. 
+Joanna: Hahahahaha
+Abigail: No way that made you laugh dude. 
+Joanna: I'm easy to please. 
+Gabe: That's what sh-
+Abigial: Nope. Try again. 
+Joanna: Hahahahahahahahahaha
+Joanna: What? Laughing releases endorphins. 
+Joanna: I'm just indulging in some natural stress relief!
+Abigail: You guys are so embarassing. 
+Gabe: You love us right jojo?
+Abigail: Big on nicknames today?
+Joanna: He's been on a kick lately. 
+Abigail: We both can agree Jojo isn't going to stick right?
+Joanna: Definitely not. 
     <<set $peopletalkedto = $peopletalkedto + 1>>
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
         Joanna: Abigail should judge!
         <<StartPartyAzulejo PartyTransitionManager>>
     <<else>>
-        Abigail: I should talk to more people.
+        Abigail: I should talk to rest of the gang.
     <<endif>>
 <<else>>
     Gabe: What do we think of Jujube?
@@ -452,4 +442,90 @@ tags:
 ---
 <<declare $peopletalkedto = 0>>
 Abigail: Well I might as well say hi to everyone.
+===
+title: DaniDay1PreAzulejo
+tags:
+---
+Abigail: Hey loser.
+Dani: Abigail?
+Dani: What are you doing here?
+Abigail: I don’t exactly know.
+Abigail: Heard from Chase you got back a few weeks ago?
+Dani: Yep. I did indeed.
+Abigail: Up to anything special these days?
+Dani: Oh you know, on that big journey of self discovery.
+Abigail: What have you found out?
+Dani: That I’m really good at sitting on park benches.
+Dani: And I’m still writing. Promise I haven’t given up yet.
+Dani: How long is your fancy job letting you stay for?
+Abigail: Only a few days
+Abigail: And I think I might have messed that job up.
+Dani: Well, you should stay for the Azulejo museum opening in Acrylic Square.
+Dani: There’s gonna be this tournament or something.
+Abigail: Never took you for a fan of how they play it in that Pollock pisshole.
+Dani: Chase calls it that, not me.
+Dani: It’s okay, but you know the way I like to play it.
+Abigail: Of course I do.
+Abigail: Do you have chalk?
+Dani: Always.
+//Start Collage Azulejo
+===
+title: DaniDay1PostAzulejo
+tags:
+---
+Dani: So what’s it been like in the big city?
+-> Really, really good.
+    Dani: I guess I’m not the only one practicing my bench-sitting skills.
+    Abigail: No I’m actually doing really good I’m not like…
+    Dani: Oh.
+    Abigail: No Dani I didn’t mean it like that.
+    Dani: You deserve it Abbs don’t feel bad.
+-> Living the dream.
+    Dani: You know you’re allowed to admit you’re miserable.
+    Abigail: I’m not miserable you’re so hyperbolic dude.
+    Dani: Haha well are you happy?
+    Abigail: There’s something in between isn’t there?
+    Dani: I’m not so good at the in betweens.
+    Abigail: I know Dani.
+Abigail: Anyway I think I might head back home. My mom is probably missing me.
+Dani: Please tell me she’s making lasagna.
+Abigail: Why do you care?
+Dani: Your mom invited everyone over for dinner.
+Abigail: Everyone?
+Dani: Yeah, Chase, Gabe, Kate, Joanna.
+Abigail: Oh my god.
+Dani: I mean, I know you and Kate haven’t really…
+Abigail: We’ve barely talked. Do you think she hates me?
+Dani: Kate could never hate you Abbs.
+Abigail: I don’t know about that.
+//Go to party
+===
+title: HankCollageNPC
+tags:
+---
+Hank: I used to come to this coffee shop every morning.
+Abigail: Well ran dry?
+Hank: It ain't even walking friend. 
+===
+title: JuniorCollageNPC
+tags:
+---
+Junior: I think they're building something here!
+Abigail: I think it's a landfill. 
+Junior: That's still something!
+===
+title: ChestIntro
+tags:
+---
+Abigail: Hello, chest.
+Abigail: Mom said you had some tiles for me.
+Chest: <b> HERE ARE YOUR TILES. </b>
+Abigail: These?? Really?
+Chest: <b> SOME OF YOUR MOM'S FAVORITES. </b>
+Abigail: Thank you, I guess
+Chest: <b> YOU ARE WELCOME, ABIGAIL </b>
+Chest: <b> DON'T FORGET TO PRESS TAB AND CHECK OUT YOUR INVENTORY </b>
+Chest: <b> THE ACTIVE TAB WILL LET YOU SORT THE TILES YOU TAKE TO THE GAMES </b>
+Chest: <b> THE COLLECTION TAB IS WHERE YOU KEEP ALL OF YOUR OTHER TILES</b>
+Abigail: I'm aware, I used to live here!
 ===
