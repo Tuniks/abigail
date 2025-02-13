@@ -47,11 +47,11 @@ public class Argument : ScriptableObject{
 
     public bool IsRelevant(List<Attributes> attributes, Tile tile){
         if(cause == ArgumentCause.Face){
-            if(facePrefab.name == tile.GetName()) return true;
+            if(facePrefab.name == tile.facePrefab.name) return true;
         } else if(cause == ArgumentCause.Tag){
             if(tile.HasTag(tag)) return true;
         } else if(cause == ArgumentCause.Attribute){
-            if(attributes.Contains(attribute)) return true;
+            if(attributes.Contains(attribute) && tile.GetAttribute(attribute) > 5) return true;
         } else {
             return true;
         }

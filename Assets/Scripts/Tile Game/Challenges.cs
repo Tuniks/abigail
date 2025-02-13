@@ -11,6 +11,9 @@ public class Challenges : MonoBehaviour{
         {2, "Who would win in a race?"},
         {3, "Who would be the chiller dude at a party?"},
         {4, "Who would be a better lover?"},
+        {5, "Who would overtake my nightmares?"},
+        {6, "Who would require a piñata at their birthday party?"},
+        {7, "Who would worship a star in the sky?"},
     };
 
     public int[] GetRandomChallenges(int count){
@@ -31,27 +34,26 @@ public class Challenges : MonoBehaviour{
 
     // Calculation for each individual challenge, based on tiles
     public float EvaluateTile(int id, Tile tile){
-        float result = 0;
-        
         switch(id){
             case 0:
-                result = (tile.GetVigor() + tile.GetMagic())/2f;
-                break;
+                return (tile.GetVigor() + tile.GetMagic())/2f;
             case 1:
-                result = (tile.GetBeauty() + tile.GetMagic())/2f;
-                break;
+                return (tile.GetBeauty() + tile.GetMagic())/2f;
             case 2:
-                result = tile.GetVigor();
-                break;
+                return tile.GetVigor();
             case 3:
-                result = (tile.GetBeauty() + tile.GetMagic() + tile.GetHeart())/3f;
-                break;
+                return (tile.GetBeauty() + tile.GetMagic() + tile.GetHeart())/3f;
             case 4:
-                result = (tile.GetBeauty() + tile.GetHeart())/2f;
-                break;
+                return (tile.GetBeauty() + tile.GetHeart())/2f;
+            case 5:
+                return tile.GetTerror();
+            case 6:
+                return (tile.GetVigor() + tile.GetHeart())/2f;
+            case 7:
+                return tile.GetMagic();
         }
 
-        return result;
+        return 0;
     }
 
     // Returns which attributes are related to each challenge's calculation
@@ -67,6 +69,12 @@ public class Challenges : MonoBehaviour{
                 return new List<Attributes>{Attributes.Beauty, Attributes.Magic, Attributes.Heart};
             case 4:
                 return new List<Attributes>{Attributes.Beauty, Attributes.Heart};
+            case 5:
+                return new List<Attributes>{Attributes.Terror};
+            case 6:
+                return new List<Attributes>{Attributes.Vigor, Attributes.Heart};
+            case 7:
+                return new List<Attributes>{Attributes.Magic};
         }
 
         return new List<Attributes>{};

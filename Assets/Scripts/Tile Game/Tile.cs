@@ -131,6 +131,18 @@ public class Tile : MonoBehaviour{
         return false;
     }
 
+    public float GetAttribute(Attributes att){
+        return att switch{
+            Attributes.Beauty => GetBeauty(),
+            Attributes.Vigor => GetVigor(),
+            Attributes.Magic => GetMagic(),
+            Attributes.Heart => GetHeart(),
+            Attributes.Intellect => GetIntellect(),
+            Attributes.Terror => GetTerror(),
+            _ => 0,
+        };
+    }
+
     public float GetBeauty(){
         float mult = multipliers.ContainsKey(Attributes.Beauty) ? multipliers[Attributes.Beauty] : 1f;
         return mult * (face.beauty + background.beauty + material.beauty + glaze.beauty);

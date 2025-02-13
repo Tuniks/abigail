@@ -457,6 +457,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7746848998911024562, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
   m_PrefabInstance: {fileID: 116659430}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &116659432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
+  m_PrefabInstance: {fileID: 116659430}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &149178539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1183,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 464.9}
+  m_SizeDelta: {x: 1400, y: 825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357839210
 MonoBehaviour:
@@ -1194,7 +1205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2652cf5b9797dd749b6342270a80a09e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2598,7 +2609,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 1150, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064203097
 MonoBehaviour:
@@ -2620,7 +2631,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: tutorial :p
+  m_text: "this is a game about subjective contests\n\nthe judge will put forward
+    a new challenge each round\n\nPlayers will pick a tile that best answers the
+    challenge, taking into account the challenge, the visuals of the tile and even
+    the judge's personal preferences!\n\nplayers will then have a chance to argue
+    for their tile choice\n\n You might not have many arguments to start with, but
+    as you get to know these characters you will learn new ways to persuade them!\n\nand
+    remember: press e to advance dialogue"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
   m_sharedMaterial: {fileID: 2177152658935365370, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
@@ -2688,7 +2705,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1064203098
@@ -3408,7 +3425,11 @@ MonoBehaviour:
   playerArguments: {fileID: 11400000, guid: 0ee64c2cedc3eb1439a04fc0e1800dab, type: 2}
   enemyArguments: {fileID: 11400000, guid: e10ee6493288aaf4b8fc4b176979bd72, type: 2}
   judgeArguments: {fileID: 11400000, guid: abdb930effc8df746a3d8ed6fdb2f6e1, type: 2}
-  challengesPreset: 
+  challengesPreset: 050000000600000007000000
+  enemyTilePreset:
+  - {fileID: 116659432}
+  - {fileID: 1956357892}
+  - {fileID: 2078025674}
   showTutorial: 1
 --- !u!4 &1187288448
 Transform:
@@ -3456,6 +3477,7 @@ MonoBehaviour:
   playerArgumentText: {fileID: 1885878981}
   enemyArgumentText: {fileID: 57500773}
   challengesManager: {fileID: 1187288445}
+  inputDebouncerTimer: 0.5
 --- !u!1 &1226244374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,6 +5721,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7746848998911024562, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
   m_PrefabInstance: {fileID: 1956357890}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1956357892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
+  m_PrefabInstance: {fileID: 1956357890}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1965702145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5892,6 +5925,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965702145}
   m_CullTransparentMesh: 1
+--- !u!114 &2078025674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
+  m_PrefabInstance: {fileID: 827680802}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2085734974
 GameObject:
   m_ObjectHideFlags: 0

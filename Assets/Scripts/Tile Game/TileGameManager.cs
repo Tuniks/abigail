@@ -35,6 +35,7 @@ public class TileGameManager : MonoBehaviour{
     // If not empty, these will override random assignement of cards and challenges 
     [Header("Presets")]
     public int[] challengesPreset;
+    public Tile[] enemyTilePreset;
 
     public bool showTutorial = false;
 
@@ -125,7 +126,9 @@ public class TileGameManager : MonoBehaviour{
         if(current != State.Pick) return;
 
         // Select card for opponent
-        p2Hand.ActivateRandomCard();
+        if(enemyTilePreset.Length > currentChallengeIndex){
+            p2Hand.ActivateCard(enemyTilePreset[currentChallengeIndex]);
+        } else p2Hand.ActivateRandomCard();
 
         // Check result
         bool result = CheckResult();
