@@ -165,10 +165,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 20
-  stamina: 0
+  vigor: 0
   magic: 5
-  speed: 10
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Spooky Spider
 --- !u!212 &22811689
 SpriteRenderer:
@@ -270,10 +271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 3
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 3
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &25612361
 SpriteRenderer:
@@ -375,10 +377,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &41493676
 SpriteRenderer:
@@ -533,10 +536,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &53003341
 SpriteRenderer:
@@ -691,10 +695,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &97423011
 SpriteRenderer:
@@ -877,10 +882,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &256521773
 SpriteRenderer:
@@ -1004,7 +1010,7 @@ PrefabInstance:
     - target: {fileID: 6026025847067181416, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2112161018, guid: fcf9a6d23b7fe624dab502516fe64600, type: 3}
+      objectReference: {fileID: -1505682101, guid: 2b385e2a75cb6454bbf2236141a462f2, type: 3}
     - target: {fileID: 6026025847067181416, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_Color.b
       value: 0.965646
@@ -1071,11 +1077,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7974516537475907956, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.28
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7974516537475907956, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.36
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7974516537475907956, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_LocalScale.z
@@ -1095,6 +1101,92 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3356230777359032882, guid: 3eaf0d02df7157e469b800708a6c618b, type: 3}
   m_PrefabInstance: {fileID: 1824336222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &298365527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298365529}
+  - component: {fileID: 298365528}
+  m_Layer: 0
+  m_Name: chest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &298365528
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298365527}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -73102573, guid: 8ac4ae6dabbff5747a11f241445b2e0b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.7313437, y: 5.83}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &298365529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298365527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.6, y: -19.9, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474192284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,10 +1319,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 10
+  vigor: 0
   magic: 15
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Refreshing Lemonade
 --- !u!212 &480229076
 SpriteRenderer:
@@ -1332,10 +1425,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &518191894
 SpriteRenderer:
@@ -1448,10 +1542,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &545381532
 SpriteRenderer:
@@ -1553,10 +1648,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &549809340
 SpriteRenderer:
@@ -1658,10 +1754,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &577816923
 SpriteRenderer:
@@ -1794,10 +1891,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &610926064
 SpriteRenderer:
@@ -2051,10 +2149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &742621204
 SpriteRenderer:
@@ -2110,6 +2209,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &748344550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748344552}
+  - component: {fileID: 748344551}
+  m_Layer: 0
+  m_Name: smallthingsmisc_8 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!212 &748344551
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748344550}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 160582137, guid: 8ac4ae6dabbff5747a11f241445b2e0b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.9916396, y: 8.43}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &748344552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748344550}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.7, y: -20.2, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749880683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,10 +2341,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &749880686
 SpriteRenderer:
@@ -2410,10 +2596,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &847080130
 SpriteRenderer:
@@ -2654,10 +2841,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &874788846
 SpriteRenderer:
@@ -3608,10 +3796,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 20
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 20
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Cassiopeia Constellation
 --- !u!212 &933627804
 SpriteRenderer:
@@ -3713,10 +3902,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &961913901
 SpriteRenderer:
@@ -3849,10 +4039,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1009401398
 SpriteRenderer:
@@ -3985,10 +4176,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1036930265
 SpriteRenderer:
@@ -4155,7 +4347,7 @@ GameObject:
   - component: {fileID: 1069911889}
   - component: {fileID: 1069911888}
   m_Layer: 0
-  m_Name: doorframes_1
+  m_Name: Doorframe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4204,7 +4396,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 16
-  m_Sprite: {fileID: 784630902, guid: 70670886a9d55954cb038210dd3a6fbd, type: 3}
+  m_Sprite: {fileID: 1991252775, guid: 8ac4ae6dabbff5747a11f241445b2e0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4224,9 +4416,9 @@ Transform:
   m_GameObject: {fileID: 1069911887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22, y: -20.42, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 22.06, y: -19.8, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4276,10 +4468,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1079270726
 SpriteRenderer:
@@ -4637,10 +4830,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Water Slide
 --- !u!212 &1111455202
 SpriteRenderer:
@@ -4799,10 +4993,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1159870512
 SpriteRenderer:
@@ -5096,10 +5291,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1249116655
 SpriteRenderer:
@@ -5287,10 +5483,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 15
-  strength: 5
-  stamina: 0
+  vigor: 0
   magic: 15
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Stately Tree
 --- !u!212 &1302227251
 SpriteRenderer:
@@ -5392,10 +5589,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1328142897
 SpriteRenderer:
@@ -5497,10 +5695,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &1412748698
 SpriteRenderer:
@@ -5602,10 +5801,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 3
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 3
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1432233534
 SpriteRenderer:
@@ -5707,10 +5907,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 10
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 20
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Human Toes
 --- !u!212 &1442173291
 SpriteRenderer:
@@ -5810,6 +6011,10 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5349490011105723171, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1566431012, guid: 2b385e2a75cb6454bbf2236141a462f2, type: 3}
     - target: {fileID: 5511595829662135330, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
       propertyPath: dialogueRunner
       value: 
@@ -5913,10 +6118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1458440878
 SpriteRenderer:
@@ -6018,10 +6224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 15
-  stamina: 5
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Crab with Knife
 --- !u!212 &1464232547
 SpriteRenderer:
@@ -6155,10 +6362,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1515157812
 SpriteRenderer:
@@ -6300,6 +6508,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &1546151549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546151551}
+  - component: {fileID: 1546151550}
+  m_Layer: 0
+  m_Name: AbigailHouse_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1546151550
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546151549}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1067376623, guid: d0aefaa4ad047504b960e270f03ae166, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 46.23084, y: 15.1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1546151551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546151549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.5, y: -18.3, z: 0}
+  m_LocalScale: {x: 0.36, y: 0.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569278608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,10 +6640,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1569278611
 SpriteRenderer:
@@ -6451,10 +6746,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1593129467
 SpriteRenderer:
@@ -6556,10 +6852,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 10
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1604462595
 SpriteRenderer:
@@ -6661,10 +6958,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1604541757
 SpriteRenderer:
@@ -6737,7 +7035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1621481396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6833,10 +7131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1665129910
 SpriteRenderer:
@@ -6938,10 +7237,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 10
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1697478540
 SpriteRenderer:
@@ -7043,10 +7343,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1732199371
 SpriteRenderer:
@@ -7153,10 +7454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1765400229
 SpriteRenderer:
@@ -7212,6 +7514,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1766496694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766496696}
+  - component: {fileID: 1766496695}
+  m_Layer: 0
+  m_Name: stair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1766496695
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766496694}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 160582137, guid: 8ac4ae6dabbff5747a11f241445b2e0b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.9916396, y: 8.43}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1766496696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766496694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.7, y: -16.4, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1797059282
 GameObject:
   m_ObjectHideFlags: 0
@@ -7258,10 +7646,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 5
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 5
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1797059285
 SpriteRenderer:
@@ -7364,7 +7753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1809805520
 Transform:
   m_ObjectHideFlags: 0
@@ -7703,10 +8092,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1830207633
 SpriteRenderer:
@@ -7808,10 +8198,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1834324079
 SpriteRenderer:
@@ -7867,6 +8258,92 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1844494626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1844494628}
+  - component: {fileID: 1844494627}
+  m_Layer: 0
+  m_Name: smallthingsmisc_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!212 &1844494627
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844494626}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_Sprite: {fileID: -64321663, guid: 8ac4ae6dabbff5747a11f241445b2e0b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.071189, y: 6.4900002}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1844494628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844494626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.5, y: -20.1, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1847501852
 GameObject:
   m_ObjectHideFlags: 0
@@ -7913,10 +8390,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1847501855
 SpriteRenderer:
@@ -8023,10 +8501,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &1877470055
 SpriteRenderer:
@@ -8128,10 +8607,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1881861187
 SpriteRenderer:
@@ -8291,10 +8771,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 25
+  vigor: 0
   magic: 0
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: Kooky Clocky
 --- !u!212 &1951448611
 SpriteRenderer:
@@ -8396,10 +8877,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1958116343
 SpriteRenderer:
@@ -8506,10 +8988,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1982937076
 SpriteRenderer:
@@ -8611,10 +9094,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &1991333665
 SpriteRenderer:
@@ -8853,10 +9337,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 0
-  strength: 0
-  stamina: 0
+  vigor: 0
   magic: 0
-  speed: 0
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 
 --- !u!212 &2004007754
 SpriteRenderer:
@@ -8963,10 +9448,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beauty: 10
-  strength: 0
-  stamina: 5
+  vigor: 0
   magic: 15
-  speed: 15
+  heart: 0
+  intellect: 0
+  terror: 0
   title: 'Gianluca''s Pizzeria '
 --- !u!212 &2099302972
 SpriteRenderer:
@@ -9150,3 +9636,8 @@ SceneRoots:
   - {fileID: 1537175096}
   - {fileID: 1809805520}
   - {fileID: 1800159138}
+  - {fileID: 1546151551}
+  - {fileID: 1766496696}
+  - {fileID: 748344552}
+  - {fileID: 1844494628}
+  - {fileID: 298365529}

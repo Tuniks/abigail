@@ -37,6 +37,7 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject DaniComment2;  // Public GameObject for Dani Comment 2
     private int currentRound = 1;    // Track the current round (1 or 2)
     
+    
     public CollagePlayerHand playerHand;
     
     private int judgementSelection = 0;
@@ -149,6 +150,7 @@ public class DaniCollageGameManager : MonoBehaviour
             {
                 // Ensure the tile is exactly at the target position
                 selectedTile.transform.position = targetPos;
+                selectedTile.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
                 isMoving = false;  // Movement is complete
 
                 // Add the tile to the PlayedTiles list
@@ -158,26 +160,44 @@ public class DaniCollageGameManager : MonoBehaviour
     }
 
     // Switch to the specified state
+// Modify SwitchState to reset arrow positions when switching to a new state
     private void SwitchState(GameState newState)
     {
         currentState = newState;
 
-        // Handle the transition to the new state
         switch (newState)
         {
             case GameState.PlayerTileChoice1:
-                // Ensure only the tile arrow is active
-                //arrowSprite.SetActive(true);
                 slotArrowSprite.SetActive(false);
+                if (playerHand.hand.Count > 0)
+                {
+                    currentTileIndex = 0; // Move to the first tile
+                    HighlightSelection();
+                    UpdateArrowPosition(); // Update arrow position
+                    arrowSprite.SetActive(true);
+                }
                 break;
 
             case GameState.PlayerSlotChoice1:
-                // Ensure only the slot arrow is active
-                //arrowSprite.SetActive(false);
-                slotArrowSprite.SetActive(true);
+                arrowSprite.SetActive(false);
+                if (emptySlots.Count > 0)
+                {
+                    currentSlotIndex = 0; // Move to the first slot
+                    UpdateSlotArrowPosition(); // Update slot arrow position
+                    slotArrowSprite.SetActive(true);
+                }
+                break;
+
+            case GameState.Judgement:
+                if (judgementarrow != null) // Check if judgement arrow exists
+                {
+                    judgementarrow.SetActive(true);
+                    // If judgement arrow has a list, reset its position similarly
+                }
                 break;
         }
     }
+
 
 // Handle player input in the PlayerTileChoice1 state
     private void HandleTileChoice()
@@ -228,7 +248,7 @@ public class DaniCollageGameManager : MonoBehaviour
         }
 
         // Apply the scale increase relative to original scale
-        newSelection.localScale = originalScale * 1.1f;
+        newSelection.localScale = originalScale * 1.3f;
 
         // Update the reference
         previouslySelectedTile = newSelection;
@@ -508,7 +528,7 @@ private void UpdateYesNoArrowPosition()
 
 private void ScaleOption(GameObject option)
 {
-    option.transform.localScale = option.transform.localScale * 1.1f;  // Scale up by 10%
+    option.transform.localScale = option.transform.localScale * 1.3f;  // Scale up by 10%
 }
 
 private void ResetScale(GameObject option)
@@ -523,7 +543,7 @@ private void ResetScale(GameObject option)
 // Method to scale an option down by 10% when selected
     private void ScaleOption(GameObject option, Vector3 originalScale)
     {
-        option.transform.localScale = originalScale * 1.2f;  // Shrink by 10%
+        option.transform.localScale = originalScale * 1.3f;  // Shrink by 10%
     }
 
 // Method to reset the scale of an option to its original size
