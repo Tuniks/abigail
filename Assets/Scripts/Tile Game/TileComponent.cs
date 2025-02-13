@@ -9,7 +9,6 @@ public enum Attributes {
     Heart,
     Intellect,
     Terror,
-    All
 }
 
 public enum Tag {

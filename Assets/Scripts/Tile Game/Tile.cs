@@ -111,6 +111,7 @@ public class Tile : MonoBehaviour{
     }
 
     public void AddMultiplier(Attributes att, float value){
+        
         if(multipliers.ContainsKey(att)){
             multipliers[att] = multipliers[att] * value;
         } else multipliers[att] = value;

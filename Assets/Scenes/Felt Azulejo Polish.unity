@@ -682,14 +682,13 @@ GameObject:
   - component: {fileID: 155601617}
   - component: {fileID: 155601620}
   - component: {fileID: 155601619}
-  - component: {fileID: 155601618}
   m_Layer: 5
   m_Name: PlayerBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &155601617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -710,62 +709,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -387}
   m_SizeDelta: {x: 432, y: 295}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &155601618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155601616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 155601619}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1187288447}
-        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
-        m_MethodName: OnArgumentPicked
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &155601619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,14 +758,13 @@ GameObject:
   - component: {fileID: 185483167}
   - component: {fileID: 185483170}
   - component: {fileID: 185483169}
-  - component: {fileID: 185483168}
   m_Layer: 5
   m_Name: EnemyBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &185483167
 RectTransform:
   m_ObjectHideFlags: 0
@@ -843,62 +785,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 384}
   m_SizeDelta: {x: 432, y: 295}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &185483168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185483166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 185483169}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1187288447}
-        m_TargetAssemblyTypeName: TileGameManager, Assembly-CSharp
-        m_MethodName: OnArgumentPicked
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &185483169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,7 +948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &283059496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2590,10 +2476,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1567272993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -51.275}
+  m_SizeDelta: {x: 900, y: 72.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &871631551
 MonoBehaviour:
@@ -3358,10 +3244,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1567272993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -313.92502}
+  m_SizeDelta: {x: 900, y: 72.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164174636
 MonoBehaviour:
@@ -3789,9 +3675,9 @@ MonoBehaviour:
   p1Active: {fileID: 306961832}
   p2Active: {fileID: 1926141077}
   p2Hand: {fileID: 657377601}
-  playerArguments: {fileID: 0}
-  enemyArguments: {fileID: 0}
-  judgeArguments: {fileID: 0}
+  playerArguments: {fileID: 11400000, guid: 0ee64c2cedc3eb1439a04fc0e1800dab, type: 2}
+  enemyArguments: {fileID: 11400000, guid: e10ee6493288aaf4b8fc4b176979bd72, type: 2}
+  judgeArguments: {fileID: 11400000, guid: abdb930effc8df746a3d8ed6fdb2f6e1, type: 2}
   challengePresets: 
   showTutorial: 1
 --- !u!4 &1187288448
@@ -3829,18 +3715,18 @@ MonoBehaviour:
   gameWon: {fileID: 810459966875858971}
   challengeScreenText: {fileID: 1992743475459755498}
   challengeListText: {fileID: 1733815013}
-  roundPreWonDialogText: {fileID: 1130624596}
   roundWonDialogText: {fileID: 1721297432}
   gameWonText: {fileID: 7272940716309023294}
+  argumentList: {fileID: 283059495}
   argumentTexts:
   - {fileID: 871631552}
   - {fileID: 1289830298}
   - {fileID: 1965702148}
   - {fileID: 1164174637}
   - {fileID: 1778299676}
-  judgeArgumentText: {fileID: 0}
-  playerArgumentText: {fileID: 0}
-  enemyArgumentText: {fileID: 0}
+  judgeArgumentText: {fileID: 1130624596}
+  playerArgumentText: {fileID: 1885878981}
+  enemyArgumentText: {fileID: 57500773}
   challengesManager: {fileID: 1187288445}
 --- !u!1 &1226244374
 GameObject:
@@ -3964,7 +3850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1229432457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4154,10 +4040,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1567272993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -138.82501}
+  m_SizeDelta: {x: 900, y: 72.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289830297
 MonoBehaviour:
@@ -4929,7 +4815,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 452.75}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1567272994
 MonoBehaviour:
@@ -5525,10 +5411,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1567272993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -401.475}
+  m_SizeDelta: {x: 900, y: 72.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778299675
 MonoBehaviour:
@@ -6138,7 +6024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1919705824
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6387,10 +6273,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1567272993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -226.375}
+  m_SizeDelta: {x: 900, y: 72.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965702147
 MonoBehaviour:

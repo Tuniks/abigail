@@ -29,6 +29,7 @@ public class TileGameManager : MonoBehaviour{
     public ArgumentCollection enemyArguments;
     public ArgumentCollection judgeArguments;
     private List<Argument> currentPlayerArgs;
+    private int currentChosenArgumentIndex;
     private Argument currentEnemyArg;
 
     // If not empty, these will override random assignement of cards and challenges 
@@ -106,19 +107,19 @@ public class TileGameManager : MonoBehaviour{
         } else StartSetup();
     }
 
-    // Tutorial Phase
+    // === Tutorial Phase ===
     public void StartTutorial(){
         SetState(State.Tutorial);
     }
 
 
-    // Set Up Phase
+    // === Set Up Phase ===
     public void StartSetup(){
         UIManager.UpdateChallengesList(challenges);
         SetState(State.Setup);
     }
 
-    // Pick Phase
+    // === Pick Phase ===
     public void StartRound(){
         if(currentChallengeIndex >2){
             RevealResult();
@@ -127,7 +128,7 @@ public class TileGameManager : MonoBehaviour{
         SetState(State.Pick);
     }
 
-    // Argument Phase
+    // === Argument Phase ===
     public void RevealPreArgumentWinner(){
         if(current != State.Pick) return;
 
@@ -150,15 +151,12 @@ public class TileGameManager : MonoBehaviour{
         // Update UI
         UIManager.UpdatePreArgumentRoundWinner(result);
         UIManager.UpdateArgumentList(playerArgsLines);
+
+        // Set new state
         SetState(State.Argument);
-    }
+    }    
 
-    public void OnArgumentPicked(int arg){
-        Argument chosen = currentPlayerArgs[arg];
-        // p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
-        RevealWinner();
-    }
-
+    // pick arguments for oponent
     private List<Argument> PickRandomArguments(List<Argument> args, int count){
         List<Argument> rand = new List<Argument>();
         
@@ -173,6 +171,7 @@ public class TileGameManager : MonoBehaviour{
         return rand;
     }
 
+    // gets strings from arguments
     private List<string> GetArgumentsText(List<Argument> args){
         List<string> lines = new List<string>();
         foreach(Argument arg in args){
@@ -181,28 +180,58 @@ public class TileGameManager : MonoBehaviour{
         return lines;
     }
 
-    // Winner Phase
-    public void RevealWinner(){
-        // Select argument for opponent
+    public void OnArgumentPicked(int arg){
+        currentChosenArgumentIndex = arg;
+        Argument chosen = currentPlayerArgs[arg];
 
+        // Applying modifiers
+        foreach(Attributes att in chosen.targetAttributes){
+            p1Active.activeTile.AddMultiplier(att, chosen.multiplier);
+        }
+        foreach(Attributes att in currentEnemyArg.targetAttributes){
+            p2Active.activeTile.AddMultiplier(att, chosen.multiplier);
+        }
+
+        // Updating text and starting conversation
+        string pArg = chosen.GetArgumentationLine();
+        string jResp1 = chosen.GetArgumentationResponse();
+        string eArg = currentEnemyArg.GetArgumentationLine();
+        string jResp2 = currentEnemyArg.GetArgumentationResponse();
+        UIManager.UpdateArgumentConversation(pArg, jResp1, eArg, jResp2);
+    }
+
+    public void EndArgument(){
+        RevealWinner();
+    }
+
+
+    // === Winner Phase ===
+    public void RevealWinner(){
         // Check result
         bool result = CheckResult();
 
         // Update UI
-        UIManager.UpdateRoundWinner(result);
+        string justification;
+        if(result){
+            justification = currentPlayerArgs[currentChosenArgumentIndex].GetJustificationLine();
+        } else {
+            justification = currentEnemyArg.GetJustificationLine();
+        }
+
+        UIManager.UpdateRoundWinner(result, justification);
         SetState(State.Decision);
 
         // Move to next challenge
         currentChallengeIndex++;
     }
 
-    // Result Phase
+    // === Result Phase ===
     public void RevealResult(){
         UIManager.UpdateGameWinner(score>=0);
         SetState(State.Result);
     }
 
-    // General
+    // === General ===
     private bool CheckResult(){
         int index = challenges[currentChallengeIndex];
         float p1 = challengesManager.EvaluateTile(index, p1Active.activeTile);

@@ -15,20 +15,38 @@ public class TileUIManager : MonoBehaviour{
     [Header("Text Fields")]
     public TextMeshProUGUI challengeScreenText;
     public TextMeshProUGUI challengeListText;
-    public TextMeshProUGUI roundPreWonDialogText;
     public TextMeshProUGUI roundWonDialogText;
     public TextMeshProUGUI gameWonText;
 
     [Header("Argument Phase")]
+    public GameObject argumentList;
     public TextMeshProUGUI[] argumentTexts = new TextMeshProUGUI[5];
     public TextMeshProUGUI judgeArgumentText;
     public TextMeshProUGUI playerArgumentText;
     public TextMeshProUGUI enemyArgumentText;
-    
-    
+    private int argumentationStep = 0;
+    private string judgeResp2 = "";
+
+    [Header("Challenges")]
     public Challenges challengesManager;
+    
+    // Other
+    private State currentState;
+
+    void Update(){
+        if(Input.GetKeyDown("e")){
+            Advance();
+        }
+    }
+
+    public void Advance(){
+        if(currentState != State.Argument) return;
+        AdvanceArgumentationDialogue();
+    }
 
     public void SetUIState(State _state){
+        currentState = _state;
+        
         // Reset
         tutorialScreen.SetActive(false);
         challengeScreen.SetActive(false);
@@ -52,6 +70,8 @@ public class TileUIManager : MonoBehaviour{
                 break;
             
             case State.Argument:
+                argumentList.SetActive(true);
+                judgeArgumentText.transform.parent.gameObject.SetActive(true);
                 argumentScreen.SetActive(true);
                 break;
             
@@ -89,8 +109,8 @@ public class TileUIManager : MonoBehaviour{
     // Argument Phase
     public void UpdatePreArgumentRoundWinner(bool playerWon){
         if(playerWon){
-            roundPreWonDialogText.text = "Hmmm... I'm currently leaning <b>Abigail</b>, any arguments?";
-        } else roundPreWonDialogText.text = "I think I might go with <b>Oz</b>, what do you say?";
+            judgeArgumentText.text = "Hmmm... I'm currently leaning <b>Abigail</b>, any arguments?";
+        } else judgeArgumentText.text = "I think I might go with <b>Oz</b>, what do you say?";
     }
 
     public void UpdateArgumentList(List<string> arguments){
@@ -104,11 +124,52 @@ public class TileUIManager : MonoBehaviour{
         }
     }
 
+    public void UpdateArgumentConversation(string pArg, string jResp1, string eArg, string jResp2){
+        playerArgumentText.text = pArg;
+        judgeArgumentText.text = jResp1;
+        enemyArgumentText.text = eArg;
+        judgeResp2 = jResp2;
+        AdvanceArgumentationDialogue();
+    }
+
+    private void AdvanceArgumentationDialogue(){
+        // VERY DUMB WAY OF DOING IT, DO IT BETTER LATER (list of strings w names, depending on the name choose where to place text..)
+        switch(argumentationStep){
+            case 0:
+                argumentList.SetActive(false);
+                judgeArgumentText.transform.parent.gameObject.SetActive(false);
+                playerArgumentText.transform.parent.gameObject.SetActive(true);
+                argumentationStep++; 
+                break;
+            case 1:
+                playerArgumentText.transform.parent.gameObject.SetActive(false);
+                judgeArgumentText.transform.parent.gameObject.SetActive(true);
+                argumentationStep++;
+                break;
+            case 2:
+                judgeArgumentText.transform.parent.gameObject.SetActive(false);
+                enemyArgumentText.transform.parent.gameObject.SetActive(true);
+                argumentationStep++;
+                break;
+            case 3:
+                enemyArgumentText.transform.parent.gameObject.SetActive(false);
+                judgeArgumentText.text = judgeResp2; 
+                judgeArgumentText.transform.parent.gameObject.SetActive(true);
+                argumentationStep++;
+                break;
+            case 4:
+                judgeArgumentText.transform.parent.gameObject.SetActive(false);
+                argumentationStep = 0;
+                TileGameManager.instance.EndArgument();
+                break;
+        }
+    }
+
     // Winner Phase
-    public void UpdateRoundWinner(bool playerWon){
+    public void UpdateRoundWinner(bool playerWon, string justification){
         if(playerWon){
-            roundWonDialogText.text = "Ok, I gotta give this one to my girl <b>Abigail</b>";
-        } else roundWonDialogText.text = "Yeah, this round <b>Oz</b> takes it!";
+            roundWonDialogText.text = "Ok, I gotta give this one to my girl <b>Abigail</b>" + justification;
+        } else roundWonDialogText.text = "Yeah, this round <b>Oz</b> takes it!" + justification;
     }
 
     // Result Phase

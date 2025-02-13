@@ -24,7 +24,7 @@ public class Argument : ScriptableObject{
 
     [Header("Effect")]
     public bool isDefensive = true;
-    public Attributes targetAttribute;
+    public Attributes[] targetAttributes;
     public float multiplier;
 
     public bool IsAMatch(Argument other){
@@ -51,6 +51,10 @@ public class Argument : ScriptableObject{
 
     public string GetArgumentationLine(){
         return argumentationLines[Random.Range(0, argumentationLines.Length)];
+    }
+
+    public string GetArgumentationResponse(){
+        return judgeResponseLines[Random.Range(0, judgeResponseLines.Length)];
     }
 
 }
