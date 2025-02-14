@@ -79,10 +79,9 @@ Mom: I think you should go check up on Chase, I'm worried about that boy.
 Abigail: This is a lot I'm going to head to the travel office and see about flights.
 Mom: Jim doesn't come in on Mondays.
 Mom: Swing by the Neptune Cafe! I know Chase would be thrilled to see you!
-Mom: You should borrow a few tiles from my collection in case he wants to play Azueljo. 
+Mom: You should borrow a few tiles from my collection in case he wants to play Azulejo. 
 Mom: They're in that chest over there.
 Mom: But not too many! I'm going to play with Margarette later.
-<<ExitPossible ExitManager>>
 <<else>>
 Mom: Your hair looks a bit dry. It's not a big deal if you're just going to the Neptune Cafe. 
 <<endif>>
@@ -517,6 +516,7 @@ Junior: That's still something!
 title: ChestIntro
 tags:
 ---
+<<if visited("ChestIntro") is false>>
 Abigail: Hello, chest.
 Abigail: Mom said you had some tiles for me.
 Chest: <b> HERE ARE YOUR TILES. </b>
@@ -528,5 +528,47 @@ Chest: <b> DON'T FORGET TO PRESS TAB AND CHECK OUT YOUR INVENTORY </b>
 Chest: <b> THE ACTIVE TAB WILL LET YOU SORT THE TILES YOU TAKE TO THE GAMES </b>
 Chest: <b> THE COLLECTION TAB IS WHERE YOU KEEP ALL OF YOUR OTHER TILES</b>
 Abigail: I'm aware, I used to live here!
+<<ExitPossible ExitManager>>
+<<else>>
+Chest: <b> LONG STORY SHORT: JUST PRESS TAB, ABIGAIL. <b>
+<<endif>>
 ===
-
+title: JulieBurning
+tags:
+---
+<<if visited("JulieBurning") is false>>
+Julie: The unconfined movement of the fire, the ever dancing dark smoke.
+Julie: I love this place.
+Abigail: Weren't they going to put this fire out many years ago?
+Julie: Every few months some government official will try to.
+Julie: But the proceedings always end up getting caught up in a bureaucratic web.
+Abigail: Shouldn't it be simple to put out a fire?
+Julie: It's a jurisdictional gray area. A federal building on municipal land, with the firefighters being state employees.
+Julie: And with Ochre Bay's water company being privatized a couple years ago
+Julie: It also just doesn't make sense financially. 
+Abigail: This can't be good for the environment, right?
+Julie: Certainly it isn't. But that doesn't mean it isn't the most beautiful view I've ever seen.
+<<else>>
+Julie: The fire...
+Abigail: The fire!
+<<endif>>
+===
+title: HaroldFountain
+tags:
+---
+<<if visited("HaroldFountain") is false>>
+Harold: Fascinating! Anita Clark's very own Bathing Baby Fountain!
+Harold: I've waited my whole life to see it!
+Harold: It has even more presence than the text books led me to believe.
+Abigail: Baby? I thought it was a busty woman
+Harold: Dear lord...
+Abigail: It's just a fountain, dude, it has been here forever
+Harold: Precisely! It was completed in 1867, so much history!
+Harold: What an exquisite use of form and color. Intensely dynamic!
+Abigail: Yeah, I guess it does look kinda rad
+Harold: Right??
+<<else>>
+Harold: Open your eyes and learn your history, young lady
+Harold: You will see the world is way more exciting than you think
+<<endif>>
+===

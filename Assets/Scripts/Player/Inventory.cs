@@ -36,6 +36,16 @@ public class Inventory : MonoBehaviour{
         }
     }
 
+    public void AddTilesToCollection(Tile[] newTiles){
+        foreach(Tile tile in newTiles){
+            if(tile.gameObject.CompareTag("Tile")){
+                tile.transform.SetParent(tileCollectionParent);
+                tileCollection.Add(tile.gameObject);
+            }
+        }
+        PlayerUIManager.instance.SetInventoryUI();
+    }
+
     public List<GameObject> GetTileCollection(){
         return tileCollection;
     }

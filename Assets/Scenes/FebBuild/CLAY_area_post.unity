@@ -274,26 +274,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!114 &39740535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39740531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ff8a6283cb1d40dea7409f9c38f8722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 217139749}
-  velocityThreshold: 0.1
-  velocitySmoothing: 10
-  movementZoomDelay: 0.3
-  zoomBackDelay: 0.5
-  minCameraDistance: 10
-  maxCameraDistance: 20
-  zoomSpeed: 5
 --- !u!1 &51524079
 GameObject:
   m_ObjectHideFlags: 0
@@ -6971,6 +6951,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -10.00002
       objectReference: {fileID: 0}
+    - target: {fileID: 3127703687526284070, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 217139749}
     - target: {fileID: 4459667874250200950, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7036,9 +7020,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6353360310447885206, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 39740535}
     - targetCorrespondingSourceObject: {fileID: 6353360310447885206, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 39740534}
