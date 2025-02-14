@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUIManager : MonoBehaviour{
+    public static PlayerUIManager instance;
+    
     [Header("Inventory")]
     public GameObject inventoryScreen;
     public Transform collectionParent;
@@ -14,6 +16,7 @@ public class PlayerUIManager : MonoBehaviour{
     private ItemSlot currentItemSlot = null;
 
     void Start(){
+        instance = this;
         playerInventory = PlayerInventory.Instance;
         SetInventoryUI();
     }
@@ -83,7 +86,7 @@ public class PlayerUIManager : MonoBehaviour{
         return GetNextFreeSlotCollection();
     }
 
-    private void SetInventoryUI(){
+    public void SetInventoryUI(){
         List<GameObject> collection = playerInventory.GetTileCollection();
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);

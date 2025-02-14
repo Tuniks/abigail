@@ -38,6 +38,7 @@ public class PlayerInteractor : MonoBehaviour{
     void LateUpdate(){
         if(dialogueRunner.IsDialogueRunning){
             isTalking = true;
+            pc.SetIsBusy(true);
         } else {
             if(isTalking) pc.SetIsBusy(false);
             isTalking = false;

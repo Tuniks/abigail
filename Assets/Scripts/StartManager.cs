@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class StartManager : MonoBehaviour{
     public float fadeSpeed = 1f;
     public Image bg;
-    public Image button;
     public GameObject poem;
     
+    public string startScene = "FELT_mom";
+
     private Color fadingColor;
     private bool isFading = false;
     private bool hasFaded = false;
@@ -23,7 +24,6 @@ public class StartManager : MonoBehaviour{
         if(isFading){
             fadingColor.a -= Time.deltaTime * fadeSpeed;
             bg.color = fadingColor;
-            button.color = fadingColor;
             if(fadingColor.a <= 0){
                 isFading = false;
                 hasFaded = true;
@@ -34,7 +34,7 @@ public class StartManager : MonoBehaviour{
         }
 
         if(canStart && Input.anyKey){
-            SceneManager.LoadScene("MomsHouse");
+            SceneManager.LoadScene(startScene);
         }
     }
 

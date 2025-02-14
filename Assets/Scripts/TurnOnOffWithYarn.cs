@@ -3,26 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class TurnOnOffWithYarn : MonoBehaviour
-{
+public class TurnOnOffWithYarn : MonoBehaviour{
     public GameObject ObjectToActivate;
     public GameObject ObjectToDeactivate;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Tile[] tilesInChest;
+    public PlayerInventory playerInventory;
 
     [YarnCommand]
-    public void ExitPossible()
-    {
+    public void ExitPossible(){
+        playerInventory.AddTilesToCollection(tilesInChest);
         ObjectToActivate.SetActive(true);
         ObjectToDeactivate.SetActive(false);
     }

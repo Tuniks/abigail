@@ -8,7 +8,7 @@ public enum State {
     Setup,
     Pick,
     Argument,
-    Winner,
+    Decision,
     Result,
 }
 
@@ -25,10 +25,22 @@ public class TileGameManager : MonoBehaviour{
     public ActiveSpot p1Active;
     public ActiveSpot p2Active;
     public EnemyHand p2Hand;
+    public ArgumentCollection playerArguments;
+    public ArgumentCollection enemyArguments;
+    public ArgumentCollection judgeArguments;
+    private List<Argument> currentPlayerArgs;
+    private int currentChosenArgumentIndex;
+    private Argument currentEnemyArg;
 
     // If not empty, these will override random assignement of cards and challenges 
     [Header("Presets")]
-    public int[] challengePresets;
+    public int[] challengesPreset;
+    public Tile[] enemyTilePreset;
+
+    public bool showTutorial = false;
+
+    [Header("Ending")]
+    public string nextScene = "FELT_area_post";
 
     private TileUIManager UIManager;
     private State current = State.Setup;
@@ -38,8 +50,6 @@ public class TileGameManager : MonoBehaviour{
     private int challengesCount = 3;
     private int currentChallengeIndex = 0;
 
-    private List<(Attributes, string, float)> currentArguments;
-
     private int score = 0;
 
 
@@ -48,10 +58,12 @@ public class TileGameManager : MonoBehaviour{
         challengesManager = GetComponent<Challenges>();
         UIManager = GetComponent<TileUIManager>();
 
-        challenges = challengesManager.GetRandomChallenges(challengesCount);
+        if(challengesPreset.Length == challengesCount){
+            challenges = challengesPreset;
+        } else challenges = challengesManager.GetRandomChallenges(challengesCount);
         currentChallengeIndex = 0;
 
-        StartSetup();
+        StartGame();
     }
 
     private void SetState(State _state){
@@ -67,9 +79,6 @@ public class TileGameManager : MonoBehaviour{
         switch(_state){
             case State.Tutorial:
                 break;
-            
-            case State.Setup:
-                break;
 
             case State.Pick:
                 UIManager.UpdateChallengeBubble(challenges[currentChallengeIndex]);
@@ -82,7 +91,7 @@ public class TileGameManager : MonoBehaviour{
                 enemyActive.SetActive(true);
                 break;
             
-            case State.Winner:
+            case State.Decision:
                 playerActive.SetActive(true);
                 enemyActive.SetActive(true);
                 break;
@@ -95,13 +104,18 @@ public class TileGameManager : MonoBehaviour{
         UIManager.SetUIState(current);
     }
 
-    // Set Up Phase
-    public void StartSetup(){
-        UIManager.UpdateChallengesList(challenges);
-        SetState(State.Setup);
+    public void StartGame(){
+        if(showTutorial){
+            StartTutorial();
+        } else StartRound();
     }
 
-    // Pick Phase
+    // === Tutorial Phase ===
+    public void StartTutorial(){
+        SetState(State.Tutorial);
+    }
+
+    // === Pick Phase ===
     public void StartRound(){
         if(currentChallengeIndex >2){
             RevealResult();
@@ -110,60 +124,114 @@ public class TileGameManager : MonoBehaviour{
         SetState(State.Pick);
     }
 
-    // Argument Phase
+    // === Argument Phase ===
     public void RevealPreArgumentWinner(){
         if(current != State.Pick) return;
 
         // Select card for opponent
-        p2Hand.ActivateRandomCard();
+        if(enemyTilePreset.Length > currentChallengeIndex){
+            p2Hand.ActivateCard(enemyTilePreset[currentChallengeIndex]);
+        } else p2Hand.ActivateRandomCard();
 
         // Check result
         bool result = CheckResult();
 
-        // Get Arguments
-        List<(Attributes, string, float)> arguments = challengesManager.Get3ResponsesFromChallenge(challenges[currentChallengeIndex], result);
-        currentArguments = arguments;
-        string[] argumentsText = new string[3]{
-            arguments[0].Item2,
-            arguments[1].Item2,
-            arguments[2].Item2
-        };
+        // Get Argument overlap
+        List<Attributes> currentChallengeAttributes = challengesManager.GetChallengeAttributes(challenges[currentChallengeIndex]);
+        List<Argument> playerArgs = judgeArguments.GetRelevantOverlap(playerArguments.argumentCollection, currentChallengeAttributes, p1Active.activeTile);
+        List<Argument> enemyArgs = judgeArguments.GetRelevantOverlap(enemyArguments.argumentCollection, currentChallengeAttributes, p2Active.activeTile);
+
+        // Get narrower set of arguments
+        currentPlayerArgs = PickRandomArguments(playerArgs, 5);
+        List<string> playerArgsLines= GetArgumentsText(currentPlayerArgs);
+        enemyArgs = PickRandomArguments(enemyArgs, 1);
+        currentEnemyArg = enemyArgs[0];
 
         // Update UI
         UIManager.UpdatePreArgumentRoundWinner(result);
-        UIManager.UpdateArgumentBubbles(argumentsText, p1Active.activeTile.GetName());
+        UIManager.UpdateArgumentList(playerArgsLines);
+
+        // Set new state
         SetState(State.Argument);
+    }    
+
+    // pick arguments for oponent
+    private List<Argument> PickRandomArguments(List<Argument> args, int count){
+        List<Argument> rand = new List<Argument>();
+        
+        // TO DO ALWAYS PICK SILENCE OPTION
+        while(args.Count > 0 && count > 0){
+            int r = Random.Range(0, args.Count);
+            rand.Add(args[r]);
+            args.RemoveAt(r);
+            count--;
+        }
+
+        return rand;
     }
 
+    // gets strings from arguments
+    private List<string> GetArgumentsText(List<Argument> args){
+        List<string> lines = new List<string>();
+        foreach(Argument arg in args){
+            lines.Add(arg.GetArgumentationLine());
+        }
+        return lines;
+    }
+
+    // adds modifiers and sends dialogue strings to UI manager
     public void OnArgumentPicked(int arg){
-        Debug.Log(arg);
-        (Attributes, string, float) chosen = currentArguments[arg];
-        p1Active.activeTile.AddMultiplier(chosen.Item1, chosen.Item3);
+        currentChosenArgumentIndex = arg;
+        Argument chosen = currentPlayerArgs[arg];
+
+        // Applying modifiers
+        foreach(Attributes att in chosen.targetAttributes){
+            p1Active.activeTile.AddMultiplier(att, chosen.multiplier);
+        }
+        foreach(Attributes att in currentEnemyArg.targetAttributes){
+            p2Active.activeTile.AddMultiplier(att, chosen.multiplier);
+        }
+
+        // Updating text and starting conversation
+        string pArg = chosen.GetArgumentationLine();
+        string jResp1 = chosen.GetArgumentationResponse();
+        string eArg = currentEnemyArg.GetArgumentationLine();
+        string jResp2 = currentEnemyArg.GetArgumentationResponse();
+        UIManager.UpdateArgumentConversation(pArg, jResp1, eArg, jResp2);
+    }
+
+    public void EndArgument(){
         RevealWinner();
     }
 
-    // Winner Phase
-    public void RevealWinner(){
-        // Select argument for opponent
 
+    // === Winner Phase ===
+    public void RevealWinner(){
         // Check result
         bool result = CheckResult();
 
         // Update UI
-        UIManager.UpdateRoundWinner(result);
-        SetState(State.Winner);
+        string justification;
+        if(result){
+            justification = currentPlayerArgs[currentChosenArgumentIndex].GetJustificationLine();
+        } else {
+            justification = currentEnemyArg.GetJustificationLine();
+        }
+
+        UIManager.UpdateRoundWinner(result, justification);
+        SetState(State.Decision);
 
         // Move to next challenge
         currentChallengeIndex++;
     }
 
-    // Result Phase
+    // === Result Phase ===
     public void RevealResult(){
         UIManager.UpdateGameWinner(score>=0);
         SetState(State.Result);
     }
 
-    // General
+    // === General ===
     private bool CheckResult(){
         int index = challenges[currentChallengeIndex];
         float p1 = challengesManager.EvaluateTile(index, p1Active.activeTile);
@@ -177,7 +245,7 @@ public class TileGameManager : MonoBehaviour{
         return false;
     }
 
-    public void ResetGame(){
-        SceneManager.LoadScene("FeltAreaPostAzulejo");
+    public void EndGame(){
+        SceneManager.LoadScene(nextScene);
     }
 }
