@@ -5,7 +5,8 @@ using Cinemachine;
 public class CameraZoomDistance : MonoBehaviour
 {
     public Transform playerTransform;
-    public float velocityThreshold = 0.1f;    // The smoothed velocity above which the player is considered moving.
+    public float distanceThreshold = 2f;    
+    public float velocityThreshold = 0.2f;    // The smoothed velocity above which the player is considered moving.
     public float velocitySmoothing = 10f;     // Higher values mean faster smoothing.
     public float movementZoomDelay = 0.3f;    // Delay (in seconds) before zooming out when the player starts moving.
     public float zoomBackDelay = 0.5f;        // Delay (in seconds) before zooming in when the player stops moving.
@@ -16,6 +17,7 @@ public class CameraZoomDistance : MonoBehaviour
     private CinemachineVirtualCamera vCam;
     private CinemachineFramingTransposer framingTransposer;
     private Vector3 lastPlayerPos;
+    private Vector3 lastZoomIn;
     private float smoothedVelocity = 0f;
 
     private enum ZoomState { ZoomedIn, ZoomedOut }
@@ -39,12 +41,15 @@ public class CameraZoomDistance : MonoBehaviour
             return;
         }
         lastPlayerPos = playerTransform.position;
+        lastZoomIn = playerTransform.position;
         framingTransposer.m_CameraDistance = minCameraDistance;
     }
 
-    void Update()
-    {
-        // Calculate instantaneous velocity.
+    void Update(){
+        // Calculate distance from last zoom in
+        float deltaDist = Vector3.Distance(playerTransform.position, lastZoomIn);
+
+        // Calculate velocity
         Vector3 delta = playerTransform.position - lastPlayerPos;
         float instantaneousVelocity = delta.magnitude / Time.deltaTime;
         lastPlayerPos = playerTransform.position;
@@ -52,35 +57,26 @@ public class CameraZoomDistance : MonoBehaviour
         // Smooth the velocity to avoid jitter.
         smoothedVelocity = Mathf.Lerp(smoothedVelocity, instantaneousVelocity, Time.deltaTime * velocitySmoothing);
 
-        // State machine: if zoomed in and smoothed velocity exceeds threshold, start counting.
-        // When the delay is exceeded, switch to zoomed out.
-        if (currentState == ZoomState.ZoomedIn)
-        {
-            if (smoothedVelocity > velocityThreshold)
-            {
+        // If distance from last zoom in is greater than threshhold, zoom out
+        if (currentState == ZoomState.ZoomedIn){
+            if (deltaDist > distanceThreshold){
                 timer += Time.deltaTime;
-                if (timer >= movementZoomDelay)
-                {
+                if (timer >= movementZoomDelay){
                     currentState = ZoomState.ZoomedOut;
                     timer = 0f;
                 }
-            }
-            else
-            {
-                timer = 0f;
-            }
+            } else timer = 0f;
         }
         // If zoomed out and smoothed velocity falls below threshold, start counting idle time.
         // When the idle delay is exceeded, switch to zoomed in.
-        else // currentState == ZoomState.ZoomedOut
-        {
-            if (smoothedVelocity <= velocityThreshold)
-            {
+        else{
+            if (smoothedVelocity <= velocityThreshold){
                 timer += Time.deltaTime;
                 if (timer >= zoomBackDelay)
                 {
                     currentState = ZoomState.ZoomedIn;
                     timer = 0f;
+                    lastZoomIn = playerTransform.position;
                 }
             }
             else
