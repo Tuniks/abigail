@@ -29,6 +29,8 @@ public class AbigailArrowOptions : MonoBehaviour
         if (currentState == State.Choose)
         {
             HandleSelectionChange();
+            HandleMouseSelection(); // Detects mouse click selection
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 ConfirmSelection();
@@ -52,6 +54,45 @@ public class AbigailArrowOptions : MonoBehaviour
             {
                 selection = 1;
                 HighlightSelection();
+            }
+        }
+    }
+
+    void HandleMouseSelection()
+    {
+        Vector3 mouseScreenPos = Input.mousePosition;
+        float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+        // Set dimensions for the box cast (adjust width and height)
+        Vector2 boxCastSize = new Vector2(1f, 1f);  // Adjust the size to fit the objects
+
+        // Use Physics2D.BoxCast for larger detection
+        RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+        if (hit.collider != null)
+        {
+            GameObject hoveredObject = hit.collider.gameObject;
+
+            if (hoveredObject == option1)
+            {
+                selection = 0;
+                HighlightSelection();
+
+                if (Input.GetMouseButtonDown(0)) // Left click
+                {
+                    ConfirmSelection();
+                }
+            }
+            else if (hoveredObject == option2)
+            {
+                selection = 1;
+                HighlightSelection();
+
+                if (Input.GetMouseButtonDown(0)) // Left click
+                {
+                    ConfirmSelection();
+                }
             }
         }
     }
