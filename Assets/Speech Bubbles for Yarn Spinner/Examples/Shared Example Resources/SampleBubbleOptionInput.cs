@@ -21,10 +21,20 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
         [SerializeField] InputActionReference? nextOptionAction;
         [SerializeField] InputActionReference? previousOptionAction;
 
+        private float inputCooldown = 0.0f;
+
         /// <summary>
         /// The dialogue view responsible for managing the bubbles.
         /// </summary>
         [SerializeField] private BubbleDialogueView bubbleDialogueView;
+
+        private void Update()
+        {
+            if (inputCooldown > 0.0f)
+            {
+                inputCooldown -= Time.deltaTime;
+            }
+        }
 
         private void UpdateActionCallbacks(bool enable)
         {
@@ -77,6 +87,11 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
 
         public void OnAdvanceDialogue(InputAction.CallbackContext context)
         {
+            if (inputCooldown > 0.0f)
+            {
+                return;
+            }
+            
             if (bubbleDialogueView.IsShowingBubble == false) {
                 return;
             }
@@ -90,6 +105,8 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
                     bubbleDialogueView.UserRequestedViewAdvancement();
                     break;
             }
+
+            inputCooldown = .45f;
         }
     }
     #endif
