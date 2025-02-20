@@ -36,6 +36,9 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject DaniComment1;  // Public GameObject for Dani Comment 1
     public GameObject DaniComment2;  // Public GameObject for Dani Comment 2
     private int currentRound = 1;    // Track the current round (1 or 2)
+    private Transform previouslyHoveredTile;  
+    private Vector3 originalHoveredScale;
+
     
     
     public CollagePlayerHand playerHand;
@@ -172,7 +175,7 @@ public class DaniCollageGameManager : MonoBehaviour
                 if (playerHand.hand.Count > 0)
                 {
                     currentTileIndex = 0; // Move to the first tile
-                    HighlightSelection();
+                    //HighlightSelection();
                     UpdateArrowPosition(); // Update arrow position
                     arrowSprite.SetActive(true);
                 }
@@ -198,93 +201,146 @@ public class DaniCollageGameManager : MonoBehaviour
         }
     }
 
-
-// Handle player input in the PlayerTileChoice1 state
-    private void HandleTileChoice()
+private void HandleTileChoice()
+{
+    // Ensure player hand has items before processing input
+    if (playerHand.hand == null || playerHand.hand.Count == 0)
     {
-        // Ensure player hand has items before processing input
-        if (playerHand.hand.Count == 0) return;
-
-        // Handle input for W, S, or arrow keys to move the arrow
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveArrowUp();
-            HighlightSelection();
-        }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveArrowDown();
-            HighlightSelection();
-        }
-
-        // Update the arrow's position based on the current tile index
-        UpdateArrowPosition();
-
-        // Handle input for E to select the tile under the arrow
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            SelectTile();
-        }
+        Debug.LogError("playerHand.hand is null or empty!");
+        return;
     }
 
-
-// Increase the size of the selected tile by 10% and reset the previous one
-    private void HighlightSelection()
+    // Handle input for W, S, or arrow keys to move the arrow
+    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
     {
-        if (playerHand.hand.Count == 0) return;
-
-        Transform newSelection = playerHand.hand[currentTileIndex].transform;
-
-        // Ensure we don't scale an already highlighted object again
-        if (previouslySelectedTile != null && previouslySelectedTile != newSelection)
-        {
-            previouslySelectedTile.localScale = originalScale; // Reset previous tile
-        }
-
-        // Store original scale if selecting a new tile
-        if (newSelection != previouslySelectedTile)
-        {
-            originalScale = newSelection.localScale;
-        }
-
-        // Apply the scale increase relative to original scale
-        newSelection.localScale = originalScale * 1.3f;
-
-        // Update the reference
-        previouslySelectedTile = newSelection;
+        MoveArrowUp();
+        HighlightSelection();
     }
+    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+    {
+        MoveArrowDown();
+        HighlightSelection();
+    }
+
+    // Update the arrow's position based on the current tile index
+    UpdateArrowPosition();
+
+    // Handle input for E to select the tile under the arrow
+    if (Input.GetKeyDown(KeyCode.E))
+    {
+        SelectTile();
+    }
+
+    // Convert mouse position to world space
+    Vector3 mouseScreenPos = Input.mousePosition;
+    float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+    // BoxCast for hover detection
+    Vector2 boxCastSize = new Vector2(1f, 1f);
+    RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+    // Keep track of the tile currently hovered over
+    Transform hoveredTile = null;
+
+    if (hit.collider != null)
+    {
+        GameObject hoveredObject = hit.collider.gameObject;
+        int hoveredIndex = playerHand.hand.FindIndex(tile => tile.gameObject.Equals(hoveredObject));
+
+        if (hoveredIndex != -1)
+        {
+            hoveredTile = playerHand.hand[hoveredIndex].transform;
+
+            // Scale up the hovered tile
+            if (hoveredTile != previouslyHoveredTile)
+            {
+                ResetHoveredTileSize(); // Reset previous hovered tile size
+                originalHoveredScale = hoveredTile.localScale; // Store original scale
+                hoveredTile.localScale = originalHoveredScale * 1.3f;
+                previouslyHoveredTile = hoveredTile;
+            }
+
+            // Handle click selection
+            if (Input.GetMouseButtonDown(0))
+            {
+                currentTileIndex = hoveredIndex;
+                SelectTile();
+            }
+        }
+    }
+    else
+    {
+        ResetHoveredTileSize(); // Reset if no tile is hovered
+    }
+}
+
+// **Resets previously hovered tile size**
+private void ResetHoveredTileSize()
+{
+    if (previouslyHoveredTile != null)
+    {
+        previouslyHoveredTile.localScale = originalHoveredScale;
+        previouslyHoveredTile = null;
+    }
+}
+
+// **Increases size of selected tile & resets previous one**
+private void HighlightSelection()
+{
+    if (playerHand.hand.Count == 0) return;
+
+    Transform newSelection = playerHand.hand[currentTileIndex].transform;
+
+    if (previouslySelectedTile != null && previouslySelectedTile != newSelection)
+    {
+        previouslySelectedTile.localScale = originalScale; // Reset previous tile
+    }
+
+    if (newSelection != previouslySelectedTile)
+    {
+        originalScale = newSelection.localScale;
+    }
+
+    newSelection.localScale = originalScale * 1.3f;
+    previouslySelectedTile = newSelection;
+}
+
 
 // Move the arrow up in the PlayerTileChoice1 state
-    private void MoveArrowUp()
+private void MoveArrowUp()
+{
+    if (currentTileIndex > 0)
     {
-        if (currentTileIndex > 0)
-        {
-            currentTileIndex--;
-        }
+        currentTileIndex--;
+        Debug.Log($"Moved arrow up. Current index: {currentTileIndex}");
     }
+}
 
-    private void MoveArrowDown()
+// Move the arrow down in the PlayerTileChoice1 state
+private void MoveArrowDown()
+{
+    if (currentTileIndex < playerHand.hand.Count - 1)
     {
-        if (currentTileIndex < playerHand.hand.Count - 1)
-        {
-            currentTileIndex++;
-        }
+        currentTileIndex++;
+        Debug.Log($"Moved arrow down. Current index: {currentTileIndex}");
     }
-
+}
 
 // Update the arrow's position to be over the selected tile
-    private void UpdateArrowPosition()
+private void UpdateArrowPosition()
+{
+    if (playerHand.hand.Count > 0 && currentTileIndex < playerHand.hand.Count)
     {
-        if (playerHand.hand.Count > 0 && currentTileIndex < playerHand.hand.Count)
-        {
-            // Get the current tile's position
-            Vector3 tilePosition = playerHand.hand[currentTileIndex].transform.position;
+        // Get the current tile's position
+        Vector3 tilePosition = playerHand.hand[currentTileIndex].transform.position;
 
-            // Move the arrow sprite to the current tile's position with the added offset
-            arrowSprite.transform.position = new Vector3(tilePosition.x, tilePosition.y + arrowOffsetY, tilePosition.z);
-        }
+        // Move the arrow sprite to the current tile's position with the added offset
+        arrowSprite.transform.position = new Vector3(tilePosition.x, tilePosition.y + arrowOffsetY, tilePosition.z);
+
+        //Debug.Log($"Arrow moved to tile position: {tilePosition}");
     }
-
+}
 
 // Select the tile when the player presses E
 private void SelectTile()
@@ -292,8 +348,12 @@ private void SelectTile()
     // Store the selected tile
     selectedTile = playerHand.hand[currentTileIndex];
 
+    // Log the selected tile information
+    Debug.Log($"Tile selected: {selectedTile.name}");
+
     // Transition to the next state: PlayerSlotChoice1
     SwitchState(GameState.PlayerSlotChoice1);
+    Debug.Log("State switched to PlayerSlotChoice1.");
 }
 
 
@@ -303,13 +363,14 @@ private void HandleSlotChoice()
     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
     {
         MoveSlotArrowUp();
-        //HighlightSlot();
     }
     if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
     {
         MoveSlotArrowDown();
-        //HighlightSlot();
     }
+
+    // Continuously check if mouse is hovering over any emptySlot and update the arrow position accordingly
+    UpdateArrowPositionOnHover();
 
     // Update the slot arrow's position based on the current slot index
     UpdateSlotArrowPosition();
@@ -319,9 +380,13 @@ private void HandleSlotChoice()
     {
         SelectSlot();
     }
+
+    // Handle mouse click to select the slot that the cursor is hovering over
+    if (Input.GetMouseButtonDown(0)) // Left mouse button click
+    {
+        HandleMouseClickSelection();
+    }
 }
-
-
 
 // Move the slot arrow up in the PlayerSlotChoice1 state
 private void MoveSlotArrowUp()
@@ -340,6 +405,89 @@ private void MoveSlotArrowDown()
         currentSlotIndex++;
     }
 }
+
+// Update the arrow position based on mouse hover over the empty slots
+private void UpdateArrowPositionOnHover()
+{
+    // Convert mouse position to world space
+    Vector3 mouseScreenPos = Input.mousePosition;
+
+    // Get the camera's depth (Z position)
+    float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+
+    // Convert screen space position to world space using the correct Z depth
+    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+    // Set dimensions for the rectangular (box) cast (adjust width and height)
+    Vector2 boxCastSize = new Vector2(1f, 1f);  // Adjust the size to your needs (width, height)
+
+    // Use Physics2D.BoxCast to simulate a larger rectangular raycast area
+    RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+    // Draw debug box in Scene view for visualization
+    Debug.DrawRay(mouseWorldPos, Vector3.forward * 10, Color.red, 1f);
+
+    if (hit.collider != null)
+    {
+        Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
+
+        // Check if the hit object is part of the emptySlots list
+        GameObject hoveredSlot = hit.collider.gameObject;
+
+        int hoveredSlotIndex = emptySlots.FindIndex(slot => slot.gameObject.Equals(hoveredSlot));
+
+        if (hoveredSlotIndex != -1)
+        {
+            Debug.Log($"Hovered over slot at index: {hoveredSlotIndex}");
+
+            // Set the current slot index to the hovered slot index
+            currentSlotIndex = hoveredSlotIndex;
+        }
+    }
+    else
+    {
+        Debug.LogWarning("BoxCast did not hit any object.");
+    }
+}
+
+// Handle mouse click to select the slot under the cursor
+private void HandleMouseClickSelection()
+{
+    // Convert mouse position to world space
+    Vector3 mouseScreenPos = Input.mousePosition;
+    float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+    // Set dimensions for the rectangular (box) cast (adjust width and height)
+    Vector2 boxCastSize = new Vector2(1f, 1f);  // Adjust the size to your needs (width, height)
+
+    // Use Physics2D.BoxCast to simulate a larger rectangular raycast area
+    RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+    if (hit.collider != null)
+    {
+        Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
+
+        // Check if the clicked object is part of the emptySlots list
+        GameObject clickedSlot = hit.collider.gameObject;
+        int clickedSlotIndex = emptySlots.FindIndex(slot => slot.gameObject.Equals(clickedSlot));
+
+        if (clickedSlotIndex != -1)
+        {
+            Debug.Log($"Slot clicked at index: {clickedSlotIndex}");
+
+            // Set the current slot index to the clicked index and select it
+            currentSlotIndex = clickedSlotIndex;
+            SelectSlot();
+        }
+    }
+    else
+    {
+        Debug.LogWarning("Mouse click did not hit any object.");
+    }
+}
+
+
 
 // Update the slot arrow's position to be over the selected slot, with its own offset
 private void UpdateSlotArrowPosition()
@@ -405,7 +553,7 @@ private void UpdateSlotArrowPosition()
         }
 
         // Wait for the player to press E to move to the next state
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             DaniComment1.SetActive(false);
             DaniComment2.SetActive(false);
@@ -455,7 +603,7 @@ private void UpdateSlotArrowPosition()
         }
     }
 
-    private void HandleJudgement()
+private void HandleJudgement()
 {
     if (emptySlots.Count == 0)
     {
@@ -464,32 +612,75 @@ private void UpdateSlotArrowPosition()
         Question.SetActive(true);
         judgementarrow.SetActive(true);
 
-        // Store the original scales when first activated
-        if (previousSelectedOption == null)
+        // Ensure original scales are stored only once
+        if (originalYesScale == Vector3.zero || originalNoScale == Vector3.zero)
         {
             originalYesScale = yes.transform.localScale;
             originalNoScale = no.transform.localScale;
         }
 
+        Vector3 enlargedYesScale = originalYesScale * 1.3f;
+        Vector3 enlargedNoScale = originalNoScale * 1.3f;
+
         // Handle arrow key input to cycle between "Yes" and "No"
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            // Cycle between Yes and No
             judgementSelection = 1 - judgementSelection; // Toggle between 0 and 1
-            UpdateYesNoArrowPosition(); // Update arrow position
+            UpdateYesNoArrowPosition();
         }
 
-        // Confirm the choice with the Enter/E key
+        // Confirm selection with Enter/E key
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
         {
-            if (judgementSelection == 0) // Yes was selected
-            {
+            if (judgementSelection == 0)
                 SwitchState(GameState.SwitchOut);
-            }
-            else if (judgementSelection == 1) // No was selected
-            {
+            else
                 SwitchState(GameState.FinalJudgment);
+        }
+
+        // Convert mouse position to world space
+        Vector3 mouseScreenPos = Input.mousePosition;
+        float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+        // BoxCast for hover and click detection
+        Vector2 boxCastSize = new Vector2(1f, 1f);
+        RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+        if (hit.collider != null)
+        {
+            Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
+
+            // Apply hover effect
+            if (hit.collider.gameObject == yes)
+            {
+                yes.transform.localScale = enlargedYesScale;
+                no.transform.localScale = originalNoScale;
             }
+            else if (hit.collider.gameObject == no)
+            {
+                no.transform.localScale = enlargedNoScale;
+                yes.transform.localScale = originalYesScale;
+            }
+
+            // Handle click
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hit.collider.gameObject == yes)
+                {
+                    SwitchState(GameState.SwitchOut);
+                }
+                else if (hit.collider.gameObject == no)
+                {
+                    SwitchState(GameState.FinalJudgment);
+                }
+            }
+        }
+        else
+        {
+            // Reset sizes when not hovering
+            yes.transform.localScale = originalYesScale;
+            no.transform.localScale = originalNoScale;
         }
     }
     else
@@ -497,6 +688,8 @@ private void UpdateSlotArrowPosition()
         SwitchState(GameState.PlayerTileChoice1);
     }
 }
+
+
 
 private void UpdateYesNoArrowPosition()
 {
@@ -561,7 +754,6 @@ private void HandleSwitchOut()
     yes.SetActive(false);
     no.SetActive(false);
     Question.SetActive(false);
-    
 
     // Handle player input for moving the slot selection arrow with WASD or arrow keys
     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -574,35 +766,68 @@ private void HandleSwitchOut()
     }
 
     // Update the slot arrow's position based on the current slot index
-    UpdateSlotDaniArrowPosition();
+    if (!isHoveringOverTile)
+    {
+        UpdateSlotDaniArrowPosition();
+    }
 
     // Handle input for E to select the tile under the arrow
     if (Input.GetKeyDown(KeyCode.E))
     {
-        // Ensure DaniHand has tiles to switch out
-        if (DaniHand.Count > 0)
+        SelectTileUnderArrow();
+    }
+
+    // Handle hover functionality using raycasting
+    HandleTileHover();
+}
+
+private bool isHoveringOverTile = false; // Track if the player is hovering over a tile
+
+private void HandleTileHover()
+{
+    // Convert mouse position to world space
+    Vector3 mouseScreenPos = Input.mousePosition;
+    float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+    Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+    // Set dimensions for the rectangular (box) cast (adjust width and height)
+    Vector2 boxCastSize = new Vector2(1f, 1f);  // Adjust the size to your needs (width, height)
+
+    // Use Physics2D.BoxCast to simulate a larger rectangular raycast area
+    RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+    if (hit.collider != null)
+    {
+        GameObject hoveredTile = hit.collider.gameObject;
+
+        // Check if the hovered tile is in DaniHand and update the arrow visibility
+        if (DaniHand.Contains(hoveredTile))
         {
-            // Select the tile from DaniHand based on currentSlotIndex
-            GameObject selectedTile = DaniHand[currentSlotIndex];
+            isHoveringOverTile = true;  // Player is hovering over a tile
 
-            // Remove the selected tile from DaniHand
-            DaniBackupTile.SetActive(true);
-            DaniHand.Remove(selectedTile);
-            Destroy(selectedTile);
-            slotArrowSprite.SetActive(false);
+            // Show the arrow when hovering over a tile
+            slotArrowSprite.SetActive(true);
+            slotArrowSprite.transform.position = hoveredTile.transform.position;
 
-            // Add the DaniBackUpTile to DaniHand
-            DaniHand.Add(DaniBackupTile);
-
-            // Optionally, log or update UI to show the replacement
-            Debug.Log($"Tile {selectedTile.name} replaced by {DaniBackupTile.name}");
-
-            // Optionally update the tile's position if needed
-            DaniBackupTile.transform.position = selectedTile.transform.position;
-
-            // After selection, go back to another state or update the game flow
-            SwitchState(GameState.FinalJudgment); // For example, move to FinalJudgment state
+            // Handle click to select tile when mouse is over a tile
+            if (Input.GetMouseButtonDown(0)) // Left click
+            {
+                currentSlotIndex = DaniHand.IndexOf(hoveredTile);
+                SelectTileUnderArrow(); // Select the hovered tile as per the previous functionality
+            }
         }
+        else
+        {
+            // Hide the arrow when not hovering over a tile in DaniHand
+            slotArrowSprite.SetActive(false);
+            isHoveringOverTile = false;  // Not hovering over a valid tile
+        }
+    }
+    else
+    {
+        // Hide the arrow when not hovering over any valid tile
+        slotArrowSprite.SetActive(false);
+        isHoveringOverTile = false;
     }
 }
 
@@ -624,7 +849,7 @@ private void MoveSlotDaniArrowDown()
 
 private void UpdateSlotDaniArrowPosition()
 {
-    if (DaniHand.Count > 0)
+    if (DaniHand.Count > 0 && !isHoveringOverTile)  // Only move arrow if not hovering
     {
         // Get the current slot's position in DaniHand
         Vector3 slotPosition = DaniHand[currentSlotIndex].transform.position;
@@ -634,6 +859,35 @@ private void UpdateSlotDaniArrowPosition()
     }
 }
 
+private void SelectTileUnderArrow()
+{
+    // Ensure DaniHand has tiles to switch out
+    if (DaniHand.Count > 0)
+    {
+        // Select the tile from DaniHand based on currentSlotIndex
+        GameObject selectedTile = DaniHand[currentSlotIndex];
+
+        // Remove the selected tile from DaniHand
+        DaniBackupTile.SetActive(true);
+        DaniHand.Remove(selectedTile);
+        Destroy(selectedTile);
+        slotArrowSprite.SetActive(false);
+
+        // Add the DaniBackUpTile to DaniHand
+        DaniHand.Add(DaniBackupTile);
+
+        // Optionally, log or update UI to show the replacement
+        Debug.Log($"Tile {selectedTile.name} replaced by {DaniBackupTile.name}");
+
+        // Optionally update the tile's position if needed
+        DaniBackupTile.transform.position = selectedTile.transform.position;
+
+        // After selection, go back to another state or update the game flow
+        SwitchState(GameState.FinalJudgment); // For example, move to FinalJudgment state
+    }
+}
+
+
 
     private void HandleFinalJudgment()
     {
@@ -642,7 +896,7 @@ private void UpdateSlotDaniArrowPosition()
         Question.SetActive(false);
         Stars.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             SwitchState(GameState.Leave);
         }

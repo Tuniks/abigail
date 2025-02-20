@@ -17,7 +17,7 @@ public class StartCollageAzulejo : MonoBehaviour
     {
         Introtext.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
             Introtext.SetActive(false);
             CycleManager.SetActive(true);
