@@ -31,7 +31,7 @@ public class DaniCollageGameManager : MonoBehaviour
     private Vector3 originalScale; // Stores original tile scale
     private Vector3 originalScaleSlot;  // Store the original scale of the slot
     private Transform previouslySelectedSlot;  // Keep track of the previously selected slot
-    private int previousSlotIndex = -1;
+    //private int previousSlotIndex = -1;
     private Transform previousSelectedOption = null;  // Store the previously selected option
     private Vector3 originalYesScale;
     private Vector3 originalNoScale;
@@ -40,6 +40,8 @@ public class DaniCollageGameManager : MonoBehaviour
     private int currentRound = 1;    // Track the current round (1 or 2)
     private Transform previouslyHoveredTile;  
     private Vector3 originalHoveredScale;
+    public GameObject DaniReplaceComment;
+    public GameObject FinalDaniComment;
 
     // Checkboxes for each attribute to control validation in the Inspector
     public bool checkBeauty = true;
@@ -976,7 +978,7 @@ private void HandleDaniJudge()
     if (checkTerror) selectedTotal += totalTerror;
 
     // If the sum of selected attributes is greater than 8, the tile is invalid
-    bool isTileValid = selectedTotal >= 8;
+    bool isTileValid = selectedTotal >= 12;
 
     if (isTileValid)
     {
@@ -1009,6 +1011,7 @@ private void HandleDaniJudge()
         // Deactivate the chosen tile
         Debug.Log($"Deactivating Tile: {randomTile.gameObject.name}");
         randomTile.gameObject.SetActive(false);
+        DaniReplaceComment.SetActive(true);
 
         // Remove the tile from the invalidTiles list after deactivation
         //invalidTiles.Remove(randomTile);
@@ -1042,6 +1045,7 @@ private void HandleDaniJudge()
 
         void SelectReplacementTile()
         {
+            DaniReplaceComment.SetActive(false);
             Tile reselectedTile = playerHand.hand[currentTileIndex];
 
             if (invalidTiles.Count > 0)
@@ -1132,6 +1136,7 @@ private void HandleDaniJudge()
         no.SetActive(false);
         Question.SetActive(false);
         Stars.SetActive(true);
+        FinalDaniComment.SetActive(true);
 
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
         {
@@ -1155,6 +1160,7 @@ private void HandleDaniJudge()
         PromptImages.SetActive(false);
         EmptySlots.SetActive(false);
         Stars.SetActive(false);
+        FinalDaniComment.SetActive(false);
         LeaveObject.SetActive(true);
         arrowSprite.SetActive(true);
     }
