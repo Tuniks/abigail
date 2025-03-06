@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option1Toe
+  nodeName: Round3Option1Dragon
 --- !u!65 &37275010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 53509447}
   - component: {fileID: 53509446}
   m_Layer: 0
-  m_Name: Squid
+  m_Name: Bookmark
   m_TagString: NPC5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option2Squid
+  nodeName: Round3Option2Bookmark
 --- !u!65 &53509447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option2Glasses
+  nodeName: Round3Option2GlassesFB
 --- !u!65 &57122225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option2Dragon
+  nodeName: Round1Option2Spider
 --- !u!65 &74764863
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1932,6 +1932,7 @@ GameObject:
   - component: {fileID: 182166288}
   - component: {fileID: 182166289}
   - component: {fileID: 182166290}
+  - component: {fileID: 182166291}
   m_Layer: 0
   m_Name: Abigail
   m_TagString: Untagged
@@ -1948,10 +1949,11 @@ Transform:
   m_GameObject: {fileID: 182166287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.5, y: -20, z: -6.28}
+  m_LocalPosition: {x: 17.74, y: -20, z: -6.28}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 531659298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &182166289
@@ -2038,6 +2040,22 @@ MonoBehaviour:
   m_DefaultActionMap: Dialogue
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &182166291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182166287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983e4636ae10b4609b3cf2244fb724db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterName: Abigail
+  bubblePosition: {fileID: 531659298}
+  characterBubbleData: {fileID: 11400000, guid: e719bd1336e334a459390d363c5e016b, type: 2}
+  characterBubblePrefab: {fileID: 0}
 --- !u!1 &191327677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,7 +2596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option1FlyingPill
+  nodeName: Round2Option1Cockroach
 --- !u!65 &241778499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3062,7 +3080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option1TeaBag
+  nodeName: Round1Option1TeaBagFB
 --- !u!1 &262015253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3404,7 +3422,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option1Tree
+  nodeName: Round1Option1TreeFB
+--- !u!1 &318959809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 318959811}
+  - component: {fileID: 318959810}
+  m_Layer: 0
+  m_Name: FlashbackPartyStarter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &318959810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318959809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff41b8dd2e902a044bcce58b2a041af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PartyStarterObject: {fileID: 674779228}
+--- !u!4 &318959811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318959809}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60.713047, y: 160.90793, z: -12.666066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &319336909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6165,6 +6228,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &531659297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531659298}
+  m_Layer: 0
+  m_Name: AbigailAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &531659298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531659297}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.160001, y: 3.9099984, z: -6.2799997}
+  m_LocalScale: {x: 2.5000002, y: 2.5000002, z: 2.5000002}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 182166288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &533443171
 GameObject:
   m_ObjectHideFlags: 0
@@ -6177,7 +6271,7 @@ GameObject:
   - component: {fileID: 533443174}
   - component: {fileID: 533443173}
   m_Layer: 0
-  m_Name: Tape
+  m_Name: Sock
   m_TagString: NPC2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6211,7 +6305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option2Butterfly
+  nodeName: Round2Option2Sock
 --- !u!65 &533443174
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6279,7 +6373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option1Pelican
+  nodeName: Round2Option1PelicanFB
 --- !u!65 &545842515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7141,7 +7235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option1Sock
+  nodeName: Round3Option1Angler
 --- !u!65 &636207578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7430,7 +7524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &674779230
 Transform:
   m_ObjectHideFlags: 0
@@ -7458,6 +7552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1c7b2a5b22ca14cba0800f66ce9dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DecisionReactionDone: 0
+  EndDisplayed: 0
   uiContainer: {fileID: 36153039}
   GabeText: {fileID: 0}
   buttonOption1Text: {fileID: 688417019}
@@ -8018,7 +8114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Who has never had a cavit
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
   m_sharedMaterial: {fileID: 2177152658935365370, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
@@ -8143,7 +8239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option1Gianluca
+  nodeName: Round2Option1Squid
 --- !u!65 &691774821
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8404,7 +8500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option2FlowerPower
+  nodeName: Round2Option2StickyHand
 --- !u!65 &741319655
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9642,7 +9738,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Who has never had a cavity?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
   m_sharedMaterial: {fileID: 2177152658935365370, guid: 39f4fb4ec22ddcd4b8292d83661b6db3, type: 2}
@@ -9767,7 +9863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option1AngelLighter
+  nodeName: Round2Option1Can
 --- !u!65 &886330228
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9835,7 +9931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option1Can
+  nodeName: Round3Option1FlyingGuy
 --- !u!65 &887260950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10931,7 +11027,7 @@ GameObject:
   - component: {fileID: 999224134}
   - component: {fileID: 999224133}
   m_Layer: 0
-  m_Name: Lemonade
+  m_Name: Gianlucas
   m_TagString: NPC1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10986,7 +11082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option1Lemonade
+  nodeName: Round1Option1GianlucasFB
 --- !u!1001 &1007607359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11266,7 +11362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option1Spider
+  nodeName: Round2Option1CrabwKnife
 --- !u!65 &1023689322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11605,7 +11701,7 @@ GameObject:
   - component: {fileID: 1047726783}
   - component: {fileID: 1047726782}
   m_Layer: 0
-  m_Name: Squid
+  m_Name: Butterfly
   m_TagString: NPC2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11639,7 +11735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option1Squid
+  nodeName: Round3Option1Butterfly
 --- !u!65 &1047726783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13958,7 +14054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option1Whale
+  nodeName: Round3Option1WhaleFB
 --- !u!65 &1207933251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13992,7 +14088,7 @@ GameObject:
   - component: {fileID: 1212635098}
   - component: {fileID: 1212635097}
   m_Layer: 0
-  m_Name: BunnyDeer
+  m_Name: LibertyLighter
   m_TagString: NPC2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14026,7 +14122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option2BunnyDeer
+  nodeName: Round3Option2Lighter
 --- !u!65 &1212635098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14170,7 +14266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option1Spider
+  nodeName: Round1Option1Linda
 --- !u!1 &1231797555
 GameObject:
   m_ObjectHideFlags: 0
@@ -14557,7 +14653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option2Constellation
+  nodeName: Round1Option2BunnyDeer
 --- !u!65 &1256025915
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14858,7 +14954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option2Tooth
+  nodeName: Round1Option2ToothFB
 --- !u!65 &1307029162
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15140,7 +15236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option2Gianluca
+  nodeName: Round1Option2Slime
 --- !u!65 &1339697849
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16263,7 +16359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436938499517747022, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
       propertyPath: startNode
-      value: GabeChoiceRound1
+      value: FlashbackStart
       objectReference: {fileID: 0}
     - target: {fileID: 1436938499517747022, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
       propertyPath: yarnProject
@@ -16800,7 +16896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option2Battery
+  nodeName: Round3Option2BatteriesFB
 --- !u!65 &1484605533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17837,7 +17933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option2Zebra
+  nodeName: Round1Option2ZebraFB
 --- !u!65 &1558593973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17871,7 +17967,7 @@ GameObject:
   - component: {fileID: 1564214395}
   - component: {fileID: 1564214394}
   m_Layer: 0
-  m_Name: Toe
+  m_Name: Tape
   m_TagString: NPC1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17905,7 +18001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round3Option2Toe
+  nodeName: Round3Option2Tape
 --- !u!65 &1564214395
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19485,7 +19581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option2Gianluca
+  nodeName: Round2Option2Fly
 --- !u!65 &1753872412
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20622,7 +20718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option2Hammer
+  nodeName: Round2Option2Toe
 --- !u!65 &1867011471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20980,7 +21076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round1Option1Cockroach
+  nodeName: Round1Option1Moon
 --- !u!1001 &1905389678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21641,7 +21737,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1435712324, guid: a27f37fcf4f5dc448950f79f21e1e3f6, type: 3}
-  m_Color: {r: 0.25882354, g: 0.25882354, b: 0.25882354, a: 0}
+  m_Color: {r: 0.9559748, g: 0.9529686, b: 0.9529686, a: 0.9843137}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -22403,7 +22499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5b672a3119ab4dbab097599e557e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeName: Round2Option2Crab
+  nodeName: Round2Option2HammerFB
 --- !u!65 &2122395530
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22546,7 +22642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8759869323887461347, guid: 7795619658a89164484169f6e7c4fdde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.228302
+      value: -6.56
       objectReference: {fileID: 0}
     - target: {fileID: 8759869323887461347, guid: 7795619658a89164484169f6e7c4fdde, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22848,3 +22944,4 @@ SceneRoots:
   - {fileID: 584281239}
   - {fileID: 363384543}
   - {fileID: 15015609}
+  - {fileID: 318959811}
