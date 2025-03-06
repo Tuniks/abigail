@@ -10,6 +10,27 @@ using Yarn.Unity;
 
 public class FlashBackRoundManager : MonoBehaviour
 {
+    
+        [YarnCommand]
+        public void EndReaction()
+        {
+            DecisionReactionDone = true;
+            Debug.Log("EndReaction triggered!");
+        }
+        
+        [YarnCommand]
+        public void ReadytoEnd()
+        {
+            EndDisplayed = true;
+            Debug.Log("Readytoendtriggered!");
+        }
+        
+        [YarnCommand]
+        public void RevealWinner()
+        {
+            Timetorevealwinner = true;
+        }
+    
     private enum GameState
     {
         SetChallengeText,
@@ -25,6 +46,8 @@ public class FlashBackRoundManager : MonoBehaviour
     private int roundCount = 0;
     private const int maxRounds = 3;
     private bool winnerDisplayed = false;
+    public bool DecisionReactionDone = false;
+    public bool EndDisplayed = false;
 
     private int NPC1score = 0;
     private int NPC2score = 0;
@@ -34,6 +57,7 @@ public class FlashBackRoundManager : MonoBehaviour
     private bool isDecisionComplete = false;
     private string selectedChallengeText; // Variable to store the selected text
     private bool winnerStarDisplayed = false; // Track if the star has been displayed
+    private bool Timetorevealwinner = false;
     
     public GameObject uiContainer;
     [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
@@ -66,7 +90,7 @@ public class FlashBackRoundManager : MonoBehaviour
     // Add an array to track whether each round's dialogue has been triggered
     private bool[] chaseDialogueTriggered = new bool[3];
     private bool[] momDialogueTriggered = new bool[3];
-
+    
 
     private string[] challengeTexts =
     {
@@ -79,7 +103,7 @@ public class FlashBackRoundManager : MonoBehaviour
         { "What will I miss the most about Kiln Bay?", "What's something I could encounter that would send me running home?" }, // Round 1
         { "What's my favorite secret ingredient?", "What does the worst recipe I've ever made taste like?" }, // Round 2
         {
-            "What's an object I'd like to take the form of?",
+            "What's a creature I'd like to take the form of?",
             "If I could only bring one thing with me to the big city, what would it be?"
         } // Round 3
     };
@@ -150,13 +174,13 @@ public class FlashBackRoundManager : MonoBehaviour
             switch (round)
             {
                 case 0:
-                    dialogueRunner.StartDialogue("Round1Chase");
+                    dialogueRunner.StartDialogue("Round1PromptOption1Reaction");
                     break;
                 case 1:
-                    dialogueRunner.StartDialogue("Round2Chase");
+                    dialogueRunner.StartDialogue("Round2PromptOption1Reaction");
                     break;
                 case 2:
-                    dialogueRunner.StartDialogue("Round3Chase");
+                    dialogueRunner.StartDialogue("Round3PromptOption1Reaction");
                     break;
                 default:
                     Debug.LogWarning("Invalid round number!");
@@ -173,13 +197,13 @@ public class FlashBackRoundManager : MonoBehaviour
             switch (round)
             {
                 case 0:
-                    dialogueRunner.StartDialogue("Round1Mom");
+                    dialogueRunner.StartDialogue("Round1PromptOption2Reaction");
                     break;
                 case 1:
-                    dialogueRunner.StartDialogue("Round2Mom");
+                    dialogueRunner.StartDialogue("Round2PromptOption2Reaction");
                     break;
                 case 2:
-                    dialogueRunner.StartDialogue("Round3Mom");
+                    dialogueRunner.StartDialogue("Round3PromptOption2Reaction");
                     break;
                 default:
                     Debug.LogWarning("Invalid round number!");
@@ -373,6 +397,7 @@ public class FlashBackRoundManager : MonoBehaviour
             }
         }
     }
+    
 
     private void HandleDecisionReaction()
     {
@@ -390,7 +415,7 @@ public class FlashBackRoundManager : MonoBehaviour
         uiContainer.SetActive(true);
         CurrentChallenge.text = "";
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (DecisionReactionDone == true)//i want to change this to if     public bool DecisionReactionDone = true;
         {
             // Deactivate all objects with the tag "bubble"
             //GameObject[] bubbles = GameObject.FindGameObjectsWithTag("bubble");
@@ -410,9 +435,11 @@ public class FlashBackRoundManager : MonoBehaviour
             if (roundCount >= maxRounds)
             {
                 DisplayWinnerText();
+                DecisionReactionDone = false;
                 return;
             }
             currentState = GameState.SetChallengeText;
+            DecisionReactionDone = false;
         }
     }
 
@@ -425,56 +452,57 @@ public class FlashBackRoundManager : MonoBehaviour
         if (NPC3score == maxScore) tieCount++;
         if (NPC4score == maxScore) tieCount++;
         if (NPC5score == maxScore) tieCount++;
-        
+
         {
-            // Check if the player presses the 'E' key
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Timetorevealwinner == true)
             {
-                dialogueRunner.Stop();
                 if (tieCount > 1)
                 {
                     TieStar.SetActive(true);
-                    dialogueRunner.StartDialogue("Tie");
+                    //dialogueRunner.StartDialogue("Tie");
                 }
                 else if (NPC1score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("GabeWin");
+                    //dialogueRunner.StartDialogue("GabeWin");
                     GabeStar.SetActive(true);
                 }
                 else if (NPC2score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("KateWin");
+                    //dialogueRunner.StartDialogue("KateWin");
                     KateStar.SetActive(true);
                 }
                 else if (NPC3score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("DaniWin");
+                    //dialogueRunner.StartDialogue("DaniWin");
                     DaniStar.SetActive(true);
                 }
                 else if (NPC4score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("ChaseWin");
+                    //dialogueRunner.StartDialogue("ChaseWin");
                     ChaseStar.SetActive(true);
                 }
                 else if (NPC5score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("JoannaWin");
+                    //dialogueRunner.StartDialogue("JoannaWin");
                     JoannaStar.SetActive(true);
                 }
             }
         }
-        
-        Debug.Log("Game Complete!");
-        winnerDisplayed = true;
-        WillThisWork.SetActive(true);
+
+        if (EndDisplayed == true)
+        {
+            winnerDisplayed = true;
+            WillThisWork.SetActive(true);
+        }
     }
+
 
     private void IncrementRound()
     {
         roundCount++;
         if (roundCount >= maxRounds)
         {
-            Debug.Log("Game Complete!");
+            //Debug.Log("Game Complete!");
         }
     }
 

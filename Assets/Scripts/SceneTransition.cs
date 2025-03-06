@@ -8,6 +8,7 @@ public class SceneTransition : MonoBehaviour{
 
     private void OnTriggerEnter(Collider other){
         if(sceneName == null) return;
+        Debug.Log("triggered");
         if(other.gameObject.tag != "Player") return;
 
         SceneManager.LoadScene(sceneName);
