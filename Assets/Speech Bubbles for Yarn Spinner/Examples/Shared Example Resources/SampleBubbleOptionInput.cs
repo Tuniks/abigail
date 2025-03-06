@@ -106,7 +106,7 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
                     break;
             }
 
-            inputCooldown = .45f;
+            inputCooldown = .55f;
         }
     }
     #endif

@@ -13,6 +13,7 @@ public class DaniCollageGameManager : MonoBehaviour
         DaniTurn1,
         Judgement,
         SwitchOut,
+        DaniJudge,
         FinalJudgment,
         Leave
         
@@ -21,6 +22,7 @@ public class DaniCollageGameManager : MonoBehaviour
     private List<GameObject> selectedItems = new List<GameObject>();  // Track selected items
     
     // Reference to the CollagePlayerHand script
+    public bool Replace = false;
     public GameObject PromptImages;
     public GameObject Question;
     public GameObject EmptySlots;
@@ -39,7 +41,13 @@ public class DaniCollageGameManager : MonoBehaviour
     private Transform previouslyHoveredTile;  
     private Vector3 originalHoveredScale;
 
-    
+    // Checkboxes for each attribute to control validation in the Inspector
+    public bool checkBeauty = true;
+    public bool checkVigor = true;
+    public bool checkMagic = true;
+    public bool checkHeart = true;
+    public bool checkIntellect = true;
+    public bool checkTerror = true;
     
     public CollagePlayerHand playerHand;
     
@@ -80,6 +88,8 @@ public class DaniCollageGameManager : MonoBehaviour
     // The selected tile and slot
     private Tile selectedTile;
     private GameObject selectedSlot;
+    private Tile currentlyMovingTile;  // Add this to the class
+
 
     public GameObject DaniBubble;
 
@@ -92,6 +102,7 @@ public class DaniCollageGameManager : MonoBehaviour
     private float moveTime = 1f;    // Time in seconds for the tile to move
     private float startTime;        // Time when the move started
     private bool isMoving = false;  // Whether the tile is still moving
+    private bool isMovingRe = false;
 
     // List to store played tiles
     public List<Tile> PlayedTiles = new List<Tile>();
@@ -129,6 +140,9 @@ public class DaniCollageGameManager : MonoBehaviour
             case GameState.SwitchOut:
                 HandleSwitchOut();
                 break;
+            case GameState.DaniJudge:
+                HandleDaniJudge();
+                break;
             case GameState.FinalJudgment:
                 HandleFinalJudgment();
                 break;
@@ -160,7 +174,33 @@ public class DaniCollageGameManager : MonoBehaviour
                 PlayedTiles.Add(selectedTile);
             }
         }
+        
+        if (isMovingRe)
+        {
+            float journeyLength = Vector3.Distance(startPos, targetPos);
+            float distanceCovered = (Time.time - startTime) * tileMoveSpeed;
+            float fractionOfJourney = distanceCovered / journeyLength;
+
+            if (currentlyMovingTile != null)
+            {
+                // Move the tile smoothly
+                currentlyMovingTile.transform.position = Vector3.Lerp(startPos, targetPos, fractionOfJourney);
+
+                if (fractionOfJourney >= 1)
+                {
+                    // Snap to final position
+                    currentlyMovingTile.transform.position = targetPos;
+                    currentlyMovingTile.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+                    isMovingRe = false;
+                    currentlyMovingTile = null;  // Clear after movement finishes
+                }
+            }
+        }
+
     }
+    
+    
+    
 
     // Switch to the specified state
 // Modify SwitchState to reset arrow positions when switching to a new state
@@ -206,7 +246,7 @@ private void HandleTileChoice()
     // Ensure player hand has items before processing input
     if (playerHand.hand == null || playerHand.hand.Count == 0)
     {
-        Debug.LogError("playerHand.hand is null or empty!");
+        //Debug.LogError("playerHand.hand is null or empty!");
         return;
     }
 
@@ -313,7 +353,7 @@ private void MoveArrowUp()
     if (currentTileIndex > 0)
     {
         currentTileIndex--;
-        Debug.Log($"Moved arrow up. Current index: {currentTileIndex}");
+        //Debug.Log($"Moved arrow up. Current index: {currentTileIndex}");
     }
 }
 
@@ -323,7 +363,7 @@ private void MoveArrowDown()
     if (currentTileIndex < playerHand.hand.Count - 1)
     {
         currentTileIndex++;
-        Debug.Log($"Moved arrow down. Current index: {currentTileIndex}");
+        //Debug.Log($"Moved arrow down. Current index: {currentTileIndex}");
     }
 }
 
@@ -349,11 +389,11 @@ private void SelectTile()
     selectedTile = playerHand.hand[currentTileIndex];
 
     // Log the selected tile information
-    Debug.Log($"Tile selected: {selectedTile.name}");
+    //Debug.Log($"Tile selected: {selectedTile.name}");
 
     // Transition to the next state: PlayerSlotChoice1
     SwitchState(GameState.PlayerSlotChoice1);
-    Debug.Log("State switched to PlayerSlotChoice1.");
+    //Debug.Log("State switched to PlayerSlotChoice1.");
 }
 
 
@@ -429,7 +469,7 @@ private void UpdateArrowPositionOnHover()
 
     if (hit.collider != null)
     {
-        Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
+        //Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
 
         // Check if the hit object is part of the emptySlots list
         GameObject hoveredSlot = hit.collider.gameObject;
@@ -438,7 +478,7 @@ private void UpdateArrowPositionOnHover()
 
         if (hoveredSlotIndex != -1)
         {
-            Debug.Log($"Hovered over slot at index: {hoveredSlotIndex}");
+            //Debug.Log($"Hovered over slot at index: {hoveredSlotIndex}");
 
             // Set the current slot index to the hovered slot index
             currentSlotIndex = hoveredSlotIndex;
@@ -446,7 +486,7 @@ private void UpdateArrowPositionOnHover()
     }
     else
     {
-        Debug.LogWarning("BoxCast did not hit any object.");
+        //Debug.LogWarning("BoxCast did not hit any object.");
     }
 }
 
@@ -466,7 +506,7 @@ private void HandleMouseClickSelection()
 
     if (hit.collider != null)
     {
-        Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
+        //Debug.Log($"BoxCast hit object: {hit.collider.gameObject.name}");
 
         // Check if the clicked object is part of the emptySlots list
         GameObject clickedSlot = hit.collider.gameObject;
@@ -474,7 +514,7 @@ private void HandleMouseClickSelection()
 
         if (clickedSlotIndex != -1)
         {
-            Debug.Log($"Slot clicked at index: {clickedSlotIndex}");
+            //Debug.Log($"Slot clicked at index: {clickedSlotIndex}");
 
             // Set the current slot index to the clicked index and select it
             currentSlotIndex = clickedSlotIndex;
@@ -483,7 +523,7 @@ private void HandleMouseClickSelection()
     }
     else
     {
-        Debug.LogWarning("Mouse click did not hit any object.");
+        //Debug.LogWarning("Mouse click did not hit any object.");
     }
 }
 
@@ -508,7 +548,7 @@ private void UpdateSlotArrowPosition()
         selectedSlot = emptySlots[currentSlotIndex];
 
         // (Optional) Perform some action with the selected tile and slot, such as placing the tile in the slot
-        Debug.Log($"Selected Tile: {selectedTile.name}, Selected Slot: {selectedSlot.name}");
+        //Debug.Log($"Selected Tile: {selectedTile.name}, Selected Slot: {selectedSlot.name}");
 
         // Set up the smooth movement of the tile
         startPos = selectedTile.transform.position;
@@ -634,8 +674,11 @@ private void HandleJudgement()
         {
             if (judgementSelection == 0)
                 SwitchState(GameState.SwitchOut);
-            else
-                SwitchState(GameState.FinalJudgment);
+            else 
+                SwitchState(GameState.DaniJudge);
+                yes.SetActive(false);
+                no.SetActive(false);
+                Question.SetActive(false);
         }
 
         // Convert mouse position to world space
@@ -672,7 +715,7 @@ private void HandleJudgement()
                 }
                 else if (hit.collider.gameObject == no)
                 {
-                    SwitchState(GameState.FinalJudgment);
+                    SwitchState(GameState.DaniJudge);
                 }
             }
         }
@@ -883,11 +926,205 @@ private void SelectTileUnderArrow()
         DaniBackupTile.transform.position = selectedTile.transform.position;
 
         // After selection, go back to another state or update the game flow
-        SwitchState(GameState.FinalJudgment); // For example, move to FinalJudgment state
+        SwitchState(GameState.DaniJudge); // For example, move to FinalJudgment state
     }
 }
 
+private void HandleDaniJudge()
+{
+    var invalidTiles = new List<Tile>();
 
+    foreach (Tile tile in PlayedTiles)
+{
+    if (tile == null || tile.gameObject == null)
+    {
+        Debug.LogWarning("Null tile or missing tileObject in PlayedTiles.");
+        continue;
+    }
+
+    // Initialize totals
+    float totalBeauty = 0f, totalVigor = 0f, totalMagic = 0f;
+    float totalHeart = 0f, totalIntellect = 0f, totalTerror = 0f;
+
+    // Get all components
+    TileComponent[] components = tile.GetComponentsInChildren<TileComponent>();
+
+    if (components.Length == 0)
+    {
+        Debug.LogWarning($"Tile {tile.gameObject.name} has no TileComponents!");
+    }
+
+    // Sum attributes
+    foreach (TileComponent tileComponent in components)
+    {
+        totalBeauty += tileComponent.beauty;
+        totalVigor += tileComponent.vigor;
+        totalMagic += tileComponent.magic;
+        totalHeart += tileComponent.heart;
+        totalIntellect += tileComponent.intellect;
+        totalTerror += tileComponent.terror;
+    }
+
+    // Calculate the sum of **only the checked attributes**
+    float selectedTotal = 0f;
+
+    if (checkBeauty) selectedTotal += totalBeauty;
+    if (checkVigor) selectedTotal += totalVigor;
+    if (checkMagic) selectedTotal += totalMagic;
+    if (checkHeart) selectedTotal += totalHeart;
+    if (checkIntellect) selectedTotal += totalIntellect;
+    if (checkTerror) selectedTotal += totalTerror;
+
+    // If the sum of selected attributes is greater than 8, the tile is invalid
+    bool isTileValid = selectedTotal >= 8;
+
+    if (isTileValid)
+    {
+        Debug.Log($"Tile: {tile.gameObject.name} Passed the Judge\n" +
+                  $"Selected Total: {selectedTotal}\n" +
+                  $"Beauty: {totalBeauty}, Vigor: {totalVigor}, Magic: {totalMagic}, " +
+                  $"Heart: {totalHeart}, Intellect: {totalIntellect}, Terror: {totalTerror}");
+    }
+    else
+    {
+        // If tile fails the judge, deactivate it immediately and break out of the loop
+        Debug.LogWarning($"Tile: {tile.gameObject.name} Failed the Judge - Selected Total: {selectedTotal} (k)\n" +
+                         $"Beauty: {totalBeauty}, Vigor: {totalVigor}, Magic: {totalMagic}, " +
+                         $"Heart: {totalHeart}, Intellect: {totalIntellect}, Terror: {totalTerror}");
+
+        Debug.Log($"Deactivating Tile: {tile.gameObject.name}");
+        invalidTiles.Add(tile);
+        tile.gameObject.SetActive(false);
+
+        // Break the loop once a tile is found and deactivated
+        break;
+    }
+}
+    // Randomly deactivate one invalid tile if there are any
+    if (invalidTiles.Count > 0)
+    {
+        // Choose a random tile from the invalid tiles list
+        Tile randomTile = invalidTiles[Random.Range(0, invalidTiles.Count)];
+
+        // Deactivate the chosen tile
+        Debug.Log($"Deactivating Tile: {randomTile.gameObject.name}");
+        randomTile.gameObject.SetActive(false);
+
+        // Remove the tile from the invalidTiles list after deactivation
+        //invalidTiles.Remove(randomTile);
+
+        // Check if there's any valid hand to move the tile into
+        if (playerHand.hand == null || playerHand.hand.Count == 0)
+        {
+            return;
+        }
+
+        // Handle input for W, S, or arrow keys to move the arrow
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            MoveArrowUp();
+            HighlightSelection();
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            MoveArrowDown();
+            HighlightSelection();
+        }
+
+        // Update the arrow's position based on the current tile index
+        UpdateArrowPosition();
+
+        // Handle input for E to select the tile under the arrow
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SelectReplacementTile();
+        }
+
+        void SelectReplacementTile()
+        {
+            Tile reselectedTile = playerHand.hand[currentTileIndex];
+
+            if (invalidTiles.Count > 0)
+            {
+                Tile targetTile = invalidTiles[Random.Range(0, invalidTiles.Count)];
+
+                // Set up movement data
+                startPos = reselectedTile.transform.position;
+                targetPos = targetTile.transform.position;
+
+                // Track the tile that’s moving
+                currentlyMovingTile = reselectedTile;
+
+                // Start movement
+                isMovingRe = true;
+                startTime = Time.time;
+
+                playerHand.hand.Remove(reselectedTile);
+                PlayedTiles.Add(reselectedTile);
+
+                Debug.Log($"Moving {reselectedTile.name} to replace {targetTile.name} at {targetTile.transform.position}");
+            }
+            else
+            {
+                Debug.LogWarning("No invalid tiles available to move the replacement tile onto.");
+            }
+
+            SwitchState(GameState.FinalJudgment);
+        }
+
+        // Convert mouse position to world space for tile hover detection
+        Vector3 mouseScreenPos = Input.mousePosition;
+        float cameraDepth = Mathf.Abs(Camera.main.transform.position.z);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, cameraDepth));
+
+        // BoxCast for hover detection
+        Vector2 boxCastSize = new Vector2(1f, 1f);
+        RaycastHit2D hit = Physics2D.BoxCast(mouseWorldPos, boxCastSize, 0f, Vector2.zero, Mathf.Infinity);
+
+        // Keep track of the tile currently hovered over
+        Transform hoveredTile = null;
+
+        if (hit.collider != null)
+        {
+            GameObject hoveredObject = hit.collider.gameObject;
+            int hoveredIndex = playerHand.hand.FindIndex(tile => tile.gameObject.Equals(hoveredObject));
+
+            if (hoveredIndex != -1)
+            {
+                hoveredTile = playerHand.hand[hoveredIndex].transform;
+
+                // Scale up the hovered tile
+                if (hoveredTile != previouslyHoveredTile)
+                {
+                    ResetHoveredTileSize(); // Reset previous hovered tile size
+                    originalHoveredScale = hoveredTile.localScale; // Store original scale
+                    hoveredTile.localScale = originalHoveredScale * 1.3f;
+                    previouslyHoveredTile = hoveredTile;
+                }
+
+                // Handle click selection
+                if (Input.GetMouseButtonDown(0))
+                {
+                    currentTileIndex = hoveredIndex;
+                    SelectReplacementTile();
+                }
+            }
+        }
+        else
+        {
+            ResetHoveredTileSize(); // Reset if no tile is hovered
+        }
+    }
+    else
+    {
+        SwitchState(GameState.FinalJudgment);  // Move to the final judgment state if no invalid tiles
+    }
+
+    // Transition to the next state
+}
+
+
+    
 
     private void HandleFinalJudgment()
     {
