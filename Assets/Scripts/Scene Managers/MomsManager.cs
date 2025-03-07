@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class MomsManager : AreaManager{
-    private int currentState = 0;
-    
+public class MomsManager : AreaManager{    
     public DialogueRunner dialogueRunner;
 
     [Header("NPCs")]
@@ -28,8 +26,6 @@ public class MomsManager : AreaManager{
     public Tile[] tilesInChest;
 
     public override void UpdateSceneState(int state){        
-        if(currentState == state) return;
-
         switch(state){
             case 0:
                 // Initial State
@@ -57,16 +53,7 @@ public class MomsManager : AreaManager{
         }
     }
 
-    private void UpdateDialogueNode(GameObject target, string newNode){
-        NPC npc = target.GetComponent<NPC>();
-        if(npc == null) return;
-
-        npc.SetNewDialogueNode(new string[1]{newNode});
-    }
-
-
     // YARN COMMANDS
-
     [YarnCommand]
     public void MomIntroDone(){
         WorldState.Instance.UpdateSceneState(Areas.Moms, 1, true);
@@ -80,7 +67,7 @@ public class MomsManager : AreaManager{
 
     [YarnCommand]
     public void StartAzulejo(){
-        WorldState.Instance.UpdateSceneState(Areas.Moms, 3, true);
+        WorldState.Instance.UpdateSceneState(Areas.Moms, 3);
         SceneController.Instance.Roundtrip(azulejoScene);
     }
 

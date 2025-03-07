@@ -1207,6 +1207,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5557750503317744848, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      propertyPath: destination
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1419,6 +1423,10 @@ PrefabInstance:
     - target: {fileID: 9060565390355709345, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060565390355709345, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -7521,14 +7529,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5545d866847c49f41bbfea4ee67a23ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 534169505}
   mom: {fileID: 1985670969}
   dani: {fileID: 514267816}
   chest: {fileID: 1182752882}
   doorBlocked: {fileID: 1693156750}
   doorUnblocked: {fileID: 248088453}
-  state0Dialogue: MomIntro
   state2Dialogue: MomDaniPreAzulejo
   state3Dialogue: MomDaniPostAzulejo
+  azulejoScene: MOMS_azulejo
+  tilesInChest:
+  - {fileID: 2013262720}
+  - {fileID: 566847025}
+  - {fileID: 2102701981}
+  - {fileID: 1052133280}
+  - {fileID: 1076305169}
+  - {fileID: 902324823}
+  - {fileID: 1153604773}
+  - {fileID: 2054992699}
+  - {fileID: 1840234983}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

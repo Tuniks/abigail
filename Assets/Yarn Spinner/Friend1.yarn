@@ -1,29 +1,73 @@
-﻿title: Friend1
+﻿title: PreFeltAzulejo
 tags:
 ---
-Abigail: Chase! You... 
--> Look the same.
+Chase: Abigail, you are back!
+Abigail: Temporarily
+Chase: Or forever! Who knows!
+Abigail: Wow you... 
+-> Look exactly the same, dude.
 	Chase: So much for my new haircut...
 	Abigail: I just mean, you look like you, is all.
--> Have changed so much. 
+-> Look so different.
 	Chase: That's what happens when you run away to the big city...
     Abigail: Wow so you really miss me huh?
-Oz: Ahoy! I'm here too! This must be the famed Abigail I've heard so much about. 
-Abigail: I guess my reputation proceeds me. 
-Chase: This is Oz we work together. 
-Oz: Pleasure to meet you! Milady. 
-Abigail: Yeah ok. It's nice to meet you too Oz.
-Chase: Why don't we grab a table and chat.
-Oz: Oh and play a game of azulejo?
-Abigail: I'm not sure. I might get going... 
-Chase: Come on Abbs are you scared of losing?
-Abigail: ...
-Oz: Wow it just got real. 
-Abigail: ...
-Chase: One game Abbs and we can get a snack!
-Abigail: Chase you're the easiest person to read on Earth I'll play if you judge.
-Chase: Deal. 
-<<StartTileGame FeltManager>>
+Oz: Ahoy! I'm here too! This must be the star of the good old days!
+Chase: This is Oz, my friend from work
+Abigail: Oh, hey
+Chase: Why don't we grab a table and chat?
+Abigail: Can't believe you are still coming here.
+Chase: If it ain't broke, don't fix it
+Chase: And last year they added a lava cake to the menu that's hella good, you should try it
+Oz: Plus, Sarah is working today
+Chase: Of course you have Sarah’s work schedule memorized.
+Abigail: Who's Sarah?
+Oz: Oh, she’s just this girl who… it’s kind of a long story
+Chase: Anyways, Abbs, how's the big city treating you?
+-> Some good, some bad.
+-> Some bad, some good.
+Oz: You are missing out then, here it's only good
+Chase: They made bad illegal a couple years after you left
+Abigail: Uh-huh. It shows.
+Chase: C'mon, Abbs, we gotta get you in the Kiln mood!
+Oz: Do you remember how to play Azulejo?
+Abigail: I moved Oz, I didn't get lobotomized.
+Chase: Let's play a match then!
+Chase: And I'll judge! Let's see who here knows me the best. 
+Abigail: Ok, ok. When in Kiln...
+<<PreFeltAzulejoDone SceneController>>
+===
+title: PostFeltAzulejo
+tags:
+---
+Oz: And that's another win for Oz!
+Abigail: I'm using my mom's tiles, it's not fair!
+Oz: I would have won even with your tiles, I know this boy too well.
+Abigail: Ugh, I'm just rusty. Next time I'm destroying you.
+Chase: Yes! That's my Abigail
+Oz: Sorry guys, gotta dip, duty calls.
+Chase: Have fun at the mines!
+Oz: I always do.
+Abigail: Chase, do you remember this one tile, it had like a swirl on it? And it felt like
+-> Holding someone’s hand
+-> Saltwater in my hair
+Chase: No? I don’t think so?
+Abigail: I feel like I need to find it.
+Chase: We could try looking at the antique shop
+Chase: I’m headed over there right now to meet Kate, wanna come?
+Abigail: My kate?
+Chase: Yeah... Is it gonna be weird?
+Abigail: No, no. Weird? Not at all. No.
+Chase: Uh-huh. It shows.
+Abigail: I don't know. Dani told me they'd be down in Wharf, so I might do that instead.
+Chase: Sick, but I'm sure Kate would love to see you.
+Chase: Either way, you're good.
+Chase: If you wanna see Kate, the northwest bridge will lead you to Argil.
+Chase: Otherwise take the path through the warehouses down south to Wharf.
+Abigail: Yeah dude I know how to get around.
+Chase: Oh, after your azulejo performance I thought you had erased us from your memory.
+Abigail: I hate you, Chase.
+Chase: I missed you, Abigail.
+<<PostFeltAzulejoDone SceneController>>
 ===
 title: OutsideHouse2
 tags:
@@ -199,7 +243,7 @@ Abigail: You know what, I was just telling Chase how much I wanted to play Azule
 Chase: I thought you didn't like this version?
 Kate: Yeah you used to say this one was too woo woo for you?
 Abigail: No, must have me mixed up with someone else. 
-<<GoToClayAzulejo ClayManager>>
+<<PreClayAzulejoDone SceneController>>
 ===
 title: AntiqueShopDay1
 tags:
@@ -209,6 +253,7 @@ Shopkeeper: I only accept buttons here. If you don't have any buttons get lost.
 title: PostClayAzulejo
 tags:
 ---
+<<if visited("PostClayAzulejo") is false>>
 Abigail: I should probably get home.
 Chase: Sick, we'll come with.
 Abigail: Uh, why?
@@ -217,43 +262,10 @@ Kate: Your mom invited the whole gang.
 Abigail: Tell me you're joking.
 Chase: More time to have completely normal not weird at all conversation
 Abigail: I hate you I hate you I hate you.
-<<GoToPartyScene ClayManager>>
-===
-title: PostFeltAzulejo
-tags:
----
-Oz: And that's another win for Oz!
-Chase: Don't rub it in. 
-Chase: Abigail's just a little rusty. 
-Oz: I gotta dip, duty calls.
-Chase: Have fun at the mines!
-Oz: I always do
-Abigail: Chase, do you remember this one tile, it has kinda like a swirl on it? And it felt like
--> It felt like holding someone’s hand
--> Smelling saltwater in my hair
-Chase: No? I don’t think so?
-Abigail: I feel like I need to find it.
-Chase: We could try looking at the antique shop? 
-Chase: Well... I’m headed over there right now to meet Kate, wanna come?
-Abigail: My kate?
-Chase: Yeah?
-Chase: You wanna come? Would that be weird?
-Abigail: No, it definitely wouldn't be weird at all.
-Abigail: Have you heard from Dani at all?
-Chase: Dani told me they're hanging around in the Jumble District today?
-Chase: You could go say hi if you're not up for seeing Kate. 
-Abigail: I thought Dani moved? For that writing program? 
-Chase: Yeah, it didn't work out. They got back a few weeks ago.
-Chase: Dani might know about the tile you're looking for, and I know they'll want to see you. 
-Chase: What's your heart telling you to do?
--> Visit Dani in Jumble District
-    Chase: I'll tell Kate you said hi. 
-    Abigail: I hate you I hate you I hate you.
-    <<GoToCollage FeltManager>> 
--> Hang out with Chase and Kate in The Old Quarter.
-    Chase: Okay so I did tell her I would be there 20 minutes ago. 
-    Abigail: Classic.
-    <<GoToClay FeltManager>>
+<<PostClayAzulejoDone SceneController>>
+<<else>>
+Chase: We'll see you at your mom's, Abbs.
+<<endif>>
 ===
 title: WeirdHouse
 tags:
@@ -478,11 +490,12 @@ Dani: It’s okay, but you know the way I like to play it.
 Abigail: Of course I do.
 Abigail: Do you have chalk?
 Dani: Always.
-<<StartCollageAzulejoDay1 CollageManager>>
+<<PreCollageAzulejoDone SceneController>>
 ===
 title: DaniDay1PostAzulejo
 tags:
 ---
+<<if visited("DaniDay1PostAzulejo") is false>>
 Dani: So what’s it been like in the big city?
 -> Really, really good.
     Dani: I guess I’m not the only one practicing my bench-sitting skills.
@@ -508,7 +521,10 @@ Dani: I mean, I know you and Kate haven’t really…
 Abigail: We’ve barely talked. Do you think she hates me?
 Dani: Kate could never hate you Abbs.
 Abigail: I don’t know about that.
-<<GoToPartyCollage CollageManager>>
+<<PostCollageAzulejoDone SceneController>>
+<<else>>
+Dani: I'll see you at your mom's, Abbs
+<<endif>>
 ===
 title: HankCollageNPC
 tags:
