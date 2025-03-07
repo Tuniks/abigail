@@ -43,13 +43,11 @@ public class ClayManager : AreaManager{
                 UpdateDialogueNode(kate, state1Dialogue);
                 break;
             case 2:
-                dialogueRunner.startAutomatically = true;
-                dialogueRunner.startNode = state2Dialogue;
+                dialogueRunner.StartDialogue(state2Dialogue);
                 UpdateDialogueNode(chase, state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;
             case 3:
-                dialogueRunner.startAutomatically = false;
                 UpdateDialogueNode(chase, state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;

@@ -38,8 +38,7 @@ public class MomsManager : AreaManager{
                 UpdateDialogueNode(dani, state2Dialogue);
                 break;
             case 3:
-                dialogueRunner.startAutomatically = true;
-                dialogueRunner.startNode = state3Dialogue;
+                dialogueRunner.StartDialogue(state3Dialogue);
                 UpdateDialogueNode(mom, state3Dialogue);
                 UpdateDialogueNode(dani, state3Dialogue);
                 break;

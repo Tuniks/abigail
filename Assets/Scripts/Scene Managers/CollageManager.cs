@@ -22,8 +22,7 @@ public class CollageManager : AreaManager{
                 // Initial State
                 break;
             case 1:
-                dialogueRunner.startAutomatically = true;
-                dialogueRunner.startNode = state1Dialogue;
+                dialogueRunner.StartDialogue(state1Dialogue);
                 UpdateDialogueNode(dani, state1Dialogue);
                 break;
             case 2:

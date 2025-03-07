@@ -12,8 +12,7 @@ public class BedroomManager : AreaManager{
     public override void UpdateSceneState(int state){        
         switch(state){
             case 0:
-                dialogueRunner.startAutomatically = true;
-                dialogueRunner.startNode = startNode;
+                dialogueRunner.StartDialogue(startNode);
                 break;
             case 1:
                 break;

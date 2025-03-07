@@ -31,8 +31,7 @@ public class FeltManager : AreaManager{
                 // Initial State
                 break;
             case 1:
-                dialogueRunner.startAutomatically = true;
-                dialogueRunner.startNode = state1Dialogue;
+                dialogueRunner.StartDialogue(state1Dialogue);
                 UpdateDialogueNode(chase, state1Dialogue);
                 UpdateDialogueNode(oz, state1Dialogue);
                 break;
