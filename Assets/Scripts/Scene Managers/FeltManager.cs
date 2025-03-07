@@ -15,6 +15,9 @@ public class FeltManager : AreaManager{
     public GameObject doorColUnblocked;
     public GameObject doorClayBlocked;
     public GameObject doorClayUnblocked;
+    public GameObject doorMoms;
+    public GameObject doorParty;
+
 
     [Header("Dialogue Nodes")]
     public string state1Dialogue = "PostFeltAzulejo";
@@ -34,8 +37,6 @@ public class FeltManager : AreaManager{
                 UpdateDialogueNode(oz, state1Dialogue);
                 break;
             case 2:
-                chase.SetActive(false);
-                oz.SetActive(false);
                 doorColBlocked.SetActive(false);
                 doorClayBlocked.SetActive(false);
                 doorColUnblocked.SetActive(true);
@@ -48,7 +49,8 @@ public class FeltManager : AreaManager{
                 doorClayBlocked.SetActive(false);
                 doorColUnblocked.SetActive(true);
                 doorClayUnblocked.SetActive(true);
-                // Enable party portal
+                doorMoms.SetActive(false);
+                doorParty.SetActive(true);
                 break;
 
         }

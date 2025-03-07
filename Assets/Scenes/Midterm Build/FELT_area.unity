@@ -4292,7 +4292,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_Name
-      value: MomsPortal (1)
+      value: PartyPortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4336,7 +4340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557750503317744848, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: destination
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14946,6 +14950,8 @@ MonoBehaviour:
   doorColUnblocked: {fileID: 142615637}
   doorClayBlocked: {fileID: 2081176146}
   doorClayUnblocked: {fileID: 1767235157}
+  doorMoms: {fileID: 1765335623}
+  doorParty: {fileID: 1804239359}
   state1Dialogue: PostFeltAzulejo
   azulejoScene: FELT_azulejo
 --- !u!1001 &1186641597
@@ -21663,6 +21669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MomsPortal
       objectReference: {fileID: 0}
+    - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.6
@@ -21874,6 +21884,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7238fe71848d6944a50dc8c40a550da, type: 3}
+--- !u!1 &1765335623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+  m_PrefabInstance: {fileID: 1758050496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1767235157 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
@@ -22506,6 +22521,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+--- !u!1 &1804239359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+  m_PrefabInstance: {fileID: 386821489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1816646647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27044,11 +27064,11 @@ SceneRoots:
   - {fileID: 1437795858}
   - {fileID: 40861089}
   - {fileID: 1895222706}
-  - {fileID: 386821489}
   - {fileID: 1758050496}
   - {fileID: 980584471}
   - {fileID: 1186641597}
   - {fileID: 1672373442}
   - {fileID: 1102389572}
+  - {fileID: 386821489}
   - {fileID: 2057680545}
   - {fileID: 1951897817}
