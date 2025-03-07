@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 
 public class TileUIManager : MonoBehaviour{
+    [Header("Match Data")]
+    public string opponentName = "Oz";
+    
     [Header("UI Elements")]
     public GameObject tutorialScreen;
     public GameObject challengeList;
@@ -119,7 +122,7 @@ public class TileUIManager : MonoBehaviour{
     public void UpdatePreArgumentRoundWinner(bool playerWon){
         if(playerWon){
             judgeArgumentText.text = "Hmmm... I'm currently leaning <b>Abigail</b>, any arguments?";
-        } else judgeArgumentText.text = "I think I might go with <b>Oz</b>, what do you say?";
+        } else judgeArgumentText.text = "I think I might go with <b>"+ opponentName +"</b>, what do you say?";
     }
 
     public void UpdateArgumentList(List<string> arguments){
@@ -183,7 +186,7 @@ public class TileUIManager : MonoBehaviour{
     public void UpdateRoundWinner(bool playerWon, string justification){
         if(playerWon){
             roundWonDialogText.text = "Ok, I gotta give this one to my girl <b>Abigail</b> " + justification;
-        } else roundWonDialogText.text = "Yeah, this round <b>Oz</b> takes it! " + justification;
+        } else roundWonDialogText.text = "Yeah, this round <b>"+ opponentName +"</b> takes it! " + justification;
     }
 
     // Result Phase
