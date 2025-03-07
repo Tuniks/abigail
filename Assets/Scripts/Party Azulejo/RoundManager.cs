@@ -13,6 +13,13 @@ public class RoundManager : MonoBehaviour
         DecisionReactionDone = true;
         Debug.Log("EndReaction triggered!");
     }
+    [YarnCommand]
+    public void GoAbigailRoom()
+    {
+        GoAbigailRoombool = true;
+        SceneManager.LoadScene("START");
+        Debug.Log("EndReaction triggered!");
+    }
     
     private enum GameState
     {
@@ -29,6 +36,7 @@ public class RoundManager : MonoBehaviour
     private int roundCount = 0;
     private const int maxRounds = 3;
     private bool winnerDisplayed = false;
+    private bool GoAbigailRoombool = false;
 
     private int NPC1score = 0;
     private int NPC2score = 0;
@@ -83,11 +91,11 @@ public class RoundManager : MonoBehaviour
 
     private string[,] buttonTexts =
     {
-        { "Who would give a really weak handshake?", "Who has never had a cavity?" }, // Round 1
-        { "Who would steal the moon right out of the sky?", "Who would make kombucha from scratch?" }, // Round 2
+        { "Whose presence would infinitely improve beach day?", "Whose headlining the punk show tomorrow?" }, // Round 1
+        { "What tile should be enshrined in the Azulejo museum?", "What would I find on the shelves of Miller's Antiques?" }, // Round 2
         {
-            "Who would reshape the craters of the earth when they jump?",
-            "Most likely to slip on a banana peel?"
+            "Who would win the Museum's Azulejo tournament?",
+            "What would I light on fire?"
         } // Round 3
     };
     
@@ -416,6 +424,7 @@ public class RoundManager : MonoBehaviour
             IncrementRound();
             if (roundCount >= maxRounds)
             {
+                dialogueRunner.Stop();
                 DisplayWinnerText();
                 DecisionReactionDone = false;
                 return;
@@ -475,7 +484,12 @@ public class RoundManager : MonoBehaviour
         
         Debug.Log("Game Complete!");
         winnerDisplayed = true;
-        WillThisWork.SetActive(true);
+
+        if (GoAbigailRoombool == true)
+        {
+            WillThisWork.SetActive(true);
+        }
+        
     }
 
     private void IncrementRound()
