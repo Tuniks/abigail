@@ -17,5 +17,6 @@ public class NPC : MonoBehaviour{
 
     public void SetNewDialogueNode(string[] nodes){
         dialogueNode = nodes;
+        currentNode = 0;
     }
 }
