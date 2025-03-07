@@ -209,13 +209,21 @@ title: ClayStart
 tags:
 ---
 <<if visited("ClayStart") is false>>
-Kate: Abigail! It is so wonderful to see your face!
-Abigail: Your face is awesome to see as well. Really good face.
-Chase: Not weird at all…
-Kate: What did you say?
-Abigail: Um nothing, I'm going to check out the antique shop!
+Kate: Abigail? What are you doing here man?
+Abigail: Kate. Hi. Wow. Yeah. I'm here. 
+Chase: Words girl, use your words. 
+Abigail: No, yeah. I just woke up here this morning. 
+Abigail: You look really good. 
+Chase: Too many words Abbs. 
+Kate: Dude that's crazy I think the same thing happened to Dani's cousin once. 
+Abigail: I don't have athletes foot!
+Kate: ...
+Chase: Abbs weren't you going on about a tile you were looking for?
+Kate: You should check Miller's antique shop he always has weird tiles.
+Abigail: Totally, I bet he'll have it. 
+Kate: Come back and hang afterwords I haven't seen you in forever.
 <<else>>
-Chase: Do we think the antique shop owner made the building look like him?
+Chase: Do we think Miller made the building look like him?
 Chase: Or did he make himself look like the building?
 Kate: This feels like a chicken or the egg type of situation. 
 <<endif>>
@@ -223,11 +231,15 @@ Kate: This feels like a chicken or the egg type of situation.
 title: PostAntiqueShop
 tags:
 ---
-Chase: You find what you were looking for?
-Abigail: Nope. Plus I didn't have any buttons. 
+]Chase: You find what you were looking for?
+Abigail: Nope. 
+Kate: Bummer dude. 
+Abigail: Wasn't meant to be I guess. 
 Kate: How’s the big city treating you these days?
-Abigail: You know…good…bad…both at once.
+Abigail: You know... really good. Really really good I'm having an awesome time. 
 Kate: Yeah, totally.
+Kate: Are you still working at that French restuarant?
+Abigail: Not anymore French food is a little passé.
 Abigail: How are...how is your life going?
 Kate: It’s pretty good these days! I’m working at the library.
 Kate: And I’ve been organizing that music festival on the beach, which is so much work but it's gonna be amazing.
@@ -240,7 +252,7 @@ Chase:...
 Abigail:...
 Kate:...
 Abigail: You know what, I was just telling Chase how much I wanted to play Azulejo, down for a round?
-Chase: I thought you didn't like this version?
+Chase: I thought you didn't like how they play it around here?
 Kate: Yeah you used to say this one was too woo woo for you?
 Abigail: No, must have me mixed up with someone else. 
 <<PreClayAzulejoDone SceneController>>
@@ -260,7 +272,11 @@ Abigail: Uh, why?
 Chase: We’re going to the party at your house.
 Kate: Your mom invited the whole gang.
 Abigail: Tell me you're joking.
-Chase: More time to have completely normal not weird at all conversation
+Kate: Aw man even Gabe?
+Chase: He's still our friend even if you broke his heart.
+Kate: Chase!
+Abigial: Broke... his heart?
+Chase: Don't worry we'll have plenty of time to finish this completely normal not weird at all conversation on the way to your house Abbs.
 Abigail: I hate you I hate you I hate you.
 <<PostClayAzulejoDone SceneController>>
 <<else>>
@@ -343,28 +359,26 @@ tags:
 ---
 <<if visited("KateChaseParty") is false>>
 Kate: It's nice being back in your house Abigail. 
-Abigail: Yeah it's nice having you back in my house.
+Abigail: Yeah um...
+Abigail: It's nice having you back in my house. 
+Kate: There's gonna be a really killer show tomorrow night at the warehouse, you should come.
 Kate: Oh Chase! I just remembered I have a favor to ask.
-Chase: What’s up?
-Kate: Next Wednesday at 11am we’re doing a big load in a day at the venue. 
+Kate: Tomorrow at 11am we’re doing a big load in a day at the venue. 
 Kate: We could use some extra hands to move equipment?
 Chase: When is this?
-Kate: Next Wednesday at 11am.
+Kate: Tomorrow at 11am.
 Chase: Hmm maybe I could...
-Kate: It’s okay, no worries.
 Chase: If you absolutely can’t find anyone else, let me know.
-Kate: I’ll figure it out.
 Abigail: You suddenly have a 9-5 or something Chase?
 Chase: Me? Never.
 Kate: His latest thing has been carpentry.
 Chase: I’ve been feeling a lot like Jesus lately.
 Abigail: You’ve never been to church in your life.
 Chase: But I would look good on a cross!
-Chase: If one of you backs me up there could be a new coffee table in your future.
-Kate: Not sure if that’s worth it, the birdhouse you made for my birthday was unfortunately short lived.
-Chase: I did not build it with a high weight limit!
-Chase: No one could have predicted an entire family of squirrels would move in!
-Kate: Maybe Jesus could have predicted that…
+Chase: Speaking of being shirtless, I'm trying to put together a beach day for Abbs' visit. 
+Chase: I'm thinking day after tomorrow?
+Kate: I have a shift at the library, but I'll see if I can switch it?
+Abigail: That sounds great Chase. 
     <<set $peopletalkedto = $peopletalkedto + 1>>
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
@@ -383,28 +397,26 @@ tags:
 ---
 <<if visited("DaniMomParty") is false>>
 Abigail: Wow, my two favorite people in the whole world!
-Abigail: What are you guys chatting about?
-Mom: Dani was just telling me about their time living away
-Mom: It seems like a very lonely experience
-Mom: Your parents must be so happy you decided to come back...
-Abigail: Mom.
-Mom: I'm joking! It warms my heart seeing you growing and living out your dream!
-Mom: But moms get lonely too
-Mom: But go on, Dani, tell me: what have you been doing since you came back?
-Dani: I've been helping my parents around the restaurant a bit
-Dani: Not much else going on...
-Mom: That's so sweet!
-Mom: And what are the next steps?
-Mom: What's in store for one of the most brilliant and kind young minds I know?
-Dani: Oh... I don't know,
-Dani: I think I'm still figuring things out
-Mom: It's okay, honey, you have time! It's a marathon, not a race!
-Abigail: Are we done with the interrogation, Mom?
-Mom: Afraid I'm gonna steal your friends, Abigail?
-Dani: It's ok, Abbs, really
-Mom: If you are ever bored, Dani, know that there's a lonely old lady in this house that would love the company!
-Mom: And then we can gossip to our heart's content, without the fun police nagging us!
-Dani: Haha, thank you, I appreciate it
+Dani: I was just telling your mom how nice it is for us to be all here together again.
+Dani: Even without you... It's been a while since we all hung out.
+Mom: You've been with each other since you were little kids!
+Abigail: It does feel nice
+Mom: It's the way it is supposed to be!
+Abigail: Mom...
+Dani: We know, Abbs, you are leaving again soon. Let's just enjoy today.
+Mom: Dani told me all about their time abroad. It sounds very lonely, you know.
+Mom: Abigail...
+Mom: What if you came back because this is where you are supposed to be?
+Abigail: Mom, don't do that
+Mom: I'm sorry baby, you know I'll support you no matter what. I'm just worried.
+Abigail: Dani's experience isn't my experience, ok mom?
+Dani: What is your experience then, Abbs? You barely tell us anything!
+Abigail: I don't have it all figured out yet, ok?
+Abigail: But that doesn't mean I'll drop everything and come back for good
+Dani: I didn't find out there what I was missing here. Did you, Abbs?
+Abigail: Things are a mess right now. But I'll fix them.
+Abigail: I'll fix them.
+Mom: We know you will, baby.
     <<set $peopletalkedto = $peopletalkedto + 1>>
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
@@ -434,18 +446,14 @@ Gabe: your mom.
 Abigail: Gabriel you suck so much. 
 Joanna: Hahahahaha
 Abigail: No way that made you laugh dude. 
-Joanna: I'm easy to please. 
-Gabe: That's what sh-
-Abigail: Nope. Try again. 
-Joanna: Hahahahahahahahahaha
-Joanna: What? Laughing releases endorphins. 
-Joanna: I'm just indulging in some natural stress relief!
-Abigail: You guys are so embarassing. 
-Gabe: You love us right jojo?
-Abigail: Big on nicknames today?
-Joanna: He's been on a kick lately. 
-Abigail: We both can agree Jojo isn't going to stick right?
-Joanna: Definitely not. 
+Abigail: Joanna what are you up to?
+Joanna: Oh you know finishing up my PHD and advising for the new museum. 
+Gabe: It's crazy luck you're here Abbs the museum is opening this week!
+Abigail: I don't know how long I'm staying.
+Joanna: You're not here for the museum opening? I'm giving a big speech. 
+Joanna: Didn't your mom tell you?
+Abigail: No um but that's so cool if I'm still around I'll be there. 
+Gabe: Of course you're gonna be here it's a huge deal!
     <<set $peopletalkedto = $peopletalkedto + 1>>
     <<if $peopletalkedto > 2>>
         Gabe:Alright party people! Let's play some Azulejo.
@@ -455,8 +463,7 @@ Joanna: Definitely not.
         Abigail: I should talk to rest of the gang.
     <<endif>>
 <<else>>
-    Gabe: What do we think of Jujube?
-    Joanna: You're getting better at this nickname thing.
+    Joanna: I really hope you can make it to the museum opening Abigail. 
 <<endif>>
 ===
 title: PartyStart
@@ -469,26 +476,45 @@ title: DaniDay1PreAzulejo
 tags:
 ---
 Abigail: Hey loser.
-Dani: Abigail?
-Dani: What are you doing here?
-Abigail: I don’t exactly know.
-Abigail: Heard from Chase you got back a few weeks ago?
-Dani: Yep. I did indeed.
-Abigail: Up to anything special these days?
-Dani: Oh you know, on that big journey of self discovery.
-Abigail: What have you found out?
-Dani: That I’m really good at sitting on park benches.
-Dani: And I’m still writing. Promise I haven’t given up yet.
-Dani: How long is your fancy job letting you stay for?
-Abigail: Only a few days
-Abigail: And I think I might have messed that job up.
-Dani: Well, you should stay for the Azulejo museum opening in Acrylic Square.
-Dani: There’s gonna be this tournament or something.
-Abigail: Never took you for a fan of how they play it in that Pollock pisshole.
-Dani: Chase calls it that, not me.
-Dani: It’s okay, but you know the way I like to play it.
-Abigail: Of course I do.
-Abigail: Do you have chalk?
+Dani: Abigail!
+Abigail: Knew I’d find you over here.
+Dani: I’m a fan of mesmerizing catastrophes, what can I say?
+Abigail: It’s really good to hang out with you again.
+Dani: You too Abbs, sorry if it was weird I was at your house this morning.
+Abigail: Not at all, I’m glad you’re keeping her company.
+Dani: She’s been a lifesaver for me too lately.
+Abigail: Working at the restaurant?
+Dani: Yeah, it’s not the same without you.
+Dani: It’s Abigail this, Abigail that, apparently my table setting doesn’t hold a candle to yours.
+Abigail: Hey um…
+Abigail: Do you remember this azulejo tile I used to have?
+Abigail: It had like, a swirl on it?
+Dani: No? What else do you remember about it?
+Abigail: I can’t even remember it clearly.
+Dani: What made you want to look for it?
+Abigail: Before I showed up here, I was closing my eyes to go to sleep
+Abigail: And it just popped into my head and it won’t go away.
+Dani: Maybe it’s what brought you here.
+Abigail: Yeah that’s what I was thinking, that I could find it and then go back and things would be
+Abigail: Things would be better.
+Dani: Are things bad?
+Abigail: Not exactly I just…
+-> I think I forgot how to cook 
+    Dani: Better not tell my dad that, it will shatter his entire reality.
+    Dani: Are things okay with your job?
+    Abigail: I think I might have messed it up.
+    Dani: You’re pretty good at fixing things?
+    Abigail: Maybe, if I’m there to do it.
+-> I can’t make anyone laugh 
+    Dani: I don’t believe that for a second.
+    Abigail: Everyone’s sense of humor there is sharper or meaner or-
+    Dani: You’ll figure it out, you always do.
+    Abigail: Maybe, if I’m there to do it.
+Dani: Well sounds better than my attempt to leave.
+Abigail: Do you want to talk about it?
+Dani: Could we just, could we play azulejo?
+Dani: I feel like that would be easier.
+Abigail: Yeah? Do you have chalk?
 Dani: Always.
 <<PreCollageAzulejoDone SceneController>>
 ===
@@ -496,31 +522,36 @@ title: DaniDay1PostAzulejo
 tags:
 ---
 <<if visited("DaniDay1PostAzulejo") is false>>
-Dani: So what’s it been like in the big city?
--> Really, really good.
-    Dani: I guess I’m not the only one practicing my bench-sitting skills.
-    Abigail: No I’m actually doing really good I’m not like…
-    Dani: Oh.
-    Abigail: No Dani I didn’t mean it like that.
-    Dani: You deserve it Abbs don’t feel bad.
--> Living the dream.
-    Dani: You know you’re allowed to admit you’re miserable.
-    Abigail: I’m not miserable you’re so hyperbolic dude.
-    Dani: Haha well are you happy?
-    Abigail: There’s something in between isn’t there?
-    Dani: I’m not so good at the in betweens.
-    Abigail: I know Dani.
-Abigail: Anyway I think I might head back home. My mom is probably missing me.
-Dani: Please tell me she’s making lasagna.
-Abigail: Why do you care?
-Dani: Your mom invited everyone over for dinner.
-Abigail: Everyone?
-Dani: Yeah, Chase, Gabe, Kate, Joanna.
+Dani: I don’t know dude, being there it just really sucked.
+Dani: It sucked so much I didn’t even feel like writing about it.
+->  At least you tried
+    Dani: I feel like I was more hopeful before I tried.
+    Dani: Now it’s like I know that I can’t do it.
+    Dani: It was a mistake to go.
+    Abigail: No it wasn’t. Dani-
+    Dani: It’s okay Abbs don’t worry about it.
+-> Are you still writing?
+    Dani: Of course, I wouldn’t just stop.
+    Abigail: No I know, I’m just-
+    Dani: I can’t believe you’d ask me that.
+    Abigail: I asked because I want to know what’s going on with you.
+    Abigail: I didn’t mean-
+    Dani: I’m sorry, I shouldn’t have said that Abbs.
+    Dani: You just wanted to hear how I'm doing. 
+Dani: Have you talked to Kate at all?
+Abigail: Not today, no. Is she okay?
+Dani: Kate’s always okay. She’s too busy to not be.
+Dani: Are you ready to see her later?
+Abigail: Why would that be happening?
+Dani: Because your mom invited everyone over for dinner?
 Abigail: Oh my god.
-Dani: I mean, I know you and Kate haven’t really…
-Abigail: We’ve barely talked. Do you think she hates me?
-Dani: Kate could never hate you Abbs.
-Abigail: I don’t know about that.
+Dani: Oh and this is gonna be a terrible thing for you to hear but…
+Dani: I feel the need to prepare you for the jokes Gabe might make later.
+Dani: Kate and Gabe. Uh...they happened.  
+Abigail: What??? No.
+Dani: Yes.
+Dani: It’s over now. She was “too busy for a relationship”, but it happened.
+Abigail: Awesome.
 <<PostCollageAzulejoDone SceneController>>
 <<else>>
 Dani: I'll see you at your mom's, Abbs
