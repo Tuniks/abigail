@@ -49,6 +49,7 @@ public class PlayerInteractor : MonoBehaviour{
         foreach(GameObject interact in interactables){
             NPC npc = interact.GetComponent<NPC>();
             Shop shop = interact.GetComponent<Shop>();
+            ScenePortal portal = interact.GetComponent<ScenePortal>();
 
             if(npc != null){
                 string node = npc.GetCurrentNode();
@@ -62,6 +63,13 @@ public class PlayerInteractor : MonoBehaviour{
                 currentShop.ShowShop();
                 pc.SetIsBusy(true);
                 return;
+            } else if(portal) {
+                string node = portal.AttemptTravel();
+                if(node != null){
+                    StartConversation(node);
+                    pc.SetIsBusy(true);
+                    return;
+                }
             }
         }
     }
@@ -71,13 +79,13 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
             interactables.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit(Collider other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         }
     }

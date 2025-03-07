@@ -8,11 +8,10 @@ public class TurnOnOffWithYarn : MonoBehaviour{
     public GameObject ObjectToDeactivate;
 
     public Tile[] tilesInChest;
-    public PlayerInventory playerInventory;
 
     [YarnCommand]
     public void ExitPossible(){
-        playerInventory.AddTilesToCollection(tilesInChest);
+        PlayerInventory.Instance.AddTilesToCollection(tilesInChest);
         ObjectToActivate.SetActive(true);
         ObjectToDeactivate.SetActive(false);
     }
