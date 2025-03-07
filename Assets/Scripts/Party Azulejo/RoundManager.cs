@@ -7,6 +7,13 @@ using Yarn.Unity;
 
 public class RoundManager : MonoBehaviour
 {
+    [YarnCommand]
+    public void EndReactionP()
+    {
+        DecisionReactionDone = true;
+        Debug.Log("EndReaction triggered!");
+    }
+    
     private enum GameState
     {
         SetChallengeText,
@@ -31,6 +38,9 @@ public class RoundManager : MonoBehaviour
     private bool isDecisionComplete = false;
     private string selectedChallengeText; // Variable to store the selected text
     private bool winnerStarDisplayed = false; // Track if the star has been displayed
+    public bool DecisionReactionDone = false;
+    public bool EndDisplayed = false;
+    private bool Timetorevealwinner = false;
     
     public GameObject uiContainer;
     [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
@@ -387,14 +397,14 @@ public class RoundManager : MonoBehaviour
         uiContainer.SetActive(true);
         CurrentChallenge.text = "";
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (DecisionReactionDone == true)//i want to change this to if     public bool DecisionReactionDone = true;
         {
             // Deactivate all objects with the tag "bubble"
             //GameObject[] bubbles = GameObject.FindGameObjectsWithTag("bubble");
             //foreach (GameObject bubble in bubbles)
-          //  {
-               // bubble.SetActive(false);
-           // }
+            //  {
+            // bubble.SetActive(false);
+            // }
 
             // Clear all TextMeshPro text elements on the canvas
             TextMeshProUGUI[] textElements = FindObjectsOfType<TextMeshProUGUI>();
@@ -407,9 +417,11 @@ public class RoundManager : MonoBehaviour
             if (roundCount >= maxRounds)
             {
                 DisplayWinnerText();
+                DecisionReactionDone = false;
                 return;
             }
             currentState = GameState.SetChallengeText;
+            DecisionReactionDone = false;
         }
     }
 
