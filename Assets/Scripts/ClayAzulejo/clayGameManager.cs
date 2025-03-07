@@ -78,7 +78,7 @@ public class ClayGameManager : MonoBehaviour {
             enemyThinkingUI.SetActive(true);
 
         // Wait for a random "thinking" delay between 4 and 7 seconds.
-        float thinkingDelay = Random.Range(4f, 7f);
+        float thinkingDelay = Random.Range(1f, 2f);
         yield return new WaitForSeconds(thinkingDelay);
 
         if(enemyThinkingUI != null)
