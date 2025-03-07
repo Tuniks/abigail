@@ -16,7 +16,7 @@ public class RestartMaybe : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("Start");
+            SceneManager.LoadScene("FlashBackPartyGoodbye");
         }
     }
 }
