@@ -11,6 +11,7 @@ public enum Areas{
     Collage,
     Clay,
     Bedroom,
+    Party
 }
 
 public class SceneController : MonoBehaviour{
