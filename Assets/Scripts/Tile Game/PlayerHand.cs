@@ -26,6 +26,7 @@ public class PlayerHand : MonoBehaviour{
 
     public void BuildHand(){
         PlayerInventory inv = PlayerInventory.Instance;
+        Debug.Log(inv);
         if (inv != null) 
             hand = inv.GetHandOfTiles(maxHandSize);
         if(hand.Count < maxHandSize) 
@@ -34,7 +35,8 @@ public class PlayerHand : MonoBehaviour{
     }
 
     void GenerateRandomHand(int handCount){
-        hand = new List<Tile>();
+        if(hand == null) hand = new List<Tile>();
+        
         for (int i = 0; i < handCount; i++){
             Tile tile = TileMaker.instance.GetRandomTile();
             hand.Add(tile);
