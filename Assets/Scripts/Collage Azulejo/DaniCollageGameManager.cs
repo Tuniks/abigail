@@ -43,6 +43,7 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject DaniReplaceComment;
     public GameObject FinalDaniComment;
 
+    public GameObject DaniReplaceHint;
     // Checkboxes for each attribute to control validation in the Inspector
     public bool checkBeauty = true;
     public bool checkVigor = true;
@@ -1012,6 +1013,7 @@ private void HandleDaniJudge()
         Debug.Log($"Deactivating Tile: {randomTile.gameObject.name}");
         randomTile.gameObject.SetActive(false);
         DaniReplaceComment.SetActive(true);
+        DaniReplaceHint.SetActive(true);
 
         // Remove the tile from the invalidTiles list after deactivation
         //invalidTiles.Remove(randomTile);
@@ -1046,6 +1048,7 @@ private void HandleDaniJudge()
         void SelectReplacementTile()
         {
             DaniReplaceComment.SetActive(false);
+            DaniReplaceHint.SetActive(false);
             Tile reselectedTile = playerHand.hand[currentTileIndex];
 
             if (invalidTiles.Count > 0)
