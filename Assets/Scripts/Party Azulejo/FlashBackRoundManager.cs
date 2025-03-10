@@ -24,6 +24,12 @@ public class FlashBackRoundManager : MonoBehaviour
             EndDisplayed = true;
             Debug.Log("Readytoendtriggered!");
         }
+        [YarnCommand]
+        public void TextIsDone()
+        {
+            TextDone = true;
+            Debug.Log("Readytoendtriggered!");
+        }
         
         [YarnCommand]
         public void RevealWinner()
@@ -58,6 +64,7 @@ public class FlashBackRoundManager : MonoBehaviour
     private string selectedChallengeText; // Variable to store the selected text
     private bool winnerStarDisplayed = false; // Track if the star has been displayed
     private bool Timetorevealwinner = false;
+    private bool TextDone = false;
     
     public GameObject uiContainer;
     [FormerlySerializedAs("bubbleText")] public TextMeshProUGUI GabeText;
@@ -340,7 +347,11 @@ public class FlashBackRoundManager : MonoBehaviour
         }
 
         // Activate the selected option GameObject
-        activeRoundOption.SetActive(true);
+        //this is where I'm gonna be like - if TextDone=true
+        if (TextDone == true)
+        {
+            activeRoundOption.SetActive(true);
+        }
 
         // Set the current challenge text to match the selected option
         if (selectedChallengeText != null)
@@ -355,43 +366,50 @@ public class FlashBackRoundManager : MonoBehaviour
         }
 
         // Detect player interaction
-        if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
+        if (TextDone == true)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the camera to the mouse position
-            if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit
+
+            if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
             {
-                // Loop through all children of the active round option
-                foreach (Transform child in activeRoundOption.transform) // Update here to use activeRoundOption's children
+                Ray ray = Camera.main.ScreenPointToRay(Input
+                    .mousePosition); // Cast a ray from the camera to the mouse position
+                if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit
                 {
-                    if (hit.collider.gameObject == child.gameObject) // Check if the clicked object is a child
+                    // Loop through all children of the active round option
+                    foreach (Transform child in
+                             activeRoundOption.transform) // Update here to use activeRoundOption's children
                     {
-                        Debug.Log($"Tile clicked: {child.gameObject.name}"); // Log the clicked tile's name
-                        activeRoundOption.SetActive(false); // Hide the selected round option tiles
+                        if (hit.collider.gameObject == child.gameObject) // Check if the clicked object is a child
+                        {
+                            Debug.Log($"Tile clicked: {child.gameObject.name}"); // Log the clicked tile's name
+                            activeRoundOption.SetActive(false); // Hide the selected round option tiles
+                            TextDone = false;
 
-                        // Increment the score based on the tile's tag
-                        if (child.CompareTag("NPC1"))
-                        {
-                            NPC1score++;
-                        }
-                        else if (child.CompareTag("NPC2"))
-                        {
-                            NPC2score++;
-                        }
-                        else if (child.CompareTag("NPC3"))
-                        {
-                            NPC3score++;
-                        }
-                        else if (child.CompareTag("NPC4"))
-                        {
-                            NPC4score++;
-                        }
-                        else if (child.CompareTag("NPC5"))
-                        {
-                            NPC5score++;
-                        }
+                            // Increment the score based on the tile's tag
+                            if (child.CompareTag("NPC1"))
+                            {
+                                NPC1score++;
+                            }
+                            else if (child.CompareTag("NPC2"))
+                            {
+                                NPC2score++;
+                            }
+                            else if (child.CompareTag("NPC3"))
+                            {
+                                NPC3score++;
+                            }
+                            else if (child.CompareTag("NPC4"))
+                            {
+                                NPC4score++;
+                            }
+                            else if (child.CompareTag("NPC5"))
+                            {
+                                NPC5score++;
+                            }
 
-                        currentState = GameState.DecisionReaction; // Move to the new state
-                        return; // Exit the loop after processing
+                            currentState = GameState.DecisionReaction; // Move to the new state
+                            return; // Exit the loop after processing
+                        }
                     }
                 }
             }

@@ -42,6 +42,13 @@ public class DaniCollageGameManager : MonoBehaviour
     private Vector3 originalHoveredScale;
     public GameObject DaniReplaceComment;
     public GameObject FinalDaniComment;
+    
+    private int originalSortingOrder;  // Store original sorting order
+    private bool sortingOrderIncreased = false;  // Flag to track increase
+    private Dictionary<Transform, int> originalSortingOrders = new Dictionary<Transform, int>();
+    private Dictionary<Transform, int> originalSortingOrdersRe = new Dictionary<Transform, int>();
+    private bool sortingOrderIncreasedForChildren = false; // Flag to track increase
+    private bool sortingOrderIncreasedForChildrenRe = false;
 
     public GameObject DaniReplaceHint;
     // Checkboxes for each attribute to control validation in the Inspector
@@ -97,7 +104,7 @@ public class DaniCollageGameManager : MonoBehaviour
     public GameObject DaniBubble;
 
     // Speed of the tile movement when it is placed in the slot
-    public float tileMoveSpeed = 5f;
+    public float tileMoveSpeed = 3f;
 
     private GameObject tileToMove;  // The tile that's being moved
     private Vector3 startPos;       // Starting position of the tile
@@ -159,11 +166,26 @@ public class DaniCollageGameManager : MonoBehaviour
         {
             // Calculate the distance the tile has moved using Time.time and startTime
             float journeyLength = Vector3.Distance(startPos, targetPos);
-            float distanceCovered = (Time.time - startTime) * tileMoveSpeed; // Adjust the speed of the move
+            float distanceCovered = (Time.time - startTime) * tileMoveSpeed;
             float fractionOfJourney = distanceCovered / journeyLength;
 
             // Smoothly move the tile to the target position
             selectedTile.transform.position = Vector3.Lerp(startPos, targetPos, fractionOfJourney);
+
+            // Increase sorting order for all child sprites only once
+            if (!sortingOrderIncreasedForChildren)
+            {
+                foreach (Transform child in selectedTile.transform)
+                {
+                    SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null)
+                    {
+                        originalSortingOrders[child] = spriteRenderer.sortingOrder; // Store original value
+                        spriteRenderer.sortingOrder += 100;
+                    }
+                }
+                sortingOrderIncreasedForChildren = true; // Mark as increased
+            }
 
             // If the tile has reached the target position, stop moving
             if (fractionOfJourney >= 1)
@@ -173,10 +195,24 @@ public class DaniCollageGameManager : MonoBehaviour
                 selectedTile.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
                 isMoving = false;  // Movement is complete
 
+                // Reset sorting order for all child sprites
+                foreach (Transform child in selectedTile.transform)
+                {
+                    SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null && originalSortingOrders.ContainsKey(child))
+                    {
+                        spriteRenderer.sortingOrder = originalSortingOrders[child]; // Restore original value
+                    }
+                }
+
+                sortingOrderIncreasedForChildren = false; // Reset flag
+                originalSortingOrders.Clear(); // Clear stored values
+
                 // Add the tile to the PlayedTiles list
                 PlayedTiles.Add(selectedTile);
             }
         }
+        
         
         if (isMovingRe)
         {
@@ -186,16 +222,40 @@ public class DaniCollageGameManager : MonoBehaviour
 
             if (currentlyMovingTile != null)
             {
-                // Move the tile smoothly
                 currentlyMovingTile.transform.position = Vector3.Lerp(startPos, targetPos, fractionOfJourney);
+
+                if (!sortingOrderIncreasedForChildrenRe)
+                {
+                    foreach (Transform child in currentlyMovingTile.transform)
+                    {
+                        SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+                        if (spriteRenderer != null)
+                        {
+                            originalSortingOrdersRe[child] = spriteRenderer.sortingOrder; // Store original value
+                            spriteRenderer.sortingOrder += 100;
+                        }
+                    }
+                    sortingOrderIncreasedForChildrenRe = true; // Mark as increased
+                }
 
                 if (fractionOfJourney >= 1)
                 {
-                    // Snap to final position
                     currentlyMovingTile.transform.position = targetPos;
                     currentlyMovingTile.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
                     isMovingRe = false;
-                    currentlyMovingTile = null;  // Clear after movement finishes
+
+                    foreach (Transform child in currentlyMovingTile.transform)
+                    {
+                        SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+                        if (spriteRenderer != null && originalSortingOrdersRe.ContainsKey(child))
+                        {
+                            spriteRenderer.sortingOrder = originalSortingOrdersRe[child]; // Restore original value
+                        }
+                    }
+
+                    sortingOrderIncreasedForChildrenRe = false; // Reset flag
+                    originalSortingOrdersRe.Clear(); // Clear stored values
+                    currentlyMovingTile = null; // Clear after movement finishes
                 }
             }
         }
