@@ -49,25 +49,10 @@ public class CollagePlayerHand : MonoBehaviour
 
     void DrawHand()
     {
-        // Calculate the total width and height for the grid.
-        float totalWidth = tileSize * 3 + tileSpacing * 2;  // 3 tiles per row + spacing between tiles
-        float totalHeight = tileSize * 3 + tileSpacing * 2; // 3 rows of tiles + spacing between rows
-
-        // Calculate the starting x and y positions to center the grid.
-        float startX = -11.05f;
-        float startY = -0.28f;
-
-        // Loop through the hand and arrange tiles in a 3x3 grid.
-        for (int i = 0; i < hand.Count; i++)
-        {
-            int row = i / 3;  // Calculate which row the tile belongs to.
-            int col = i % 3;  // Calculate which column the tile belongs to.
-
-            // Set the tile's position based on the row and column.
-            float posX = startX + col * (tileSize + tileSpacing);
-            float posY = startY - row * (tileSize + tileSpacing);
-
-            hand[i].transform.localPosition = new Vector3(posX, posY, 0);
+        float total = tileSize * hand.Count + (tileSpacing * (hand.Count - 1));
+        float startx = tileSize/2f - (total/2f);
+        for(int i = 0; i < hand.Count; i++){
+            hand[i].transform.localPosition = new Vector3(startx + (i*(tileSpacing + tileSize)), 0, 0);
         }
     }
 

@@ -49,6 +49,7 @@ public class DaniCollageGameManager : MonoBehaviour
     private Dictionary<Transform, int> originalSortingOrdersRe = new Dictionary<Transform, int>();
     private bool sortingOrderIncreasedForChildren = false; // Flag to track increase
     private bool sortingOrderIncreasedForChildrenRe = false;
+    private bool SortingOrderforHover = false;
 
     public GameObject DaniReplaceHint;
     // Checkboxes for each attribute to control validation in the Inspector
@@ -360,7 +361,7 @@ private void HandleTileChoice()
             {
                 ResetHoveredTileSize(); // Reset previous hovered tile size
                 originalHoveredScale = hoveredTile.localScale; // Store original scale
-                hoveredTile.localScale = originalHoveredScale * 1.3f;
+                hoveredTile.localScale = originalHoveredScale * 1.2f;
                 previouslyHoveredTile = hoveredTile;
             }
 
@@ -384,9 +385,20 @@ private void ResetHoveredTileSize()
     if (previouslyHoveredTile != null)
     {
         previouslyHoveredTile.localScale = originalHoveredScale;
+        foreach (Transform child in previouslyHoveredTile.transform)
+        {
+            SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null && originalSortingOrders.ContainsKey(child))
+            {
+                spriteRenderer.sortingOrder = originalSortingOrders[child]; // Restore original value
+            }
+        }
         previouslyHoveredTile = null;
+        SortingOrderforHover = false;
+        
     }
 }
+
 
 // **Increases size of selected tile & resets previous one**
 private void HighlightSelection()
@@ -405,7 +417,7 @@ private void HighlightSelection()
         originalScale = newSelection.localScale;
     }
 
-    newSelection.localScale = originalScale * 1.3f;
+    newSelection.localScale = originalScale * 1.2f;
     previouslySelectedTile = newSelection;
 }
 
@@ -1165,7 +1177,7 @@ private void HandleDaniJudge()
                 {
                     ResetHoveredTileSize(); // Reset previous hovered tile size
                     originalHoveredScale = hoveredTile.localScale; // Store original scale
-                    hoveredTile.localScale = originalHoveredScale * 1.3f;
+                    hoveredTile.localScale = originalHoveredScale * 1.2f;
                     previouslyHoveredTile = hoveredTile;
                 }
 
