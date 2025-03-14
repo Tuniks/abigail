@@ -42,6 +42,7 @@ public class DaniCollageGameManager : MonoBehaviour
     private Vector3 originalHoveredScale;
     public GameObject DaniReplaceComment;
     public GameObject FinalDaniComment;
+    public bool SkipCheck = false;
     
     private int originalSortingOrder;  // Store original sorting order
     private bool sortingOrderIncreased = false;  // Flag to track increase
@@ -315,24 +316,24 @@ private void HandleTileChoice()
     }
 
     // Handle input for W, S, or arrow keys to move the arrow
-    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+   // if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
     {
-        MoveArrowUp();
-        HighlightSelection();
+       // MoveArrowUp();
+        //HighlightSelection();
     }
-    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+    //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
     {
-        MoveArrowDown();
-        HighlightSelection();
+        //MoveArrowDown();
+        //HighlightSelection();
     }
 
     // Update the arrow's position based on the current tile index
     UpdateArrowPosition();
 
     // Handle input for E to select the tile under the arrow
-    if (Input.GetKeyDown(KeyCode.E))
+   // if (Input.GetKeyDown(KeyCode.E))
     {
-        SelectTile();
+        //SelectTile();
     }
 
     // Convert mouse position to world space
@@ -738,10 +739,10 @@ private void HandleJudgement()
         Vector3 enlargedNoScale = originalNoScale * 1.3f;
 
         // Handle arrow key input to cycle between "Yes" and "No"
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            judgementSelection = 1 - judgementSelection; // Toggle between 0 and 1
-            UpdateYesNoArrowPosition();
+           // judgementSelection = 1 - judgementSelection; // Toggle between 0 and 1
+           // UpdateYesNoArrowPosition();
         }
 
         // Confirm selection with Enter/E key
@@ -869,18 +870,20 @@ private void HandleSwitchOut()
     slotArrowSprite.SetActive(true);
     arrowSprite.SetActive(false);
     judgementarrow.SetActive(false);
+    ResetScale(yes);
+    ResetScale(no);
     yes.SetActive(false);
     no.SetActive(false);
     Question.SetActive(false);
 
     // Handle player input for moving the slot selection arrow with WASD or arrow keys
-    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+    //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
     {
-        MoveSlotDaniArrowUp();
+        //MoveSlotDaniArrowUp();
     }
-    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+    //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
     {
-        MoveSlotDaniArrowDown();
+        //MoveSlotDaniArrowDown();
     }
 
     // Update the slot arrow's position based on the current slot index
@@ -890,9 +893,9 @@ private void HandleSwitchOut()
     }
 
     // Handle input for E to select the tile under the arrow
-    if (Input.GetKeyDown(KeyCode.E))
+    //if (Input.GetKeyDown(KeyCode.E))
     {
-        SelectTileUnderArrow();
+        //SelectTileUnderArrow();
     }
 
     // Handle hover functionality using raycasting
@@ -1053,26 +1056,34 @@ private void HandleDaniJudge()
     // If the sum of selected attributes is greater than 8, the tile is invalid
     bool isTileValid = selectedTotal >= 12;
 
-    if (isTileValid)
+    if (SkipCheck == false)
     {
-        Debug.Log($"Tile: {tile.gameObject.name} Passed the Judge\n" +
-                  $"Selected Total: {selectedTotal}\n" +
-                  $"Beauty: {totalBeauty}, Vigor: {totalVigor}, Magic: {totalMagic}, " +
-                  $"Heart: {totalHeart}, Intellect: {totalIntellect}, Terror: {totalTerror}");
+        if (isTileValid)
+        {
+            Debug.Log($"Tile: {tile.gameObject.name} Passed the Judge\n" +
+                      $"Selected Total: {selectedTotal}\n" +
+                      $"Beauty: {totalBeauty}, Vigor: {totalVigor}, Magic: {totalMagic}, " +
+                      $"Heart: {totalHeart}, Intellect: {totalIntellect}, Terror: {totalTerror}");
+        }
+        else
+        {
+            // If tile fails the judge, deactivate it immediately and break out of the loop
+            Debug.LogWarning($"Tile: {tile.gameObject.name} Failed the Judge - Selected Total: {selectedTotal} (k)\n" +
+                             $"Beauty: {totalBeauty}, Vigor: {totalVigor}, Magic: {totalMagic}, " +
+                             $"Heart: {totalHeart}, Intellect: {totalIntellect}, Terror: {totalTerror}");
+
+            Debug.Log($"Deactivating Tile: {tile.gameObject.name}");
+            invalidTiles.Add(tile);
+            tile.gameObject.SetActive(false);
+
+            // Break the loop once a tile is found and deactivated
+            break;
+        }
+
     }
     else
     {
-        // If tile fails the judge, deactivate it immediately and break out of the loop
-        Debug.LogWarning($"Tile: {tile.gameObject.name} Failed the Judge - Selected Total: {selectedTotal} (k)\n" +
-                         $"Beauty: {totalBeauty}, Vigor: {totalVigor}, Magic: {totalMagic}, " +
-                         $"Heart: {totalHeart}, Intellect: {totalIntellect}, Terror: {totalTerror}");
-
-        Debug.Log($"Deactivating Tile: {tile.gameObject.name}");
-        invalidTiles.Add(tile);
-        tile.gameObject.SetActive(false);
-
-        // Break the loop once a tile is found and deactivated
-        break;
+        SwitchState(GameState.FinalJudgment);
     }
 }
     // Randomly deactivate one invalid tile if there are any

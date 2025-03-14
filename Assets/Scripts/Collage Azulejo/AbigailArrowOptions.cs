@@ -11,6 +11,7 @@ public class AbigailArrowOptions : MonoBehaviour
     public GameObject option2;       // Option 2 (Garden)
     public GameObject option1Manager; // Manager for Option 1
     public GameObject option2Manager; // Manager for Option 2
+    public GameObject BG;
 
     private int selection = 0; // 0 for Option 1, 1 for Option 2
     private Vector3 originalSize1;
@@ -106,6 +107,7 @@ public class AbigailArrowOptions : MonoBehaviour
     void ConfirmSelection()
     {
         currentState = State.Leave;
+        BG.SetActive(false);
         option1.SetActive(false);
         option2.SetActive(false);
 
