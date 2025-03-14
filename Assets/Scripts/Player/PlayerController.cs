@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     
     public float movementSpeed = 5f;
 
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour{
     private bool isBusy = false;
 
     void Start(){
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update(){

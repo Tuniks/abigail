@@ -78,13 +78,13 @@ public class PlayerInteractor : MonoBehaviour{
         dialogueRunner.StartDialogue(node);
     }
 
-    private void OnTriggerEnter(Collider other){
+    private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
             interactables.Add(other.gameObject);
         }
     }
 
-    private void OnTriggerExit(Collider other){
+    private void OnTriggerExit2D(Collider2D other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         }
