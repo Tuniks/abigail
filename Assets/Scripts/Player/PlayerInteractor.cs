@@ -23,15 +23,16 @@ public class PlayerInteractor : MonoBehaviour{
             interactPrompt.SetActive(true);
         } else interactPrompt.SetActive(false);
 
-        if(Input.GetKeyDown("e")){
-            // If there is a shop currently open
-            if(currentShop != null){
-                currentShop.HideShop();
-                currentShop = null;
-                pc.SetIsBusy(false);
-            } else if(!isTalking){
+        if(Input.GetKeyDown("e") && currentShop == null){
+            if(!isTalking){
                 AttemptInteraction();
             } 
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && currentShop != null && !isTalking){
+            currentShop.HideShop();
+            currentShop = null;
+            pc.SetIsBusy(false);
         }
     }
 
@@ -61,6 +62,8 @@ public class PlayerInteractor : MonoBehaviour{
             } else if(shop != null){
                 currentShop = shop;
                 currentShop.ShowShop();
+                string node = currentShop.GetCurrentNode();
+                if(node != null) StartConversation(node);
                 pc.SetIsBusy(true);
                 return;
             } else if(portal) {

@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour{
     public Transform player;
 
     [Header("Scene Transition")]
-    public SceneFader fader;
+    public Fader fader;
     public float fadeDuration = 1f;
 
     [Header("Area Data")]

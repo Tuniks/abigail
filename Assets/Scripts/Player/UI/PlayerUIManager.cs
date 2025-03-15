@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerUIManager : MonoBehaviour{
@@ -11,6 +12,9 @@ public class PlayerUIManager : MonoBehaviour{
     public Transform activeParent;
     public Transform heldItemParent;
     public GameObject itemElementPrefab;
+
+    [Header("Notification")]
+    public Notification newTileNotification;
 
     private Inventory playerInventory;
     private ItemSlot currentItemSlot = null;
@@ -87,6 +91,16 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     public void SetInventoryUI(){
+        ClearCollection();
+        ClearActive();
+
+        StartCoroutine(UpdateInventoryUI());
+    }
+
+    private IEnumerator UpdateInventoryUI(){
+        // Has to be done next frame so Clear can take effect
+        yield return new WaitForNextFrameUnit();
+        
         List<GameObject> collection = playerInventory.GetTileCollection();
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
@@ -106,5 +120,25 @@ public class PlayerUIManager : MonoBehaviour{
         GameObject element = Instantiate(itemElementPrefab);
         element.GetComponent<ItemElement>().SetTile(tile);
         return element;
+    }
+
+    private void ClearCollection(){
+        foreach(Transform child in collectionParent){
+            if(child.GetComponentInChildren<ItemElement>() != null){
+                Destroy(child.GetChild(0).gameObject);
+            }
+        }
+    }
+
+    private void ClearActive(){
+        foreach(Transform child in activeParent){
+            if(child.GetComponentInChildren<ItemElement>() != null){
+                Destroy(child.GetChild(0).gameObject);
+            }
+        }
+    }
+
+    public void ShowNewTileNotification(){
+        newTileNotification.Show();
     }
 }
