@@ -23,15 +23,16 @@ public class PlayerInteractor : MonoBehaviour{
             interactPrompt.SetActive(true);
         } else interactPrompt.SetActive(false);
 
-        if(Input.GetKeyDown("e")){
-            // If there is a shop currently open
-            if(currentShop != null){
-                currentShop.HideShop();
-                currentShop = null;
-                pc.SetIsBusy(false);
-            } else if(!isTalking){
+        if(Input.GetKeyDown("e") && currentShop == null){
+            if(!isTalking){
                 AttemptInteraction();
             } 
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && currentShop != null){
+            currentShop.HideShop();
+            currentShop = null;
+            pc.SetIsBusy(false);
         }
     }
 
