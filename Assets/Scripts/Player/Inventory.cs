@@ -43,7 +43,9 @@ public class Inventory : MonoBehaviour{
                 tileCollection.Add(tile.gameObject);
             }
         }
+        
         PlayerUIManager.instance.SetInventoryUI();
+        PlayerUIManager.instance.ShowNewTileNotification();
     }
 
     public List<GameObject> GetTileCollection(){

@@ -29,7 +29,7 @@ public class PlayerInteractor : MonoBehaviour{
             } 
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && currentShop != null){
+        if(Input.GetKeyDown(KeyCode.Escape) && currentShop != null && !isTalking){
             currentShop.HideShop();
             currentShop = null;
             pc.SetIsBusy(false);
@@ -62,6 +62,8 @@ public class PlayerInteractor : MonoBehaviour{
             } else if(shop != null){
                 currentShop = shop;
                 currentShop.ShowShop();
+                string node = currentShop.GetCurrentNode();
+                if(node != null) StartConversation(node);
                 pc.SetIsBusy(true);
                 return;
             } else if(portal) {

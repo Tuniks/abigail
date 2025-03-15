@@ -261,7 +261,23 @@ Abigail: No, must have me mixed up with someone else.
 title: AntiqueShopDay1
 tags:
 ---
-Shopkeeper: I only accept buttons here. If you don't have any buttons get lost. 
+<<if visited("AntiqueShopDay1") is false>>
+Mr. Miller: Abigail! How's your mom? 
+ShopAbigail: She's good Mr. Miller. 
+Mr. Miller: She ever talk about me?
+ShopAbigail: I'm looking for a specific Tile. It.
+Mr. Miller: I'm sure I have something like that might just need to do some digging. 
+ShopAbigail: Take your time. 
+Mr. Miller: I noticed you have your mom's old flower power tile. I made that for her way back when. 
+ShopAbigail: How's finding that tile going Mr. Miller?
+Mr. Miller: Aha! I bet this is the one right?
+ShopAbigail: No I don't think so. 
+Mr. Miller: Well go ahead and keep it and tell your mom old Mr. Miller says hello. 
+ShopAbigail: Thank's for the tile Mr. Miller.
+<<VisitAntiqueShop SceneController>>
+<<else>>
+Mr. Miller: Come back with your Mom if you want to buy something.
+<<endif>>
 ===
 title: PostClayAzulejo
 tags:

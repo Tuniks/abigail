@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneFader : MonoBehaviour{
+public class Fader : MonoBehaviour{
     public CanvasGroup cg;
     
     private bool isFadingIn = false;
