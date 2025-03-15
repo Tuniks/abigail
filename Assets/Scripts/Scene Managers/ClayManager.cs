@@ -51,11 +51,19 @@ public class ClayManager : AreaManager{
     }
 
     [YarnCommand]
-    public void VisitAntiqueShop(){
+    public void GiveSaltwaterTile(){
         PlayerInventory.Instance.AddTilesToCollection(salthairTile);
-        WorldState.Instance.UpdateSceneState(Areas.Clay, 1, true);
     }
 
+    [YarnCommand]
+    public void GiveHandTile(){
+        PlayerInventory.Instance.AddTilesToCollection(handholdTile);
+    }
+
+    [YarnCommand]
+    public void VisitAntiqueShop(){
+        WorldState.Instance.UpdateSceneState(Areas.Clay, 1, true);
+    }
 
     [YarnCommand]
     public void PreClayAzulejoDone(){
