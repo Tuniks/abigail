@@ -1,4 +1,4 @@
-﻿title: PreFeltAzulejo
+title: PreFeltAzulejo
 tags:
 ---
 Chase: Abigail, you’re back!
@@ -578,7 +578,8 @@ Abigail: Do you remember this azulejo tile I used to have?
 Abigail: It had like, a swirl on it?
 Dani: No? You could try trading around for it?
 Dani: Earlier I got this haunting squid tile from Hank.
-Dani: I'll be here pondering bureaucratic disasters until you get back. 
+Dani: I'll be here pondering bureaucratic disasters until you get back.
+<<UpdateGwenDialogue SceneController>> 
 <<else>> 
 Dani: Dude you gotta trade with Gwen her tile collection is exquisite. 
 <<endif>>
@@ -821,4 +822,38 @@ tags:
 ---
 Gianluca: Welcome back Abigail!
 Gianluca: They don't have pizza like mine in the big city, huh?
+===
+title: GwenTrade
+tags:
+---
+<<if visited("GwenTrade") is false>>
+<<LoadVariables WorldState>>
+Gwen: Cool lamp tile. Trade me for it?
+<<if $tile_type is "saltwater">>
+    Abigail: I'm looking for a specific Tile. It kinda feels like saltwater in your hair.
+<<else>>
+    Abigail: I'm looking for a specific Tile. It kinda feels like holding someone's hand.
+<<endif>>
+Gwen: Let me check my bag one sec. 
+Abigail: I love your hair. 
+Gwen: I'm straight.
+Abigail: ...
+Abigail: No, I wasn't hitting on you-
+Gwen: Here you go. Is the tile you were looking for?
+Abigail: I don't think so. We can still trade though it's cool. 
+Gwen: Nah, it's all good, you can have it.
+Gwen: I'll look for your tile and we can trade later.
+<<if $tile_type is "saltwater">>
+    <<TradeSaltwaterTile SceneController>>
+<<else>>
+    <<TradeHandTile SceneController>>
+<<endif>>
+<<else>>
+Gwen: Just because I gave you a tile doesn't mean I have a crush on you.
+<<endif>>
+===
+title: GwenNoTrade
+tags:
+--- 
+Gwen: Sup.
 ===
