@@ -237,7 +237,10 @@ public class TileGameManager : MonoBehaviour{
         float p1 = challengesManager.EvaluateTile(index, p1Active.activeTile);
         float p2 = challengesManager.EvaluateTile(index, p2Active.activeTile);
 
-        if(p1 >= p2){
+        Debug.Log("abigail" + p1.ToString());
+        Debug.Log("oz" + p2.ToString());
+        
+        if(p1 > p2){
             score++;
             return true;
         }
