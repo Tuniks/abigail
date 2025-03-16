@@ -1,39 +1,40 @@
 ﻿title: PreFeltAzulejo
 tags:
 ---
-Chase: Abigail, you are back!
-Abigail: Temporarily
+Chase: Abigail, you’re back!
+Abigail: Temporarily.
 Chase: Or forever! Who knows!
-Abigail: Wow you... 
+Abigail: Wow you...
 -> Look exactly the same, dude.
 	Chase: So much for my new haircut...
 	Abigail: I just mean, you look like you, is all.
 -> Look so different.
-	Chase: That's what happens when you run away to the big city...
-    Abigail: Wow so you really miss me huh?
+	Abigail: I almost didn't recognize you.
+    Chase: It’s just my hair, I’m still me I swear.
 Oz: Ahoy! I'm here too! This must be the star of the good old days!
-Chase: This is Oz, my friend from work
-Abigail: Oh, hey
+Chase: This is Oz, my friend from work.
+Abigail: Oh, hey.
 Chase: Why don't we grab a table and chat?
 Abigail: Can't believe you are still coming here.
-Chase: If it ain't broke, don't fix it
-Chase: And last year they added a lava cake to the menu that's hella good, you should try it
-Oz: Plus, Sarah is working today
+Chase: If it ain't broke, don't fix it.
+Chase: And last year they added a lava cake to the menu that's hella good, you should try it.
+Oz: Plus, Sarah is working today.
 Chase: Of course you have Sarah’s work schedule memorized.
 Abigail: Who's Sarah?
-Oz: Oh, she’s just this girl who… it’s kind of a long story
+Oz: Oh, Sarah... Imagine someone who smells like plums and looks like a Christmas morning!
+Oz: She’s just this chick who… it’s kind of a long story.
 Chase: Anyways, Abbs, how's the big city treating you?
 -> Some good, some bad.
 -> Some bad, some good.
 Oz: You are missing out then, here it's only good
 Chase: They made bad illegal a couple years after you left
-Abigail: Uh-huh. It shows.
+Abigail: Uh-huh. As if.
 Chase: C'mon, Abbs, we gotta get you in the Kiln mood!
 Oz: Do you remember how to play Azulejo?
 Abigail: I moved Oz, I didn't get lobotomized.
 Chase: Let's play a match then!
-Chase: And I'll judge! Let's see who here knows me the best. 
-Abigail: Ok, ok. When in Kiln...
+Chase: And I'll judge! Let's see who here knows me the best.
+Abigail: I've known you since you were a kid eating playground sand. I think I've got this.
 <<PreFeltAzulejoDone SceneController>>
 ===
 title: PostFeltAzulejo
@@ -85,7 +86,7 @@ tags:
 ---
 <<if visited("Vendor") is false>>
 Vendor:	I know you from somewhere.
-Abigail: 	I know you from somewhere!
+Abigail: I know you from somewhere!
 Vendor:	We went to tennis camp together.
 -> I was really bad at tennis.
 	Vendor:	You were really bad at tennis.
@@ -115,31 +116,28 @@ tags:
 ---
 <<if visited("MomIntro") is false>>
 Mom: As I live and breathe!
-Dani: I didn't realize you were home. 
-Abigail: Neither did I. I just woke up here. 
+Dani: I didn't realize you were home.
+Abigail: Neither did I. I just woke up here.
 Mom: It's a sign!
 Dani: Oh that happened to my cousin once.
 Abigail: Wait really? Was it a round trip magical interlude or do I need to go buy a return ticket?
-Dani: I don't really remember. We think it happened because he had a terrible case of athletes foot. 
+Dani: I don't really remember. We think it happened because he had a terrible case of athlete's foot.
 Abigail: Aren't you supposed to be at that writing residency?
-Dani: Do you have athletes foot Abigail?
+Dani: Do you have athlete's foot Abigail?
 Abigail: Shut up.
-Mom: You hated that writing program anyway! A homecoming is always happy! Abigail come give me a hug baby. 
+Mom: You hated that writing program anyway! A homecoming is always happy! Abigail come give me a hug baby.
 Abigail: This is a mess I need to get home.
-Dani: So you are really busy in the city then?
-Mom: Abigail calm down you look awful. I'm making tea!
+Dani: So you're really busy in the city then?
+Mom: Abigail calm down, you look awful. I'm making tea!
 Abigail: Ok, ok, fine. I'll have some tea.
 Abigail: Is it from Stacy's?
-Mom: Normally I would've gone and got you some from there but you never call. 
-Abigail: Mom! I literally just woke up here. 
-Dani: She doesn't call me either. 
+Mom: I wasn't even sure you liked Stacy's anymore. You don't call us, you don't visit. 
 Mom: This is from the place Dani and I like to go to.
-Abigail: So you hang out with my mom a lot Dani?
 Mom: They're my favorite person to have morning tea with! No one gossips with me like Dani does!
 Dani: We were actually just talking about how we wish Mrs. Palmer was here for a game of Azulejo.
 Mom: Forget Mrs. Palmer we have the Kiln Bay middle school champ of '83 in the house!
-Abigail: Mom that's so embarassing. 
-Dani: Let's do it your mom can judge. 
+Abigail: Mom, that's so embarrassing.
+Dani: Let's do it your mom can judge.
 Mom: Abigail go grab some tiles from the chest so we can play.
 <<MomIntroDone SceneController>>
 <<else>>
@@ -152,7 +150,7 @@ tags:
 <<if visited("Tourist") is false>>
 Tourist: These are absolutely blowing my mind! My heart is on fire! My soul is delighted!
 Abigail: Yeah these tiles are pretty nice.
-Tourist: All the blogs said that getting out of Acrylic Square is where you find the real genuine true authentic azulejo tiles. And oh boy were they right!
+Tourist: All the blogs said that getting out of West Kiln is where you find the real genuine true authentic azulejo tiles. And oh boy were they right!
 Abigail: The blogs?
 Tourist: That’s how I heard about this city!
 Tourist: Azulejo Addicts dot com! You can find it on the world wide web!
@@ -204,11 +202,11 @@ tags:
     Abigail: ...
         -> I am going to assassinate my mother.
         -> I can't show my face around these parts anymore...
-    Margarette: Hehehe
+    Margarette: Hehehe.
     <<set $talkedtwice = true>>
 
 <<elseif $talkedtwice>>
-    Margarette: Hehehe
+    Margarette: Hehehe.
 <<endif>>
 ===
 title: ClayStart
@@ -216,18 +214,18 @@ tags:
 ---
 <<if visited("ClayStart") is false>>
 Kate: Abigail? What are you doing here man?
-Abigail: Kate. Hi. Wow. Yeah. I'm here. 
-Chase: Words girl, use your words. 
-Abigail: No, yeah. I just woke up here this morning. 
-Abigail: You look really good. 
-Chase: Too many words Abbs. 
-Kate: Dude that's crazy I think the same thing happened to Dani's cousin once. 
-Abigail: I don't have athletes foot!
+Abigail: Kate. Hi. Wow. Yeah. I'm here.
+Chase: Words girl, use your words.
+Abigail: No, yeah. I just woke up here this morning.
+Abigail: You look really good.
+Chase: Too many words Abbs.
+Kate: Dude that's crazy I think the same thing happened to Dani's cousin once.
+Abigail: I don't have athlete's foot!
 Kate: ...
 Chase: Abbs weren't you going on about a tile you were looking for?
-Kate: You should check Miller's antique shop he always has weird tiles.
-Abigail: Totally, I bet he'll have it. 
-Kate: Come back and hang afterwords I haven't seen you in forever.
+Kate: You should check Miller's antique shop. He always has weird tiles.
+Abigail: Totally, I bet he'll have it.
+Kate: Come back and hang afterwards. I haven't seen you in forever.
 <<else>>
 Chase: Do we think Miller made the building look like him?
 Chase: Or did he make himself look like the building?
@@ -238,13 +236,13 @@ title: PostAntiqueShop
 tags:
 ---
 Chase: You find what you were looking for?
-Abigail: Nope. 
-Kate: Bummer dude. 
-Abigail: Wasn't meant to be I guess. 
+Abigail: Nope.
+Kate: Bummer dude.
+Abigail: Wasn't meant to be I guess.
 Kate: How’s the big city treating you these days?
-Abigail: You know... really good. Really really good I'm having an awesome time. 
+Abigail: You know... really good. Really really good, I'm having an awesome time.
 Kate: Yeah, totally.
-Kate: Are you still working at that French restuarant?
+Kate: Are you still working at that French restaurant?
 Abigail: Not anymore French food is a little passé.
 Abigail: How are...how is your life going?
 Kate: It’s pretty good these days! I’m working at the library.
@@ -258,9 +256,14 @@ Chase:...
 Abigail:...
 Kate:...
 Abigail: You know what, I was just telling Chase how much I wanted to play Azulejo, down for a round?
+Kate: Yeah I'm down, we're not that far from the courtyard.
 Chase: I thought you didn't like how they play it around here?
-Kate: Yeah you used to say this one was too woo woo for you?
-Abigail: No, must have me mixed up with someone else. 
+Kate: Yeah, you used to say this one was too woo woo for you?
+Abigail: No, must have me mixed up with someone else.
+Chase: What am I supposed to do while your souls intermingle.
+Kate: Watch.
+Chase: Say less mama.
+Abigail: ...
 <<PreClayAzulejoDone SceneController>>
 ===
 title: AntiqueShopDay1
@@ -298,17 +301,20 @@ title: PostClayAzulejo
 tags:
 ---
 <<if visited("PostClayAzulejo") is false>>
+Chase: I've never seen the pools act like that. Abbs are you good?
+Abigail: You know I don't believe in that stuff Chase nice try.
+Kate: Abigail...
 Abigail: I should probably get home.
 Chase: Sick, we'll come with.
 Abigail: Uh, why?
 Chase: We’re going to the party at your house.
 Kate: Your mom invited the whole gang.
 Abigail: Tell me you're joking.
-Kate: Aw man even Gabe?
+Kate: Aw man, even Gabe?
 Chase: He's still our friend even if you broke his heart.
 Kate: Chase!
-Abigial: Broke... his heart?
-Chase: Don't worry we'll have plenty of time to finish this completely normal not weird at all conversation on the way to your house Abbs.
+Abigail: Broke... his heart?
+Chase: Don't worry we'll have plenty of time to finish this completely normal, not weird at all conversation on the way to your house Abbs.
 Abigail: I hate you I hate you I hate you.
 <<PostClayAzulejoDone SceneController>>
 <<else>>
@@ -318,16 +324,17 @@ Chase: We'll see you at your mom's, Abbs.
 title: WeirdHouse
 tags:
 ---
-<<if visited("WeirdHouse") is false>>
-HOA President: I am just asking you, no begging you to listen to me!						
-HOA President: STOP MAKING YOUR HOUSE LOOK STRANGER!						
-HOA President: Every time I leave my house you’ve added a decoration, plant, trim, coat of paint.						
-HOA President: It makes my head hurt! It makes my tummy upset!						
-Linda: I don’t know what to tell you. It makes my heart soar!						
-HOA President: Every other member of this neighborhood has no problem following the guidelines we’ve outlined?						
-Linda: Oh sweet silly neighbor, comparisons are a waste of your time.		
+<<if visited("WeirdHouse") is false>>					
+HOA President: I am just asking you, no begging you to listen to me!
+HOA President: You are in violation of over 10 homeowner restrictions!
+HOA President: Every time I leave my house you’ve added a decoration, plant, trim, coat of paint.
+HOA President: It makes my head hurt! It makes my tummy upset!
+Linda: I don't know what to tell you. I'm just doing what the house wants.
+Weird House: Could you touch up my trim next week?
+Linda: Absolutely!	
 <<else>>
-Linda: Don't listen to what anyone says house, you look astonishing!
+Normal House: You know I'd really prefer a darker color palette.
+HOA President: Shush you.
 <<endif>>
 ===
 title: PlaygroundKids
@@ -338,26 +345,26 @@ Ryan 1: Abigail hello!
 Abigail: Hey, Ryan! What's up, buddy?
 Ryan 2: Who's the old lady, Ryan?
 Ryan 1: That's Abigail, she's my neighbor.
-Abigail: was*, it's been a while since I moved away
-Abigail: And also
+Abigail: was*, it's been a while since I moved away.
+Abigail: And also!
 Abigail: I'm not an old lady, I'm in my mid-twenties!
-Ryan 2: That's old enough to be a grandmother
+Ryan 2: That's old enough to be a grandmother.
 Abigail: No, it's not?
-Ryan 1: I think I've seen grandmothers in their twenties
+Ryan 1: I think I've seen grandmothers in their twenties.
 Abigail: No, You have not. Ryan, who is this clown?
-Ryan 2: I'm Ryan
-Abigail: No, HE is Ryan
-Ryan 2: I'm Ryan too
-Ryan 1: He's Ryan too
+Ryan 2: I'm Ryan.
+Abigail: No, HE is Ryan.
+Ryan 2: I'm Ryan too.
+Ryan 1: He's Ryan too.
 Ryan 2: Have you never seen two people with the same name?
 Abigail: Oh... Is that why you two are friends? Same name?
 Ryan 2: No? Do you pick your friends based on their names?
-Ryan 1: We are friends because we both like the color purple
-Ryan 2: And bugs
-Ryan 1: Yeah bugs are awesome
+Ryan 1: We’re friends because we both like the color purple.
+Ryan 2: And bugs.
+Ryan 1: Yeah bugs are awesome.
 -> I like purple too!
 -> I like bugs too!
-Ryan 2: Ok, grandma, no one asked
+Ryan 2: Ok, grandma, no one asked.
 Abigail: Ok, I never asked to be tormented by babies, I'm leaving!
 <<else>>
 Ryan 1: So, what is your favorite bug?
@@ -371,16 +378,16 @@ tags:
 <<if visited("HauntedHouseTeens") is false>>
 Albert: I see a poem.
 Fellini: I see a film.
-Abigail: I see two losers. 
-Albert: Abigail! Long time no see! 
-Fellini: Art is cool lady. 
-Abigail: Sorry, losers non-pejorative. 
+Abigail: I see two losers.
+Albert: Abigail! Long time no see!
+Fellini: Art is cool lady.
+Abigail: Sorry, losers non-pejorative.
 Fellini: Pejorateive?
 Albert: How've you been Abigail? Do you miss babysitting me?
-Abigail: Not at all you were such a weird kid. 
+Abigail: Not at all you were such a weird kid.
 Fellini: What does perjorative mean?
-Albert: I was not a weird kid I was, I am, eclectic. 
-Abigail: Whatever you say Albert I'll catch you later.
+Albert: I was not a weird kid, I was, I am, eclectic.
+Abigail: Whatever you say Albert I'll catch you later. By Fellini!
 <<else>>
 Fellini: Dude what does pejorative mean?
 Albert: I don't know! Quit asking me. 
@@ -550,6 +557,71 @@ Abigail: Yeah? Do you have chalk?
 Dani: Always.
 <<PreCollageAzulejoDone SceneController>>
 ===
+title: DaniDay1PreTrade
+tags:
+---
+<<if visited("DaniDay1PreTrade") is false>>
+Abigail: Hey loser.
+Dani: Abigail!
+Abigail: Knew I’d find you over here.
+Dani: I’m a fan of mesmerizing catastrophes, what can I say?
+Abigail: It’s really good to talk with you again. 
+Dani: You too Abbs, sorry if it was weird I was at your house this morning.
+Abigail: Not at all, I’m glad you’re keeping her company.
+Dani: She’s been a lifesaver for me too lately.
+Abigail: Working at the restaurant?
+Dani: Yeah, it’s not the same without you.
+Dani: It’s Abigail this, Abigail that, apparently my table setting doesn’t hold a candle to yours.
+Abigail: Hey um…
+Abigail: Do you remember this azulejo tile I used to have?
+Abigail: It had like, a swirl on it?
+Dani: No? You could try trading around for it?
+Dani: Earlier I got this haunting squid tile from Hank.
+Dani: I'll be here pondering bureaucratic disasters until you get back. 
+<<else>> 
+Dani: Dude you gotta trade with Gwen her tile collection is exquisite. 
+<<endif>>
+===
+title: DaniDay1PostTrade
+tags:
+---
+Dani: Did you find it?
+Abigail: No, and it’s like…
+Abigail: I can’t even remember it clearly.
+Dani: What made you want to look for it?
+Abigail: Before I woke up here, I was closing my eyes to go to sleep
+Abigail: And it just popped into my head and it won’t go away.
+Dani: Maybe it’s what brought you here.
+Abigail: Yeah that’s what I was thinking, that I could find it and then go back and things would be
+Abigail: Things would be better.
+Dani: Are things bad?
+Abigail: Not exactly I just…
+-> I think I forgot how to cook 
+    Dani: Better not tell my dad that, it will shatter his entire reality.
+    Dani: Are things okay with your job?
+    Abigail: I think I might have messed it up.
+    Dani: You've always been pretty good at fixing things. 
+    Dani: Do you remember the summer Chase and Gabe would not speak to each other?
+    Abigail: Of course I do, that was the summer Gabe won basically my entire tile collection. 
+    Dani: I don't know what you said, but when they showed up acting all buddy buddy at my poetry reading I was astonished. 
+    Dani: You'll figure it out, you always do.
+    Abigail: Maybe, if I’m there to do it.
+-> I can’t make anyone laugh 
+    Dani: I don’t believe that for a second.
+    Abigail: Everyone’s sense of humor there is sharper or meaner or-
+    Dani: Do you remember Ms. Wilcons from the 9th grade?
+    Abigail: Of course, why?
+    Dani: I ran into her the other day and she started laughing just remembering you.
+    Dani: You’ll figure it out, you always do.
+    Abigail: Maybe, if I’m there to do it.
+Dani: Well sounds better than my attempt to leave.
+Abigail: Do you want to talk about it?
+Dani: Could we just, could we play azulejo?
+Dani: I feel like that would be easier.
+Abigail: Yeah? Do you have chalk?
+Dani: Always.
+<<PreCollageAzulejoDone SceneController>>
+===
 title: DaniDay1PostAzulejo
 tags:
 ---
@@ -581,7 +653,7 @@ Dani: Oh and this is gonna be a terrible thing for you to hear but…
 Dani: I feel the need to prepare you for the jokes Gabe might make later.
 Dani: Kate and Gabe. Uh...they happened.  
 Abigail: What??? No.
-Dani: Yes.
+Dani: Unfortunately, it is so.
 Dani: It’s over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome.
 <<PostCollageAzulejoDone SceneController>>
@@ -612,12 +684,12 @@ Abigail: Mom said you had some tiles for me.
 Chest: <b> HERE ARE YOUR TILES. </b>
 Abigail: These?? Really?
 Chest: <b> SOME OF YOUR MOM'S FAVORITES. </b>
-Abigail: Thank you, I guess
-Chest: <b> YOU ARE WELCOME, ABIGAIL </b>
-Chest: <b> DON'T FORGET TO PRESS TAB AND CHECK OUT YOUR INVENTORY </b>
+Abigail: Thank you, I guess.
+Chest: <b> YOU ARE WELCOME, ABIGAIL. </b>
+Chest: <b> DON'T FORGET TO PRESS TAB AND CHECK OUT YOUR INVENTORY. </b>
 Abigail: Why are you talking like that?
-Chest: <b> THE ACTIVE TAB WILL LET YOU SORT THE TILES YOU TAKE TO THE GAMES </b>
-Chest: <b> THE COLLECTION TAB IS WHERE YOU KEEP ALL OF YOUR OTHER TILES</b>
+Chest: <b> THE ACTIVE TAB WILL LET YOU SORT THE TILES YOU TAKE TO THE GAMES. </b>
+Chest: <b> THE COLLECTION TAB IS WHERE YOU KEEP ALL OF YOUR OTHER TILES. </b>
 Abigail: I'm aware, I used to live here!
 <<ChestIntroDone SceneController>>
 <<else>>
@@ -635,7 +707,7 @@ Julie: Every few months some government official will try to.
 Julie: But the proceedings always end up getting caught up in a bureaucratic web.
 Abigail: Shouldn't it be simple to put out a fire?
 Julie: It's a jurisdictional gray area. A federal building on municipal land, with the firefighters being state employees.
-Julie: And with Ochre Bay's water company being privatized a couple years ago
+Julie: And with Ochre Bay's water company being privatized a couple years ago.
 Julie: It also just doesn't make sense financially. 
 Abigail: This can't be good for the environment, right?
 Julie: Certainly it isn't. But that doesn't mean it isn't the most beautiful view I've ever seen.
@@ -650,17 +722,17 @@ tags:
 <<if visited("HaroldFountain") is false>>
 Harold: Fascinating! Anita Clark's very own Bathing Baby Fountain!
 Harold: I've waited my whole life to see it!
-Harold: It has even more presence than the text books led me to believe.
+Harold: It has even more presence than the textbooks led me to believe.
 Abigail: Baby? I thought it was a busty woman
 Harold: Dear lord...
-Abigail: It's just a fountain, dude, it has been here forever
+Abigail: It's just a fountain, dude, it has been here forever.
 Harold: Precisely! It was completed in 1867, so much history!
 Harold: What an exquisite use of form and color. Intensely dynamic!
-Abigail: Yeah, I guess it does look kinda rad
+Abigail: Yeah, I guess it does look kinda rad.
 Harold: Right??
 <<else>>
-Harold: Open your eyes and learn your history, young lady
-Harold: You will see the world is way more exciting than you think
+Harold: Open your eyes and learn your history, young lady.
+Harold: You will see the world is way more exciting than you think.
 <<endif>>
 ===
 title: BlockedDoor
@@ -671,15 +743,15 @@ Abigail: I don't think I should go this way just yet.
 title: AbigailOpening
 tags:
 ---
-Abigail: You have to be joking. 
+Abigail: You have to be joking.
 Abigail: I'm back here?
 Abigail: This can't be happening.
-Abigail: I need to get back to the city why did this have to happen this week. 
+Abigail: I need to get back to the city. Why did this have to happen this week?
 Abigail: The job interview, lunch with Alice, MY FISH!
 Mom: Abigail is that you?!
 Abigail: Oh god.
-Abigail: Everyone is going to want to see me. 
-Abigail: I'm going to have to see everyone. 
+Abigail: Everyone is going to want to see me.
+Abigail: I'm going to have to see everyone.
 Abigail: I'm going to have to see-
 Mom: Abigail! Come downstairs! I'm so glad you're home!
 <<OpeningDone SceneController>>
@@ -687,8 +759,8 @@ Mom: Abigail! Come downstairs! I'm so glad you're home!
 title: MomDaniPreAzulejo
 tages:
 ---
-Mom: Perfect! Those are some of my favorites! The peace flower one reminds me of my younger wilder days if you know what I mean Dani. 
-Dani: This hardly seems fair. 
+Mom: Perfect! Those are some of my favorites! The peace flower one reminds me of my younger wilder days if you know what I mean Dani.
+Dani: This hardly seems fair.
 Abigail: Someone's scared!
 <<StartAzulejo SceneController>>
 ===
@@ -697,19 +769,55 @@ tages:
 ---
 <<if visited("MomDaniPostAzulejo") is false>>
 Mom: Oh well that was just electric!
-Dani: I feel cheated. 
-Mom: You beat Mrs. Palmer every week Dani have some more tea!
-Dani: I think I'm heading out. I'll be down in Wharf this afternoon if you're free, Abbs. 
+Dani: I feel cheated.
+Mom: You beat Mrs. Palmer every week, Dani have some more tea!
+Dani: I think I'm heading out. I'll be down in Wharf this afternoon if you're free, Abbs.
 Abigail: Like I'd go hang with such a sore loser!
-Dani: Yeah yeah I was supposed to grab lunch with Chase and his friend but I'm not really feeling it. 
+Dani: Yeah yeah I was supposed to grab lunch with Chase and his friend but I'm not really feeling it.
 Dani: Go be my stand in, they'll be happier to see you anyway.
-Abigail: At the Neptune? 
-Dani: He's a creature of herculean habit. 
-Abigail: We'll see I need to figure out this plane ticket situation. 
-Mom: The travel office is closed on Monday's anyway, Stan likes to go swimming at the beach. Go to the Neptune and see Chase!
+Abigail: At The Neptune?
+Dani: He's a creature of herculean habit.
+Abigail: We'll see I need to figure out this plane ticket situation.
+Mom: The travel office is closed on Monday's anyway, Stan likes to go swimming at the beach. Go to The Neptune and see Chase!
 <<PostAzulejoDone SceneController>>
 <<else>>
 Mom: Your hair looks awful! I guess it's fine since you're just going to see Chase at the Neptune.
 Mom: But I'll stop and get you some conditioner today.
 <<endif>>
+===
+title: DelilahNPC
+tags:
+---
+<<if visited("DelilahNPC") is false>>
+Delilah: The history of this courtyard is palpable, don't you agree?
+Abigail: Doesn't that plaque say it was built in the 70s?
+Delilah: Honey it was refurbished in 73, but it's been here since the town's founding way back when.
+Abigail: It's probably been refurbished quite a few times since then. I doubt any of the original pieces are still there.
+Delilah: Calm down Theseus. The grey circle in the middle is completely original.
+<<else>>
+Delilah: Anyway the history isn't what makes it beautiful. It just is.
+Abigail: Yeah that I'd agree with.
+<<endif>>
+===
+title: SteffanoNPC
+tags:
+---
+<<if visited("SteffanoNPC") is false>>
+Steffano: These docks used to be full of ships going in and out you wouldn't believe. 
+Abigail: Yeah we learned about it in school. 
+Steffano: I lived it. Now it's just a bunch of bummy young people playing Azulejo. They don't even play it right. 
+Abigail: I think it's pretty cool. 
+Steffano: Things used to happen here! This town used to be the center of a universe, kid!
+Abigail: Ok mister. Have a good day!
+<<else>>
+Steffano: The center of a universe!
+Abigail: Which one?
+Steffano: Doesn't matter anymore. 
+<<endif>>
+===
+title: Gianluca
+tags:
+---
+Gianluca: Welcome back Abigail!
+Gianluca: They don't have pizza like mine in the big city, huh?
 ===
