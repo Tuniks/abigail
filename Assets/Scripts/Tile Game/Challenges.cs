@@ -17,6 +17,9 @@ public class Challenges : MonoBehaviour{
         {8, "What says mothers love the most?"},
         {9, "What does a good time look like?"},
         {10, "What did you both miss when you were away?"},
+        {11, "What could overtake my nightmares?"},
+        {12, "What would I love to break open a pinata and find lots of?"},
+        {13, "What could Oz use to win Sarah's heart?"},
     };
 
     public int[] GetRandomChallenges(int count){
@@ -60,6 +63,12 @@ public class Challenges : MonoBehaviour{
                 return tile.GetHeart();
             case 10:
                 return tile.GetHeart();
+            case 11:
+                return tile.GetTerror();
+            case 12:
+                return (tile.GetVigor() + tile.GetHeart())/2f;
+            case 13:
+                return (tile.GetMagic() + tile.GetBeauty())/2f;
                 
         }
 
@@ -91,6 +100,12 @@ public class Challenges : MonoBehaviour{
                 return new List<Attributes>{Attributes.Heart};
             case 10:
                 return new List<Attributes>{Attributes.Heart};
+            case 11:
+                return new List<Attributes>{Attributes.Terror};
+            case 12:
+                return new List<Attributes>{Attributes.Heart, Attributes.Vigor};
+            case 13:
+                return new List<Attributes>{Attributes.Beauty, Attributes.Magic};
         }
 
         return new List<Attributes>{};
