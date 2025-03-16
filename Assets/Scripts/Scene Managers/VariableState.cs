@@ -4,7 +4,6 @@ using UnityEngine;
 using Yarn.Unity;
 
 public class VariableState : MonoBehaviour{
-    private DialogueRunner dialogueRunner;
     private InMemoryVariableStorage variableStore;
 
     private Dictionary<string, float> floatVariables = new Dictionary<string, float>();
@@ -12,15 +11,10 @@ public class VariableState : MonoBehaviour{
         {"$tile_type", "abc"},
     };
     private Dictionary<string, bool> boolVariables = new Dictionary<string,bool>();
-    
-    void Start(){
-        dialogueRunner = FindAnyObjectByType<DialogueRunner>();
-        variableStore = FindAnyObjectByType<InMemoryVariableStorage>();
-    }
 
     [YarnCommand]
     public void LoadVariables(){
-        Debug.Log(stringVariables["$tile_type"]);
+        variableStore = FindAnyObjectByType<InMemoryVariableStorage>();
 
         variableStore.SetAllVariables(
             floatVariables,
@@ -31,6 +25,8 @@ public class VariableState : MonoBehaviour{
 
     [YarnCommand]
     public void StoreVariables(){
+        variableStore = FindAnyObjectByType<InMemoryVariableStorage>();
+
         var variables = variableStore.GetAllVariables();
         floatVariables = variables.Item1;
         stringVariables = variables.Item2;

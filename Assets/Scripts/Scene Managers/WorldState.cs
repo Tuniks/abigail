@@ -15,7 +15,7 @@ public class WorldState : MonoBehaviour{
     
     private Dictionary<Areas, int> currentAreaState = new Dictionary<Areas, int>(){
         {Areas.Moms, 0},
-        {Areas.Felt, 1},
+        {Areas.Felt, 0},
         {Areas.Clay, 0},
         {Areas.Collage, 0},
         {Areas.Bedroom, 0}
