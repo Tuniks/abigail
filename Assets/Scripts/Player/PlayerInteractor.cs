@@ -29,7 +29,7 @@ public class PlayerInteractor : MonoBehaviour{
             } 
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && currentShop != null && !isTalking){
+        if(Input.GetKeyDown("q") && currentShop != null && !isTalking){
             currentShop.HideShop();
             currentShop = null;
             pc.SetIsBusy(false);
