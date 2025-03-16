@@ -6560,6 +6560,89 @@ PolygonCollider2D:
       - {x: 24.534046, y: 0.5344763}
       - {x: 2.3677025, y: 2.1006584}
   m_UseDelaunayMesh: 0
+--- !u!1001 &556037050
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3908153217243319016, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 98.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908153217243319016, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -26.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048308188309185360, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: CharacterName
+      value: Weird House
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048308188309185360, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: characterBubbleData
+      value: 
+      objectReference: {fileID: 11400000, guid: b29b724cf75f75c408221831f8f44ec6, type: 2}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060565390355709345, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_Name
+      value: WeirdHouse
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3095051355286751436, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 9133940620788002872, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 667787140}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+--- !u!4 &556037051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+  m_PrefabInstance: {fileID: 556037050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &558002372
 GameObject:
   m_ObjectHideFlags: 0
@@ -7493,7 +7576,7 @@ GameObject:
   - component: {fileID: 667787139}
   - component: {fileID: 667787138}
   m_Layer: 0
-  m_Name: friendsandcrazyhouse_1
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7575,11 +7658,11 @@ Transform:
   m_GameObject: {fileID: 667787137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 91.745125, y: -53.734306, z: 34.202084}
+  m_LocalPosition: {x: 97.170006, y: -29.4, z: 0}
   m_LocalScale: {x: 3.36, y: 3.36, z: 3.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 881422911}
+  m_Father: {fileID: 556037051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &668558245
 GameObject:
@@ -10612,11 +10695,11 @@ Transform:
   m_GameObject: {fileID: 829410114}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 84.44512, y: -54.084305, z: 34.202084}
+  m_LocalPosition: {x: 89.87, y: -29.749998, z: 0}
   m_LocalScale: {x: 1.4300001, y: 1.4300001, z: 1.4300001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 881422911}
+  m_Father: {fileID: 1435031132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830685282
 GameObject:
@@ -12023,7 +12106,6 @@ Transform:
   - {fileID: 26937769}
   - {fileID: 1667131178}
   - {fileID: 1213234992}
-  - {fileID: 829410117}
   - {fileID: 391036210}
   - {fileID: 260346935}
   - {fileID: 1130845225}
@@ -12127,7 +12209,6 @@ Transform:
   - {fileID: 1577014724}
   - {fileID: 427683536}
   - {fileID: 1262040358}
-  - {fileID: 667787140}
   - {fileID: 1800797367}
   - {fileID: 350497123}
   - {fileID: 349474683}
@@ -19295,6 +19376,89 @@ PolygonCollider2D:
       - {x: -9.534763, y: -6.805992}
       - {x: 7.1606884, y: 0.7343349}
   m_UseDelaunayMesh: 0
+--- !u!1001 &1435031131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3908153217243319016, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 91.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908153217243319016, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -26.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048308188309185360, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: CharacterName
+      value: Normal House
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048308188309185360, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: characterBubbleData
+      value: 
+      objectReference: {fileID: 11400000, guid: fd340a435f450d44cbe1bb826a7241cb, type: 2}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060565390355709345, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      propertyPath: m_Name
+      value: NormalHouse
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3095051355286751436, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 9133940620788002872, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 829410117}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+--- !u!4 &1435031132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7820359193267115439, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
+  m_PrefabInstance: {fileID: 1435031131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437795857
 GameObject:
   m_ObjectHideFlags: 0
@@ -29244,6 +29408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1449719298870779646, guid: a508c1b03806a8645be821db5e4b6378, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4850443860231613331, guid: a508c1b03806a8645be821db5e4b6378, type: 3}
       propertyPath: m_Name
       value: Oz
@@ -29374,6 +29542,8 @@ SceneRoots:
   - {fileID: 8069734510838217000}
   - {fileID: 1636600379476512193}
   - {fileID: 797778436992195124}
+  - {fileID: 556037050}
+  - {fileID: 1435031131}
   - {fileID: 4931772771325139954}
   - {fileID: 244896557}
   - {fileID: 8169284147302715139}
