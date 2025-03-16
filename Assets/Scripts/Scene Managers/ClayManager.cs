@@ -76,4 +76,10 @@ public class ClayManager : AreaManager{
         WorldState.Instance.UpdateSceneState(Areas.Clay, 3);
         WorldState.Instance.UpdateSceneState(Areas.Felt, 3);
     }
+    
+    [YarnCommand]
+    public void GoToSteamLinkScene()
+    {
+        SceneManager.LoadScene("STEAMLINK");
+    }
 }

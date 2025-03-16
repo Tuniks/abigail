@@ -44,4 +44,10 @@ public class CollageManager : AreaManager{
         WorldState.Instance.UpdateSceneState(Areas.Collage, 2);
         WorldState.Instance.UpdateSceneState(Areas.Felt, 3);
     }
+    
+    [YarnCommand]
+    public void GoToSteamLinkScene()
+    {
+        SceneManager.LoadScene("STEAMLINK");
+    }
 }
