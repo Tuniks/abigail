@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public enum Areas{
@@ -24,6 +25,10 @@ public class SceneController : MonoBehaviour{
     public static SceneController Instance;
     public Transform player;
 
+    [Header("Scene Transition")]
+    public Fader fader;
+    public float fadeDuration = 1f;
+
     [Header("Area Data")]
     public Areas currentArea;
     public List<AreaPortals> areaPortals;
@@ -42,6 +47,11 @@ public class SceneController : MonoBehaviour{
 
         UpdateSceneState();
         UpdatePlayerPosition();
+
+        if(fader){
+            StartCoroutine(fader.FadeOut(fadeDuration)); 
+        }
+        
     }
 
     public void UpdateSceneState(){
@@ -70,11 +80,34 @@ public class SceneController : MonoBehaviour{
         if(nextScene == null) return;
 
         WorldState.Instance.SetLastArea(currentArea, player.position);
-        SceneManager.LoadScene(nextScene);
+        ChangeScene(nextScene);
     }
 
     public void Roundtrip(string scene){
         WorldState.Instance.SetLastArea(currentArea, player.position);
+        ChangeScene(scene);
+    }
+
+    public void ChangeScene(string scene){
+        if(fader==null){
+            SceneManager.LoadScene(scene);
+            return;
+        }
+
+        StartCoroutine(SceneRoutine(scene));
+    }
+
+    private IEnumerator SceneRoutine(string scene){
+        yield return fader.FadeIn(fadeDuration);
         SceneManager.LoadScene(scene);
+    }
+
+    public void SameSceneFadeInAndOut(float fadeDuration, float pauseDuration){
+        if(fader==null){
+            Debug.Log("No Fader Attached");
+            return;
+        }
+
+        StartCoroutine(fader.FadeInAndOut(fadeDuration, pauseDuration));
     }
 }

@@ -20,18 +20,8 @@ public class ClayManager : AreaManager{
     
     [Header("Misc")]
     public GameObject antiqueShop;
-    private bool antiqueShopVisited = true;
-
-    void Start(){
-        if(WorldState.Instance.GetSceneState(Areas.Clay) == 0) antiqueShopVisited = false;    
-    }
-
-    void Update(){
-        if(!antiqueShopVisited && antiqueShop.activeSelf){
-            VisitAntiqueShop();
-            antiqueShopVisited = true;
-        }
-    }
+    public Tile[] salthairTile;
+    public Tile[] handholdTile;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -54,11 +44,27 @@ public class ClayManager : AreaManager{
         }
     }
 
-    private void VisitAntiqueShop(){
+    // YARN COMMANDS
+    [YarnCommand]
+    public void FlashTile(){
+
+    }
+
+    [YarnCommand]
+    public void GiveSaltwaterTile(){
+        PlayerInventory.Instance.AddTilesToCollection(salthairTile);
+    }
+
+    [YarnCommand]
+    public void GiveHandTile(){
+        PlayerInventory.Instance.AddTilesToCollection(handholdTile);
+    }
+
+    [YarnCommand]
+    public void VisitAntiqueShop(){
         WorldState.Instance.UpdateSceneState(Areas.Clay, 1, true);
     }
 
-    // YARN COMMANDS
     [YarnCommand]
     public void PreClayAzulejoDone(){
         WorldState.Instance.UpdateSceneState(Areas.Clay, 2);
@@ -76,5 +82,4 @@ public class ClayManager : AreaManager{
     {
         SceneManager.LoadScene("STEAMLINK");
     }
-
 }
