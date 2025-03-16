@@ -39,6 +39,8 @@ Abigail: Ok, ok. When in Kiln...
 title: PostFeltAzulejo
 tags:
 ---
+<<declare $tile_type = "" as String>>
+<<LoadVariables WorldState>>
 Oz: And that's another win for Oz!
 Abigail: I'm using my mom's tiles, it's not fair!
 Oz: I would have won even with your tiles, I know this boy too well.
@@ -50,13 +52,15 @@ Chase: Have fun at the mines!
 Oz: I always do.
 Abigail: Chase, do you remember this one tile, it had like a swirl on it? And it felt like
 -> Holding someone’s hand
+    <<set $tile_type to "hand">>
 -> Saltwater in my hair
+    <<set $tile_type to "saltwater">>
 Chase: No? I don’t think so?
 Abigail: I feel like I need to find it.
 Chase: We could try looking at the antique shop
 Chase: I’m headed over there right now to meet Kate, wanna come?
 Abigail: My kate?
-Chase: Yeah... Is it gonna be weird?
+Chase: Yeah... Is it gonna be weird? m 
 Abigail: No, no. Weird? Not at all. No.
 Chase: Uh-huh. It shows.
 Abigail: I don't know. Dani told me they'd be down in Wharf, so I might do that instead.
@@ -68,6 +72,7 @@ Abigail: Yeah dude I know how to get around.
 Chase: Oh, after your azulejo performance I thought you had erased us from your memory.
 Abigail: I hate you, Chase.
 Chase: I missed you, Abigail.
+<<StoreVariables WorldState>>
 <<PostFeltAzulejoDone SceneController>>
 ===
 title: OutsideHouse2
@@ -262,15 +267,25 @@ title: AntiqueShopDay1
 tags:
 ---
 <<if visited("AntiqueShopDay1") is false>>
+<<LoadVariables WorldState>>
 Mr. Miller: Abigail! How's your mom? 
 ShopAbigail: She's good Mr. Miller. 
 Mr. Miller: She ever talk about me?
-ShopAbigail: I'm looking for a specific Tile. It.
+<<if $tile_type is "saltwater">>
+    ShopAbigail: I'm looking for a specific Tile. It kinda feels like saltwater in your hair.
+<<else>>
+    ShopAbigail: I'm looking for a specific Tile. It kinda feels like holding someone's hand.
+<<endif>>
 Mr. Miller: I'm sure I have something like that might just need to do some digging. 
 ShopAbigail: Take your time. 
 Mr. Miller: I noticed you have your mom's old flower power tile. I made that for her way back when. 
 ShopAbigail: How's finding that tile going Mr. Miller?
 Mr. Miller: Aha! I bet this is the one right?
+<<if $tile_type is "saltwater">>
+    <<GiveSaltwaterTile SceneController>>
+<<else>>
+    <<GiveHandTile SceneController>>
+<<endif>>
 ShopAbigail: No I don't think so. 
 Mr. Miller: Well go ahead and keep it and tell your mom old Mr. Miller says hello. 
 ShopAbigail: Thank's for the tile Mr. Miller.
