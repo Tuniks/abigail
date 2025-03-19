@@ -21,7 +21,6 @@ public class CollageManager : AreaManager{
     public string azulejoScene = "COL_azulejo";
 
     [Header("Misc")]
-    public GameObject antiqueShop;
     public Tile[] salthairTile;
     public Tile[] handholdTile;
 
@@ -36,11 +35,11 @@ public class CollageManager : AreaManager{
                 break;
             case 2:
                 // Post Azulejo
-                dialogueRunner.StartDialogue(state1Dialogue);
-                UpdateDialogueNode(dani, state1Dialogue);
+                dialogueRunner.StartDialogue(state2Dialogue);
+                UpdateDialogueNode(dani, state2Dialogue);
                 break;
             case 3:
-                UpdateDialogueNode(dani, state1Dialogue);
+                UpdateDialogueNode(dani, state2Dialogue);
                 break;
         }
     }
