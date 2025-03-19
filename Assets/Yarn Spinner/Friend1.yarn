@@ -40,6 +40,7 @@ Abigail: I've known you since you were a kid eating playground sand. I think I'v
 title: PostFeltAzulejo
 tags:
 ---
+<<if visited("PostFeltAzulejo") is false>>
 <<declare $tile_type = "" as String>>
 <<LoadVariables WorldState>>
 Oz: And that's another win for the king of kings, Oz!
@@ -75,6 +76,9 @@ Abigail: I hate you, Chase.
 Chase: I missed you, Abigail.
 <<StoreVariables WorldState>>
 <<PostFeltAzulejoDone SceneController>>
+<<else>>
+Chase: Head west over the brige to hang out with me and Kate, but if you wanna see Dani go south.
+<<endif>>
 ===
 title: OutsideHouse2
 tags:
@@ -658,6 +662,7 @@ Abigail: What??? No.
 Dani: Unfortunately, it is so.
 Dani: It’s over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome.
+<<GoToSteamLinkSceneFromCollage SceneController>>
 <<PostCollageAzulejoDone SceneController>>
 <<else>>
 Dani: I'll see you at your mom's, Abbs

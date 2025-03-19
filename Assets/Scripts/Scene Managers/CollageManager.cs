@@ -76,7 +76,7 @@ public class CollageManager : AreaManager{
     }
     
     [YarnCommand]
-    public void GoToSteamLinkScene()
+    public void GoToSteamLinkSceneFromCollage()
     {
         SceneManager.LoadScene("STEAMLINK");
     }
