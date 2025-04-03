@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class PlayerHand : MonoBehaviour{
+public class PlayerHand : MonoBehaviour, IPlayerHand {
     public List<Tile> hand;
     public int maxHandSize;
 
@@ -59,7 +59,7 @@ public class PlayerHand : MonoBehaviour{
         }
     }
 
-    public void Activate(Tile tile){
+    public void Activate(Tile tile) {
         if(!hand.Contains(tile)) return;
         
         if(isClay){
