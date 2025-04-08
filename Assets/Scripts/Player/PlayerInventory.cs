@@ -16,10 +16,4 @@ public class PlayerInventory : Inventory{
 
         base.Awake();
     }
-
-    void Update(){
-        if(Input.GetKeyDown("p")){
-            SceneManager.LoadScene("Start");
-        }
-    }
 }

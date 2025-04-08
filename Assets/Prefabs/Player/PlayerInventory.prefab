@@ -856,46 +856,6 @@ MonoBehaviour:
   terror: 0
   title: Cassiopeia Constellation
   tags: 
---- !u!1 &867039755159296132
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2094387470163007904}
-  m_Layer: 0
-  m_Name: Active
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2094387470163007904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867039755159296132}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6332758880495460633}
-  - {fileID: 4704114650667913051}
-  - {fileID: 5691252170477960376}
-  - {fileID: 959731603017842487}
-  - {fileID: 4092126752591930343}
-  - {fileID: 8668946372212107181}
-  - {fileID: 188530677561402663}
-  - {fileID: 5558546699277117264}
-  - {fileID: 8715227964421073442}
-  m_Father: {fileID: 1372762205492488564}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880453986550941314
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,6 +3458,15 @@ Transform:
   - {fileID: 3356230777359032882}
   - {fileID: 8847558699897226701}
   - {fileID: 5322637468821855115}
+  - {fileID: 6332758880495460633}
+  - {fileID: 4704114650667913051}
+  - {fileID: 5691252170477960376}
+  - {fileID: 959731603017842487}
+  - {fileID: 4092126752591930343}
+  - {fileID: 8668946372212107181}
+  - {fileID: 188530677561402663}
+  - {fileID: 5558546699277117264}
+  - {fileID: 8715227964421073442}
   m_Father: {fileID: 1372762205492488564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5580177890291182200
@@ -3638,7 +3607,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2586894515313649948}
-  - {fileID: 2094387470163007904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &7780782955720391424
@@ -3654,7 +3622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileCollectionParent: {fileID: 2586894515313649948}
-  activeTilesParent: {fileID: 2094387470163007904}
+  activeTilesParent: {fileID: 0}
 --- !u!1 &5643328211059908736
 GameObject:
   m_ObjectHideFlags: 0
@@ -6228,7 +6196,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -6334,7 +6302,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -6554,7 +6522,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -6660,7 +6628,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -6766,7 +6734,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -6986,7 +6954,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -7198,7 +7166,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -7300,7 +7268,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face
@@ -7406,7 +7374,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2094387470163007904}
+    m_TransformParent: {fileID: 2586894515313649948}
     m_Modifications:
     - target: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
       propertyPath: face

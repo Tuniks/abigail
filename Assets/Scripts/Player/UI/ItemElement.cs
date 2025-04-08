@@ -7,15 +7,13 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private PlayerUIManager ui;
     private CanvasGroup cg;
 
-    private RectTransform rect;
-    private Transform previousParent;
+    private Vector3 previousPos;
 
     public Vector3 tileScale = new Vector3(1, 1, 1); 
 
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();
         cg = GetComponent<CanvasGroup>();
-        rect = GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData){
