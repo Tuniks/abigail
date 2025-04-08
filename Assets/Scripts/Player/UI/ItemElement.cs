@@ -17,7 +17,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
 
     public void OnPointerDown(PointerEventData eventData){
-        previousParent = transform.parent;
+        previousPos = transform.position;
         cg.blocksRaycasts = false;
         transform.SetParent(ui.GetHeldItemParent(), false);
         Vector3 screenPoint = Input.mousePosition;
@@ -39,17 +39,13 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         UpdateSpriteOrder(-10);
     }
 
-    public void ReturnToPreviousParent(){
-        transform.SetParent(previousParent, false);
+    public void ReturnToPreviousPosition(){
+        transform.position = previousPos;
     }
 
     public void SetNewParent(Transform dad){
         transform.SetParent(dad,false);
-    }
-
-    public Transform GetPreviousParent(){
-        return previousParent;
-    }
+    } 
 
     public void SetTile(GameObject tile){
         GameObject tileCopy = Instantiate(tile, Vector3.zero, Quaternion.identity);

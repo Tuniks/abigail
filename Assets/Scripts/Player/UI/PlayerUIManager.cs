@@ -8,9 +8,16 @@ public class PlayerUIManager : MonoBehaviour{
     
     [Header("Inventory")]
     public GameObject inventoryScreen;
-    public Transform collectionParent;
+    public RectTransform bagRect;
     public Transform heldItemParent;
+
+    [Header("Prefabs")]
     public GameObject itemElementPrefab;
+
+    [Header("Tile Placement")]
+    public float bagOffsetX = 5f;
+    public float bagOffsetY = 5f;
+    public float maxRotation = 20f;
 
     [Header("Notification")]
     public Notification newTileNotification;
@@ -32,7 +39,13 @@ public class PlayerUIManager : MonoBehaviour{
     // ====== INVENTORY =======
 
     private void ToggleInventory(){
-        inventoryScreen.SetActive(!inventoryScreen.activeSelf);
+        if(inventoryScreen.activeSelf){
+            inventoryScreen.SetActive(false);
+        } else {
+            UpdateInventoryUI();
+            inventoryScreen.SetActive(true);
+        }
+        
     }
 
 
@@ -42,10 +55,10 @@ public class PlayerUIManager : MonoBehaviour{
 
     public void DropItemElement(ItemElement element){
         // If not hovering a new slot, return to previous place
-        if(currentItemSlot == null){
-            element.ReturnToPreviousParent();
-            return;
-        }
+        // if(currentItemSlot == null){
+        //     element.ReturnToPreviousPosition();
+        //     return;
+        // }
 
         // Getting tile from element
         Tile tile = element.GetTile();
@@ -66,8 +79,8 @@ public class PlayerUIManager : MonoBehaviour{
         List<GameObject> collection = playerInventory.GetTileCollection();
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
-            Transform slot = GetNextFreeSlotCollection();
-            element.GetComponent<ItemElement>().SetNewParent(slot);
+            element.transform.SetParent(bagRect);
+            PlaceElement(element);
         }
     }
 
@@ -78,12 +91,30 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     private void ClearCollection(){
-        foreach(Transform child in collectionParent){
+        foreach(Transform child in bagRect){
             if(child.GetComponentInChildren<ItemElement>() != null){
                 Destroy(child.GetChild(0).gameObject);
             }
         }
     }
+
+    private void PlaceElement(GameObject element){
+        float x = Random.Range(
+            bagRect.rect.xMin + bagOffsetX,
+            bagRect.rect.xMax - bagOffsetX
+        );
+
+        float y = Random.Range(
+            bagRect.rect.yMin + bagOffsetY,
+            bagRect.rect.yMax - bagOffsetY
+        );
+
+        float rot = Random.Range(-maxRotation, maxRotation);
+
+        element.transform.SetLocalPositionAndRotation(new Vector3(x, y, 0), Quaternion.Euler(0,0,rot));
+    }
+
+    // ====== NOTIFICATIONS ======
 
     public void ShowNewTileNotification(){
         newTileNotification.Show();
