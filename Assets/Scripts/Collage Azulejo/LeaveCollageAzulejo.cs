@@ -7,6 +7,11 @@ public class LeaveCollageAzulejo : MonoBehaviour{
     public string nextScene = "COL_area";
     
     void Start(){
-        SceneManager.LoadScene(nextScene);
+        if(SceneFader.Instance == null){
+            SceneManager.LoadScene(nextScene);
+            return;
+        }
+
+        SceneFader.Instance.ChangeScene(nextScene);
     }
 }
