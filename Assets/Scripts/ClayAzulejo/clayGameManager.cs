@@ -130,7 +130,10 @@ public class ClayGameManager : MonoBehaviour {
     }
 
     IEnumerator OnGameEnd(){
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(nextScene);
+        yield return new WaitForSeconds(4);
+        if(SceneFader.Instance == null){
+            SceneManager.LoadScene(nextScene);
+
+        } else SceneFader.Instance.ChangeScene(nextScene);
     }
 }

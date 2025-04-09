@@ -26,7 +26,6 @@ public class PlayerHand : MonoBehaviour, IPlayerHand {
 
     public void BuildHand(){
         PlayerInventory inv = PlayerInventory.Instance;
-        Debug.Log(inv);
         if (inv != null) 
             hand = inv.GetHandOfTiles(maxHandSize);
         if(hand.Count < maxHandSize) 
