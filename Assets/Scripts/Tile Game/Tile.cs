@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Tile : MonoBehaviour{
+public class Tile : MonoBehaviour {
     [Header("Prefabs for Generation")]
     public GameObject facePrefab;
     public GameObject bgPrefab;
@@ -17,7 +17,8 @@ public class Tile : MonoBehaviour{
     public TileComponent material;
     public TileComponent glaze; 
 
-    private PlayerHand playerHand;
+    // Change the type to IPlayerHand so it can accept either PlayerHand or PlayerHandPA.
+    private IPlayerHand playerHand;
 
     private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
 
@@ -75,7 +76,6 @@ public class Tile : MonoBehaviour{
     }
 
     // === HELPER OVERRIDES ===
-
     public static bool operator == (Tile t1, Tile t2){
         if(!t1 && !t2) return true;
         if(!t1 || !t2) return false;
@@ -100,21 +100,41 @@ public class Tile : MonoBehaviour{
 
     // === FUNCTIONS FOR AZULEJO GAME ===
 
-    public void SetHand(PlayerHand hand){
+    // Updated to accept IPlayerHand so it works with both classes.
+    public void SetHand(IPlayerHand hand){
         playerHand = hand;
     }
 
+    // When the tile is clicked...
     void OnMouseDown(){
-        if(playerHand == null) return;
+        // If the game is in Play state, handle active tile selection.
+        if (PowerAzuManager.instance != null && PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
+            PowerAzuManager.instance.SetActiveTile(this);
+        }
+        // Otherwise, maintain existing behavior.
+        else {
+            if(playerHand == null) return;
+            playerHand.Activate(this);
+        }
+    }
 
-        playerHand.Activate(this);
+    // Detect right-click input while the cursor is over this tile.
+    void OnMouseOver() {
+        if (PowerAzuManager.instance != null && PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
+            if (Input.GetMouseButtonDown(1)) { // Right-click
+                if (PowerAzuManager.instance.activeTile == this) {
+                    PowerAzuManager.instance.CancelActiveTile();
+                }
+            }
+        }
     }
 
     public void AddMultiplier(Attributes att, float value){
-        
         if(multipliers.ContainsKey(att)){
             multipliers[att] = multipliers[att] * value;
-        } else multipliers[att] = value;
+        } else {
+            multipliers[att] = value;
+        }
     }
 
     // === GETTERS ===
@@ -125,10 +145,7 @@ public class Tile : MonoBehaviour{
 
     public bool HasTag(Tag tag){
         if(face.tags == null) return false;
-
-        if (face.tags.Contains(tag)) return true;
-
-        return false;
+        return face.tags.Contains(tag);
     }
 
     public float GetAttribute(Attributes att){
