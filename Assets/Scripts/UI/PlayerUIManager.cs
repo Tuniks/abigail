@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerUIManager : MonoBehaviour{
     public static PlayerUIManager instance;
@@ -24,6 +25,8 @@ public class PlayerUIManager : MonoBehaviour{
 
     private Inventory playerInventory;
 
+    private ConvoSlot convoSlot;
+
     void Start(){
         instance = this;
         playerInventory = PlayerInventory.Instance;
@@ -37,15 +40,13 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     // ====== INVENTORY =======
-
     private void ToggleInventory(){
         if(inventoryScreen.activeSelf){
             inventoryScreen.SetActive(false);
         } else {
-            UpdateInventoryUI();
+            SetInventoryUI();
             inventoryScreen.SetActive(true);
         }
-        
     }
 
 
@@ -54,21 +55,26 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     public void DropItemElement(ItemElement element){
-        // If not hovering a new slot, return to previous place
-        // if(currentItemSlot == null){
-        //     element.ReturnToPreviousPosition();
-        //     return;
-        // }
-
-        // Getting tile from element
-        Tile tile = element.GetTile();
+        // Change to random rotation for extra sauce
+        float rot = Random.Range(-maxRotation, maxRotation);
+        element.transform.rotation = Quaternion.Euler(0,0,rot);
+        
+        // If hovering drop spot, drop it
 
 
+        // Reset parent
+        element.transform.SetParent(bagRect.transform);
+
+        // If not hovering bag, return to previous place
+        Debug.Log(IsInsideBag(element));
+        if(!IsInsideBag(element)){
+            element.ReturnToPreviousPosition();
+            return;
+        }
     }
 
     public void SetInventoryUI(){
         ClearCollection();
-
         StartCoroutine(UpdateInventoryUI());
     }
 
@@ -93,7 +99,7 @@ public class PlayerUIManager : MonoBehaviour{
     private void ClearCollection(){
         foreach(Transform child in bagRect){
             if(child.GetComponentInChildren<ItemElement>() != null){
-                Destroy(child.GetChild(0).gameObject);
+                Destroy(child.gameObject);
             }
         }
     }
@@ -113,6 +119,22 @@ public class PlayerUIManager : MonoBehaviour{
 
         element.transform.SetLocalPositionAndRotation(new Vector3(x, y, 0), Quaternion.Euler(0,0,rot));
     }
+    
+    private bool IsInsideBag(ItemElement element){
+        float x = element.GetComponent<RectTransform>().localPosition.x;
+        float y = element.GetComponent<RectTransform>().localPosition.y;
+        
+        if(x < bagRect.rect.xMin + bagOffsetX || x > bagRect.rect.xMax - bagOffsetX) return false;
+        if(y < bagRect.rect.yMin + bagOffsetY || y > bagRect.rect.yMax - bagOffsetY) return false;
+
+        return true;
+    }
+
+    // ====== AZULEJO CONVO ======
+    public void SetCurrentSlot(ConvoSlot slot){
+        convoSlot = slot;
+    }
+
 
     // ====== NOTIFICATIONS ======
 

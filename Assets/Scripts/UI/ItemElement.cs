@@ -40,6 +40,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
 
     public void ReturnToPreviousPosition(){
+        Debug.Log("Return");
         transform.position = previousPos;
     }
 

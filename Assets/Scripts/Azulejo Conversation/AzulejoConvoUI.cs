@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AzulejoConvoUI : MonoBehaviour{
-    
+public class AzulejoConvoUI : MonoBehaviour{ 
     public void Show(){
 
     }
