@@ -9106,7 +9106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8494441484709417025, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8646566605611494053, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9154,11 +9154,11 @@ PrefabInstance:
     - {fileID: 4074845322402238126, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7440043575860100153, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3962253823317707906}
-    - targetCorrespondingSourceObject: {fileID: 7440043575860100153, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 745821874}
+    - targetCorrespondingSourceObject: {fileID: 7440043575860100153, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 3962253823317707906}
     - targetCorrespondingSourceObject: {fileID: 5849953722951248795, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1460812020}
@@ -9468,13 +9468,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 745821874}
+  - component: {fileID: 745821875}
   m_Layer: 5
   m_Name: Azulejo Conversation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &745821874
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9498,6 +9499,20 @@ RectTransform:
   m_AnchoredPosition: {x: 450, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &745821875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745821873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ad266c2c12d2945a50050d59370e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convoScreen: {fileID: 745821873}
+  tileSlot: {fileID: 542879414}
 --- !u!1 &750107686
 GameObject:
   m_ObjectHideFlags: 0
@@ -12966,7 +12981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998252344440750333, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.00007
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3127703687526284070, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: playerTransform
@@ -13030,7 +13045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020004650091786254, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.00007
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2363420953817181379, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
@@ -22802,7 +22817,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 10.00007
+  m_CameraDistance: 10
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -26467,6 +26482,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2765642723889996764, guid: 600c72c00c444c84b90014d2271460a4, type: 3}
+      propertyPath: 'dialogueNode.Array.data[0]'
+      value: MargarettePreConvo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26493,8 +26512,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convoUI: {fileID: 0}
-  faceDialoguePairs: []
-  defaultNode: 
+  faceDialoguePairs:
+  - facePrefab: {fileID: 5965758887917730016, guid: 14c9763677f6c437f944961819c1804c, type: 3}
+    dialogueNode: MargarettePostConvo1
+  - facePrefab: {fileID: 5965758887917730016, guid: 92b091061272a46a98aea6ca57f88839, type: 3}
+    dialogueNode: MargarettePostConvo2
+  defaultNode: MargarettePostConvoDefault
+  endConvoDelay: 1
 --- !u!1001 &2273686474516509300
 PrefabInstance:
   m_ObjectHideFlags: 0

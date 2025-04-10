@@ -12,29 +12,47 @@ public struct FaceDialoguePair{
 public class AzulejoConvo : MonoBehaviour{
     public AzulejoConvoUI convoUI;
 
+    [Header("Conversation Nodes")]
     public List<FaceDialoguePair> faceDialoguePairs;
     public string defaultNode;
+
+    [Header("Juice")]
+    public float endConvoDelay = 1f;
     
-    public void OnTileSelected(){
-        string selectedFace = convoUI.GetSelectedFace();
+    private void StartConvo(){
+        PlayerUIManager.instance.SetCurrentConvo(this);
+        PlayerUIManager.instance.ShowInventory();
+        convoUI.Show();
+    }
+
+    private IEnumerator EndConvo(string node){
+        yield return new WaitForSeconds(endConvoDelay);
+
+        PlayerUIManager.instance.SetCurrentConvo(null);
+        PlayerUIManager.instance.HideInventory();
+        convoUI.Hide();
+
+        PlayerInteractor.instance.StartConversation(node);
+    }
+
+    public void OnTileSelected(Tile tile){
+        convoUI.SetTile(tile);
+        string selectedFace = tile.GetName();
 
         foreach(FaceDialoguePair pair in faceDialoguePairs){
             TileComponent face = pair.facePrefab.GetComponent<TileComponent>();
             if(face.title == selectedFace){
-                StartDialogue(pair.dialogueNode);
+                StartCoroutine(EndConvo(pair.dialogueNode));
                 return;
             }
         }
 
-        StartDialogue(defaultNode);
+        StartCoroutine(EndConvo(defaultNode));
     }
 
-    private void StartDialogue(string node){
-        convoUI.Hide();
-    }
-
+    // ==== YARN COMMANDS ====
     [YarnCommand]
     public void StartAzulejoConversation(){
-        convoUI.Show();
+        StartConvo();
     }
 }

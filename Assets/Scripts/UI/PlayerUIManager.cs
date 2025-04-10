@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 
 public class PlayerUIManager : MonoBehaviour{
     public static PlayerUIManager instance;
-    
+    private Inventory playerInventory;
+
     [Header("Inventory")]
     public GameObject inventoryScreen;
     public RectTransform bagRect;
@@ -23,9 +24,9 @@ public class PlayerUIManager : MonoBehaviour{
     [Header("Notification")]
     public Notification newTileNotification;
 
-    private Inventory playerInventory;
-
-    private ConvoSlot convoSlot;
+    // === Azulejo Conversation
+    private AzulejoConvo currentConvo = null;
+    private ConvoSlot convoSlot = null;
 
     void Start(){
         instance = this;
@@ -35,20 +36,30 @@ public class PlayerUIManager : MonoBehaviour{
 
     void Update(){
         if(Input.GetKeyDown("i") || Input.GetKeyDown(KeyCode.Tab)){
-            ToggleInventory();
+            if(!IsPlayerBusy()){
+                if(inventoryScreen.activeSelf){
+                    HideInventory();
+                } else ShowInventory();
+            }
         }
+    }
+
+    private bool IsPlayerBusy(){
+        if(currentConvo != null) return true;
+        if(PlayerInteractor.instance.IsPlayerBusy()) return true;
+
+        return false;
     }
 
     // ====== INVENTORY =======
-    private void ToggleInventory(){
-        if(inventoryScreen.activeSelf){
-            inventoryScreen.SetActive(false);
-        } else {
-            SetInventoryUI();
-            inventoryScreen.SetActive(true);
-        }
+    public void ShowInventory(){
+        SetInventoryUI();
+        inventoryScreen.SetActive(true);
     }
 
+    public void HideInventory(){
+        inventoryScreen.SetActive(false);
+    }
 
     public Transform GetHeldItemParent(){
         return heldItemParent;
@@ -60,13 +71,15 @@ public class PlayerUIManager : MonoBehaviour{
         element.transform.rotation = Quaternion.Euler(0,0,rot);
         
         // If hovering drop spot, drop it
-
+        if(convoSlot != null && currentConvo != null){
+            currentConvo.OnTileSelected(element.GetTile());
+            return;
+        }
 
         // Reset parent
         element.transform.SetParent(bagRect.transform);
 
         // If not hovering bag, return to previous place
-        Debug.Log(IsInsideBag(element));
         if(!IsInsideBag(element)){
             element.ReturnToPreviousPosition();
             return;
@@ -131,6 +144,10 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     // ====== AZULEJO CONVO ======
+    public void SetCurrentConvo(AzulejoConvo convo){
+        currentConvo = convo;
+    }
+
     public void SetCurrentSlot(ConvoSlot slot){
         convoSlot = slot;
     }
