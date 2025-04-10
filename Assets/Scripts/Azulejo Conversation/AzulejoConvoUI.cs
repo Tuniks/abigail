@@ -6,6 +6,10 @@ public class AzulejoConvoUI : MonoBehaviour{
     [Header("UI References")]
     public GameObject convoScreen;
     public GameObject tileSlot;
+    public GameObject tileList;
+
+    [Header("Prefabs")]
+    public GameObject hoverItem;
     
     public void Show(){
         convoScreen.SetActive(true);
@@ -25,5 +29,17 @@ public class AzulejoConvoUI : MonoBehaviour{
 
         item.transform.SetParent(tileSlot.transform);
         item.transform.localPosition = Vector3.zero;
+    }
+
+    public void BuildHover(List<FaceDialoguePair> faces){
+
+    }
+
+    public void ShowHover(){
+        tileList.SetActive(true);
+    }
+
+    public void HideHover(){
+        tileList.SetActive(false);
     }
 }

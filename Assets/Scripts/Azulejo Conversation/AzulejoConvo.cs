@@ -18,7 +18,11 @@ public class AzulejoConvo : MonoBehaviour{
 
     [Header("Juice")]
     public float endConvoDelay = 1f;
-    
+
+    void Start(){
+        convoUI.BuildHover(faceDialoguePairs);
+    }
+
     private void StartConvo(){
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();

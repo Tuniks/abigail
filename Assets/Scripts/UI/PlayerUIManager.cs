@@ -20,11 +20,12 @@ public class PlayerUIManager : MonoBehaviour{
     public float bagOffsetX = 5f;
     public float bagOffsetY = 5f;
     public float maxRotation = 20f;
+    private int orderCount = 0;
 
     [Header("Notification")]
     public Notification newTileNotification;
 
-    // === Azulejo Conversation
+    // === Azulejo Conversation ===
     private AzulejoConvo currentConvo = null;
     private ConvoSlot convoSlot = null;
 
@@ -69,6 +70,8 @@ public class PlayerUIManager : MonoBehaviour{
         // Change to random rotation for extra sauce
         float rot = Random.Range(-maxRotation, maxRotation);
         element.transform.rotation = Quaternion.Euler(0,0,rot);
+        orderCount++;
+        element.UpdateSpriteOrder(orderCount*4);
         
         // If hovering drop spot, drop it
         if(convoSlot != null && currentConvo != null){
@@ -96,10 +99,13 @@ public class PlayerUIManager : MonoBehaviour{
         yield return new WaitForNextFrameUnit();
         
         List<GameObject> collection = playerInventory.GetTileCollection();
+        orderCount = 0;
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
             element.transform.SetParent(bagRect);
             PlaceElement(element);
+            element.GetComponent<ItemElement>().UpdateSpriteOrder(orderCount*4);
+            orderCount++;
         }
     }
 
@@ -151,7 +157,6 @@ public class PlayerUIManager : MonoBehaviour{
     public void SetCurrentSlot(ConvoSlot slot){
         convoSlot = slot;
     }
-
 
     // ====== NOTIFICATIONS ======
 

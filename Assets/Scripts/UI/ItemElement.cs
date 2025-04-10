@@ -8,6 +8,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private CanvasGroup cg;
 
     private Vector3 previousPos;
+    private Dictionary<SpriteRenderer, int> originalSpriteOrder = null;
 
     public Vector3 tileScale = new Vector3(1, 1, 1); 
 
@@ -24,7 +25,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         screenPoint.z = 10.0f; 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
-        UpdateSpriteOrder(10);
+        UpdateSpriteOrder(1000);
     }
 
     public void OnDrag(PointerEventData eventData){
@@ -36,11 +37,9 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public void OnPointerUp(PointerEventData eventData){
         cg.blocksRaycasts = true;
         ui.DropItemElement(this);
-        UpdateSpriteOrder(-10);
     }
 
     public void ReturnToPreviousPosition(){
-        Debug.Log("Return");
         transform.position = previousPos;
     }
 
@@ -60,10 +59,21 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         return GetComponentInChildren<Tile>();
     }
 
-    private void UpdateSpriteOrder(int order){
+    public void UpdateSpriteOrder(int order){
+        if(originalSpriteOrder == null) InitializeOGOrder();
+
         SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer spr in sprs){
-            spr.sortingOrder += order;
+            spr.sortingOrder = originalSpriteOrder[spr] + order;
+        }
+    }
+
+    private void InitializeOGOrder(){
+        originalSpriteOrder = new Dictionary<SpriteRenderer, int>();
+
+        SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer spr in sprs){
+            originalSpriteOrder[spr] = spr.sortingOrder;
         }
     }
 }
