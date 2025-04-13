@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ConvoSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
+public class ConvoHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
     private AzulejoConvoUI convoUI;
     
     void Start(){
@@ -11,12 +11,10 @@ public class ConvoSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     public void OnPointerEnter(PointerEventData eventData){
-        convoUI.SetHoverSlot(true);
-        GetComponentInParent<PlayerUIManager>().SetCurrentSlot(this);
+        convoUI.SetHoverHover(true);
     }
 
     public void OnPointerExit(PointerEventData eventData){
-        convoUI.SetHoverSlot(false);
-        GetComponentInParent<PlayerUIManager>().SetCurrentSlot(null);
+        convoUI.SetHoverHover(false);
     }
 }

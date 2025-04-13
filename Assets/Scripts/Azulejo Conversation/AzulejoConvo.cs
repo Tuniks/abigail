@@ -7,6 +7,7 @@ using Yarn.Unity;
 public struct FaceDialoguePair{
     public GameObject facePrefab;
     public string dialogueNode;
+    public string tip;
 }
 
 public class AzulejoConvo : MonoBehaviour{
