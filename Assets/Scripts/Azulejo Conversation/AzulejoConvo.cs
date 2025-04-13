@@ -40,6 +40,12 @@ public class AzulejoConvo : MonoBehaviour{
         PlayerInteractor.instance.StartConversation(node);
     }
 
+    public void QuitConvo(){
+        PlayerUIManager.instance.SetCurrentConvo(null);
+        PlayerUIManager.instance.HideInventory();
+        convoUI.Hide();
+    }
+
     public void OnTileSelected(Tile tile){
         convoUI.SetTile(tile);
         string selectedFace = tile.GetName();

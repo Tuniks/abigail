@@ -13,6 +13,9 @@ public class PlayerUIManager : MonoBehaviour{
     public RectTransform bagRect;
     public Transform heldItemParent;
 
+    [Header("Tile Details")]
+    public GameObject tileDetailsScreen;
+
     [Header("Prefabs")]
     public GameObject itemElementPrefab;
 
@@ -41,6 +44,8 @@ public class PlayerUIManager : MonoBehaviour{
                 if(inventoryScreen.activeSelf){
                     HideInventory();
                 } else ShowInventory();
+            } else if(currentConvo != null){
+                currentConvo.QuitConvo();
             }
         }
     }
@@ -60,6 +65,7 @@ public class PlayerUIManager : MonoBehaviour{
 
     public void HideInventory(){
         inventoryScreen.SetActive(false);
+        tileDetailsScreen.SetActive(false);
     }
 
     public Transform GetHeldItemParent(){
@@ -148,6 +154,22 @@ public class PlayerUIManager : MonoBehaviour{
 
         return true;
     }
+
+    // ======= TILE DETAILS SCREEN ======
+    public void ShowTileDetails(Tile tile){
+        if(!CanShowTileDetails()) return;
+
+        tileDetailsScreen.GetComponent<TileDetailsUI>().SetTile(tile);
+
+        tileDetailsScreen.SetActive(true);
+    }
+
+    private bool CanShowTileDetails(){
+        if(currentConvo != null) return false;
+        
+        return inventoryScreen.activeSelf;
+    }
+
 
     // ====== AZULEJO CONVO ======
     public void SetCurrentConvo(AzulejoConvo convo){

@@ -26,6 +26,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
         UpdateSpriteOrder(1000);
+
+        ui.ShowTileDetails(GetTile());
     }
 
     public void OnDrag(PointerEventData eventData){

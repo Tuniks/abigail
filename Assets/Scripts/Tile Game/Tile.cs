@@ -123,6 +123,10 @@ public class Tile : MonoBehaviour{
         return face.title;
     }
 
+    public string GetDescription(){
+        return face.description;
+    }
+
     public bool HasTag(Tag tag){
         if(face.tags == null) return false;
 
