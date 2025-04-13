@@ -18,17 +18,24 @@ public class PowerAzuManager : MonoBehaviour {
     public Tile activeTile;
 
     [Header("Charging Settings")]
-    public float chargeForce = 500f;
+    public float chargeForce = 1000f;
+    public float maxChargeTime = 1f;
 
     [Header("Indicator Settings")]
     public GameObject indicatorSpritePrefab;
-    public float minRange = 1f;         // Minimum distance indicator can be from tile
-    public float maxRange = 3f;           // Maximum world distance for maxStatValue
-    public float maxStatValue = 15f;      // The stat value that corresponds to maxRange
+    public float minRange = 1f;
+    public float maxRange = 3f;
+    public float maxStatValue = 15f;
+    public float baseIndicatorScale = 1f;
+
+    [Header("Bounce Feedback")]
+    public GameObject flashEffectPrefab;
+    public GameObject bounceParticlesPrefab;
 
     private GameObject currentIndicator;
     private Vector3 indicatorTargetPos;
     private bool hasCharged = false;
+    private float chargeTimer = 0f;
 
     void Awake() {
         if (instance == null)
@@ -48,28 +55,33 @@ public class PowerAzuManager : MonoBehaviour {
             Rigidbody2D rb = activeTile.GetComponent<Rigidbody2D>();
 
             if (rb != null) {
-                // Check if tile has stopped moving to allow charging again
                 if (hasCharged && rb.velocity.magnitude < 0.05f) {
                     hasCharged = false;
+                    chargeTimer = 0f;
                     Debug.Log("Tile has stopped. Ready to charge again.");
                 }
 
-                // Apply force only once when pressing E, if not already charged
-                if (!hasCharged && Input.GetKeyDown(KeyCode.E)) {
+                if (!hasCharged && Input.GetMouseButton(0)) {
+                    chargeTimer += Time.deltaTime;
+                    chargeTimer = Mathf.Clamp(chargeTimer, 0f, maxChargeTime);
+                }
+
+                if (!hasCharged && Input.GetMouseButtonUp(0)) {
                     Vector3 mousePos = Input.mousePosition;
                     Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
                     worldMousePos.z = 0;
 
                     Vector3 direction = (worldMousePos - activeTile.transform.position).normalized;
-                    float force = CalculateDirectionalForce(activeTile, direction) * chargeForce;
+                    float statValue = CalculateDirectionalForce(activeTile, direction);
+                    float chargePercent = chargeTimer / maxChargeTime;
 
-                    rb.AddForce(direction * force);
+                    float finalForce = statValue * chargePercent * chargeForce;
+                    rb.AddForce(direction * finalForce);
+
                     hasCharged = true;
-
-                    Debug.Log($"Charging tile '{activeTile.name}' with direction: {direction}, force: {force}");
+                    Debug.Log($"Force: {finalForce}, Charge %: {chargePercent}, Stat: {statValue}, Dir: {direction}");
                 }
 
-                // Smoothly update indicator position based on stat and clamped distance
                 if (currentIndicator != null) {
                     Vector3 mousePos = Input.mousePosition;
                     Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -77,10 +89,19 @@ public class PowerAzuManager : MonoBehaviour {
 
                     Vector3 dir = (worldMousePos - activeTile.transform.position).normalized;
                     float statValue = CalculateDirectionalForce(activeTile, dir);
-                    float allowedRange = Mathf.Lerp(minRange, maxRange, Mathf.Clamp01(statValue / maxStatValue));
+                    float statPercent = Mathf.Clamp01(statValue / maxStatValue);
+                    float chargePercent = Mathf.Clamp01(chargeTimer / maxChargeTime);
+                    float allowedRange = Mathf.Lerp(minRange, maxRange, statPercent);
 
                     indicatorTargetPos = activeTile.transform.position + dir * allowedRange;
                     currentIndicator.transform.position = Vector3.Lerp(currentIndicator.transform.position, indicatorTargetPos, 10f * Time.deltaTime);
+
+                    float finalScale = baseIndicatorScale * chargePercent * statPercent;
+                    finalScale = Mathf.Clamp(finalScale, 0.2f, 2f);
+                    currentIndicator.transform.localScale = new Vector3(finalScale, finalScale, 1f);
+
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    currentIndicator.transform.rotation = Quaternion.Euler(0, 0, angle);
                 }
             }
         }
@@ -110,7 +131,6 @@ public class PowerAzuManager : MonoBehaviour {
     }
 
     public void SetActiveTile(Tile tile) {
-        // Destroy any previous indicator
         if (currentIndicator != null) {
             Destroy(currentIndicator);
             currentIndicator = null;
@@ -121,24 +141,40 @@ public class PowerAzuManager : MonoBehaviour {
         Rigidbody2D rb = activeTile.GetComponent<Rigidbody2D>();
         if (rb == null) {
             rb = activeTile.gameObject.AddComponent<Rigidbody2D>();
-            rb.gravityScale = 0;
-            rb.mass = 1;
-            rb.drag = 2f;
-            Debug.Log("Rigidbody2D added to tile: " + tile.name);
-        } else {
-            rb.drag = 2f;
         }
+
+        rb.gravityScale = 0;
+        rb.mass = 0.5f;
+        rb.drag = 1f;
+        rb.angularDrag = 5f;
 
         BoxCollider2D collider = activeTile.GetComponent<BoxCollider2D>();
         if (collider == null) {
             collider = activeTile.gameObject.AddComponent<BoxCollider2D>();
-            Debug.Log("BoxCollider2D added to tile: " + tile.name);
         }
 
         collider.isTrigger = false;
-        hasCharged = false;
 
-        // Create indicator at cursor
+        // Bounciness setup
+        float magicStat = tile.GetAttribute(Attributes.Magic);
+        float normalizedMagic = Mathf.Clamp01(magicStat / maxStatValue);
+
+        PhysicsMaterial2D bounceMat = new PhysicsMaterial2D("TileBounceMat");
+        bounceMat.bounciness = normalizedMagic;
+        bounceMat.friction = 0f;
+
+        collider.sharedMaterial = bounceMat;
+
+        // Add bounce feedback component
+        if (!tile.gameObject.GetComponent<TileBounceFeedback>()) {
+            TileBounceFeedback feedback = tile.gameObject.AddComponent<TileBounceFeedback>();
+            feedback.flashEffect = flashEffectPrefab;
+            feedback.bounceParticles = bounceParticlesPrefab;
+        }
+
+        hasCharged = false;
+        chargeTimer = 0f;
+
         if (indicatorSpritePrefab != null) {
             Vector3 mousePos = Input.mousePosition;
             Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -166,10 +202,11 @@ public class PowerAzuManager : MonoBehaviour {
     float CalculateDirectionalForce(Tile tile, Vector3 direction) {
         Vector2 dir = new Vector2(direction.x, direction.y).normalized;
 
-        Vector2 up = Vector2.up;
-        Vector2 down = Vector2.down;
-        Vector2 left = Vector2.left;
-        Vector2 right = Vector2.right;
+        Transform t = tile.transform;
+        Vector2 up = t.up;
+        Vector2 down = -t.up;
+        Vector2 left = -t.right;
+        Vector2 right = t.right;
 
         float dotUp = Vector2.Dot(dir, up);
         float dotDown = Vector2.Dot(dir, down);
