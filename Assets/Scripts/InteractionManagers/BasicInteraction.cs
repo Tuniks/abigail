@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BedroomInteractionManager : MonoBehaviour
+public class BasicInteraction : MonoBehaviour
 {
     public bool CurtainInteractionHappened = false; //keeps track of if the interaction has triggered 
     public GameObject BeforeInteraction; //Sprite for before interaction
