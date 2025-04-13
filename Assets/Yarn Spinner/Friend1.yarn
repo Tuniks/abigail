@@ -751,17 +751,29 @@ title: AbigailOpening
 tags:
 ---
 Abigail: You have to be joking.
-Abigail: I'm back here?
-Abigail: This can't be happening.
 Abigail: I need to get back to the city. Why did this have to happen this week?
 Abigail: The job interview, lunch with Alice, MY FISH!
 Mom: Abigail is that you?!
 Abigail: Oh god.
 Abigail: Everyone is going to want to see me.
-Abigail: I'm going to have to see everyone.
 Abigail: I'm going to have to see-
 Mom: Abigail! Come downstairs! I'm so glad you're home!
 <<OpeningDone SceneController>>
+===
+title: DeskInteraction
+tags:
+---
+Abigail: My old computer! Wonder if this works...
+<<TriggerChange DeskInteractionYarn>>
+Abigail:...
+Abigail: So we're just gonna stay on the loading screen forever buddy?
+===
+title: WindowInteraction
+tags:
+---
+Abigail: It's always so claustrophobic in here. 
+<<TriggerChange WindowInteractionYarn>>
+Abigail: That helps. 
 ===
 title: MomDaniPreAzulejo
 tages:
