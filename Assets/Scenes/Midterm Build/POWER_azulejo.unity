@@ -2000,7 +2000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &657377602
 Transform:
   m_ObjectHideFlags: 0
@@ -3242,10 +3242,14 @@ MonoBehaviour:
   assignButton: {fileID: 1239662165}
   activeTile: {fileID: 0}
   chargeForce: 10
+  maxChargeTime: 1
   indicatorSpritePrefab: {fileID: 8361003815687906902, guid: e2e4e01d971954ff9a77f3357ffea966, type: 3}
   minRange: 0.5
   maxRange: 3
   maxStatValue: 15
+  baseIndicatorScale: 1
+  flashEffectPrefab: {fileID: 0}
+  bounceParticlesPrefab: {fileID: 0}
 --- !u!1 &1239662163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,7 +4502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1800537506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5498,7 +5502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2017972205
 Transform:
   m_ObjectHideFlags: 0
@@ -5508,7 +5512,7 @@ Transform:
   m_GameObject: {fileID: 2017972204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 252.79999, y: 546.19, z: 0}
+  m_LocalPosition: {x: 252.79999, y: 543.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
