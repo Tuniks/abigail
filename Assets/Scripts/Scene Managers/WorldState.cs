@@ -30,6 +30,8 @@ public class WorldState : MonoBehaviour{
         {Areas.Bedroom, Vector3.zero}
     };
 
+    private Dictionary<string, string> npcConversationState = new Dictionary<string, string>();
+
     void Awake(){
         DontDestroyOnLoad(gameObject);
         if(Instance == null){
@@ -39,6 +41,7 @@ public class WorldState : MonoBehaviour{
         }
     }
 
+    // ==== AREA MANAGEMENT ====
     public void SetLastArea(Areas origin, Vector3 pos){
         lastArea = origin;
         lastPositionInArea[origin] = pos;
@@ -47,6 +50,19 @@ public class WorldState : MonoBehaviour{
     public void UpdateSceneState(Areas area, int newState, bool forceUpdate = false){
         currentAreaState[area] = newState;
         if(forceUpdate) SceneController.Instance.UpdateSceneState();
+    }
+
+    // ==== NPC MANAGENT ====
+    public void UpdateNPCDialogueNode(string npc, string node){
+        npcConversationState[npc] = node;
+    }
+
+    public string GetCurrentNPCDialogueNode(string npc){
+        if(npcConversationState.ContainsKey(npc)){
+            return npcConversationState[npc];
+        }
+
+        return "";
     }
 
     // ===== GETTERS ====

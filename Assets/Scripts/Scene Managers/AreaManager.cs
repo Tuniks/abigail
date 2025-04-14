@@ -9,6 +9,6 @@ public abstract class AreaManager : MonoBehaviour{
         NPC npc = target.GetComponent<NPC>();
         if(npc == null) return;
 
-        npc.SetNewDialogueNode(new string[1]{newNode});
+        npc.SetNewDialogueNode(newNode);
     }
 }

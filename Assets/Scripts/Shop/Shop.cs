@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour{
     public GameObject shopScreen;
-    public string[] dialogueNode;
-
-    private int currentNode = 0;
+    public string dialogueNode;
     
     public void ShowShop(){
         shopScreen.SetActive(true);
@@ -17,14 +15,10 @@ public class Shop : MonoBehaviour{
     }
 
     public string GetCurrentNode(){
-        string node = dialogueNode[currentNode];
-        if(dialogueNode.Length > currentNode+1) currentNode++;
-    
-        return node;
+        return dialogueNode;
     }
 
-    public void SetNewDialogueNode(string[] nodes){
-        dialogueNode = nodes;
-        currentNode = 0;
+    public void SetNewDialogueNode(string node){
+        dialogueNode = node;
     }
 }
