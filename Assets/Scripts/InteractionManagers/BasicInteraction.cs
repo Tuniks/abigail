@@ -9,6 +9,10 @@ public class BasicInteraction : MonoBehaviour
     public GameObject AfterInteraction; //Sprite for after interaction
     public AudioClip Sound;
     public AudioSource audioSource;
+    
+    [Header("Interaction Tiles")] 
+    public Tile[] tile = null;
+    
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -30,6 +34,11 @@ public class BasicInteraction : MonoBehaviour
                 BeforeInteraction.SetActive(false);
                 CurtainInteractionHappened = true;
                 audioSource.PlayOneShot(Sound, 0.7F);
+                
+                if (tile != null && tile.Length > 0)
+                {
+                    PlayerInventory.Instance.AddTilesToCollection(tile);
+                }
             }
         }
     }
