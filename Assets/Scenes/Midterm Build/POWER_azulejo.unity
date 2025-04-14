@@ -3047,6 +3047,7 @@ GameObject:
   - component: {fileID: 1187288448}
   - component: {fileID: 1187288446}
   - component: {fileID: 1187288451}
+  - component: {fileID: 1187288452}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3250,6 +3251,20 @@ MonoBehaviour:
   baseIndicatorScale: 1
   flashEffectPrefab: {fileID: 0}
   bounceParticlesPrefab: {fileID: 0}
+  collisionTransferForce: 50
+--- !u!114 &1187288452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187288444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3a63de450cf42f0be47c71ab720c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionTransferForce: 50
 --- !u!1 &1239662163
 GameObject:
   m_ObjectHideFlags: 0
