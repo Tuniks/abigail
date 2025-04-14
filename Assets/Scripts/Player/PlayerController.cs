@@ -31,4 +31,8 @@ public class PlayerController : MonoBehaviour{
     public void SetIsBusy(bool _isBusy){
         isBusy = _isBusy;
     }
+
+    public bool GetIsBusy(){
+        return isBusy;
+    }
 }

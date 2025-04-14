@@ -7,26 +7,27 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private PlayerUIManager ui;
     private CanvasGroup cg;
 
-    private RectTransform rect;
-    private Transform previousParent;
+    private Vector3 previousPos;
+    private Dictionary<SpriteRenderer, int> originalSpriteOrder = null;
 
     public Vector3 tileScale = new Vector3(1, 1, 1); 
 
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();
         cg = GetComponent<CanvasGroup>();
-        rect = GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData){
-        previousParent = transform.parent;
+        previousPos = transform.position;
         cg.blocksRaycasts = false;
         transform.SetParent(ui.GetHeldItemParent(), false);
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = 10.0f; 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
-        UpdateSpriteOrder(10);
+        UpdateSpriteOrder(1000);
+
+        ui.ShowTileDetails(GetTile());
     }
 
     public void OnDrag(PointerEventData eventData){
@@ -38,20 +39,15 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public void OnPointerUp(PointerEventData eventData){
         cg.blocksRaycasts = true;
         ui.DropItemElement(this);
-        UpdateSpriteOrder(-10);
     }
 
-    public void ReturnToPreviousParent(){
-        transform.SetParent(previousParent, false);
+    public void ReturnToPreviousPosition(){
+        transform.position = previousPos;
     }
 
     public void SetNewParent(Transform dad){
         transform.SetParent(dad,false);
-    }
-
-    public Transform GetPreviousParent(){
-        return previousParent;
-    }
+    } 
 
     public void SetTile(GameObject tile){
         GameObject tileCopy = Instantiate(tile, Vector3.zero, Quaternion.identity);
@@ -65,10 +61,21 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         return GetComponentInChildren<Tile>();
     }
 
-    private void UpdateSpriteOrder(int order){
+    public void UpdateSpriteOrder(int order){
+        if(originalSpriteOrder == null) InitializeOGOrder();
+
         SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer spr in sprs){
-            spr.sortingOrder += order;
+            spr.sortingOrder = originalSpriteOrder[spr] + order;
+        }
+    }
+
+    private void InitializeOGOrder(){
+        originalSpriteOrder = new Dictionary<SpriteRenderer, int>();
+
+        SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer spr in sprs){
+            originalSpriteOrder[spr] = spr.sortingOrder;
         }
     }
 }

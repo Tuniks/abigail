@@ -4,6 +4,7 @@ using UnityEngine;
 using Yarn.Unity;
 
 public class PlayerInteractor : MonoBehaviour{
+    static public PlayerInteractor instance;
     public DialogueRunner dialogueRunner;
     
     public GameObject interactPrompt; 
@@ -15,6 +16,7 @@ public class PlayerInteractor : MonoBehaviour{
     private Shop currentShop = null;
 
     void Start(){
+        instance = this;
         pc = GetComponent<PlayerController>();
     }
 
@@ -56,7 +58,6 @@ public class PlayerInteractor : MonoBehaviour{
                 string node = npc.GetCurrentNode();
                 if(node != null){
                     StartConversation(node);
-                    pc.SetIsBusy(true);
                     return;
                 }
             } else if(shop != null){
@@ -70,14 +71,14 @@ public class PlayerInteractor : MonoBehaviour{
                 string node = portal.AttemptTravel();
                 if(node != null){
                     StartConversation(node);
-                    pc.SetIsBusy(true);
                     return;
                 }
             }
         }
     }
 
-    private void StartConversation(string node){
+    public void StartConversation(string node){
+        pc.SetIsBusy(true);
         dialogueRunner.StartDialogue(node);
     }
 
@@ -91,5 +92,9 @@ public class PlayerInteractor : MonoBehaviour{
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         }
+    }
+
+    public bool IsPlayerBusy(){
+        return pc.GetIsBusy();
     }
 }

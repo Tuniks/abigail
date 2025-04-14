@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
-    private PlayerUIManager ui;
-    public bool isActive = false;
+public class ConvoHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
+    private AzulejoConvoUI convoUI;
     
     void Start(){
-        ui = GetComponentInParent<PlayerUIManager>();
+        convoUI = GetComponentInParent<AzulejoConvoUI>();
     }
 
     public void OnPointerEnter(PointerEventData eventData){
-        ui.SetCurrentSlot(this);
+        convoUI.SetHoverHover(true);
     }
 
     public void OnPointerExit(PointerEventData eventData){
-        ui.SetCurrentSlot(null);
+        convoUI.SetHoverHover(false);
     }
 }
