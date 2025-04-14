@@ -162,7 +162,7 @@ public class TileGameManager : MonoBehaviour{
         // TO DO ALWAYS PICK SILENCE OPTION
         while(args.Count > 0 && count > 0){
             int r = Random.Range(0, args.Count);
-            rand.Add(args[r]);
+            if(!rand.Contains(args[r])) rand.Add(args[r]);
             args.RemoveAt(r);
             count--;
         }
@@ -186,10 +186,16 @@ public class TileGameManager : MonoBehaviour{
 
         // Applying modifiers
         foreach(Attributes att in chosen.targetAttributes){
+            Debug.Log("Abigail");
+            Debug.Log(att);
+            Debug.Log(chosen.multiplier);
             p1Active.activeTile.AddMultiplier(att, chosen.multiplier);
         }
         foreach(Attributes att in currentEnemyArg.targetAttributes){
-            p2Active.activeTile.AddMultiplier(att, chosen.multiplier);
+            Debug.Log("Oz");
+            Debug.Log(att);
+            Debug.Log(chosen.multiplier);
+            p2Active.activeTile.AddMultiplier(att, currentEnemyArg.multiplier);
         }
 
         // Updating text and starting conversation
@@ -237,9 +243,6 @@ public class TileGameManager : MonoBehaviour{
         float p1 = challengesManager.EvaluateTile(index, p1Active.activeTile);
         float p2 = challengesManager.EvaluateTile(index, p2Active.activeTile);
 
-        Debug.Log("abigail" + p1.ToString());
-        Debug.Log("oz" + p2.ToString());
-        
         if(p1 > p2){
             score++;
             return true;
@@ -249,6 +252,11 @@ public class TileGameManager : MonoBehaviour{
     }
 
     public void EndGame(){
-        SceneManager.LoadScene(nextScene);
+        if(SceneFader.Instance == null){
+            SceneManager.LoadScene(nextScene);
+            return;
+        }
+
+        SceneFader.Instance.ChangeScene(nextScene);
     }
 }

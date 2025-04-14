@@ -128,20 +128,11 @@ Abigail: Wait really? Was it a round trip magical interlude or do I need to go b
 Dani: I don't really remember. We think it happened because he had a terrible case of athlete's foot.
 Abigail: Aren't you supposed to be at that writing residency?
 Dani: Do you have athlete's foot Abigail?
-Abigail: Shut up.
-Mom: You hated that writing program anyway! A homecoming is always happy! Abigail come give me a hug baby.
-Abigail: This is a mess I need to get home.
-Dani: So you're really busy in the city then?
-Mom: Abigail calm down, you look awful. I'm making tea!
-Abigail: Ok, ok, fine. I'll have some tea.
-Abigail: Is it from Stacy's?
-Mom: I wasn't even sure you liked Stacy's anymore. You don't call us, you don't visit. 
-Mom: This is from the place Dani and I like to go to.
+Abigail: Shut up. So you just hang out with my mom now?
 Mom: They're my favorite person to have morning tea with! No one gossips with me like Dani does!
 Dani: We were actually just talking about how we wish Mrs. Palmer was here for a game of Azulejo.
 Mom: Forget Mrs. Palmer we have the Kiln Bay middle school champ of '83 in the house!
 Abigail: Mom, that's so embarrassing.
-Dani: Let's do it your mom can judge.
 Mom: Abigail go grab some tiles from the chest so we can play.
 <<MomIntroDone SceneController>>
 <<else>>
@@ -688,6 +679,7 @@ tags:
 <<if visited("ChestIntro") is false>>
 Abigail: Hello, chest.
 Abigail: Mom said you had some tiles for me.
+<<TriggerChange ChestInteraction>>
 Chest: <b> HERE ARE YOUR TILES. </b>
 Abigail: These?? Really?
 Chest: <b> SOME OF YOUR MOM'S FAVORITES. </b>
@@ -698,9 +690,13 @@ Abigail: Why are you talking like that?
 Chest: <b> THE ACTIVE TAB WILL LET YOU SORT THE TILES YOU TAKE TO THE GAMES. </b>
 Chest: <b> THE COLLECTION TAB IS WHERE YOU KEEP ALL OF YOUR OTHER TILES. </b>
 Abigail: I'm aware, I used to live here!
+<<TriggerChange ChestInteractionClose>>
+<<ShowIndicator MomsHouseIndicatorManager>>
 <<ChestIntroDone SceneController>>
 <<else>>
+<<TriggerChange ChestInteraction>>
 Chest: <b> LONG STORY SHORT: JUST PRESS TAB, ABIGAIL. <b>
+<<TriggerChange ChestInteractionClose>>
 <<endif>>
 ===
 title: JulieBurning
@@ -751,21 +747,45 @@ title: AbigailOpening
 tags:
 ---
 Abigail: You have to be joking.
-Abigail: I'm back here?
-Abigail: This can't be happening.
 Abigail: I need to get back to the city. Why did this have to happen this week?
 Abigail: The job interview, lunch with Alice, MY FISH!
 Mom: Abigail is that you?!
-Abigail: Oh god.
-Abigail: Everyone is going to want to see me.
-Abigail: I'm going to have to see everyone.
+Abigail: Oh god. Everyone is going to want to see me.
 Abigail: I'm going to have to see-
 Mom: Abigail! Come downstairs! I'm so glad you're home!
 <<OpeningDone SceneController>>
 ===
+title: DeskInteraction
+tags:
+---
+Abigail: My old computer! Wonder if this works...
+<<TriggerChange DeskInteractionYarn>>
+Abigail:...
+Abigail: So we're just gonna stay on the loading screen forever buddy?
+===
+title: WindowInteraction
+tags:
+---
+Abigail: It's always so claustrophobic in here. 
+<<TriggerChange WindowInteractionYarn>>
+Abigail: That helps. 
+===
+title: BallInteraction
+tags:
+---
+Abigail: Goal!
+===
+title: SunflowerInteraction
+tags:
+---
+Abigail: My mom would knock over the whole house if it wasn't bolted down. 
+<<TriggerChange SunflowerInteractionYarn>>
+Abigail: That's better.
+===
 title: MomDaniPreAzulejo
 tages:
 ---
+<<HideIndicator MomsHouseIndicatorManager>>
 Mom: Perfect! Those are some of my favorites! The peace flower one reminds me of my younger wilder days if you know what I mean Dani.
 Dani: This hardly seems fair.
 Abigail: Someone's scared!
