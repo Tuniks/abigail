@@ -48,5 +48,6 @@ public class TileComponent : MonoBehaviour{
     public float terror = 0f;
 
     public string title = "";
+    public string description = "";
     public Tag[] tags;
 }
