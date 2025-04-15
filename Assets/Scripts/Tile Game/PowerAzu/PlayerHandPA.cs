@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerHandPA : MonoBehaviour, IPlayerHand {
@@ -142,5 +143,11 @@ public class PlayerHandPA : MonoBehaviour, IPlayerHand {
                 mat.color = c;
             }
         }
+    }
+
+    // Helper method to retrieve the selected tiles.
+    // This provides encapsulation while returning a copy of the current selection.
+    public List<Tile> GetSelectedTiles() {
+        return new List<Tile>(selectedTiles);
     }
 }
