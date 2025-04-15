@@ -10,7 +10,7 @@ public class NPC : MonoBehaviour{
     private string characterName = "";
 
     void Start(){
-        characterName = GetComponent<CharacterBubbleAnchor>().CharacterName;
+        if(GetComponent<CharacterBubbleAnchor>() != null) characterName = GetComponent<CharacterBubbleAnchor>().CharacterName;
         InitializeState();
     }
 
@@ -32,6 +32,7 @@ public class NPC : MonoBehaviour{
     }
 
     private void UpdateStorage(){
+        if(characterName == "") return;
         WorldState.Instance.UpdateNPCDialogueNode(characterName, dialogueNode);
     }
 }
