@@ -15,13 +15,6 @@ public class MomsManager : AreaManager{
     public GameObject doorBlocked;
     public GameObject doorUnblocked;
 
-    [Header("Dialogue Nodes")]
-    public string state2Dialogue = "MomDaniPreAzulejo";
-    public string state3Dialogue = "MomDaniPostAzulejo";
-    
-    [Header("Scenes")]
-    public string azulejoScene = "MomsAzulejo";
-
     [Header("Misc")]
     public Tile[] tilesInChest;
 
@@ -34,17 +27,6 @@ public class MomsManager : AreaManager{
                 chest.SetActive(true);
                 break;
             case 2:
-                UpdateDialogueNode(mom, state2Dialogue);
-                UpdateDialogueNode(dani, state2Dialogue);
-                break;
-            case 3:
-                dialogueRunner.StartDialogue(state3Dialogue);
-                UpdateDialogueNode(mom, state3Dialogue);
-                UpdateDialogueNode(dani, state3Dialogue);
-                break;
-            case 4:
-                UpdateDialogueNode(mom, state3Dialogue);
-                UpdateDialogueNode(dani, state3Dialogue);
                 chest.SetActive(false);
                 doorBlocked.SetActive(false);
                 doorUnblocked.SetActive(true);
@@ -61,18 +43,16 @@ public class MomsManager : AreaManager{
     [YarnCommand]
     public void ChestIntroDone(){
         PlayerInventory.Instance.AddTilesToCollection(tilesInChest);
-        WorldState.Instance.UpdateSceneState(Areas.Moms, 2, true);
-    }
-
-    [YarnCommand]
-    public void StartAzulejo(){
-        WorldState.Instance.UpdateSceneState(Areas.Moms, 3);
-        SceneController.Instance.Roundtrip(azulejoScene);
     }
 
     [YarnCommand]
     public void PostAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Moms, 4, true);
+        WorldState.Instance.UpdateSceneState(Areas.Moms, 2, true);
     }
 
+    [YarnCommand]
+    public void UpdateMomDaniNode(string node){
+        UpdateDialogueNode(mom, node);
+        UpdateDialogueNode(dani, node);
+    }
 }

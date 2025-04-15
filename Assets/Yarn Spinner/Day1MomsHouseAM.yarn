@@ -1,19 +1,37 @@
-﻿title: MorningMomsHouseDay1
-tags:
----
-Abigail:test
-===
-title: Sunflower
+﻿title: Sunflower
 tags:
 ---
 Abigail: My mom would knock over the whole house if it wasn't bolted down. 
 <<TriggerChange SunflowerInteractionYarn>>
 Abigail: That's better.
 ===
+title: Chest
+tags:
+---
+<<if visited("ChestIntro") is false>>
+Abigail: Hello, chest. Mom said you had some tiles for me.
+<<TriggerChange ChestInteraction>>
+Chest: <b> HERE ARE YOUR TILES. </b>
+Abigail: These?? Really?
+Chest: <b> SOME OF YOUR MOM'S FAVORITES. </b>
+Abigail: Thank you, I guess.
+Chest: <b> YOU ARE WELCOME, ABIGAIL. </b>
+Chest: <b> DON'T FORGET TO PRESS TAB AND CHECK OUT YOUR INVENTORY. </b>
+Abigail: I'm aware, I used to live here!
+<<TriggerChange ChestInteractionClose>>
+<<ShowIndicator MomsHouseIndicatorManager>>
+<<ChestIntroDone SceneController>>
+<<UpdateMomDaniNode SceneController MomDani1>>
+<<else>>
+<<TriggerChange ChestInteraction>>
+Chest: <b> LONG STORY SHORT: JUST PRESS TAB, ABIGAIL. <b>
+<<TriggerChange ChestInteractionClose>>
+<<endif>>
+===
 title: MomDani0
 tags:
 ---
-<<if visited("MomIntro") is false>>
+<<if visited("MomDani0") is false>>
 Mom: As I live and breathe!
 Dani: I didn't realize you were home.
 Abigail: Neither did I. I just woke up here.
@@ -34,40 +52,115 @@ Mom: Abigail go grab some tiles from the chest so we can play.
 Mom: Go on, Abigail, get the tiles from the chest! 
 <<endif>>
 ===
-title: Chest0
+title: MomDani1
 tags:
 ---
-<<if visited("ChestIntro") is false>>
-Abigail: Hello, chest. Mom said you had some tiles for me.
-<<TriggerChange ChestInteraction>>
-Chest: <b> HERE ARE YOUR TILES. </b>
-Abigail: These?? Really?
-Chest: <b> SOME OF YOUR MOM'S FAVORITES. </b>
-Abigail: Thank you, I guess.
-Chest: <b> YOU ARE WELCOME, ABIGAIL. </b>
-Chest: <b> DON'T FORGET TO PRESS TAB AND CHECK OUT YOUR INVENTORY. </b>
-Abigail: I'm aware, I used to live here!
-<<TriggerChange ChestInteractionClose>>
-<<ShowIndicator MomsHouseIndicatorManager>>
-<<ChestIntroDone SceneController>>
-<<else>>
-<<TriggerChange ChestInteraction>>
-Chest: <b> LONG STORY SHORT: JUST PRESS TAB, ABIGAIL. <b>
-<<TriggerChange ChestInteractionClose>>
-<<endif>>
-===
-title: MomDani1
-tages:
----
+<<if visited("MomDani1") is false>>
 <<HideIndicator MomsHouseIndicatorManager>>
 Mom: Perfect! Those are some of my favorites! The peace flower one reminds me of my younger wilder days if you know what I mean Dani.
 Abigail: Mom!
-<<StartAzulejo SceneController>>
+<<else>>
+Mom: Let's get to the game!
+<<endif>>
+<<StartAzulejoConversation AzulejoConvo1>>
+===
+title: MomDani1-0
+tags:
+---
+Mom: I don't know about this one, baby. Maybe try again?
+===
+title: MomDani1-1
+tags:
+---
+Abigail: Every summer I miss your lemonade, mom
+Mom: When you're older I'll tell you my secret ingredient.
+Abigail: But our small book club still holds such a special place in my heart.
+Mom: Oh sweetie! Have you read the one I sent you last christmas?
+Abigail: Mom, I haven't touched a book since I moved away. The club is what kept me going.
+<<UpdateMomDaniNode SceneController MomDani2>>
+<<jump MomDani2>>
+===
+title: MomDani1-2
+tags:
+---
+Abigail: Every summer I miss your lemonade, mom
+Mom: When you're older I'll tell you my secret ingredient!
+Abigail: But our gossip sessions over tea... Those are irreplaceable.  
+Mom: We used to know what everyone in the neighborhood was up to!
+Abigail: Yeah... I'm glad you have Dani now...
+<<UpdateMomDaniNode SceneController MomDani2>>
+<<jump MomDani2>>
 ===
 title: MomDani2
-tages:
+tags:
 ---
-<<if visited("MomDaniPostAzulejo") is false>>
+<<if visited("MomDani2") is false>>
+Dani: Ok, I have a good one, let me ask!
+<<else>>
+Dani: Let's try again!
+<<endif>>
+<<StartAzulejoConversation AzulejoConvo2>>
+===
+title: MomDani2-0
+tags:
+---
+Dani: I don't know about this one, Abbs. Maybe try again?
+===
+title: MomDani2-1
+tags:
+---
+Dani: Nothing beats the time she chained herself to that tree for a week in protest of that parking lot they were trying to build!
+Abigail: That's a good one, but has my mom told you about the time she moved to a hippie cult in the woods?
+Abigail: She stayed there for half a year, until they tried to convince her to kill the president!
+Dani: What?!
+Mom: Hehehe.
+Mom: He was a monster, but I wasn't about to spend the rest of my life in prison!
+<<UpdateMomDaniNode SceneController MomDani3>>
+<<jump MomDani3>>
+===
+title: MomDani2-2
+tags:
+---
+Dani: Nothing beats the time she chained herself to that tree for a week in protest of that parking lot they were trying to build!
+Abigail: I love that one, but has my Mom told you about her pet butterfly?
+Abigail: She swears to this day they could communicate thelepatically with each other.
+Abigail: The butterfly was apparently able to predict natural disasters.
+Dani: What?!
+Mom: Her name was Tanya and she lived for 23 years!
+<<UpdateMomDaniNode SceneController MomDani3>>
+<<jump MomDani3>>
+===
+title: MomDani3
+tags:
+---
+<<if visited("MomDani3") is false>>
+Mom: Hehe, that was good! Let me do the last one!
+<<else>>
+Mom: Ok, let's see if you got it this time!
+<<endif>>
+<<StartAzulejoConversation AzulejoConvo3>>
+===
+title: MomDani3-0
+tags:
+---
+Mom: I don't know about this one, baby. Maybe try searching the room, you might find a better tile.
+===
+title: MomDani3-1
+tags:
+---
+Abigail: I never really understood the cassiopeia stuff
+Mom: A queen punished by the gods and banished to the stars for having a beautiful daughter? That's my life!
+Abigail: Hahah, mom!
+Abigail: For me you were always more of a sunflower
+Abigail: Positive, joyful. Enthralling like the sun!
+Mom: Abigail... that's beautiful.
+<<UpdateMomDaniNode SceneController MomDani4>>
+<<jump MomDani4>>
+===
+title: MomDani4
+tags:
+---
+<<if visited("MomDani4") is false>>
 Abigail: Mom, are you okay?
 Mom: I'm not crying. Dust in my eyes. I just... I miss when you were kids.
 Dani: I think I'm heading out. I'll be down in Wharf this afternoon if you're free, Abbs.

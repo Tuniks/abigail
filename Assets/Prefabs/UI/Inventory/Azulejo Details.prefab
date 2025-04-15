@@ -106,6 +106,7 @@ MonoBehaviour:
   intellect: 5
   terror: 0
   title: Used Teabag
+  description: 
   tags: 
 --- !u!1 &719207821271198572
 GameObject:
@@ -349,6 +350,7 @@ MonoBehaviour:
   intellect: 0
   terror: 0
   title: 
+  description: 
   tags: 
 --- !u!1 &3560879264658660213
 GameObject:
@@ -629,6 +631,7 @@ MonoBehaviour:
   intellect: 0
   terror: 0
   title: 
+  description: 
   tags: 
 --- !u!1 &4304937299156195784
 GameObject:
@@ -639,13 +642,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7059699019256679712}
+  - component: {fileID: 2167983685888303415}
   m_Layer: 5
   m_Name: Azulejo Details
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7059699019256679712
 RectTransform:
   m_ObjectHideFlags: 0
@@ -669,6 +673,21 @@ RectTransform:
   m_AnchoredPosition: {x: 450, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2167983685888303415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4304937299156195784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646f84320cfad7b4384addab9b15beaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileParent: {fileID: 4041850028966130320}
+  title: {fileID: 5898721023185855696}
+  description: {fileID: 5754407720421148619}
 --- !u!1 &7903446887589375477
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +869,7 @@ MonoBehaviour:
   intellect: 0
   terror: 0
   title: 
+  description: 
   tags: 
 --- !u!1001 &1677690357202482509
 PrefabInstance:
