@@ -17,10 +17,6 @@ public class FeltManager : AreaManager{
     public GameObject doorClayUnblocked;
     public GameObject doorMoms;
     public GameObject doorParty;
-
-
-    [Header("Dialogue Nodes")]
-    public string state1Dialogue = "PostFeltAzulejo";
     
     [Header("Scenes")]
     public string azulejoScene = "FELT_azulejo";
@@ -31,17 +27,12 @@ public class FeltManager : AreaManager{
                 // Initial State
                 break;
             case 1:
-                dialogueRunner.StartDialogue(state1Dialogue);
-                UpdateDialogueNode(chase, state1Dialogue);
-                UpdateDialogueNode(oz, state1Dialogue);
-                break;
-            case 2:
                 doorColBlocked.SetActive(false);
                 doorClayBlocked.SetActive(false);
                 doorColUnblocked.SetActive(true);
                 doorClayUnblocked.SetActive(true);
                 break;
-            case 3:
+            case 2:
                 chase.SetActive(false);
                 oz.SetActive(false);
                 doorColBlocked.SetActive(false);
@@ -51,19 +42,18 @@ public class FeltManager : AreaManager{
                 doorMoms.SetActive(false);
                 doorParty.SetActive(true);
                 break;
-
         }
     }
 
     // YARN COMMANDS
     [YarnCommand]
-    public void PreFeltAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Felt, 1);
-        SceneController.Instance.Roundtrip(azulejoScene);
+    public void UpdateChaseOzNode(string node){
+        UpdateDialogueNode(chase, node);
+        UpdateDialogueNode(oz, node);
     }
 
     [YarnCommand]
     public void PostFeltAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Felt, 2, true);
+        WorldState.Instance.UpdateSceneState(Areas.Felt, 1, true);
     }
 }
