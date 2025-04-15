@@ -1,12 +1,8 @@
-﻿title: FeltOverworld
-tags:
----
-Abigail: Test
-===
-//=== MAIN QUEST CHASE ===
+﻿//=== MAIN QUEST CHASE ===
 title: Chase0
 tags:
 ---
+<<if visited("Chase0") is false>>
 Chase: Abigail, you’re back!
 Abigail: Temporarily. Wow you...
 -> Look exactly the same, dude.
@@ -14,11 +10,7 @@ Abigail: Temporarily. Wow you...
 	Abigail: I just mean, you look like you, is all.
 -> Look so different.
 	Abigail: I almost didn't recognize you.
-    Chase: It’s just my hair, I’m still me I swear.
-Chase: So much for my new haircut...
-Abigail: I just mean, you look like you, is all.
-Abigail: I almost didn't recognize you.
-Chase: It’s just my hair, I’m still me I swear.
+	Chase: It’s just my hair, I’m still me I swear.
 Oz: Ahoy! I'm here too! This must be the star of the good old days!
 Chase: This is Oz, my friend from work.
 Oz: Can we get a table? Sarah's working today.
@@ -33,12 +25,78 @@ Abigail: Uh-huh. As if.
 Chase: C'mon, Abbs, we gotta get you in the Kiln mood!
 Oz: Do you remember how to play Azulejo?
 Abigail: I moved Oz, I didn't get lobotomized.
-<<PreFeltAzulejoDone SceneController>>
+<<else>>
+Chase: Ok, let's get back to the game!
+<<endif>>
+<<StartAzulejoConversation AzulejoConvoChase1>>
+===
+title: Chase0-0
+tags:
+---
+Chase: Abigail, you gotta give me something to work with! Let's go again.
+Oz: Look around the neighborhood! You might find something that fits better!
+===
+title: Chase0-1
+tags:
+---
+Chase: Nice try but big words don't scare me anymore Abbs. 
+Oz: That tile wouldn't even scare a kid. 
+Abigail: I'm using my Mom's old tiles. Gimme a break. 
+<<UpdateChaseOzNode SceneController Chase1>>
+<<jump Chase1>>
+===
+title: Chase0-2
+tags:
+---
+Chase: Nice try but creepy crawlies don't scare me anymore Abbs. 
+Oz: That tile wouldn't even scare a kid. 
+Abigail: I'm using my Mom's old tiles. Gimme a break. 
+<<UpdateChaseOzNode SceneController Chase1>>
+<<jump Chase1>>
 ===
 title: Chase1
 tags:
 ---
 <<if visited("Chase1") is false>>
+Chase: Sure sure, how about...
+<<else>>
+Chase: Wanna give another try?
+<<endif>>
+<<StartAzulejoConversation AzulejoConvoChase2>>
+===
+title: Chase1-1
+tags:
+---
+Chase: Sarah isn't really a flowers kinda girl.
+Oz: My dragon tile would have been perfect for this!
+Chase: See Oz, you know her so well. You gotta go for it!
+<<UpdateChaseOzNode SceneController Chase2>>
+<<jump Chase2>>
+===
+title: Chase1-2
+tags:
+---
+Chase: Sarah isn't really a cutesy kinda girl.
+Oz: My dragon tile would have been perfect for this!
+Chase: See Oz, you know her so well. You gotta go for it!
+<<UpdateChaseOzNode SceneController Chase2>>
+<<jump Chase2>>
+===
+title: Chase2
+tags:
+---
+<<if visited("Chase2") is false>>
+Chase: Speaking of romance...
+<<else>>
+Chase: Wanna give another try?
+<<endif>>
+<<StartAzulejoConversation AzulejoConvoChase3>>
+===
+title: Chase3
+tags:
+---
+<<if visited("Chase3") is false>>
+<<UpdateChaseOzNode SceneController Chase3>>
 <<HideIndicator ChaseIndicator>>
 <<declare $tile_type = "" as String>>
 <<LoadVariables WorldState>>
@@ -151,6 +209,7 @@ Ryan 1: Mine too!!
 title: Margarette0
 tags: 
 ---
+<<if visited("Margarette0") is false>>
 Abigail: Good morning Mrs. Palmer.
 Margarette: Abigail, honey! I knew I would see you today!
 Abigail: Did my mom tell you I was here already?
@@ -162,17 +221,19 @@ Margarette: No, that's not it. I feel it in my joints when the city changes.
     Margarette: Okay, that one your mom did tell me.
     Margarette: Hehehe.
 Margarette: I know you're busy, a young lady like you must have places to go and people to see. 
-Margarette: But please indulge me in a little game of Azulejo 
-//Transition to Azulejo UI
+Margarette: But please indulge me in a little game of Azulejo
+<<else>>
+Margarette: Back for some more azulejo?
+<<endif>>
+<<StartAzulejoConversation Margarette>>
 ===
 title: Margarette1
 tags: 
 ---
-//This is for if the wrong tile is placed 
-Margarette: That Linda is always causing drama down in the cul de sac. 
-Margarette: I swear she's going to give the President of the Homeowner's Associate a heart attack.
-Abigail: I remember her! She was my elementary school art teacher. 
-Maragarette: I would definitely say her prior profession has inspired her home's decorations. 
+//This is for if the wrong tile is placed
+Margarette: I don't think that's it, baby...
+Margarette: I'll give you a hint: the answer is gossip!
+Margarette: Check on Linda down on the cul-de-sac, maybe you can help her? 
 ===
 title: Margarette2
 tags: 
