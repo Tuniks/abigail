@@ -41,7 +41,7 @@ title: PostFeltAzulejo
 tags:
 ---
 <<if visited("PostFeltAzulejo") is false>>
-<<declare $tile_type = "" as String>>
+//<<declare $tile_type = "" as String>>
 <<LoadVariables WorldState>>
 Oz: And that's another win for the king of kings, Oz!
 Abigail: I'm using my mom's tiles, it's not fair!
@@ -743,36 +743,10 @@ tags:
 ---
 Abigail: I don't think I should go this way just yet.
 ===
-title: AbigailOpening
-tags:
----
-Abigail: You have to be joking.
-Abigail: I need to get back to the city. Why did this have to happen this week?
-Abigail: The job interview, lunch with Alice, MY FISH!
-Mom: Abigail is that you?!
-Abigail: Oh god. Everyone is going to want to see me.
-Abigail: I'm going to have to see-
-Mom: Abigail! Come downstairs! I'm so glad you're home!
-<<OpeningDone SceneController>>
-===
-title: DeskInteraction
-tags:
----
-Abigail: My old computer! Wonder if this works...
-<<TriggerChange DeskInteractionYarn>>
-Abigail: Take your time booting up babe.
-===
-title: WindowInteraction
-tags:
----
-Abigail: It's always so claustrophobic in here. 
-<<TriggerChange WindowInteractionYarn>>
-Abigail: That helps. 
-===
 title: BallInteraction
 tags:
 ---
-Abigail: 
+Abigail: Goal!
 ===
 title: SunflowerInteraction
 tags:
@@ -794,17 +768,15 @@ title: MomDaniPostAzulejo
 tages:
 ---
 <<if visited("MomDaniPostAzulejo") is false>>
-Mom: Oh well that was just electric!
-Dani: I feel cheated.
-Mom: You beat Mrs. Palmer every week, Dani have some more tea!
+Abigail: Mom, are you okay?
+Mom: I'm not crying. Dust in my eyes. I just... I miss when you were kids.
 Dani: I think I'm heading out. I'll be down in Wharf this afternoon if you're free, Abbs.
-Abigail: Like I'd go hang with such a sore loser!
-Dani: Yeah yeah I was supposed to grab lunch with Chase and his friend but I'm not really feeling it.
-Dani: Go be my stand in, they'll be happier to see you anyway.
+Dani: I was supposed to grab lunch with Chase and his friend but I'm not really feeling it.
 Abigail: At The Neptune?
 Dani: He's a creature of herculean habit.
 Abigail: We'll see I need to figure out this plane ticket situation.
-Mom: The travel office is closed on Monday's anyway, Stan likes to go swimming at the beach. Go to The Neptune and see Chase!
+Mom: The travel office is closed on Monday's anyway, Stan likes to go swimming at the beach.
+Mom: Go to The Neptune and see Chase!
 <<PostAzulejoDone SceneController>>
 <<else>>
 Mom: Your hair looks awful! I guess it's fine since you're just going to see Chase at the Neptune.
