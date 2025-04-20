@@ -6,9 +6,6 @@ public class AzulejoConvoUI : MonoBehaviour{
     [Header("UI References")]
     public GameObject convoScreen;
     public GameObject tileSlot;
-
-    [Header("Prefabs")]
-    public GameObject itemPrefab;
     
     public void Show(){
         convoScreen.SetActive(true);

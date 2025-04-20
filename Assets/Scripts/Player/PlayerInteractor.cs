@@ -4,16 +4,21 @@ using UnityEngine;
 using Yarn.Unity;
 
 public class PlayerInteractor : MonoBehaviour{
+    // General References
     static public PlayerInteractor instance;
     public DialogueRunner dialogueRunner;
     
+    // UI
     public GameObject interactPrompt; 
     
+    // Player State
     private PlayerController pc;
-
     private List<GameObject> interactables = new List<GameObject>();
     private bool isTalking = false;
     private Shop currentShop = null;
+
+    // Interaction History
+    private Tile lastTileUsed = null;
 
     void Start(){
         instance = this;
@@ -103,5 +108,13 @@ public class PlayerInteractor : MonoBehaviour{
 
     public void RemoveInteractor(GameObject obj){
         if(interactables.Contains(obj)) interactables.Remove(obj);
+    }
+
+    public void UpdateLastTileUsed(Tile tile){
+        lastTileUsed = tile;
+    }
+
+    public Tile GetLastTileUsed(){
+        return lastTileUsed;
     }
 }

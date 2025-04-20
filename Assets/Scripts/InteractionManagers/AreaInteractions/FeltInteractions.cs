@@ -5,11 +5,16 @@ using UnityEngine.Playables;
 using Yarn.Unity;
 
 public class FeltInteractions : AreaInteractions{
-    PlayableDirector ryanAnimator;
+    [Header("Ryans Interaction")]
+    public PlayableDirector ryanAnimator;
+    public TilePickUp ryanFlyTile;
     
-    // Yarn Commands
+    // Ryans
     [YarnCommand]
     public void RyansThrowFlyTile(){
+        Tile flyTile = PlayerInteractor.instance.GetLastTileUsed();
+        PlayerInventory.Instance.RemoveTileFromCollection(flyTile);
+        ryanFlyTile.SetTile(flyTile);
         ryanAnimator.Play();
     }
 }

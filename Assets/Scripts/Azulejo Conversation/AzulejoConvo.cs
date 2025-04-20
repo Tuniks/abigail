@@ -49,6 +49,7 @@ public class AzulejoConvo : MonoBehaviour{
         foreach(FaceDialoguePair pair in faceDialoguePairs){
             TileComponent face = pair.facePrefab.GetComponent<TileComponent>();
             if(face.title == selectedFace){
+                PlayerInteractor.instance.UpdateLastTileUsed(tile);
                 StartCoroutine(EndConvo(pair.dialogueNode));
                 return;
             }

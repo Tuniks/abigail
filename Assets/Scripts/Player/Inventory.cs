@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour{
     }
 
     private void InitializeTileCollection(){
+        List<GameObject> tileCollection = new List<GameObject>();
         foreach(Transform child in tileCollectionParent){
             if(child.gameObject.CompareTag("Tile")){
                 tileCollection.Add(child.gameObject);
@@ -30,6 +31,22 @@ public class Inventory : MonoBehaviour{
         
         PlayerUIManager.instance.SetInventoryUI();
         PlayerUIManager.instance.ShowNewTileNotification();
+    }
+
+    public void RemoveTileFromCollection(Tile toRemove){
+        if(!toRemove.gameObject.CompareTag("Tile")) return;
+
+        foreach(GameObject tileObj in tileCollectionParent){
+            Tile tile = tileObj.GetComponent<Tile>();
+            if(tile != null){
+                if(tile==toRemove){
+                    Destroy(tileObj);
+                    InitializeTileCollection();
+                    PlayerUIManager.instance.SetInventoryUI();
+                    return;
+                }
+            }
+        }
     }
 
     public List<GameObject> GetTileCollection(){
