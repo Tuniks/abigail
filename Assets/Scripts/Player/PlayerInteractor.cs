@@ -53,6 +53,7 @@ public class PlayerInteractor : MonoBehaviour{
             NPC npc = interact.GetComponent<NPC>();
             Shop shop = interact.GetComponent<Shop>();
             ScenePortal portal = interact.GetComponent<ScenePortal>();
+            WorldInteractable thing = interact.GetComponent<WorldInteractable>();
 
             if(npc != null){
                 string node = npc.GetCurrentNode();
@@ -73,6 +74,8 @@ public class PlayerInteractor : MonoBehaviour{
                     StartConversation(node);
                     return;
                 }
+            } else if(thing){
+                thing.Interact();
             }
         }
     }
@@ -83,18 +86,22 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             interactables.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         }
     }
 
     public bool IsPlayerBusy(){
         return pc.GetIsBusy();
+    }
+
+    public void RemoveInteractor(GameObject obj){
+        if(interactables.Contains(obj)) interactables.Remove(obj);
     }
 }
