@@ -135,93 +135,109 @@ title: HauntedHouseTeens0
 tags: 
 ---
 <<if visited("HauntedHouseTeens0") is false>>
-Albert: I see a poem.
-Fellini: I see a film.
-Abigail: I see two losers.
-Albert: Abigail! Long time no see!
-Fellini: Art is cool lady.
-Abigail: Sorry, losers non-pejorative.
-Fellini: Pejorateive?
-Albert: How've you been Abigail? Do you miss babysitting me?
-Abigail: Not at all you were such a weird kid.
-Fellini: What does perjorative mean?
-Albert: I was not a weird kid, I was, I am, eclectic.
-Abigail: Whatever you say Albert I'll catch you later. By Fellini!
+Abigail: Fellini! It’s nice to see you not wearing a diaper!
+Fellini: What do you see when you look at this house Abigail? 
+Abigail: Um…an old abandoned house? 
+Albert: I see a poem. No…A film!
+Fellini: I see a space dripping with meaning. With life! 
+//go into Azulejo
 <<else>>
-Fellini: Dude what does pejorative mean?
-Albert: I don't know! Quit asking me. 
+Fellini: Got anything new for us on the meaning of life?
+//go into Azulejo
 <<endif>>
+===
+title: HauntedHouseTeens1RatSkull
+tags: 
+---
+Fellini: I’ve always known you would understand the darkness Abigail. 
+Abigail: And I’ve always known you were a weird kid. 
+Fellini: Hey! 
+Abigail: Weird non-pejorative!
+Albert: Pejorateive?
+Fellini: I was, and I am eclectic! 
+Albert: What does perjorative mean?
+Fellini: You wanna throw some rocks with us Abigail? 
+Abigail: Sure.
+//go to haunted house throwing rocks minigame
+===
+title: HauntedHouseTeens1Sunflower
+tags: 
+---
+Fellini: Do you think if I cut off my ear like Van Gogh did then I’ll finally have my big break? 
+Albert: No man don’t do that I love your ear.
+===
+title: HauntedHouseTeens1Linda
+tags: 
+---
+Albert: Dude where did you get this? It’s so cool. 
+Fellini: Linda is a real beacon of hope for me, she’s a radiant light in an oppressive world that wants to dim her creativity. 
+Albert: She’s so transgressive. I wish she were my mom. 
+===
+title: HauntedHouseTeens1TV
+tags: 
+---
+Albert: Dude where did you get this? It’s so cool. 
+Fellini: Linda is a real beacon of hope for me. She’s a radiant light in an oppressive world that wants to dim her creativity. 
+Albert: She’s so transgressive. I wish she were my mom. 
+===
+title: HauntedHouseTeens1
+tags: 
+---
+Fellini: I don't think I agree Abigail. My take is it all has to do with embracing mortality.   
+Albert: Don't forget about art!
 ===
 title: Ryans0
 tags: 
 ---
-Abigail: Hey, Ryan! What's up, buddy?
-Ryan 2: Who's the old lady, Ryan?
-Ryan 1: That's Abigail, she's my neighbor.
-Abigail: I'm not an old lady, I'm in my mid-twenties! Ryan, who is this clown?
-Ryan 2: I'm Ryan.
-Abigail: No, he's Ryan.
-Ryan 2: Have you never seen two people with the same name?
-Abigail: Oh... Is that why you two are friends? Same name?
-Ryan 1: We’re friends because we both like the color purple. And bugs. 
-Ryan 2: If the old lady's gonna stick around she's gotta play Azulejo with us.
+<<if visited("Ryans0") is false>>
+Abigail: Hey ryan! 
+Ryan 2: I don’t know you. 
+Ryan 1: Hey neighbor lady. 
+Abigail: Wait, are you both named Ryan?
+Ryan 2: Yeah, and if you plan on sticking around you better be ready for some Azulejo. 
 //OpenAzulejoWindow
+<<else>>
+Ryan 2: You better have something cooler this time old lady!
+Abigail: Hey! I'm not old, I'm in my mid twenties!
+//open azulejo window
+<<endif>>
+===
+title: Ryans1Spider
+tags: 
+---
+Ryan 2: Whoa this tile is arachnificent. 
+Ryan 1: Abigail, do you want to see our drawing? 
+//go to drawing of treehouse where you can place the spider tile 
+===
+title: Ryans1Cockroach
+tags: 
+---
+Ryan 1: My dad told me that a cockroach can survive a nuclear bomb. 
+Abigail: That is a really fun fact. 
+Ryan 2: Don’t patronize him. And it isn’t fun. It’s horrific. 
+===
+title: Ryans1Fly
+tags: 
+---
+//Ryan 2 throws the tile 
+Abigail: Hey! Why did you do that?
+Ryan 2: Wanted to see if it would fly. 
+Abigail: It did not. 
+Ryan 1: Science is danger old lady. 
 ===
 title: Ryans1
 tags: 
 ---
-//This is for if the wrong tile is placed 
-Ryan 1: Have you see that weird tree up by the haunted house?
-Ryan 2: No my mom doesn't let me go there. 
-Abigail: Me either. Haha.
-Ryan 1: ...
-Ryan 2: ...
-===
-title: Ryans2Spider
-tags: 
----
-//This is for if the Spider tile is placed
-<<HideIndicator RyanIndicator>>
-Ryan 2: Nice one lady!
-Abigail: Thanks for knocking the old off.
-Ryan 1: One day we will all be old. 
-Ryan 2: Sorry, he's been reading the Stranger.
-Abigail: Ok Sartre, calm down.
-Ryan 2: His name is Ryan are you paying attention Abigail?
-===
-title: Ryans2Cockroach
-tags: 
----
-//This is for if the Cockroach tile is placed
-<<HideIndicator RyanIndicator>>
-Ryan 2: Nice one old lady!
-Abigail: Watch it! One day you'll be old too. 
-Ryan 1: I wish. Then I could buy a tarantula without my parents permission. 
-===
-title: Ryans3
-tags: 
----
-//This is for after Azulejo has been played
-Ryan 1: So, what's your favorite bug?
-Ryan 2: Every bug!
-Ryan 1: Mine too!!
+Abigail: Oh... Is that why you two are friends? Same name?
+Ryan 1: We’re friends because we both like the color purple. 
+Ryan 2: And bugs!
 ===
 title: Margarette0
 tags: 
 ---
 <<if visited("Margarette0") is false>>
-Abigail: Good morning Mrs. Palmer.
-Margarette: Abigail, honey! I knew I would see you today!
-Abigail: Did my mom tell you I was here already?
-Margarette: No, that's not it. I feel it in my joints when the city changes.
--> I didn't know I was important enough to be felt in the joints.
-    Margarette: Honey, we all are!     
--> And what else can your joints tell me?
-    Margarette: That you can't wait to go back to the big city!
-    Margarette: Okay, that one your mom did tell me.
-    Margarette: Hehehe.
-Margarette: I know you're busy, a young lady like you must have places to go and people to see. 
-Margarette: But please indulge me in a little game of Azulejo
+Margarette: Abigail honey! I knew in my joints that you were here!
+Margarette: What’s the 411?
 <<else>>
 Margarette: Back for some more azulejo?
 <<endif>>
@@ -230,78 +246,81 @@ Margarette: Back for some more azulejo?
 title: Margarette1
 tags: 
 ---
-//This is for if the wrong tile is placed
-Margarette: I don't think that's it, baby...
-Margarette: I'll give you a hint: the answer is gossip!
-Margarette: Check on Linda down on the cul-de-sac, maybe you can help her? 
+Margarette: Abigail baby you gotta get me something better than that. My ancient heart craves a little gossip! 
+Margarette: The Gianluca vs. Neptune Cafe rivalry has only gotten more heated since you left and Linda has been driving the Homeowners Association mad with her renovations. 
+Margarette: Expand your tile collection further, then we can really get into it. 
 ===
-title: Margarette2
+title: Margarette1Linda
 tags: 
 ---
-//If Linda Tile is placed
-<<HideIndicator MargaretteIndicator>>
-Margarette: Linda's a strange one, but I have a soft spot for her. 
-Margarette: Did you know she used to be an accountant?
-Abigail: What? No way. 
-Margarette: Oh yeah, and she was married to this miserable excuse for a man. 
-Margarette: Once he was in a bad mood for five years!
-Margarette: But then she finally got the stones to leave him and switched careers!
-Margarette: Thanks for indulging me honey, I'll be here if you want to chat more. 
+//Linda poofs into existence 
+Margarette: Oh great! Look who’s graced us with her presence!
+Linda: You know I don’t appreciate your tone Margarette! Do my artistic expressions have your panties in a bunch?
+Margarette: Crude as ever Linda, but no, it’s your attitude. This community has real problems to solve, and your decorations aren’t as important as you think they are. 
+Linda: Oh but your complaints about the garbage trucks making too much noise could take up three meetings?
+Abigail: I think I’m gonna go…
 ===
-title: Margarette3
+title: Margarette1Gianluca
 tags: 
 ---
-//If the player tries to talk again after Azulejo game is complete
-<<if visited("Margarette3") is false>>
-Margarette: Abigail, honey, you know you are always in my prayers, right?
-Abigail: That's very nice of you, Mrs. Palmer.
-Margarette: Your mom tells me of all of your adventures out there!
-Abigail: All of them?
-Margarette: Every single one!
-Margarette: I am sorry about your last romantic encounter, by the way!
-Margarette: That must've been so embarrassing...
--> I am going to assassinate my mother.
--> I can't show my face around these parts anymore...
-Margarette: Hehehe.
-<<else>>
-Margarette: Hehehe.
-<<endif>>
+Margarette: That Gianluca, he’s let the rivalry take over his whole life. 
+Margarette: He stopped talking to me completely when he saw me eating brunch at Neptune Diner. 
+Margarette: Did you know Gianluca got a C on his latest health inspection?
 ===
 title: Vendor0
 tags: 
 ---
-Abigail: Whoa…is that you?
-Vendor: Yeah, my dad calls these ones "perfect son" tiles. 
-Abigail: That’s incredibly sweet.
-Vendor: And pretty embarrassing. Which is why I am not giving you one.
-Abigail: Hey, don't I know you from somewhere? 
-Vendor: Yeah I feel like we went to some of the same summer camps?
-Vendor: I have the crispest memory of watching you fall out of a tree. 
+<<if visited("Vendor0") is false>>
+Abigail: Cool tiles! They look exactly like you. 
+Timothy: Yeah my dad calls them “perfect son” tiles.
+Timothy: Don’t I know you from somewhere? I think we went to summer camp together?
 //Transition to Azulejo UI
+<<else>>
+Timothy: Where do we know each other from?
+//Transition to Azulejo UI
+<<endif>>
+===
+title: Vendor1Soccer
+tags: 
+---
+Abigail: We went to soccer camp, and you were always the goalie.
+Timothy: The other kids couldn’t handle it, but I’ve always had nerves of steel.
+Abigail: I most clearly remember mouthfuls of dirt and desperately wanting to score a goal.
+Timothy: Well you can score a goal now, let’s play. 
+//SoccerAzulejo
+===
+title: Vendor1BunnyDeer
+tags: 
+---
+Timothy: Cryptozoology camp! 
+Abigail: God, my mom was so into all that cryptid stuff.
+Timothy: My dad once told me my mother is bigfoot. 
+Abigail: Ok not that into it. 
+===
+title: Vendor1Constellation
+tags: 
+---
+Abigail: Space camp! 
+Timothy: I really tried to block that one out.
+Abigail: Because of?
+Timothy: No need to bring it up, thanks for reminiscing.  
+Abigail: Did you think we were gonna get to go to space? 
+Timothy: Maybe… 
+===
+title: Vendor1Rope
+tags: 
+---
+Timothy: I think we did Scouts together. Your friend was like scary good at tying knots.
+Abigail: Yeah, I once had a nightmare where she tied me up. 
+Timothy: …
+Abigail: I said NIGHTMARE.
 ===
 title: Vendor1
 tags: 
 ---
-//This is for if the wrong tile is placed 
-Vendor: Didn't you slam face first into the grass on the soccer field once?
-Abigail: I did indeed. Please don't remind me. 
-===
-title: Vendor2
-tags: 
----
-//This is for if the soccer tile is placed
-<<HideIndicator VendorIndicator>>
-Abigail: I remember now! You were always the goalie. 
-Vendor: The other kids couldn't handle it. 
-Vendor: But I've always had nerves of steel. 
-Vendor: I should probably get back to it. See you around. 
-===
-title: Vendor3
-tags: 
----
-//This is for if you try to talk Post Azulejo 
-Vendor: I'm not giving you the "perfect son" tile.
-Abigail: Dang it. 
+Timothy: I don't think so...
+Timothy: I have the crispest memory of you falling from a tree.
+Timothy: Or was it slamming into the goal posts?
 ===
 title: Tourist0
 tags: 
@@ -339,41 +358,137 @@ tags:
 //trying to talk again after Azulejo game
 Tourist: This was so worth going into debt for!
 ===
+title: Weirdhouse0
+tags: 
+---
+<<if visited("Weirdhouse0") is false>>
+HOA President: You’re in violation of 10 homeowner restrictions! 
+HOA President: Every time I leave my house you’ve added a decoration, plant, trim, coat of paint.
+Linda: I don’t know what to tell you! I’m just doing what the house wants. 
+//Open azueljo 
+<<else>>
+HOA President: This non-unified design scheme is making my tummy upset!
+//Open azulejo
+<<endif>>
+===
+title: Weirdhouse1Peace
+tags: 
+---
+Normal House: Brother, I already tried that. 
+Weird House: I would love a little something that's orange!
+Abigail: I can keep an eye out. 
+Linda: All grown up and as helpful as ever. 
+===
+title: Weirdhouse1Fire
+tags: 
+---
+HOA President: I wish…
+Linda: No, she was agreeing with me! 
+Weird House: I would love a little something that's orange!
+Abigail: I can keep an eye out. 
+Linda: All grown up and as helpful as ever. 
+===
+title: Weirdhouse1Explosion
+tags: 
+---
+Linda: That’s exactly what we need! Even more color!
+Weird House: I would love a little something that's orange!
+Abigail: I can keep an eye out. 
+Linda: All grown up and as helpful as ever. 
+===
+title: Weirdhouse1
+tags: 
+---
+HOA President: How is that supposed to help anything?
+Linda: Don't listen to him darling. 
+Weird House: I would love a little something that's orange!
+Abigail: I can keep an eye out. 
+Linda: All grown up and as helpful as ever. 
+===
+title: Gianluca0
+tags: 
+---
+<<if visited("Gianluca0") is false>>
+Gianluca: If it isn’t my favorite customer! 
+Abigail: You say that to everyone Gianluca. 
+Gianluca: Well at this exact moment it feels true!
+//Open azueljo 
+<<else>>
+Gianluca: I've always know you had exquisite taste Abigail. 
+//Open azulejo 
+<<endif>>
+===
+title: Gianluca1Tomato
+tags: 
+---
+Gianluca: At Neptune, all they’ve got are overripe sad little tomatoes. They don’t stand a chance against mine, shipped straight from the motherland.  
+Abigail: Their tomatoes are a little watery. 
+Gianluca: Exactly! And last night, I saw a horde of cockroaches near their dumpsters. 
+Abigail: Pretty unsanitary if you ask me! 
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+//now Gianluca tile needs to be added
+===
+title: Gianluca1Mushroom
+tags: 
+---
+Gianluca: At Neptune, all they’ve got are shriveled little mushrooms. They don’t stand a chance against mine, shipped straight from the motherland.  
+Abigail: Their mushrooms do have a weird texture. 
+Gianluca: Exactly! And last night, I saw a horde of cockroaches near their dumpsters. 
+Abigail: Pretty unsanitary if you ask me! 
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+//now Gianluca tile needs to be added
+===
+title: Gianluca1Grapes
+tags: 
+---
+Gianluca: You know I invented grapes on pizza! 
+Gianluca: You think if I made a giant sign that said “Home of grapes on pizza” then people would shut up about The Neptune's sign?
+Abigail: Absolutely. 
+Gianluca: Last night, I saw a horde of cockroaches near their dumpsters. 
+Abigail: Pretty unsanitary if you ask me!
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+//now Gianluca tile needs to be added
+===
+title: Gianluca1Seafood
+tags: 
+---
+Gianlucas: Absolutely not!
+Abigail: What? 
+Gianluca: Anytime I see seafood…it reminds me of that place. 
+Abigail: What place?
+Gianluca: The Neptune Diner! My rivals!
+Abigail: Oh, sorry. 
+Gianluca: It’s okay, here take a tile so you can show your support for Gianluca’s!
+//now Gianluca tile needs to be added
+===
+title: Gianluca1Gianlucas
+tags: 
+---
+Abigail: It's a neighborhood staple that's way better than The Neptune for sure!
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+Abigail: I already have this. 
+Gianluca: You can have another! 
+//now Gianluca tile needs to be added
+===
+title: Gianluca1
+tags: 
+---
+Gianluca: I know you've been gone a while, but a pizza with that on it would not pass a health inspection! 
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+//now Gianluca tile needs to be added
+===
 // === INTERACTIONS ===
 title: SoccerGoal
 tags: 
 ---
 Abigail: Wow. Big moment. Never done that before.
 ===
-title: Weirdhouse0
-tags: 
----
-<<if visited("Weirdhouse0") is false>>
-HOA President: You are in violation of over 10 homeowner restrictions!
-HOA President: Every time I leave my house you’ve added a decoration, plant, trim, coat of paint.
-HOA President: It makes my head hurt! It makes my tummy upset!
-Linda: I don't know what to tell you. I'm just doing what the house wants.
-Weird House: I would love a little something that's orange!
-Linda: I can work on it. 
-Abigail: If I find anything orange I can bring it over!
-Linda: All grown up and as helpful as ever. 
-<<else>>
-Linda: If you find anything orange for my house, just stick it right on!
-<<endif>>
-===
-title: Weirdhouse1
+title: WeirdhouseOrangeInteraction
 tags: 
 ---
 //Once ball collides
 Linda: Abigail it looks wonderful!
 Weird House: I feel more vibrant than ever. 
-===
-title: Weirdhouse2
-tags: 
----
-//If you try to talk to them again after
-Normal House: You know I'd really prefer a darker color palette.
-HOA President: Shush you.
 ===
 // === MISC ===
 title: BlockedDoor0
