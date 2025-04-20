@@ -7,7 +7,6 @@ using Yarn.Unity;
 public struct FaceDialoguePair{
     public GameObject facePrefab;
     public string dialogueNode;
-    public string tip;
 }
 
 public class AzulejoConvo : MonoBehaviour{
@@ -46,10 +45,11 @@ public class AzulejoConvo : MonoBehaviour{
         convoUI.SetTile(tile);
         string selectedFace = tile.GetName();
 
+        PlayerInteractor.instance.UpdateLastTileUsed(tile);
+
         foreach(FaceDialoguePair pair in faceDialoguePairs){
             TileComponent face = pair.facePrefab.GetComponent<TileComponent>();
             if(face.title == selectedFace){
-                PlayerInteractor.instance.UpdateLastTileUsed(tile);
                 StartCoroutine(EndConvo(pair.dialogueNode));
                 return;
             }

@@ -190,17 +190,16 @@ title: Ryans0
 tags: 
 ---
 <<if visited("Ryans0") is false>>
-Abigail: Hey ryan! 
+Abigail: Hey Ryan! 
 Ryan 2: I don’t know you. 
 Ryan 1: Hey neighbor lady. 
 Abigail: Wait, are you both named Ryan?
 Ryan 2: Yeah, and if you plan on sticking around you better be ready for some Azulejo. 
-//OpenAzulejoWindow
 <<else>>
 Ryan 2: You better have something cooler this time old lady!
 Abigail: Hey! I'm not old, I'm in my mid twenties!
-//open azulejo window
 <<endif>>
+<<StartAzulejoConversation Ryan1>>
 ===
 title: Ryans1Spider
 tags: 
@@ -219,11 +218,12 @@ Ryan 2: Don’t patronize him. And it isn’t fun. It’s horrific.
 title: Ryans1Fly
 tags: 
 ---
-//Ryan 2 throws the tile 
-Abigail: Hey! Why did you do that?
+<<RyansThrowFlyTile SceneController>>
+<<wait  1>>
+Abigail: Hey! Why did you throw my tile away?
 Ryan 2: Wanted to see if it would fly. 
 Abigail: It did not. 
-Ryan 1: Science is danger old lady. 
+Ryan 1: Science is danger old lady.
 ===
 title: Ryans1
 tags: 
