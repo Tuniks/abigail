@@ -9,7 +9,7 @@ public class SoccerEnemy : MonoBehaviour{
     private float currentVel = 1;
     private bool isGoingUp = false;
     private int lapCount = 0;
-    
+
     void Start(){
         ChangeDirection();
     }
@@ -17,10 +17,10 @@ public class SoccerEnemy : MonoBehaviour{
     void Update(){
         if(isGoingUp){
             transform.position += Vector3.up * currentVel * Time.deltaTime;
-            if(transform.position.y >= yRange.y) ChangeDirection();
+            if(transform.localPosition.y >= yRange.y) ChangeDirection();
         } else {
             transform.position -= Vector3.up * currentVel * Time.deltaTime;
-            if(transform.position.y <= yRange.x) ChangeDirection();
+            if(transform.localPosition.y <= yRange.x) ChangeDirection();
         }
     }
 
@@ -31,7 +31,6 @@ public class SoccerEnemy : MonoBehaviour{
         if(lapCount <= 0){
             lapCount = Random.Range(1, 5);
             currentVel = Random.Range(velRange.x, velRange.y);
-            Debug.Log(currentVel);
         }
     }
 }

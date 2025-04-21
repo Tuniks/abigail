@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,10 +16,12 @@ public class PlayerInteractor : MonoBehaviour{
     private PlayerController pc;
     private List<GameObject> interactables = new List<GameObject>();
     private bool isTalking = false;
+    private bool isAzulejoing = false;
     private Shop currentShop = null;
 
     // Interaction History
     private Tile lastTileUsed = null;
+    private Action hijackCallback = null;
 
     void Start(){
         instance = this;
@@ -41,10 +44,14 @@ public class PlayerInteractor : MonoBehaviour{
             currentShop = null;
             pc.SetIsBusy(false);
         }
+
+        if(Input.GetKeyDown(KeyCode.Tab) && hijackCallback!=null){
+            hijackCallback();
+        }
     }
 
     void LateUpdate(){
-        if(dialogueRunner.IsDialogueRunning){
+        if(dialogueRunner.IsDialogueRunning || isAzulejoing){
             isTalking = true;
             pc.SetIsBusy(true);
         } else {
@@ -106,6 +113,15 @@ public class PlayerInteractor : MonoBehaviour{
         return pc.GetIsBusy();
     }
 
+
+    public void StartAzulejoConvo(){
+        isAzulejoing = true;
+    }
+
+    public void EndAzulejoConvo(){
+        isAzulejoing = false;
+    }
+
     public void RemoveInteractor(GameObject obj){
         if(interactables.Contains(obj)) interactables.Remove(obj);
     }
@@ -116,5 +132,13 @@ public class PlayerInteractor : MonoBehaviour{
 
     public Tile GetLastTileUsed(){
         return lastTileUsed;
+    }
+
+    public void HijackInteractor(Action releaseCallback){
+        hijackCallback = releaseCallback;
+    }
+
+    public void EndHijack(){
+        hijackCallback = null;
     }
 }

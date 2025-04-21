@@ -20,6 +20,7 @@ public class AzulejoConvo : MonoBehaviour{
     public float endConvoDelay = 1f;
 
     private void StartConvo(){
+        PlayerInteractor.instance.StartAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();
         convoUI.Show();
@@ -28,6 +29,7 @@ public class AzulejoConvo : MonoBehaviour{
     private IEnumerator EndConvo(string node){
         yield return new WaitForSeconds(endConvoDelay);
 
+        PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
@@ -36,6 +38,7 @@ public class AzulejoConvo : MonoBehaviour{
     }
 
     public void QuitConvo(){
+        PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();

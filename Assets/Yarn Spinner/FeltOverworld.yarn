@@ -274,11 +274,10 @@ tags:
 Abigail: Cool tiles! They look exactly like you. 
 Timothy: Yeah my dad calls them “perfect son” tiles.
 Timothy: Don’t I know you from somewhere? I think we went to summer camp together?
-//Transition to Azulejo UI
 <<else>>
 Timothy: Where do we know each other from?
-//Transition to Azulejo UI
 <<endif>>
+<<StartAzulejoConversation Vendor>>
 ===
 title: Vendor1Soccer
 tags: 
@@ -287,7 +286,7 @@ Abigail: We went to soccer camp, and you were always the goalie.
 Timothy: The other kids couldn’t handle it, but I’ve always had nerves of steel.
 Abigail: I most clearly remember mouthfuls of dirt and desperately wanting to score a goal.
 Timothy: Well you can score a goal now, let’s play. 
-//SoccerAzulejo
+<<StartSoccerMinigame SceneController>>
 ===
 title: Vendor1BunnyDeer
 tags: 
