@@ -27,7 +27,6 @@ public class CollisionBasedInteractionLinda : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
         {
-            Debug.LogError("Rigidbody2D component not found on this object.");
             enabled = false;
         }
     }
