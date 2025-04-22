@@ -50,6 +50,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     } 
 
     public void SetTile(GameObject tile){
+        if(tile == null) return;
+        
         GameObject tileCopy = Instantiate(tile, Vector3.zero, Quaternion.identity);
         tileCopy.transform.SetParent(transform, false);
         tileCopy.transform.localScale = tileScale;

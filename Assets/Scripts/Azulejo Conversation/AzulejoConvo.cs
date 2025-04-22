@@ -7,7 +7,6 @@ using Yarn.Unity;
 public struct FaceDialoguePair{
     public GameObject facePrefab;
     public string dialogueNode;
-    public string tip;
 }
 
 public class AzulejoConvo : MonoBehaviour{
@@ -20,11 +19,8 @@ public class AzulejoConvo : MonoBehaviour{
     [Header("Juice")]
     public float endConvoDelay = 1f;
 
-    void Start(){
-        convoUI.BuildHover(faceDialoguePairs);
-    }
-
     private void StartConvo(){
+        PlayerInteractor.instance.StartAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();
         convoUI.Show();
@@ -33,6 +29,7 @@ public class AzulejoConvo : MonoBehaviour{
     private IEnumerator EndConvo(string node){
         yield return new WaitForSeconds(endConvoDelay);
 
+        PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
@@ -41,6 +38,7 @@ public class AzulejoConvo : MonoBehaviour{
     }
 
     public void QuitConvo(){
+        PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
@@ -49,6 +47,8 @@ public class AzulejoConvo : MonoBehaviour{
     public void OnTileSelected(Tile tile){
         convoUI.SetTile(tile);
         string selectedFace = tile.GetName();
+
+        PlayerInteractor.instance.UpdateLastTileUsed(tile);
 
         foreach(FaceDialoguePair pair in faceDialoguePairs){
             TileComponent face = pair.facePrefab.GetComponent<TileComponent>();

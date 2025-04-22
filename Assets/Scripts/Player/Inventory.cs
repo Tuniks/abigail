@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour{
     public Transform tileCollectionParent;
-    public Transform activeTilesParent;
 
     private List<GameObject> tileCollection = new List<GameObject>();
     
@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour{
     }
 
     private void InitializeTileCollection(){
+        tileCollection = new List<GameObject>();
         foreach(Transform child in tileCollectionParent){
             if(child.gameObject.CompareTag("Tile")){
                 tileCollection.Add(child.gameObject);
@@ -30,6 +31,27 @@ public class Inventory : MonoBehaviour{
         
         PlayerUIManager.instance.SetInventoryUI();
         PlayerUIManager.instance.ShowNewTileNotification();
+    }
+
+    public void RemoveTileFromCollection(Tile toRemove){
+        if(!toRemove.gameObject.CompareTag("Tile")) return;
+
+        foreach(Transform tileObj in tileCollectionParent){
+            Tile tile = tileObj.gameObject.GetComponent<Tile>();
+            if(tile != null){
+                if(tile==toRemove){
+                    Destroy(tileObj.gameObject);
+                    StartCoroutine(DelayedCollectionUpdate());
+                    return;
+                }
+            }
+        }
+    }
+
+    private IEnumerator DelayedCollectionUpdate(){
+        yield return new WaitForNextFrameUnit();
+        InitializeTileCollection();
+        PlayerUIManager.instance.SetInventoryUI();
     }
 
     public List<GameObject> GetTileCollection(){
