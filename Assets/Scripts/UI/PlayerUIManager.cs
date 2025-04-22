@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using UnityEngine.UIElements;
 
 public class PlayerUIManager : MonoBehaviour{
@@ -12,6 +14,9 @@ public class PlayerUIManager : MonoBehaviour{
     public GameObject inventoryScreen;
     public RectTransform bagRect;
     public Transform heldItemParent;
+    public PlayableDirector invDirector;
+    public TimelineAsset openAnimation;
+    public TimelineAsset closeAnimation;
 
     [Header("Tile Details")]
     public GameObject tileDetailsScreen;
@@ -42,8 +47,8 @@ public class PlayerUIManager : MonoBehaviour{
         if(Input.GetKeyDown("i") || Input.GetKeyDown(KeyCode.Tab)){
             if(!IsPlayerBusy()){
                 if(inventoryScreen.activeSelf){
-                    HideInventory();
-                } else ShowInventory();
+                    HideInventory(true);
+                } else ShowInventory(true);
             } else if(currentConvo != null){
                 currentConvo.QuitConvo();
             }
@@ -58,13 +63,21 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     // ====== INVENTORY =======
-    public void ShowInventory(){
+    public void ShowInventory(bool isManual = false){
+        if(isManual && invDirector.state == PlayState.Playing) return;
+        
         SetInventoryUI();
-        inventoryScreen.SetActive(true);
+        // inventoryScreen.SetActive(true);
+        invDirector.playableAsset = openAnimation;
+        invDirector.Play();
     }
 
-    public void HideInventory(){
-        inventoryScreen.SetActive(false);
+    public void HideInventory(bool isManual = false){
+        if(isManual && invDirector.state == PlayState.Playing) return;
+
+        // inventoryScreen.SetActive(false);
+        invDirector.playableAsset = closeAnimation;
+        invDirector.Play();
         tileDetailsScreen.SetActive(false);
     }
 
@@ -109,6 +122,7 @@ public class PlayerUIManager : MonoBehaviour{
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
             element.transform.SetParent(bagRect);
+            element.transform.localScale = new Vector3(93, 93, 93);
             PlaceElement(element);
             element.GetComponent<ItemElement>().UpdateSpriteOrder(orderCount*4);
             orderCount++;

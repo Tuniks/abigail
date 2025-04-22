@@ -26,6 +26,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
         UpdateSpriteOrder(1000);
+        UpdateMaskBehaviour(false);
 
         ui.ShowTileDetails(GetTile());
     }
@@ -38,6 +39,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
     public void OnPointerUp(PointerEventData eventData){
         cg.blocksRaycasts = true;
+        UpdateMaskBehaviour(true);
         ui.DropItemElement(this);
     }
 
@@ -78,6 +80,15 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer spr in sprs){
             originalSpriteOrder[spr] = spr.sortingOrder;
+        }
+    }
+
+    private void UpdateMaskBehaviour(bool isMaskable){
+        SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer spr in sprs){
+            if(!isMaskable){
+                spr.maskInteraction = SpriteMaskInteraction.None;
+            } else spr.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
         }
     }
 }
