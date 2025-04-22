@@ -5,40 +5,48 @@ using Yarn.Unity;
 
 public class CollisionBasedInteraction : MonoBehaviour
 {
-    public bool InteractionHappened = false;
-
-    public GameObject ObjecttoMove;
-    public GameObject ObjecttoCollideWith;
+    public GameObject ObjecttoMove; 
+    public GameObject ObjecttoCollideWith1;
+    public GameObject ObjecttoCollideWith2;
 
     public AudioClip Sound;
     public AudioSource audioSource;
-    
+
     public DialogueRunner dialogueRunner;
-    public string nodeToStart = "StartNode"; // Name of the Yarn node you want to start
+    public string nodeToStart = "StartNode";
 
     [Header("Interaction Tiles")] 
     public Tile[] tile = null;
-    
+
+    private bool InteractionHappened = false;
+
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
-    
-    void Update()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!InteractionHappened && ObjecttoMove.GetComponent<Collider2D>().bounds.Intersects(ObjecttoCollideWith.GetComponent<Collider2D>().bounds))
+        if (InteractionHappened) return;
+        
+        if (other.gameObject == ObjecttoCollideWith1 || other.gameObject == ObjecttoCollideWith2)
         {
             InteractionHappened = true;
 
-            if (dialogueRunner != null && dialogueRunner.IsDialogueRunning == false)
+            if (audioSource != null && Sound != null)
             {
-                audioSource.PlayOneShot(Sound, 0.7F);
+                audioSource.PlayOneShot(Sound, 0.7f);
+            }
+
+            if (dialogueRunner != null && !dialogueRunner.IsDialogueRunning)
+            {
                 dialogueRunner.StartDialogue(nodeToStart);
-                
-                if (tile != null && tile.Length > 0)
-                {
-                    PlayerInventory.Instance.AddTilesToCollection(tile);
-                }
+            }
+
+            if (tile != null && tile.Length > 0 && PlayerInventory.Instance != null)
+            {
+                PlayerInventory.Instance.AddTilesToCollection(tile);
             }
         }
     }
