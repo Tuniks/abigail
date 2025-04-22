@@ -9,10 +9,15 @@ public class FeltInteractions : AreaInteractions{
     public PlayableDirector ryanAnimator;
     public TilePickUp ryanFlyTile;
     
-    [Header("Ryans Interaction")]
+    [Header("Timothy Interaction")]
     public GameObject soccerUI;
     public GameObject soccerMinigame;
     public SoccerPlayer soccerPlayer;
+
+    [Header("Fellini and Albert Interactions")]
+    public GameObject hauntedUI;
+    public GameObject hauntedMinigame;
+    public HauntedGhosts hauntedGhosts;
 
     // Ryans
     [YarnCommand]
@@ -39,6 +44,24 @@ public class FeltInteractions : AreaInteractions{
         soccerUI.SetActive(false);
         soccerMinigame.SetActive(false);
 
+        PlayerInteractor.instance.EndAzulejoConvo();
+        PlayerInteractor.instance.EndHijack();
+    }
+
+    // Fellini and Albert
+    [YarnCommand]
+    public void StartHauntedMinigame(){
+        hauntedUI.SetActive(true);
+        hauntedMinigame.SetActive(true);
+        hauntedGhosts.ResetMinigame();
+
+        PlayerInteractor.instance.StartAzulejoConvo();
+        PlayerInteractor.instance.HijackInteractor(EndHauntedMinigame);
+    }
+
+    public void EndHauntedMinigame(){
+        hauntedUI.SetActive(false);
+        hauntedMinigame.SetActive(false);
         PlayerInteractor.instance.EndAzulejoConvo();
         PlayerInteractor.instance.EndHijack();
     }

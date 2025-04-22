@@ -138,13 +138,12 @@ tags:
 Abigail: Fellini! It’s nice to see you not wearing a diaper!
 Fellini: What do you see when you look at this house Abigail? 
 Abigail: Um…an old abandoned house? 
-Albert: I see a poem. No…A film!
+Albert: I see a poem. No… A film!
 Fellini: I see a space dripping with meaning. With life! 
-//go into Azulejo
 <<else>>
 Fellini: Got anything new for us on the meaning of life?
-//go into Azulejo
 <<endif>>
+<<StartAzulejoConversation Fellini>>
 ===
 title: HauntedHouseTeens1RatSkull
 tags: 
@@ -158,7 +157,7 @@ Fellini: I was, and I am eclectic!
 Albert: What does perjorative mean?
 Fellini: You wanna throw some rocks with us Abigail? 
 Abigail: Sure.
-//go to haunted house throwing rocks minigame
+<<StartHauntedMinigame SceneController>>
 ===
 title: HauntedHouseTeens1Sunflower
 tags: 
@@ -277,7 +276,7 @@ Timothy: Don’t I know you from somewhere? I think we went to summer camp toget
 <<else>>
 Timothy: Where do we know each other from?
 <<endif>>
-<<StartAzulejoConversation Vendor>>
+<<StartAzulejoConversation Timothy>>
 ===
 title: Vendor1Soccer
 tags: 

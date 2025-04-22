@@ -33,4 +33,8 @@ public class HauntedGhosts : MonoBehaviour{
         ghost.SetActive(false);
         currentGhosts.Remove(ghost);
     }
+
+    public void ResetMinigame(){
+        currentGhosts = new List<GameObject>(totalGhosts);
+    }
 }
