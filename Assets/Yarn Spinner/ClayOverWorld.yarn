@@ -1,0 +1,359 @@
+﻿title: ClayOverWorld
+tags:
+---
+Abigail: hi
+===
+//=== MAIN QUEST LINE ===
+title: Kate0
+tags:
+---
+<<if visited("Kate0") is false>>
+Kate: Abigail! What are you doing here?
+Abigail: Oh you know, just, looking for a tile from my childhood that I think transported me back here. 
+Kate: You're long over due for a visit so I thought this was a purposeful trip, but that's cool. 
+Abigail: I didn't mean it like that Kate. Can we start over?
+Kate: Whatever you want Abigail.
+Abigail: It's really good to see you. Are you still the busiest person alive?
+Kate: Yeah, kinda. I just have my job at the library, managing the venue in Wharf, volunteering at the beach, not to mention checking in on all of our ridiculous friends.
+Abigail: Is Dani doing okay?
+Kate: Is Dani ever doing okay?
+Kate: Sorry, I'm just a little at my wits end with them right now.
+Abigail: That's fair. They just seem lonely is all. 
+Kate: Yeah, me too, but I'm not just sulking around.
+Abigail: So you're not seeing anyone right now?
+Kate: That's not really your business Abigail. 
+Abigail: I'm sorry, I'm messing this up.
+Kate: No you're not, I'm not being nice. We were friends first, let's just try and be friends.
+Abigail: I'd really like that. I have to go check out Miller's Antiques but when I come back maybe we could play Azulejo?
+Kate: I'd love to. 
+<<OpenAntiqueShop SceneController>>
+<<else>>
+Kate: Once you're done checking out Miller's Antiques we can play Azulejo. 
+<<endif>>
+===
+title: AntiqueShop
+tags:
+---
+<<if visited("AntiqueShop") is false>>
+<<LoadVariables WorldState>>
+Mr.Miller: Abigail! What can I help you with today darling? 
+<<if $tile_type is "saltwater">>
+    Abigail: I'm looking for a specific Tile. It kinda feels like saltwater in your hair.
+<<else>>
+    Abigail: I'm looking for a specific Tile. It kinda feels like holding someone's hand.
+<<endif>>
+Mr.Miller: Hmm, let me see if I have anything like that around.
+Mr.Miller: How's your mom doing these days?
+Abigail: I think she’s doing okay, but I don’t call her as much as I should. 
+Mr.Miller: Well, she's a lovely lady your mother. You know I made her a special flower power tile way back when.
+Mr.Miller: I don't think I have anything like what you're looking for, but I have a feeling you could use this instead.
+<<GiveClock SceneController>>
+Mr.Miller: Time is a funny thing Miss Abigail, it goes and goes without us even noticing. 
+Mr.Miller: Maybe this can help you notice. 
+Abigail: Thank you Mr. Miller. How much is it?
+Mr.Miller: How about you play a round of Power Azulejo with me and we'll be square?
+<<else>>
+Mr.Miller: Say hi to your mother for me!
+Abigail: I will!
+<<endif>>
+===
+title: Kate1
+tags:
+---
+Kate: Ready for the pools to tell you the secrets of your heart?
+Abigail: You know I don't believe in that stuff.
+Kate: The pools read the energy around them, and then give you a word to contemplate. It's gonna happen whether you believe in it or not. 
+Abigail: Let's just play. 
+===
+title: Kate2
+tags:
+---
+Kate: Admit it Abigail. The pools knew!
+Abigail: You're telling me the pools know that we dated and then broke each other's hearts?
+Abigail: Speaking of romantic trainwrecks, any chance you have a tile that reminds you of Chase's love life?
+Kate: Uh yeah, here. This weird little guy with wings.
+Kate: Dude's got commitment issues, loves to just fly away. 
+Abigail: Thanks, glad Chase asked me for this and not Gabe, that dude's love life has always been bleak. 
+Kate: Yeah, um, about that...
+Kate: I'm not seeing anyone right now but I was and unfortunately it was Gabe. 
+Abigail: Why exactly are you telling me this?
+Kate: Because we're all about to go to your house for dinner? Your mom invited everyone. 
+Abigail: Oh my god. 
+Kate: It wasn't serious. At least for me it wasn't serious. 
+Abigail: Let's just go meet up with Chase. 
+===
+//=== CLAY NPCS ===
+title: Harold0
+tags:
+---
+<<if visited("Harold0") is false>>
+Harold: There’s nothing like looking at Kiln’s very own Bathing Baby Fountain!
+<<FountainCounting 2DPlayer>>
+Abigail: Baby? I thought it was a busty woman. 
+Harold: Dear lord… 
+Abigail: Don’t get me wrong it’s rad! 
+Harold: Yes, it is rad indeed. 
+//start azulejo
+<<else>>
+Harold: Ready for some more town history with an expert?
+//start azulejo
+<<endif>>
+===
+title: Harold1KookyClock
+tags:
+---
+Harold: Ah time, that eternal ticking. It feels so visible here, so stripped bare of modernity. 
+Abigail: Yeah, it does. 
+Harold: Oh, that reminds me of my favorite old tale!
+Harold: Some say that if you make three clockwise rotations around the fountain, you will be blessed with a gift. 
+===
+title: Harold1Fountain
+tags:
+---
+Harold: What an exquisite use of form and color. Intensely dynamic!
+Abigail: Yeah, I wish I looked this good when I was a baby. 
+Harold: Where did you get this?
+Abigail: I just did what you said…
+Harold: The lady of the bridge has taken a liking to you. 
+Abigail: That feels ominous?
+Harold: Just make sure not to wear highly scented perfume and you’ll be fine. 
+===
+title: Harold1Bell
+tags:
+---
+Harold: This is Kiln’s very own church bell! 
+Abigail: Yeah, we learned about it in school, it just seems like any old bell. 
+Harold: Not true my dear! This bell is the oldest piece of metal within Kiln!
+Abigail: That’s what I mean, being old doesn’t automatically make something important. 
+Harold: Anything that is cherished becomes important. 
+Abigail: But that’s like a positive feedback loop?
+Harold: Enough with your cynicism city girl, let me enjoy my small town pleasures. 
+===
+title: Harold1Troll
+tags:
+---
+Harold: There she is in all her glory, the lady of the bridge!
+Abigail: Yeah, she’s a convenient story parents tell kids to keep them the rock in the river. 
+Harold: She is so much more than that young lady. 
+Harold: I’ve seen her a few times, but only in flashes. 
+Harold: And this here, is a spitting image of her. 
+===
+title: Harold1
+tags:
+---
+Harold: Hm…I’ve never thought of that as like Kiln. 
+Harold: But I’m an old man, out of touch with the kids I guess. 
+Harold: Time has an odd way of passing here, the clocks are never quite right. 
+===
+title: Reggie0
+tags:
+---
+<<if visited("Reggie0") is false>>
+Reggie: I once saw Kiln’s lady of the bridge up there, banging away at the church bell! 
+Harold: Cut it out Reggie! 
+Reggie: You’re just jealous because I’ve gotten a clear look at her! 
+//start azulejo
+<<else>>
+Reggie: Don't listen to that jealous old fart, let's play again. 
+Harold: Hey!
+//start azulejo
+<<endif>>
+===
+title: Reggie1KookyClock
+tags:
+---
+Reggie: Tomorrow, and tomorrow, and tomorrow, creeps in this petty pace from day to day.
+Abigail: Is that from Macbeth?
+Reggie: No, no it’s from this play that I wrote. 
+===
+title: Reggie1Fountain
+tags:
+---
+Reggie: Ah, the busty lady atop our fountain!
+Abigail: That’s what I thought too! Harold told me it’s actually a baby. 
+Reggie: Oh what does Harold know!
+Harold: I have a PHD in art history!
+===
+title: Reggie1Bell
+tags:
+---
+Reggie: I’ll never forget the way her hair shone in the wind when she rang that bell. The way her muscles flexed! 
+Harold: Reggie, I beg of you, stop spreading false history! 
+Reggie: And then she winked at me! And my heart stopped in my chest! 
+Harold: Reggie you really should join an improv troupe because you’re so good at making things up!
+===
+title: Reggie1Troll
+tags:
+---
+Reggie: This is a truly inaccurate representation of the lady of the bridge. 
+Reggie: It’s too simplistic, corrupted by European beauty standards. 
+Reggie: Maybe I should head over to Jimothy’s and get him to make me a custom tile of her, that way I can really set things straight. 
+===
+title: Reggie1
+tags:
+---
+Reggie: Wow, Kiln feels that way to you? 
+Reggie: I just love connecting with young people, you remind me how much of the world is an ever evolving mystery! 
+===
+title: Jimothy0
+tags:
+---
+<<if visited("Jimothy0") is false>>
+Jimothy: Hey there little lady, you a pal of my boy’s?
+Abigail: Kinda, I think we went to some of the same summer camps.
+Jimothy: My boy Timothy just lights up my world, and I want to do something special with him this weekend. Got any suggestions? 
+//start azulejo
+<<else>>
+Jimothy: Any more suggestions for what to do with my boy?
+//start azulejo
+<<endif>>
+===
+title: Jimothy1Soccer
+tags:
+---
+Jimothy: Oh my boy just had nerves of steel! He was always in the goal, diving for the ball! 
+Abigail: I remember. He was pretty good. 
+Jimothy: You know, he could have left for school. He got this soccer scholarship and everything. 
+Jimothy: I made him promise me he was staying here because he wanted to, not because of me. 
+Jimothy: But I’m so grateful he did, I’d be lost without that boy. 
+===
+title: Jimothy1Constellation
+tags:
+---
+Jimothy: I don’t know, he wasn’t the biggest fan of that space camp I sent him too. 
+Abigail: Stargazing doesn’t have to be about leaving this planet. 
+Abigail: Sometimes looking at the stars is about being grateful for your small place in the universe. 
+Abigail: My friend Kate used to say that. 
+Jimothy: What a lovely thought. 
+===
+title: Jimothy1Knot
+tags:
+---
+Jimothy: My boy did do Scouts, so he’s a pretty handy camper. 
+Abigail: Me and my mom used to go camping all the time. It was nice to be together without any distractions. 
+Abigail: We haven’t gotten to go for a few years, I’ve been away. 
+Jimothy: I’m just so glad my boy is close by, and he doesn’t mind working for his old man, haha!
+===
+title: Jimothy1Troll
+tags:
+---
+Jimothy: Where did you get this?
+Abigail: I found it, just under the bridge. 
+Jimothy: Could I…could I have it?
+Abigail: Why? 
+Jimothy: Just to look at. 
+Abigail: I don’t think so. 
+===
+title: Jimothy1BunnyDeer
+tags:
+---
+Jimothy: He’s a little bit sick of searching the woods for cryptids with me. 
+Abigail: It’s okay to have different interests. 
+Jimothy: There was just someone I wanted him to meet…nevermind.  
+===
+title: Jimothy1
+tags:
+---
+Jimothy: Huh, I don’t know. I’m not sure my boy would be so into that. 
+Jimothy: Thanks for the suggestion though. 
+===
+title: Maxi0
+tags:
+---
+<<if visited("Maxi0") is false>>
+Maxi: Maybe I would actually care about Town history if this wasn’t our third field trip here this month. 
+Abigail: Tell me about it, I swear the Kiln school district is allergic to having class inside. 
+Maxi: Listen lady, I'm having an off day, and I'm jonesing to see a tile that will take my mind off of things. 
+Maxi: You got anything with the Lady of the Bridge on it? 
+//start azulejo
+<<else>>
+Maxi: You find that lady of the bridge tile yet?
+//start azulejo
+<<endif>>
+===
+title: Maxi1Troll
+tags:
+---
+Maxi: Oh wow that hits the spot.
+Maxi: I heard that if you can hit the church bell with a rock the Lady of the Bridge will come out. 
+Abigail: Let’s find out! 
+//start bell minigame
+===
+title: Maxi1BellHit
+tags:
+---
+Maxi: No sign of her…bummer. 
+Priest: Who did that? 
+Maxi: Act natural.
+Priest: Was it you Abigail? Is that what you do in the big city? 
+Abigail: My bad. 
+===
+title: Maxi1BellMiss
+tags:
+---
+Maxi: Just one of those days I guess.
+Maxi: Thanks for trying. 
+===
+title: Maxi1
+tags:
+---
+Maxi: C’mon lady, help a girl out. 
+Maxi: I’m dying over here. 
+Maxi: Show me the Bridge Lady or show me nothing! 
+===
+title: Teacher0
+tags:
+---
+<<if visited("Teacher0") is false>>
+Mr.Travisano: Here is Kiln’s church which was first built in 1873. 
+April: Mister, when do I get to eat my peanut butter sandwich?
+June: I already ate it. And I'm allergic to peanut butter. 
+Mr.Travisano: Not again June!
+<<else>>
+Mr.Travisano: Epipens do not grow on trees June!
+<<endif>>
+===
+//=== INTERACTIONS ===
+title: WaterPool
+tags:
+---
+Abigail: Ok reflection pools, tell me something about my soul. 
+//yarncommand for switching sprite + adding new tile 
+<<TriggerChange Pool>>
+Abigail: And of course, you just remind me of Kate.
+===
+//=== LESBIAN LOVE LETTER ===
+title: LetterDiscovery
+tags:
+---
+Abigail: Well…that was incredibly graphic. 
+Abigail: No wonder it was hidden behind a brick. 
+Abigail: I feel like I should give this to someone?
+Abigail: Maybe I’ll find Agatha or Delilah somewhere. 
+<<ResetInteraction Letter>>
+===
+title: DelilahNoLetter
+tags:
+---
+Delilah: How I love this little courtyard.
+===
+title: DelilahReadLetter
+tags:
+---
+<<if visited("DelilahReadLetter") is false>>
+Delilah: Even with all the renovations, the history of this place is palpable! 
+Abigail: Haven’t they renovated it quite a few times? I doubt any of the original pieces are still there.
+Delilah: Honey, that’s not what it’s about. The beauty of its existence radiates through time.
+Harold: Delilah don’t forget how hard I work on those renovations!
+Abigail: Your name is Delilah? I think I found a letter you wrote 
+Delilah: Oh god, the one I stowed away in that wall! 
+Abigail: I can’t believe you never gave it to her. 
+Delilah: Honey, I did. That was just a draft, an assurance that if I couldn’t get up my courage, at least the wall would know my truth. 
+Abigail: So what happened? 
+Delilah: We loved, we fought, we took time apart, we changed, we loved again.
+Abigail: That one’s a classic. 
+Delilah: It’s nice to remember though, how it all felt at the beginning. 
+<<else>>
+Delilah: Thank you for helping me remember. 
+<<endif>>
+===
