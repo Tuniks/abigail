@@ -22,6 +22,8 @@ public class ClayManager : AreaManager{
     public GameObject antiqueShop;
     public Tile[] salthairTile;
     public Tile[] handholdTile;
+    public Tile[] clockTile;
+    public GameObject AntiqueShopEntrance;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -82,4 +84,19 @@ public class ClayManager : AreaManager{
     {
         SceneManager.LoadScene("STEAMLINK");
     }
+    
+    [YarnCommand]
+    public void OpenAntiqueShop()
+    {
+        AntiqueShopEntrance.SetActive(true);
+        
+    }
+    
+    [YarnCommand]
+    public void GiveClock()
+    {
+        PlayerInventory.Instance.AddTilesToCollection(clockTile);
+        
+    }
+    
 }
