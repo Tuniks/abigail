@@ -61,6 +61,14 @@ public class AzulejoConvo : MonoBehaviour{
         StartCoroutine(EndConvo(defaultNode));
     }
 
+    public Vector3 GetSlotPosition(){
+        return convoUI.GetSlotPosition();
+    }
+
+    public float GetSlotScale(){
+        return convoUI.GetSlotScale();
+    }
+
     // ==== YARN COMMANDS ====
     [YarnCommand]
     public void StartAzulejoConversation(){

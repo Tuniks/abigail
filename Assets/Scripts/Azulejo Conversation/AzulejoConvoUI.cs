@@ -40,4 +40,12 @@ public class AzulejoConvoUI : MonoBehaviour{
         item.transform.localRotation = Quaternion.Euler(tileRotation);
         item.transform.localScale = new Vector3(tileScale, tileScale, tileScale);
     }
+
+    public Vector3 GetSlotPosition(){
+        return tileSlot.transform.position;
+    }
+
+    public float GetSlotScale(){
+        return tileScale;
+    }
 }

@@ -194,6 +194,16 @@ public class PlayerUIManager : MonoBehaviour{
         convoSlot = slot;
     }
 
+    public Vector3 ConvoSlotPosition(){
+        if(currentConvo == null) return Vector3.zero;
+        return currentConvo.GetSlotPosition();
+    }
+
+    public float ConvoSlotScale(){
+        if(currentConvo == null) return 0;
+        return currentConvo.GetSlotScale();
+    }
+
     // ====== NOTIFICATIONS ======
 
     public void ShowNewTileNotification(){
