@@ -31,133 +31,145 @@ public class PowerAzuManager : MonoBehaviour {
     [Header("Bounce Feedback")]
     public GameObject flashEffectPrefab;
     public GameObject bounceParticlesPrefab;
-    
-    [Header("Collision Transfer")]
-    [Tooltip("Extra force that will be applied to the first tile collided with upon launch.")]
-    public float collisionTransferForce = 500f;
+
+    [Header("Collision and Launch")]
+    public float transferForce = 5f;
+    private float launchInputDelay = 0.5f;
 
     private GameObject currentIndicator;
     private Vector3 indicatorTargetPos;
     private bool hasCharged = false;
     private float chargeTimer = 0f;
 
-    void Awake() {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
+    private SpriteRenderer activeTileRenderer;
+    private Color originalTileColor;
+
+    private bool isInLaunchMode = false;
+    private float launchModeStartTime = 0f;
+
+    private void Awake() {
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
-    void Start() {
+    private void Start() {
         currentState = GameState.PlayerTurn;
         if (assignButton != null)
             assignButton.onClick.AddListener(OnAssignButtonPressed);
     }
 
-    void Update() {
-        if (currentState == GameState.Play && activeTile != null) {
-            Rigidbody2D rb = activeTile.GetComponent<Rigidbody2D>();
-            if (rb != null) {
+    private void Update() {
+        if (currentState == GameState.Play && activeTile != null && isInLaunchMode) {
+            if (Time.time > launchModeStartTime + launchInputDelay) {
+                Rigidbody2D rb = activeTile.GetComponent<Rigidbody2D>();
+                if (rb != null) {
+                    if (Input.GetKeyDown(KeyCode.Escape)) {
+                        CancelActiveTile();
+                        return;
+                    }
 
-                // If the player presses Escape, cancel/deselect the active tile.
-                if (Input.GetKeyDown(KeyCode.Escape)) {
-                    Debug.Log("Escape pressed: Cancelling active tile.");
-                    CancelActiveTile();
-                    return;
-                }
+                    if (hasCharged && rb.velocity.magnitude < 0.05f) {
+                        hasCharged = false;
+                        chargeTimer = 0f;
+                    }
 
-                // If the tile has stopped moving, reset charge state.
-                if (hasCharged && rb.velocity.magnitude < 0.05f) {
-                    hasCharged = false;
-                    chargeTimer = 0f;
-                    Debug.Log("Tile has stopped. Ready to charge again.");
-                }
+                    if (!hasCharged && Input.GetKey(KeyCode.E)) {
+                        chargeTimer += Time.deltaTime;
+                        chargeTimer = Mathf.Clamp(chargeTimer, 0f, maxChargeTime);
+                    }
 
-                // Use the E key to charge the tile.
-                if (!hasCharged && Input.GetKey(KeyCode.E)) {
-                    chargeTimer += Time.deltaTime;
-                    chargeTimer = Mathf.Clamp(chargeTimer, 0f, maxChargeTime);
-                }
+                    if (!hasCharged && Input.GetKeyUp(KeyCode.E)) {
+                        BeginTileLaunch();
+                    }
 
-                // When E is released, launch the tile using the accumulated charge.
-                if (!hasCharged && Input.GetKeyUp(KeyCode.E)) {
-                    Vector3 mousePos = Input.mousePosition;
-                    Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
-                    worldMousePos.z = 0;
-                    Vector3 direction = (worldMousePos - activeTile.transform.position).normalized;
-                    float statValue = CalculateDirectionalForce(activeTile, direction);
-                    float chargePercent = chargeTimer / maxChargeTime;
-                    float finalForce = statValue * chargePercent * chargeForce;
-                    rb.AddForce(direction * finalForce);
-                    hasCharged = true;
-                    Debug.Log($"Force: {finalForce}, Charge %: {chargePercent}, Stat: {statValue}, Dir: {direction}");
-                }
+                    if (currentIndicator != null) {
+                        Vector3 mousePos = Input.mousePosition;
+                        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+                        worldMousePos.z = 0;
+                        Vector3 dir = (worldMousePos - activeTile.transform.position).normalized;
+                        float statValue = CalculateDirectionalForce(activeTile, dir);
+                        float statPercent = Mathf.Clamp01(statValue / maxStatValue);
+                        float chargePercent = Mathf.Clamp01(chargeTimer / maxChargeTime);
+                        float allowedRange = Mathf.Lerp(minRange, maxRange, statPercent);
+                        indicatorTargetPos = activeTile.transform.position + dir * allowedRange;
+                        currentIndicator.transform.position = Vector3.Lerp(currentIndicator.transform.position, indicatorTargetPos, 10f * Time.deltaTime);
 
-                // Update the indicator's position and scale.
-                if (currentIndicator != null) {
-                    Vector3 mousePos = Input.mousePosition;
-                    Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
-                    worldMousePos.z = 0;
-                    Vector3 dir = (worldMousePos - activeTile.transform.position).normalized;
-                    float statValue = CalculateDirectionalForce(activeTile, dir);
-                    float statPercent = Mathf.Clamp01(statValue / maxStatValue);
-                    float chargePercent = Mathf.Clamp01(chargeTimer / maxChargeTime);
-                    float allowedRange = Mathf.Lerp(minRange, maxRange, statPercent);
-                    indicatorTargetPos = activeTile.transform.position + dir * allowedRange;
-                    currentIndicator.transform.position = Vector3.Lerp(currentIndicator.transform.position, indicatorTargetPos, 10f * Time.deltaTime);
-                    float finalScale = baseIndicatorScale * chargePercent * statPercent;
-                    finalScale = Mathf.Clamp(finalScale, 0.2f, 2f);
-                    currentIndicator.transform.localScale = new Vector3(finalScale, finalScale, 1f);
-                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                    currentIndicator.transform.rotation = Quaternion.Euler(0, 0, angle);
+                        float scaleCurve = 0.3f + 1.7f * chargePercent;
+                        float finalScale = baseIndicatorScale * scaleCurve * statPercent;
+                        finalScale = Mathf.Clamp(finalScale, 0.2f, 3f);
+                        currentIndicator.transform.localScale = new Vector3(finalScale, finalScale, 1f);
+
+                        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                        currentIndicator.transform.rotation = Quaternion.Euler(0, 0, angle);
+                    }
                 }
             }
         }
     }
 
-    // Modified OnAssignButtonPressed:
-    // 1. Call the hand’s AssignSelectedTiles() method (which uses ActiveSpot functionality).
-    // 2. Disable any remaining (non-chosen) tiles.
-    // 3. Collect the chosen tiles from the ActiveSpot objects (using their activeTile property).
-    // 4. Apply physics to the chosen tiles.
-    // 5. Set the first chosen tile as the active tile and add the collision handler.
-    public void OnAssignButtonPressed() {
-        if (currentState != GameState.PlayerTurn)
-            return;
+    public void BeginTileLaunch() {
+        if (activeTile == null) return;
+        Rigidbody2D rb = activeTile.GetComponent<Rigidbody2D>();
+        if (rb == null) return;
 
-        // Let the hand assign selected tiles into active spots.
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        worldMousePos.z = 0;
+        Vector3 direction = (worldMousePos - activeTile.transform.position).normalized;
+        float statValue = CalculateDirectionalForce(activeTile, direction);
+        float chargePercent = chargeTimer / maxChargeTime;
+        float finalForce = statValue * chargePercent * chargeForce;
+        rb.AddForce(direction * finalForce);
+
+        hasCharged = true;
+        CancelActiveTile();
+        Debug.Log($"Force: {finalForce}, Charge %: {chargePercent}, Stat: {statValue}, Dir: {direction}");
+    }
+
+    public void EnterLaunchMode() {
+        isInLaunchMode = true;
+        chargeTimer = 0f;
+        hasCharged = false;
+        launchModeStartTime = Time.time;
+
+        if (indicatorSpritePrefab != null && currentIndicator == null && activeTile != null) {
+            Vector3 mousePos = Input.mousePosition;
+            Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            worldMousePos.z = 0;
+
+            currentIndicator = Instantiate(indicatorSpritePrefab, worldMousePos, Quaternion.identity);
+
+            SpriteRenderer sr = currentIndicator.GetComponent<SpriteRenderer>();
+            if (sr != null) {
+                sr.sortingOrder = 999;
+                sr.sortingLayerName = "UI";
+            }
+        }
+    }
+
+    public void OnAssignButtonPressed() {
+        if (currentState != GameState.PlayerTurn) return;
+
         playerHand.AssignSelectedTiles();
 
-        // Disable any tiles still remaining in the player's hand (non-chosen ones).
         foreach (Tile tile in playerHand.hand) {
             tile.gameObject.SetActive(false);
         }
 
-        // Collect the tiles from each ActiveSpot (using activeTile).
         List<Tile> chosenTiles = new List<Tile>();
         foreach (ActiveSpot spot in playerHand.activeSpots) {
             if (spot.activeTile != null) {
-                // Ensure the chosen tile is enabled.
                 spot.activeTile.gameObject.SetActive(true);
                 chosenTiles.Add(spot.activeTile);
             }
         }
 
-        // Apply physics properties to all chosen tiles.
         foreach (Tile tile in chosenTiles) {
             AssignPhysicsProperties(tile);
         }
 
-        // Optionally set the first chosen tile as the active tile.
         if (chosenTiles.Count > 0) {
-            activeTile = chosenTiles[0];
-
-            // Add the collision transfer component if not already there.
-            ActiveTileCollisionHandler handler = activeTile.GetComponent<ActiveTileCollisionHandler>();
-            if (handler == null) {
-                handler = activeTile.gameObject.AddComponent<ActiveTileCollisionHandler>();
-            }
-            handler.collisionTransferForce = collisionTransferForce;
+            SetActiveTile(chosenTiles[0]);
         }
 
         if (assignButton != null) {
@@ -166,10 +178,8 @@ public class PowerAzuManager : MonoBehaviour {
         }
 
         currentState = GameState.Play;
-        StartPlay();
     }
 
-    // Adds physics (and collision) components to a tile.
     void AssignPhysicsProperties(Tile tile) {
         Rigidbody2D rb = tile.GetComponent<Rigidbody2D>();
         if (rb == null)
@@ -196,38 +206,53 @@ public class PowerAzuManager : MonoBehaviour {
             feedback.flashEffect = flashEffectPrefab;
             feedback.bounceParticles = bounceParticlesPrefab;
         }
-    }
 
-    void StartPlay() {
-        Debug.Log("Entering Play state");
-        // Additional play-state initialization can be added here.
+        if (!tile.gameObject.GetComponent<ActiveTileCollisionHandler>()) {
+            tile.gameObject.AddComponent<ActiveTileCollisionHandler>();
+        }
     }
 
     public void SetActiveTile(Tile tile) {
+        if (activeTile == tile) return;
+
+        if (activeTileRenderer != null)
+            activeTileRenderer.color = originalTileColor;
+
         if (currentIndicator != null) {
             Destroy(currentIndicator);
             currentIndicator = null;
         }
+
         activeTile = tile;
-        if (indicatorSpritePrefab != null) {
-            Vector3 mousePos = Input.mousePosition;
-            Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            worldMousePos.z = 0;
-            currentIndicator = Instantiate(indicatorSpritePrefab, worldMousePos, Quaternion.identity);
-            indicatorTargetPos = worldMousePos;
+
+        activeTileRenderer = tile.GetComponent<SpriteRenderer>();
+        if (activeTileRenderer != null) {
+            originalTileColor = activeTileRenderer.color;
+            activeTileRenderer.color = new Color(1f, 0.7f, 0.7f);
         }
+
+        TileActionMenu.instance.ShowMenu(tile);
         Debug.Log("Active tile set: " + tile.name);
     }
 
     public void CancelActiveTile() {
+        if (activeTileRenderer != null)
+            activeTileRenderer.color = originalTileColor;
+
         if (activeTile != null) {
             Debug.Log("Active tile cancelled: " + activeTile.name);
             activeTile = null;
         }
+
+        activeTileRenderer = null;
+
         if (currentIndicator != null) {
             Destroy(currentIndicator);
             currentIndicator = null;
         }
+
+        isInLaunchMode = false;
+        TileActionMenu.instance.HideMenu();
     }
 
     float CalculateDirectionalForce(Tile tile, Vector3 direction) {
@@ -249,6 +274,7 @@ public class PowerAzuManager : MonoBehaviour {
             { "Beauty", dotLeft },
             { "Intellect", dotRight }
         };
+
         var sorted = alignment.OrderByDescending(pair => pair.Value).ToList();
 
         if (Mathf.Abs(sorted[0].Value - sorted[1].Value) < 0.2f) {
@@ -256,6 +282,7 @@ public class PowerAzuManager : MonoBehaviour {
             float attr2 = tile.GetAttribute((Attributes)System.Enum.Parse(typeof(Attributes), sorted[1].Key));
             return (attr1 + attr2) / 2f;
         }
+
         return tile.GetAttribute((Attributes)System.Enum.Parse(typeof(Attributes), sorted[0].Key));
     }
 }
