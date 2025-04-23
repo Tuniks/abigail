@@ -10,11 +10,15 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private Vector3 previousPos;
     private Dictionary<SpriteRenderer, int> originalSpriteOrder = null;
 
-    public Vector3 tileScale = new Vector3(1, 1, 1); 
+    public Vector3 tileScale = new Vector3(1, 1, 1);
+
+    // Tile Scaling for Azulejo Convo
+    private float startingScale = 1f;
 
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();
         cg = GetComponent<CanvasGroup>();
+        startingScale = transform.localScale.x;
     }
 
     public void OnPointerDown(PointerEventData eventData){
@@ -26,6 +30,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
         UpdateSpriteOrder(1000);
+        UpdateMaskBehaviour(false);
 
         ui.ShowTileDetails(GetTile());
     }
@@ -34,10 +39,20 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = 10.0f; 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+        
+        Vector3 slotPos = PlayerUIManager.instance.ConvoSlotPosition();
+        float targetScale = PlayerUIManager.instance.ConvoSlotScale();
+        if(targetScale == 0) return;
+
+        float mult = Mathf.Max(0, 1 - (Vector3.Distance(transform.position, slotPos)/Vector3.Distance(previousPos, slotPos)));
+        float newScale = startingScale + (targetScale-startingScale)*mult;
+        transform.localScale = new Vector3(newScale, newScale, newScale);
     }
 
     public void OnPointerUp(PointerEventData eventData){
+        transform.localScale = new Vector3(startingScale, startingScale, startingScale);
         cg.blocksRaycasts = true;
+        UpdateMaskBehaviour(true);
         ui.DropItemElement(this);
     }
 
@@ -78,6 +93,15 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
         foreach(SpriteRenderer spr in sprs){
             originalSpriteOrder[spr] = spr.sortingOrder;
+        }
+    }
+
+    private void UpdateMaskBehaviour(bool isMaskable){
+        SpriteRenderer[] sprs = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer spr in sprs){
+            if(!isMaskable){
+                spr.maskInteraction = SpriteMaskInteraction.None;
+            } else spr.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
         }
     }
 }
