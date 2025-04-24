@@ -23,6 +23,9 @@ public class CollageManager : AreaManager{
     [Header("Misc")]
     public Tile[] salthairTile;
     public Tile[] handholdTile;
+    public Tile[] tvTile;
+    public Tile[] slimeTile;
+    public Tile[] coffeeTile;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -79,4 +82,23 @@ public class CollageManager : AreaManager{
     {
         SceneManager.LoadScene("STEAMLINK");
     }
+    
+    [YarnCommand]
+    public void Givetv()
+    {
+        PlayerInventory.Instance.AddTilesToCollection(tvTile);
+    }
+    
+    [YarnCommand]
+    public void Giveslime()
+    {
+        PlayerInventory.Instance.AddTilesToCollection(slimeTile);
+    }
+    
+    [YarnCommand]
+    public void Givecoffee()
+    {
+        PlayerInventory.Instance.AddTilesToCollection(coffeeTile);
+    }
+    
 }
