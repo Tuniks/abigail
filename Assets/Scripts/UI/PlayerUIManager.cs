@@ -37,13 +37,6 @@ public class PlayerUIManager : MonoBehaviour{
     private AzulejoConvo currentConvo = null;
     private ConvoSlot convoSlot = null;
 
-    [Header("Azulejo Phenomenon")]
-    public PhenomenonUI phenomenonUI;
-    public PlayableDirector bagIconAnimation;
-    private AzulejoPhenomenon currentPhenomenon;
-    private PhenomenonSlot phenomenonSlot = null;
-    private TileComponent phenomenonTarget = null;
-
     void Start(){
         instance = this;
         playerInventory = PlayerInventory.Instance;
@@ -74,6 +67,7 @@ public class PlayerUIManager : MonoBehaviour{
         if(isManual && invDirector.state == PlayState.Playing) return;
         
         SetInventoryUI();
+        // inventoryScreen.SetActive(true);
         invDirector.playableAsset = openAnimation;
         invDirector.Play();
     }
@@ -81,10 +75,10 @@ public class PlayerUIManager : MonoBehaviour{
     public void HideInventory(bool isManual = false){
         if(isManual && invDirector.state == PlayState.Playing) return;
 
+        // inventoryScreen.SetActive(false);
         invDirector.playableAsset = closeAnimation;
         invDirector.Play();
         tileDetailsScreen.SetActive(false);
-        phenomenonUI.HideUI();
     }
 
     public Transform GetHeldItemParent(){
@@ -98,15 +92,9 @@ public class PlayerUIManager : MonoBehaviour{
         orderCount++;
         element.UpdateSpriteOrder(orderCount*4);
         
-        // If hovering convo drop spot, drop it
+        // If hovering drop spot, drop it
         if(convoSlot != null && currentConvo != null){
             currentConvo.OnTileSelected(element.GetTile());
-            return;
-        }
-
-        // If hovering phenomenon drop spot, drop it
-        if(phenomenonSlot != null && currentPhenomenon != null){
-            phenomenonUI.PlaceTile(currentPhenomenon, element.GetTile());
             return;
         }
 
@@ -143,16 +131,13 @@ public class PlayerUIManager : MonoBehaviour{
 
     private GameObject CreateItemElementFromTile(GameObject tile){
         GameObject element = Instantiate(itemElementPrefab);
-        ItemElement itemElement = element.GetComponent<ItemElement>();
-        itemElement.SetTile(tile);
-        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget)) itemElement.SetTwitching(true);
-
+        element.GetComponent<ItemElement>().SetTile(tile);
         return element;
     }
 
     private void ClearCollection(){
         foreach(Transform child in bagRect){
-            if(child.GetComponent<ItemElement>() != null){
+            if(child.GetComponentInChildren<ItemElement>() != null){
                 Destroy(child.gameObject);
             }
         }
@@ -188,13 +173,8 @@ public class PlayerUIManager : MonoBehaviour{
     public void ShowTileDetails(Tile tile){
         if(!CanShowTileDetails()) return;
 
-        if(tile.HasFace(phenomenonTarget)){
-            tileDetailsScreen.SetActive(false);
-            ShowPhenomenonInput();
-            return;
-        } else phenomenonUI.HideUI();
-
         tileDetailsScreen.GetComponent<TileDetailsUI>().SetTile(tile);
+
         tileDetailsScreen.SetActive(true);
     }
 
@@ -214,64 +194,14 @@ public class PlayerUIManager : MonoBehaviour{
         convoSlot = slot;
     }
 
-    public Vector3 GetSlotPosition(){
-        if(currentConvo != null) return currentConvo.GetSlotPosition();
-
-        if(currentPhenomenon != null && phenomenonUI.IsOn()) return phenomenonUI.GetSlotPosition();
-
-        return Vector3.zero;
+    public Vector3 ConvoSlotPosition(){
+        if(currentConvo == null) return Vector3.zero;
+        return currentConvo.GetSlotPosition();
     }
 
-    public float GetSlotScale(){
-        if(currentConvo != null) return currentConvo.GetSlotScale();
-
-        if(currentPhenomenon != null && phenomenonUI.IsOn()) return phenomenonUI.GetSlotScale();
-
-        return 0;
-    }
-
-    // ====== PHENOMENON =======
-    public void SetPhenomenon(AzulejoPhenomenon phenomenon){
-        currentPhenomenon = phenomenon;
-        phenomenonTarget = phenomenon == null ? null : phenomenon.GetFace();
-
-        if(playerInventory.HasTileWithFace(phenomenonTarget)){
-            AnimateBagIcon(true);
-        } else AnimateBagIcon(false);
-    }
-
-    private void ShowPhenomenonInput(){
-        phenomenonUI.ShowUI();
-    }
-
-    private void AnimateBagIcon(bool _status){
-        if(_status){
-            bagIconAnimation.Play();
-
-            if(inventoryScreen.activeSelf == true){
-                foreach(Transform child in bagRect){
-                    ItemElement itemElement = child.GetComponent<ItemElement>();
-                    if(itemElement != null && itemElement.HasTileWithFace(phenomenonTarget)){
-                        itemElement.SetTwitching(true);
-                    }
-                }
-            }
-        } else {
-            bagIconAnimation.Stop();
-
-            phenomenonUI.HideUI();
-
-            if(inventoryScreen.activeSelf == true){
-                foreach(Transform child in bagRect){
-                    ItemElement itemElement = child.GetComponent<ItemElement>();
-                    if(itemElement != null) itemElement.SetTwitching(false);   
-                }
-            }
-        }
-    }
-    
-    public void SetCurrentPhenomenonSlot(PhenomenonSlot _phenomenonSlot){
-        phenomenonSlot = _phenomenonSlot;
+    public float ConvoSlotScale(){
+        if(currentConvo == null) return 0;
+        return currentConvo.GetSlotScale();
     }
 
     // ====== NOTIFICATIONS ======
