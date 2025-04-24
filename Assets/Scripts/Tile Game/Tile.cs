@@ -141,6 +141,7 @@ public class Tile : MonoBehaviour {
     }
 
     public bool HasFace(TileComponent _face){
+        if(_face == null) return false;
         return GetName() == _face.title;
     }
 
