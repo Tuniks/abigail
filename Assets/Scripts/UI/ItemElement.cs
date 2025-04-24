@@ -15,6 +15,9 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     // Tile Scaling for Azulejo Convo
     private float startingScale = 1f;
 
+    // Animation for Azulejo Phenomenon
+    
+
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();
         cg = GetComponent<CanvasGroup>();
@@ -40,8 +43,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         screenPoint.z = 10.0f; 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
         
-        Vector3 slotPos = PlayerUIManager.instance.ConvoSlotPosition();
-        float targetScale = PlayerUIManager.instance.ConvoSlotScale();
+        Vector3 slotPos = PlayerUIManager.instance.GetSlotPosition();
+        float targetScale = PlayerUIManager.instance.GetSlotScale();
         if(targetScale == 0) return;
 
         float mult = Mathf.Max(0, 1 - (Vector3.Distance(transform.position, slotPos)/Vector3.Distance(previousPos, slotPos)));
@@ -104,4 +107,19 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
             } else spr.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
         }
     }
+
+    // Phenomenon
+    public bool HasTileWithFace(TileComponent _face){
+        if(_face == null) return false;
+        
+        Tile tile = GetComponentInChildren<Tile>();
+        if(tile == null) return false;
+
+        return tile.HasFace(_face);
+    }
+
+    public void SetAnimation(bool _status){
+        if(_status) Debug.Log("Tile is shaking");
+    }
+
 }
