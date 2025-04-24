@@ -145,7 +145,7 @@ public class PlayerUIManager : MonoBehaviour{
         GameObject element = Instantiate(itemElementPrefab);
         ItemElement itemElement = element.GetComponent<ItemElement>();
         itemElement.SetTile(tile);
-        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget)) itemElement.SetTwitching(true);
+        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget) && !currentConvo) itemElement.SetTwitching(true);
 
         return element;
     }

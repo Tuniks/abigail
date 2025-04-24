@@ -17,6 +17,7 @@ public class MomsManager : AreaManager{
 
     [Header("Misc")]
     public Tile[] tilesInChest;
+    public Tile toucanTile;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -47,6 +48,7 @@ public class MomsManager : AreaManager{
 
     [YarnCommand]
     public void PostAzulejoDone(){
+        PlayerInventory.Instance.AddTilesToCollection(new Tile[]{toucanTile});
         WorldState.Instance.UpdateSceneState(Areas.Moms, 2, true);
     }
 
