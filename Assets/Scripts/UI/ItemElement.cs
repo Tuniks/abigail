@@ -16,12 +16,33 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private float startingScale = 1f;
 
     // Animation for Azulejo Phenomenon
+    public float twitchRange = 1f;
+    public float twitchRotationRange = 5f;
+    public Vector2 twitchTimeLimits = new Vector2(0, 1);
+    private bool isTwitching = false;
+    private float currentTwitchTimer = 0;
     
 
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();
         cg = GetComponent<CanvasGroup>();
         startingScale = transform.localScale.x;
+    }
+
+    void Update(){
+        if(isTwitching){
+            currentTwitchTimer -= Time.deltaTime;
+            if(currentTwitchTimer < 0){
+                currentTwitchTimer = Random.Range(twitchTimeLimits.x, twitchTimeLimits.y);
+                Transform tile = transform.GetChild(0);
+                tile.localPosition = new Vector3(
+                    Random.Range(-twitchRange, twitchRange),
+                    Random.Range(-twitchRange, twitchRange),
+                    0
+                );
+                tile.localRotation = Quaternion.Euler(0,0,Random.Range(-twitchRotationRange, twitchRotationRange));
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData){
@@ -118,8 +139,12 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         return tile.HasFace(_face);
     }
 
-    public void SetAnimation(bool _status){
-        if(_status) Debug.Log("Tile is shaking");
+    public void SetTwitching(bool _status){
+        if( _status == false){
+            transform.GetChild(0).localPosition = Vector3.zero;
+            transform.GetChild(0).localRotation = Quaternion.identity;
+        }
+        
+        isTwitching = _status;
     }
-
 }

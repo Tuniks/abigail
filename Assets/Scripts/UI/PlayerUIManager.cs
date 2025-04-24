@@ -39,6 +39,7 @@ public class PlayerUIManager : MonoBehaviour{
 
     [Header("Azulejo Phenomenon")]
     public PhenomenonUI phenomenonUI;
+    public PlayableDirector bagIconAnimation;
     private AzulejoPhenomenon currentPhenomenon;
     private PhenomenonSlot phenomenonSlot = null;
     private TileComponent phenomenonTarget = null;
@@ -144,7 +145,7 @@ public class PlayerUIManager : MonoBehaviour{
         GameObject element = Instantiate(itemElementPrefab);
         ItemElement itemElement = element.GetComponent<ItemElement>();
         itemElement.SetTile(tile);
-        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget)) itemElement.SetAnimation(true);
+        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget)) itemElement.SetTwitching(true);
 
         return element;
     }
@@ -245,27 +246,25 @@ public class PlayerUIManager : MonoBehaviour{
 
     private void AnimateBagIcon(bool _status){
         if(_status){
-            Debug.Log("Shaking");
-            // Start bag shake
+            bagIconAnimation.Play();
 
             if(inventoryScreen.activeSelf == true){
                 foreach(Transform child in bagRect){
                     ItemElement itemElement = child.GetComponent<ItemElement>();
                     if(itemElement != null && itemElement.HasTileWithFace(phenomenonTarget)){
-                        itemElement.SetAnimation(true);
+                        itemElement.SetTwitching(true);
                     }
                 }
             }
         } else {
-            Debug.Log("Stop");
-            // Stop bag shake
+            bagIconAnimation.Stop();
 
             phenomenonUI.HideUI();
 
             if(inventoryScreen.activeSelf == true){
                 foreach(Transform child in bagRect){
                     ItemElement itemElement = child.GetComponent<ItemElement>();
-                    if(itemElement != null) itemElement.SetAnimation(false);   
+                    if(itemElement != null) itemElement.SetTwitching(false);   
                 }
             }
         }
