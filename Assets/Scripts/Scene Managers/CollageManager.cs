@@ -26,6 +26,11 @@ public class CollageManager : AreaManager{
     public Tile[] tvTile;
     public Tile[] slimeTile;
     public Tile[] coffeeTile;
+    
+    [Header("Game Objects for Interactions")]
+    public GameObject LandfillEntrance;
+    public GameObject FootAnimation;
+    public GameObject Warehouse;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -99,6 +104,19 @@ public class CollageManager : AreaManager{
     public void Givecoffee()
     {
         PlayerInventory.Instance.AddTilesToCollection(coffeeTile);
+    }
+    
+    [YarnCommand]
+    public void OpenLandfill()
+    {
+        LandfillEntrance.SetActive(true);
+    }
+    
+    [YarnCommand]
+    public void PlayFootAnimation()
+    {
+        FootAnimation.SetActive(true);
+        Warehouse.SetActive(false);
     }
     
 }

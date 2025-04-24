@@ -156,6 +156,7 @@ Abigail: I mean, I'm okay...
 <<else>>
 Gwen: Have you come back for more?
 <<endif>>
+<<StartAzulejoConversation Gwen>>
 ===
 title: Gwen1Fire
 tags:
@@ -199,6 +200,7 @@ Abigail: Me? I don’t know about that.
 <<else>>
 Junior: You're back!
 <<endif>>
+<<StartAzulejoConversation Junior>>
 ===
 title: Junior1Produce
 tags:
@@ -245,12 +247,18 @@ Abigail: I only learned how to make it last year, it was one of the dessert spec
 title: Junior1UnlockLandfill
 tags:
 ---
+<<if visited("Junior1UnlockedLandfill") is false>>
 Junior: Wait…you’re an actual chef?????
 Abigail: Kinda, yeah. 
 Junior: That’s what I want to be when I grow up!!!
 Junior: Listen, I don’t do this for just anybody, but if you want to visit the landfill, just say Junior sent you. 
 Abigail: Um, okay?
+<<OpenLandfill SceneController>>
 //yarncommand for unlocking landfill
+<<else>>
+Junior: Have you meet the trash king yet?
+Junior: He's all excited about getting a hotub, but I think a sauna would be much classier. 
+<<endif>>
 ===
 title: Junior1
 tags:
@@ -276,6 +284,7 @@ Lucia: Things used to happen here! This town used to be the center of a universe
 <<else>>
 Steffano: Lucia hasn't scared you away kid?
 <<endif>>
+<<StartAzulejoConversation Lucia>>
 ===
 title: LuciaSteffano1SeaRelated
 tags:
@@ -284,6 +293,8 @@ tags:
 Steffano: She gets it! Maybe the good old days will live on!
 Lucia: No they won't. We’re in a new strange age where anything can and will happen. 
 //Foot animation plays 
+<<PlayFootAnimation SceneController>>
+Steffano: Ahhhh!
 Lucia: See! Anything at all! 
 <<else>>
 Lucia: See, this place used to have an identity!
@@ -301,7 +312,7 @@ Lucia: Use your eyes kid! Do you see that around here?
 title: TrashKing0
 tags:
 ---
-<<if visited("TrashKing") is false>>
+<<if visited("TrashKing0") is false>>
 Abigail: Hi, I'm a friend of Junior's...
 Trashking: I'm da king of da trash!
 Abigail: That's...cool. 
