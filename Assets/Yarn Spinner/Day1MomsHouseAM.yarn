@@ -221,3 +221,14 @@ Mom: Your hair looks awful! I guess it's fine since you're just going to see Cha
 Mom: But I'll stop and get you some conditioner today.
 <<endif>>
 ===
+title: Tuca
+---
+<<if visited("Tuca") is false>>
+Tuca: bom dia familia
+Mom: Oh, hello, Tuca!
+Tuca: oi tia
+Mom: That's Tuca, Abigail. He only speaks Portuguese, like most toucans.
+<<else>>
+Tuca: cade o rango tia?
+<<endif>>
+===
