@@ -36,6 +36,9 @@ public class PowerAzuManager : MonoBehaviour {
     public float transferForce = 5f;
     private float launchInputDelay = 0.5f;
 
+    [Header("Enemy Manager")]
+    public EnemyAzuManager enemyManager;
+
     private GameObject currentIndicator;
     private Vector3 indicatorTargetPos;
     private bool hasCharged = false;
@@ -56,6 +59,7 @@ public class PowerAzuManager : MonoBehaviour {
         currentState = GameState.PlayerTurn;
         if (assignButton != null)
             assignButton.onClick.AddListener(OnAssignButtonPressed);
+        
     }
 
     private void Update() {
@@ -151,6 +155,10 @@ public class PowerAzuManager : MonoBehaviour {
         if (currentState != GameState.PlayerTurn) return;
 
         playerHand.AssignSelectedTiles();
+        if (EnemyAzuManager.instance != null) {
+            EnemyAzuManager.instance.StartEnemyTurn();
+        }
+
 
         foreach (Tile tile in playerHand.hand) {
             tile.gameObject.SetActive(false);
@@ -178,6 +186,7 @@ public class PowerAzuManager : MonoBehaviour {
         }
 
         currentState = GameState.Play;
+        if (enemyManager != null) enemyManager.StartEnemyTurn();
     }
 
     void AssignPhysicsProperties(Tile tile) {
@@ -213,7 +222,7 @@ public class PowerAzuManager : MonoBehaviour {
     }
 
     public void SetActiveTile(Tile tile) {
-        if (activeTile == tile) return;
+        if (activeTile == tile || tile.isEnemy) return;
 
         if (activeTileRenderer != null)
             activeTileRenderer.color = originalTileColor;
