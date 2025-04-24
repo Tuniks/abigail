@@ -1,0 +1,341 @@
+﻿title: CollageOverworld
+tags:
+---
+Abigail: Hi. 
+===
+//=== MAIN QUEST LINE ===
+title: Dani0
+tags:
+---
+Abigail: Hey loser.
+Abigail: Knew I’d find you over here.
+Dani: I’m a fan of mesmerizing catastrophes, what can I say?
+Dani: Sorry if it was weird I was at your house this morning.
+Abigail: Not at all, I’m glad you’re keeping her company.
+Dani: She’s been a lifesaver for me too lately.
+Abigail: Working at your dad's restaurant?
+Dani: Yeah, it’s not the same without you.
+Dani: It’s Abigail this, Abigail that, apparently my table setting doesn’t hold a candle to yours.
+Abigail: Hey um…do you remember this azulejo tile I used to have? It had like, a swirl on it?
+Dani: No? I don't think so.
+Dani: You could try playing Azulejo with people here and see if any of their tiles jog your memory?
+Dani: I'll be here pondering bureaucratic disasters until you get back.
+===
+title: Dani1
+tags:
+---
+Abigail: I haven’t seen anything like that tile. 
+Dani: It’ll come back to you, I know it. 
+Dani: Down to play with me? 
+Abigail: Always.
+//Play Azulejo
+===
+title: Dani2ANegativeTiles
+tags:
+---
+Dani: Exactly. Really bummer vibes there. 
+Dani: How about…some reminiscing about your former employer?
+===
+title: Dani2AFire
+tags:
+---
+Dani: I wish that place had burned down. 
+Abigail: Really? Isn’t that a little dramatic?
+Dani: I had to listen to thousands of shitty poems about the moon.
+Dani: How about…some reminiscing about your former employer?
+===
+title: Dani2AGianlucas
+tags:
+---
+Dani: What?! How can you possibly associate him with this?
+Dani: Think about the most rancid and annoying vibes you’ve ever encountered. 
+//send back to azulejo
+===
+title: Dani2A
+tags:
+---
+Dani: Dude no, think about the most rancid and annoying vibes you’ve ever encountered. 
+//send back to azulejo
+===
+title: Dani2BSeafood
+tags:
+---
+Abigail: I used to go home with the smell of fish absorbed into my hair. 
+Dani: Tell me about it, and it’s definitely less fun now that I have no one to be stinky with. 
+Abigail: Your parents are there. 
+Dani: You know it’s not the same Abbs. 
+===
+title: Dani2BGeneralFood
+tags:
+---
+Dani: My parents are trying to get Gianluca to hook them up with his produce supplier, but dude is being so cagey ever since this whole Neptune Diner rivalry really started up.
+Abigail: How did that even start? Before I left things seemed chill. 
+Dani: Maybe it’s because of Power Azulejo? Kiln is starting to turn into a tourist trap. 
+Abigail: I mean isn’t that good for everyone? 
+Dani: I feel conflicted about it, it’s good for my parent’s restaurant, but it feels…weird to see people playing azulejo like that.  
+===
+title: Dani2B
+tags:
+---
+Dani: C’mon dude, what are you talking about?
+Dani: Did you block it out now that you’re a big shot cook? 
+===
+title: Dani2CKilnTiles
+tags:
+---
+Dani: Dude no way you’re thinking about Kiln while you’re out there. 
+Abigail: I guess I just get homesick sometimes. 
+Dani: But you never visit. 
+Abigail: I’ve just been really busy, I’m sorry. 
+===
+title: Dani2CGeneralFood
+tags:
+---
+Dani: Of course, you’re working at some fancy restaurant, endlessly whipping up delicious food. 
+Abigail: Not really. But I’m definitely cooking a lot, that’s for sure. 
+Dani: My dad is gonna talk your ear off about the new specials when you see him. 
+Abigail: I would love that. 
+===
+title: Dani2CNegativeTiles
+tags:
+---
+Dani: Dude what are you talking about!
+Dani: If it sucks that bad why don’t you just come back?
+Abigail: It’s not…it’s complicated.
+===
+title: Dani2C
+tags:
+---
+Dani: Huh, I don't really know what you mean by that. 
+===
+title: Dani3
+tags:
+---
+Abigail: Was it really like that, at the writing residency? 
+Dani: I don’t know dude, being there just really sucked.
+->  At least you tried
+    Dani: I feel like I was more hopeful before I tried.
+    Dani: Now it’s like I know that I can’t do it.
+    Abigail: No it wasn’t. Dani-
+    Dani: It’s okay Abbs don’t worry about it.
+-> Are you still writing?
+    Dani: Of course, I wouldn’t just stop.
+    Abigail: No I know, I’m just-
+    Dani: I can’t believe you’d ask me that.
+    Abigail: I asked because I want to know what’s going on with you.
+    Dani: I’m sorry, I shouldn’t have said that Abbs.
+Dani: Are you ready to see Kate later? Your mom invited everyone over for dinner. 
+Abigail: Oh my god.
+Dani: I apologize in advance for this, but I need to prepare you for the jokes Gabe might make later.
+Dani: Kate and Gabe. Uh...they happened.
+Abigail: What??? No.
+Dani: It's over now. She was “too busy for a relationship”, but it happened.
+Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
+Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
+<<Giveslime SceneController>>
+Abigail: That's perfect. Let's go. 
+===
+//=== NPCS ===
+title: Hank0
+tags:
+---
+Hank: I used to come to this coffee shop every morning.
+Abigail: Well ran dry?
+Hank: It ain't even walking friend.
+//Hank: Now I rely on Power Azulejo for my energy. IF we want to be able to play power azulejo with him
+===
+title: Gwen0
+tags:
+---
+<<if visited("Gwen0") is false>>
+Gwen: Hey there.
+Abigail: Hi.
+Gwen: You seem like you play a mean game of Azulejo.
+Abigail: I mean, I'm okay...
+//start azulejo
+<<else>>
+Gwen: Have you come back for more?
+<<endif>>
+===
+title: Gwen1Fire
+tags:
+---
+Gwen: Nothing warms me up like a flame. 
+Abigail: I love your hair.
+Gwen: I'm straight.
+Abigail: No, I wasn't hitting on you-
+Gwen: Sure...
+===
+title: Gwen1Toe
+tags:
+---
+Gwen: I love that foot that comes down from the sky. It’s so powerful. 
+Abigail: Yeah, feet are cool. 
+Gwen: What? That's weird. 
+Abigail: Forget I said that. 
+===
+title: Gwen1Explosion
+tags:
+---
+Gwen: There’s nothing I love more than a release…
+Abigail: I love your hair.
+Gwen: I'm straight.
+Abigail: No, I wasn't hitting on you-
+Gwen: Sure...
+===
+title: Gwen1
+tags:
+---
+Gwen: Try again sweetheart. 
+Gwen: Think a little more dangerously. 
+===
+title: Junior0
+tags:
+---
+<<if visited("Junior0") is false>>
+Junior: Hi miss! You look like you have excellent taste! 
+Abigail: Me? I don’t know about that. 
+//start azulejo
+<<else>>
+Junior: You're back!
+<<endif>>
+===
+title: Junior1Produce
+tags:
+---
+Junior: Nothing beats fresh produce! 
+Abigail: Tell me about it, the restaurant I use to work at was always cutting corners with frozen vegetables. 
+Abigail: But people could always tell, and it was so embarrassing when they sent the food back.
+<<jump Junior1UnlockLandfill>>
+===
+title: Junior1Squid
+tags:
+---
+Junior: I just made calamari for our family dinner last night!
+Abigail: Wow, calamari is good, but I hate frying so much. 
+Abigail: My first job in the city was a fry cook and the grease got everywhere. 
+<<jump Junior1UnlockLandfill>>
+===
+title: Junior1CannedFish
+tags:
+---
+Junior: I just made calamari for our family dinner last night!
+Abigail: Wow, calamari is good, but I hate frying so much. 
+Abigail: My first job in the city was a fry cook and the grease got everywhere. 
+<<jump Junior1UnlockLandfill>>
+===
+title: Junior1Gianlucas
+tags:
+---
+Junior: Is this a space where I can be truthful? 
+Abigail: Yeah? 
+Junior: I think he uses too much tomato sauce! It undercuts his perfectly cooked crusts! 
+Junior: There I said it! 
+Abigail: My boss at the restaurant was always saying “too much sauce drowns out all the brightness”.
+<<jump Junior1UnlockLandfill>>
+===
+title: Junior1Coffee
+tags:
+---
+Junior: I’m making my mom a tiramisu cake for her birthday this year! 
+Abigail: That’s very impressive, I could barely say tiramisu when I was your age. 
+Abigail: I only learned how to make it last year, it was one of the dessert specials at this restaurant I worked for. 
+<<jump Junior1UnlockLandfill>>
+===
+title: Junior1UnlockLandfill
+tags:
+---
+Junior: Wait…you’re an actual chef?????
+Abigail: Kinda, yeah. 
+Junior: That’s what I want to be when I grow up!!!
+Junior: Listen, I don’t do this for just anybody, but if you want to visit the landfill, just say Junior sent you. 
+Abigail: Um, okay?
+//yarncommand for unlocking landfill
+===
+title: Junior1
+tags:
+---
+Junior: I don’t know how that would taste. Think food!
+//back to azulejo
+===
+title: Junior1TeaorLemonade
+tags:
+---
+Junior: I’m more of a coffee person.
+//back to azulejo
+===
+title: LuciaSteffano0
+tags:
+---
+<<if visited("LuciaSteffano0") is false>>
+Lucia: These docks used to be full of ships going in and out like you wouldn't believe.
+Abigail: Yeah we learned about it in school.
+Steffano: We lived it. Now it's just a bunch of bummy young people playing Azulejo. 
+Lucia: Things used to happen here! This town used to be the center of a universe, kid!
+//start azulejo
+<<else>>
+Steffano: Lucia hasn't scared you away kid?
+<<endif>>
+===
+title: LuciaSteffano1SeaRelated
+tags:
+---
+<<if visited("LuciaSteffano1SeaRelated") is false>>
+Steffano: She gets it! Maybe the good old days will live on!
+Lucia: No they won't. We’re in a new strange age where anything can and will happen. 
+//Foot animation plays 
+Lucia: See! Anything at all! 
+<<else>>
+Lucia: See, this place used to have an identity!
+Lucia: And for me, that made it the center of a universe!
+Abigail: Which one?
+Steffano: Doesn't matter anymore.
+<<endif>>
+===
+title: LuciaSteffano1
+tags:
+---
+Lucia: Use your eyes kid! Do you see that around here?
+===
+//=== INTERACTIONS ===
+title: TrashKing0
+tags:
+---
+<<if visited("TrashKing") is false>>
+Abigail: Hi, I'm a friend of Junior's...
+Trashking: I'm da king of da trash!
+Abigail: That's...cool. 
+Trashking: In my benevolence, I'll give you a gift!
+<<Givetv SceneController>>
+Abigail: Thanks. 
+<<else>>
+Trashking: I'm thinking of getting a hot tub in here. 
+<<endif>>
+===
+title: Julie0
+tags:
+---
+<<if visited("Julie0") is false>>
+Julie: The unconfined movement of the fire, the ever dancing dark smoke.
+Abigail: Weren't they going to put this fire out?
+Julie: Every few months some government official will try to.
+Julie: But the proceedings always end up getting caught up in a bureaucratic web.
+Julie: It's a jurisdictional gray area. A federal building on municipal land, with the firefighters being state employees.
+Julie: It also just doesn't make sense financially. 
+Abigail: This can't be good for the environment, right?
+Julie: Certainly it isn't. But that doesn't mean it isn't the most beautiful view I've ever seen.
+<<else>>
+Julie: The fire...
+Abigail: The fire!
+<<endif>>
+===
+title: Swingset
+tags:
+---
+Abigail: I used to love these. 
+Abigail: Maybe I'll take a swing for old time's sake. 
+<<TriggerChange SwingSet>>
+Abigail: Or not
+===
+
+

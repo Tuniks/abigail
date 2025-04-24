@@ -106,6 +106,8 @@ MonoBehaviour:
   intellect: 0
   terror: 0
   title: 
+  description: 
+  tags: 
 --- !u!1 &1980539589306796463
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +214,8 @@ MonoBehaviour:
   intellect: 1
   terror: 1
   title: 
+  description: 
+  tags: 
 --- !u!1 &3189066301315731933
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +227,14 @@ GameObject:
   - component: {fileID: 7746848998911024562}
   - component: {fileID: 4189103552167242879}
   - component: {fileID: 553045761282813282}
+  - component: {fileID: 8332441374799419081}
+  - component: {fileID: 6199252101424213571}
+  - component: {fileID: -9045040373941851092}
+  - component: {fileID: -3280828332788640039}
+  - component: {fileID: -5155261526443575841}
+  - component: {fileID: -4800350100253167396}
+  - component: {fileID: -4235525946596720054}
+  - component: {fileID: -8110237440785732300}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Tile
@@ -315,6 +327,236 @@ MonoBehaviour:
   background: {fileID: 5597983193987901509}
   material: {fileID: 1488075761712047225}
   glaze: {fileID: 5802297067945018116}
+--- !u!114 &8332441374799419081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e75e31569ea4e4083a2416bbd72d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerAssignments:
+  - attribute: 0
+    powerScript: {fileID: -3280828332788640039}
+  - attribute: 1
+    powerScript: {fileID: 6199252101424213571}
+  - attribute: 2
+    powerScript: {fileID: -9045040373941851092}
+  - attribute: 3
+    powerScript: {fileID: -4800350100253167396}
+  - attribute: 4
+    powerScript: {fileID: -4235525946596720054}
+  - attribute: 5
+    powerScript: {fileID: -5155261526443575841}
+--- !u!114 &6199252101424213571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de5712b9978f40f2b68dfdd66f27e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 360
+  friction: 180
+  spinEffectPrefab: {fileID: 3506446994263693446, guid: da3c25465b1db4b59b7db173f2a4a1dc, type: 3}
+  spinSound: {fileID: 8300000, guid: bab2b61b88ebe421986a23ccaaf0ee0e, type: 3}
+  stretchAmount: 0.15
+  icon: {fileID: 21300000, guid: bc3739a21c2d8408fb048b5eef32ae62, type: 3}
+--- !u!114 &-9045040373941851092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27258f6af37ed48eba21c4fb5621dbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportMarkerPrefab: {fileID: 5257544797904429105, guid: a01384584330c48318c196446a4674ec, type: 3}
+  disappearSound: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
+  reappearSound: {fileID: 8300000, guid: ddc48256c091c416b8f35b781527f50b, type: 3}
+  scaleDuration: 0.2
+  icon: {fileID: 0}
+--- !u!114 &-3280828332788640039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc563fb2606944c3a0ed7246a8920ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullStrength: 0.1
+  duration: 0.1
+  pullSound: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
+  pulseEffectPrefab: {fileID: 8647421717958380336, guid: 849d67904486747d3826e400c2168541, type: 3}
+  bounceScale: 1.3
+  scaleDuration: 0.2
+  icon: {fileID: 0}
+--- !u!114 &-5155261526443575841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca0c40358caa42b8a7b4fae15716b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushStrength: 1
+  duration: 0.01
+  pushSound: {fileID: 8300000, guid: 452302aa9218444acb690eb9c7ec6c63, type: 3}
+  pulseUIObject: {fileID: 5142443568186528361, guid: 3623e6e1b08ee47788b1e85309db73ad, type: 3}
+  bounceScale: 1.3
+  scaleDuration: 0.2
+  icon: {fileID: 0}
+--- !u!114 &-4800350100253167396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bb15c085c4e41ba9f5ea73a9bb6dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostWallPrefab: {fileID: 6044347702426381358, guid: dd88e66fd1a1c4a7183413b1418f2412, type: 3}
+  wallToPlacePrefab: {fileID: 3673838203797921876, guid: 8423f8ef641a141438ff9fbc1bbe30d1, type: 3}
+  placeSound: {fileID: 8300000, guid: 3155a2f4558664b2eaacb3b650d0b994, type: 3}
+  growDuration: 0.2
+  overshootScale: 1.2
+  icon: {fileID: 0}
+--- !u!114 &-4235525946596720054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa30a9a76c6574701b7200cdaf88799e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportSound: {fileID: 8300000, guid: fe33541fe64db419ebd0110750102497, type: 3}
+  staggerDelay: 0.1
+  bounceScale: 1.3
+  scaleDuration: 0.2
+  icon: {fileID: 21300000, guid: a4ea585b6a7d2492f8f5a3fd0daddec4, type: 3}
+--- !u!82 &-8110237440785732300
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189066301315731933}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7907082912352212741
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +663,8 @@ MonoBehaviour:
   intellect: 10
   terror: 5
   title: 'Gianluca''s Pizzeria '
+  description: 
+  tags: 
 --- !u!1 &8848299658908951168
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,3 +771,5 @@ MonoBehaviour:
   intellect: 0
   terror: 0
   title: 
+  description: 
+  tags: 
