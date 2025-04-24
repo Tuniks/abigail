@@ -10,7 +10,7 @@ public class PlayerInteractor : MonoBehaviour{
     public DialogueRunner dialogueRunner;
     
     // UI
-    public GameObject interactPrompt; 
+    public GameObject interactPrompt;
     
     // Player State
     private PlayerController pc;
@@ -100,19 +100,22 @@ public class PlayerInteractor : MonoBehaviour{
     private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             interactables.Add(other.gameObject);
+        } else if (other.gameObject.CompareTag("Phenomenon")){
+            SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
+        } else if (other.gameObject.CompareTag("Phenomenon")){
+            SetCurrentPhenomenon(null);
         }
     }
 
     public bool IsPlayerBusy(){
         return pc.GetIsBusy();
     }
-
 
     public void StartAzulejoConvo(){
         isAzulejoing = true;
@@ -140,5 +143,9 @@ public class PlayerInteractor : MonoBehaviour{
 
     public void EndHijack(){
         hijackCallback = null;
+    }
+
+    private void SetCurrentPhenomenon(AzulejoPhenomenon _phenomenon){
+        PlayerUIManager.instance.SetPhenomenon(_phenomenon);
     }
 }
