@@ -33,24 +33,58 @@ Chase: Ok, let's get back to the game!
 title: Chase0-0
 tags:
 ---
-Chase: Abigail, you gotta give me something to work with! Let's go again.
-Oz: Look around the neighborhood! You might find something that fits better!
+Chase: C'mon Abbs you gotta try a little harder than that!
+Oz: That wouldn't scare a kid!
+Chase: Whales on the other hand...
+Oz: I know man, you're always saying they freak you out!
+Chase: No animal should be that big!
+<<UpdateChaseOzNode SceneController Chase1>>
+<<jump Chase1>>
 ===
 title: Chase0-1
 tags:
 ---
+// If bookmark
 Chase: Nice try but big words don't scare me anymore Abbs. 
-Oz: That tile wouldn't even scare a kid. 
-Abigail: I'm using my Mom's old tiles. Gimme a break. 
+Chase: The two weeks I spend reading the dictionary fixed that one.
+Chase: Whales on the other hand...
+Oz: I know man, you're always saying they freak you out!
+Chase: No animal should be that big!
 <<UpdateChaseOzNode SceneController Chase1>>
 <<jump Chase1>>
 ===
 title: Chase0-2
 tags:
 ---
+// If bugs
 Chase: Nice try but creepy crawlies don't scare me anymore Abbs. 
-Oz: That tile wouldn't even scare a kid. 
-Abigail: I'm using my Mom's old tiles. Gimme a break. 
+Chase: My entomology phase helped me get over that one.
+Chase: Whales on the other hand...
+Oz: I know man, you're always saying they freak you out!
+Chase: No animal should be that big!
+<<UpdateChaseOzNode SceneController Chase1>>
+<<jump Chase1>>
+===
+title: Chase0-3
+tags:
+---
+// If rat skull
+Chase: Nice try but death doesn't scare me anymore Abbs.
+Chase: My Buddhism phase helped me get over that one.
+Chase: Whales on the other hand...
+Oz: I know man, you're always saying they freak you out!
+Chase: No animal should be that big!
+<<UpdateChaseOzNode SceneController Chase1>>
+<<jump Chase1>>
+===
+title: Chase0-4
+tags:
+---
+// If gianlucas
+Chase: Whoa dude don't take that out here!
+Oz: Sarah told me the owner has banned any talk of that "unsanitary hellhole" at The Neptune. 
+Abigail: I'm sorry, I didn't know. 
+Chase: Well, taking that out did scare me, so I guess you did it?
 <<UpdateChaseOzNode SceneController Chase1>>
 <<jump Chase1>>
 ===
@@ -58,17 +92,28 @@ title: Chase1
 tags:
 ---
 <<if visited("Chase1") is false>>
-Chase: Sure sure, how about...
+Chase: Okay round two!
+Chase: How about...
 <<else>>
 Chase: Wanna give another try?
 <<endif>>
 <<StartAzulejoConversation AzulejoConvoChase2>>
 ===
+title: Chase1-0
+tags:
+---
+// Default
+Oz: That's your take?
+Oz: It's a miracle you dated Kate with moves like that. 
+Chase: C'mon Oz, cut it out.
+<<UpdateChaseOzNode SceneController Chase2>>
+<<jump Chase2>>
+===
 title: Chase1-1
 tags:
 ---
-Chase: Sarah isn't really a flowers kinda girl.
-Oz: My dragon tile would have been perfect for this!
+// If sunflower/flower power
+Oz: Sarah isn't really a flowers kinda girl.
 Chase: See Oz, you know her so well. You gotta go for it!
 <<UpdateChaseOzNode SceneController Chase2>>
 <<jump Chase2>>
@@ -76,8 +121,19 @@ Chase: See Oz, you know her so well. You gotta go for it!
 title: Chase1-2
 tags:
 ---
-Chase: Sarah isn't really a cutesy kinda girl.
-Oz: My dragon tile would have been perfect for this!
+// If butterfly
+Oz: Sarah isn't really a cutesy kinda girl.
+Chase: See Oz, you know her so well. You gotta go for it!
+<<UpdateChaseOzNode SceneController Chase2>>
+<<jump Chase2>>
+===
+title: Chase1-3
+tags:
+---
+// If constellation
+Chase: Just because that was your move with Kate doesn't mean it'll work with Sarah.
+Abigail: It wasn't a move Chase.
+Oz: Sarah isn't really about all that science stuff. She's more of a fantasy kinda girl. 
 Chase: See Oz, you know her so well. You gotta go for it!
 <<UpdateChaseOzNode SceneController Chase2>>
 <<jump Chase2>>
@@ -101,7 +157,7 @@ tags:
 <<declare $tile_type = "" as String>>
 <<LoadVariables WorldState>>
 Chase: Dude absolutely not, you gotta find something better than that. 
-Chase: There are tiles everywhere if you look Abbs. Find one and bring it to me later. 
+Chase: There are tiles everywhere if you look Abbs. Find one and bring it to me. 
 Oz: Sorry guys, gotta dip, duty calls.
 <<GoodbyebyeOz SceneController>>
 Abigail:...
@@ -118,7 +174,7 @@ Abigail: No, no. Weird? Not at all. No.
 Chase: Uh-huh. It shows.
 Abigail: I don't know. Dani told me they'd be down in Wharf, so I might do that instead.
 Chase: Well, whatever you do make sure you find me a tile to describe my love life. 
-Chase: The bridge will lead you to Argil with Kate, and the warehouse path will lead you to Wharf with Dani.
+Chase: The bridge will lead you to Argil with Kate, and the warehouse path up north will lead you to the Wharf for Dani.
 Abigail: Yeah dude I know how to get around.
 Chase: Oh, after your azulejo performance I thought you had erased us from your memory.
 Abigail: I hate you, Chase.
@@ -126,7 +182,7 @@ Chase: I missed you, Abigail.
 <<StoreVariables WorldState>>
 <<PostFeltAzulejoDone SceneController>>
 <<else>>
-Chase: Head over the brige to hang out with Kate, but if you wanna see Dani go through the warehouse path.
+Chase: Head over the brige to hang out with Kate, but if you wanna see Dani go through the warehouse path up north.
 Chase: And remember to look around for a tile to describe my love life. 
 <<endif>>
 ===
