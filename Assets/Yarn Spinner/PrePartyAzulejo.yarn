@@ -1,0 +1,104 @@
+﻿title: PrePartyAzulejo
+tags:
+---
+Abigail: hi.
+===
+title: KateChaseParty
+tags:
+---
+<<if visited("KateChaseParty") is false>>
+Kate: It's nice being back in your house Abigail.
+Abigail: Yeah um... It's nice having you back in my house.
+Kate: There's gonna be a really killer show tomorrow night at the warehouse, you should come.
+Kate: Chase, any chance you're around tomorrow at 11am to help with load in at the venue?
+Chase: Maybe? If you absolutely can’t find anyone else, let me know.
+Abigail: You suddenly have a 9-5 or something Chase?
+Chase: Me? Never.
+Kate: His latest thing has been carpentry.
+Chase: I’ve been feeling a lot like Jesus lately.
+Abigail: You’ve never been to church in your life.
+Chase: But I would look good on a cross!
+Chase: Speaking of being shirtless, I'm trying to put together a beach day for Abbs' visit. How's the day after tomorrow?
+Kate: I have a shift at the library, but I'll see if I can switch it?
+Abigail: That sounds great Chase.
+    <<set $peopletalkedto = $peopletalkedto + 1>>
+    <<if $peopletalkedto > 2>>
+        Gabe:Alright party people! Let's play some Azulejo.
+        Joanna: Abigail should judge!
+        <<StartPartyAzulejo PartyTransitionManager>>
+    <<else>>
+        Abigail: I should talk to rest of the gang.
+    <<endif>>
+<<else>>
+    Chase: I can try repairing the bridhouse if you want?
+    Kate: It's cool Chase, don't worry about it.
+<<endif>>
+===
+title: DaniMomParty
+tags:
+---
+<<if visited("DaniMomParty") is false>>
+Abigail: Wow, my two favorite people in the whole world!
+Dani: I was just telling your mom how nice it is for us to be all here together again.
+Dani: Even without you... It's been a while since we all hung out.
+Mom: Dani's told me all about their time abroad. It sounds very lonely, you know.
+Mom: What if you came back because this is where you're supposed to be?
+Dani: I didn't find out there what I was missing here. Did you, Abbs?
+Abigail: I don't know. Can we please not talk about this right now?
+Mom: I'm sorry baby, you know I'll support you no matter what. I'm just worried.
+    <<set $peopletalkedto = $peopletalkedto + 1>>
+    <<if $peopletalkedto > 2>>
+        Gabe:Alright party people! Let's play some Azulejo.
+        Joanna: Abigail should judge!
+        <<StartPartyAzulejo PartyTransitionManager>>
+    <<else>>
+        Abigail: I should talk to rest of the gang.
+    <<endif>>
+<<else>>
+    Mom: Maybe I should try setting you up!
+    Dani: I think I'm good. Thanks though.
+<<endif>>
+
+===
+title: GabeJoannaParty
+tags:
+---
+<<if visited("GabeJoannaParty") is false>>
+Gabe: Abigail is in the house!
+Abigail: I am. How's Kiln been?
+Joanna: Gabe didn't you just get a promotion?
+Gabe: I'm co-manager of the newly formed logistics and efficiency department.
+Abigail: There's two managers of the efficiency department?
+Gabe: Logistics and efficiency Abbi-gal. There's five of us and three co-managers.
+Abigail: So what are you actually doing?
+Gabe: Well a lot of different stuff but mostly
+Gabe: Your mom.
+Joanna: Don't you mean her ex-girlfriend?
+Gabe: Jo!
+Abigail: It's fine, I know. 
+Gabe: And it's not even accurate, we're not together anymore. 
+Joanna: Sorry, it was just a joke. 
+Abigail: Jo what are you up to?
+Joanna: Oh you know finishing up my PHD and advising for the new museum.
+Gabe: It's crazy luck you're here Abbs the museum is opening this week.
+Abigail: I don't know how long I'm staying.
+Joanna: You're not gonna go to the museum opening? I'm giving a big speech.
+Abigail: If I'm still around I'll be there.
+    <<set $peopletalkedto = $peopletalkedto + 1>>
+    <<if $peopletalkedto > 2>>
+        Gabe:Alright party people! Let's play some Azulejo.
+        Joanna: Abigail should judge!
+        <<StartPartyAzulejo PartyTransitionManager>>
+    <<else>>
+        Abigail: I should talk to rest of the gang.
+    <<endif>>
+<<else>>
+    Joanna: I really hope you can make it to the museum opening Abigail. 
+<<endif>>
+===
+title: PartyStart
+tags:
+---
+<<declare $peopletalkedto = 0>>
+Abigail: Well I might as well say hi to everyone.
+===

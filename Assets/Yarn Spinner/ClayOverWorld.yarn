@@ -52,6 +52,7 @@ Mr.Miller: Time is a funny thing Miss Abigail, it goes and goes without us even 
 Mr.Miller: Maybe this can help you notice. 
 Abigail: Thank you Mr. Miller. How much is it?
 Mr.Miller: How about you play a round of Power Azulejo with me and we'll be square?
+<<VisitAntiqueShop SceneController>>
 <<else>>
 Mr.Miller: Say hi to your mother for me!
 Abigail: I will!
@@ -60,18 +61,25 @@ Abigail: I will!
 title: Kate1
 tags:
 ---
+<<if visited("Kate1") is false>>
 Kate: Ready for the pools to tell you the secrets of your heart?
 Abigail: You know I don't believe in that stuff.
-Kate: The pools read the energy around them, and then give you a word to contemplate. It's gonna happen whether you believe in it or not. 
+Kate: The pools read the energy around them, and then give you words to contemplate. It's gonna happen whether you believe in it or not. 
 Abigail: Let's just play. 
+<<PreClayAzulejoDone SceneController>>
+<<else>>
+Kate: I'm excited to see your mom. I miss that lady. 
+<<endif>>
 ===
 title: Kate2
 tags:
 ---
+<<if visited("Kate2") is false>>
 Kate: Admit it Abigail. The pools knew!
 Abigail: You're telling me the pools know that we dated and then broke each other's hearts?
 Abigail: Speaking of romantic trainwrecks, any chance you have a tile that reminds you of Chase's love life?
 Kate: Uh yeah, here. This weird little guy with wings.
+<<GiveFlyingPill SceneController>>
 Kate: Dude's got commitment issues, loves to just fly away. 
 Abigail: Thanks, glad Chase asked me for this and not Gabe, that dude's love life has always been bleak. 
 Kate: Yeah, um, about that...
@@ -81,6 +89,10 @@ Kate: Because we're all about to go to your house for dinner? Your mom invited e
 Abigail: Oh my god. 
 Kate: It wasn't serious. At least for me it wasn't serious. 
 Abigail: Let's just go meet up with Chase. 
+<<PostClayAzulejoDone SceneController>>
+<<else>>
+Kate: I'm excited to see your mom. I miss that lady. 
+<<endif>>
 ===
 //=== CLAY NPCS ===
 title: Harold0
@@ -88,16 +100,14 @@ tags:
 ---
 <<if visited("Harold0") is false>>
 Harold: There’s nothing like looking at Kiln’s very own Bathing Baby Fountain!
-<<FountainCounting 2DPlayer>>
 Abigail: Baby? I thought it was a busty woman. 
 Harold: Dear lord… 
 Abigail: Don’t get me wrong it’s rad! 
 Harold: Yes, it is rad indeed. 
-//start azulejo
 <<else>>
 Harold: Ready for some more town history with an expert?
-//start azulejo
 <<endif>>
+<<StartAzulejoConversation Harold>>
 ===
 title: Harold1KookyClock
 tags:
@@ -106,6 +116,7 @@ Harold: Ah time, that eternal ticking. It feels so visible here, so stripped bar
 Abigail: Yeah, it does. 
 Harold: Oh, that reminds me of my favorite old tale!
 Harold: Some say that if you make three clockwise rotations around the fountain, you will be blessed with a gift. 
+<<FountainCounting 2DPlayer>>
 ===
 title: Harold1Fountain
 tags:
@@ -152,12 +163,11 @@ tags:
 Reggie: I once saw Kiln’s lady of the bridge up there, banging away at the church bell! 
 Harold: Cut it out Reggie! 
 Reggie: You’re just jealous because I’ve gotten a clear look at her! 
-//start azulejo
 <<else>>
 Reggie: Don't listen to that jealous old fart, let's play again. 
 Harold: Hey!
-//start azulejo
 <<endif>>
+<<StartAzulejoConversation Reggie>>
 ===
 title: Reggie1KookyClock
 tags:
@@ -202,11 +212,10 @@ tags:
 Jimothy: Hey there little lady, you a pal of my boy’s?
 Abigail: Kinda, I think we went to some of the same summer camps.
 Jimothy: My boy Timothy just lights up my world, and I want to do something special with him this weekend. Got any suggestions? 
-//start azulejo
 <<else>>
 Jimothy: Any more suggestions for what to do with my boy?
-//start azulejo
 <<endif>>
+<<StartAzulejoConversation Jimothy>>
 ===
 title: Jimothy1Soccer
 tags:
@@ -265,18 +274,19 @@ Maxi: Maybe I would actually care about Town history if this wasn’t our third 
 Abigail: Tell me about it, I swear the Kiln school district is allergic to having class inside. 
 Maxi: Listen lady, I'm having an off day, and I'm jonesing to see a tile that will take my mind off of things. 
 Maxi: You got anything with the Lady of the Bridge on it? 
-//start azulejo
 <<else>>
 Maxi: You find that lady of the bridge tile yet?
-//start azulejo
 <<endif>>
+<<StartAzulejoConversation Maxi>>
 ===
 title: Maxi1Troll
 tags:
 ---
 Maxi: Oh wow that hits the spot.
-Maxi: I heard that if you can hit the church bell with a rock the Lady of the Bridge will come out. 
-Abigail: Let’s find out! 
+Maxi: Thanks lady, you can have this, I found it in the church.
+Abigail: I feel like I should not be accepting this. 
+Maxi: Don't be rude!
+<<GiveBellTile SceneController>>
 //start bell minigame
 ===
 title: Maxi1BellHit

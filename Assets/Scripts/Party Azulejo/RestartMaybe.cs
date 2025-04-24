@@ -16,7 +16,7 @@ public class RestartMaybe : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("FlashBackPartyGoodbye");
+            SceneManager.LoadScene("BED_area_PM");
         }
     }
 }

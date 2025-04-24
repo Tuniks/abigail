@@ -17,7 +17,7 @@ public class RoundManager : MonoBehaviour
     public void GoAbigailRoom()
     {
         GoAbigailRoombool = true;
-        SceneManager.LoadScene("START");
+        SceneManager.LoadScene("BED_area_PM");
         Debug.Log("EndReaction triggered!");
     }
     [YarnCommand] 
@@ -466,36 +466,36 @@ public class RoundManager : MonoBehaviour
             // Check if the player presses the 'E' key
             if (Input.GetKeyDown(KeyCode.E))
             {
-                dialogueRunner.Stop();
-                if (tieCount > 1)
+                //dialogueRunner.Stop();
+                //if (tieCount > 1)
                 {
-                    TieStar.SetActive(true);
-                    dialogueRunner.StartDialogue("Tie");
+                    //TieStar.SetActive(true);
+                    //dialogueRunner.StartDialogue("Tie");
                 }
-                else if (NPC1score == maxScore)
+                //else if (NPC1score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("GabeWin");
-                    GabeStar.SetActive(true);
+                    //dialogueRunner.StartDialogue("GabeWin");
+                    //GabeStar.SetActive(true);
                 }
-                else if (NPC2score == maxScore)
+                //else if (NPC2score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("KateWin");
-                    KateStar.SetActive(true);
+                    //dialogueRunner.StartDialogue("KateWin");
+                    //KateStar.SetActive(true);
                 }
-                else if (NPC3score == maxScore)
+                //else if (NPC3score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("DaniWin");
-                    DaniStar.SetActive(true);
+                    //dialogueRunner.StartDialogue("DaniWin");
+                    //DaniStar.SetActive(true);
                 }
-                else if (NPC4score == maxScore)
+                //else if (NPC4score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("ChaseWin");
-                    ChaseStar.SetActive(true);
+                    //dialogueRunner.StartDialogue("ChaseWin");
+                    //ChaseStar.SetActive(true);
                 }
-                else if (NPC5score == maxScore)
+                //else if (NPC5score == maxScore)
                 {
-                    dialogueRunner.StartDialogue("JoannaWin");
-                    JoannaStar.SetActive(true);
+                    //dialogueRunner.StartDialogue("JoannaWin");
+                    //JoannaStar.SetActive(true);
                 }
             }
         }

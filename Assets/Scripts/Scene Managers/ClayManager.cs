@@ -8,21 +8,25 @@ public class ClayManager : AreaManager{
     public DialogueRunner dialogueRunner;
     
     [Header("NPCs")]
-    public GameObject chase;
+    //public GameObject chase;
     public GameObject kate;
 
     [Header("Dialogue Nodes")]
-    public string state1Dialogue = "PostAntiqueShop";
-    public string state2Dialogue = "PostClayAzulejo";
+    public string state1Dialogue = "Kate1";
+    public string state2Dialogue = "Kate2";
     
     [Header("Scenes")]
     public string azulejoScene = "CLAY_azulejo";
     
-    [Header("Misc")]
+    [Header("Tiles")]
     public GameObject antiqueShop;
     public Tile[] salthairTile;
     public Tile[] handholdTile;
     public Tile[] clockTile;
+    public Tile[] flyingTile;
+    public Tile[] bellTile;
+    
+    [Header("GameObjects")]
     public GameObject AntiqueShopEntrance;
 
     public override void UpdateSceneState(int state){        
@@ -31,16 +35,16 @@ public class ClayManager : AreaManager{
                 // Initial State
                 break;
             case 1:
-                UpdateDialogueNode(chase, state1Dialogue);
+                //UpdateDialogueNode(chase, state1Dialogue);
                 UpdateDialogueNode(kate, state1Dialogue);
                 break;
             case 2:
                 dialogueRunner.StartDialogue(state2Dialogue);
-                UpdateDialogueNode(chase, state2Dialogue);
+                //UpdateDialogueNode(chase, state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;
             case 3:
-                UpdateDialogueNode(chase, state2Dialogue);
+                //UpdateDialogueNode(chase, state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;
         }
@@ -96,6 +100,20 @@ public class ClayManager : AreaManager{
     public void GiveClock()
     {
         PlayerInventory.Instance.AddTilesToCollection(clockTile);
+        
+    }
+    
+    [YarnCommand]
+    public void GiveFlyingPill()
+    {
+        PlayerInventory.Instance.AddTilesToCollection(flyingTile);
+        
+    }
+    
+    [YarnCommand]
+    public void GiveBellTile()
+    {
+        PlayerInventory.Instance.AddTilesToCollection(bellTile);
         
     }
     
