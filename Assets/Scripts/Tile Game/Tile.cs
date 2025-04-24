@@ -1,30 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
+
 
 public class Tile : MonoBehaviour {
-    [Header("Prefabs for Generation")]
     public GameObject facePrefab;
     public GameObject bgPrefab;
     public GameObject matPrefab;
     public GameObject glzPrefab;
 
-    [Header("Generated Components")]
     public TileComponent face;
     public TileComponent background;
     public TileComponent material;
     public TileComponent glaze;
 
-    public ITilePower tilePower; // Added to support tile powers
-
     private IPlayerHand playerHand;
     private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
+    
+    public ITilePower tilePower;
+
+    public bool isEnemy = false; 
 
     void Awake() {
         RebuildTile();
-        tilePower = GetComponent<ITilePower>(); // Assign tile power if present
     }
 
     public void Initialize(GameObject _facePrefab, GameObject _bgPrefab, GameObject _matPrefab, GameObject _glzPrefab) {
@@ -32,7 +31,6 @@ public class Tile : MonoBehaviour {
         bgPrefab = _bgPrefab;
         matPrefab = _matPrefab;
         glzPrefab = _glzPrefab;
-
         RebuildTile();
     }
 
@@ -59,8 +57,7 @@ public class Tile : MonoBehaviour {
     }
 
     private GameObject AddTileComponent(GameObject prefab) {
-        GameObject component = Instantiate(prefab);
-        component.transform.parent = transform;
+        GameObject component = Instantiate(prefab, transform);
         component.transform.localPosition = prefab.transform.localPosition;
         component.transform.localRotation = prefab.transform.localRotation;
         component.transform.localScale = prefab.transform.localScale;
@@ -83,8 +80,7 @@ public class Tile : MonoBehaviour {
     }
 
     public override bool Equals(object obj) {
-        if (obj == null) return false;
-        if (GetType() != obj.GetType()) return false;
+        if (obj == null || GetType() != obj.GetType()) return false;
         Tile t2 = obj as Tile;
         return this == t2;
     }
@@ -98,6 +94,8 @@ public class Tile : MonoBehaviour {
     }
 
     void OnMouseDown() {
+        if (isEnemy) return; // ✅ prevent enemy tile selection
+
         if (PowerAzuManager.instance != null && PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
             PowerAzuManager.instance.SetActiveTile(this);
         } else {
@@ -107,6 +105,8 @@ public class Tile : MonoBehaviour {
     }
 
     void OnMouseOver() {
+        if (isEnemy) return; // ✅ prevent enemy tile right-click
+
         if (PowerAzuManager.instance != null && PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
             if (Input.GetMouseButtonDown(1)) {
                 if (PowerAzuManager.instance.activeTile == this) {
@@ -118,7 +118,7 @@ public class Tile : MonoBehaviour {
 
     public void AddMultiplier(Attributes att, float value) {
         if (multipliers.ContainsKey(att)) {
-            multipliers[att] = multipliers[att] * value;
+            multipliers[att] *= value;
         } else {
             multipliers[att] = value;
         }
@@ -131,58 +131,35 @@ public class Tile : MonoBehaviour {
         return face.title;
     }
 
-    public string GetDescription() {
-        return face.description;
-    }
-
-    public bool HasTag(Tag tag) {
-        if (face.tags == null) return false;
-        return face.tags.Contains(tag);
-    }
-
     public bool HasFace(TileComponent _face){
         return GetName() == _face.title;
     }
 
-    public float GetAttribute(Attributes att) {
-        return att switch {
-            Attributes.Beauty => GetBeauty(),
-            Attributes.Vigor => GetVigor(),
-            Attributes.Magic => GetMagic(),
-            Attributes.Heart => GetHeart(),
-            Attributes.Intellect => GetIntellect(),
-            Attributes.Terror => GetTerror(),
-            _ => 0,
-        };
-    }
+    public string GetDescription() => face.description;
+    public bool HasTag(Tag tag) => face.tags != null && face.tags.Contains(tag);
 
-    public float GetBeauty() {
-        float mult = multipliers.ContainsKey(Attributes.Beauty) ? multipliers[Attributes.Beauty] : 1f;
-        return mult * (face.beauty + background.beauty + material.beauty + glaze.beauty);
-    }
 
-    public float GetVigor() {
-        float mult = multipliers.ContainsKey(Attributes.Vigor) ? multipliers[Attributes.Vigor] : 1f;
-        return mult * (face.vigor + background.vigor + material.vigor + glaze.vigor);
-    }
+    public float GetAttribute(Attributes att) => att switch {
+        Attributes.Beauty => GetBeauty(),
+        Attributes.Vigor => GetVigor(),
+        Attributes.Magic => GetMagic(),
+        Attributes.Heart => GetHeart(),
+        Attributes.Intellect => GetIntellect(),
+        Attributes.Terror => GetTerror(),
+        _ => 0,
+    };
 
-    public float GetMagic() {
-        float mult = multipliers.ContainsKey(Attributes.Magic) ? multipliers[Attributes.Magic] : 1f;
-        return mult * (face.magic + background.magic + material.magic + glaze.magic);
-    }
+    public float GetBeauty() => GetStat(face.beauty, background.beauty, material.beauty, glaze.beauty, Attributes.Beauty);
+    public float GetVigor() => GetStat(face.vigor, background.vigor, material.vigor, glaze.vigor, Attributes.Vigor);
+    public float GetMagic() => GetStat(face.magic, background.magic, material.magic, glaze.magic, Attributes.Magic);
+    public float GetHeart() => GetStat(face.heart, background.heart, material.heart, glaze.heart, Attributes.Heart);
+    public float GetIntellect() => GetStat(face.intellect, background.intellect, material.intellect, glaze.intellect, Attributes.Intellect);
+    public float GetTerror() => GetStat(face.terror, background.terror, material.terror, glaze.terror, Attributes.Terror);
 
-    public float GetHeart() {
-        float mult = multipliers.ContainsKey(Attributes.Heart) ? multipliers[Attributes.Heart] : 1f;
-        return mult * (face.heart + background.heart + material.heart + glaze.heart);
-    }
 
-    public float GetIntellect() {
-        float mult = multipliers.ContainsKey(Attributes.Intellect) ? multipliers[Attributes.Intellect] : 1f;
-        return mult * (face.intellect + background.intellect + material.intellect + glaze.intellect);
-    }
-
-    public float GetTerror() {
-        float mult = multipliers.ContainsKey(Attributes.Terror) ? multipliers[Attributes.Terror] : 1f;
-        return mult * (face.terror + background.terror + material.terror + glaze.terror);
+    private float GetStat(float a, float b, float c, float d, Attributes att) {
+        float baseVal = a + b + c + d;
+        float mult = multipliers.ContainsKey(att) ? multipliers[att] : 1f;
+        return baseVal * mult;
     }
 }
