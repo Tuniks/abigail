@@ -15,10 +15,34 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     // Tile Scaling for Azulejo Convo
     private float startingScale = 1f;
 
+    // Animation for Azulejo Phenomenon
+    public float twitchRange = 1f;
+    public float twitchRotationRange = 5f;
+    public Vector2 twitchTimeLimits = new Vector2(0, 1);
+    private bool isTwitching = false;
+    private float currentTwitchTimer = 0;
+    
+
     void Start(){
         ui = GetComponentInParent<PlayerUIManager>();
         cg = GetComponent<CanvasGroup>();
         startingScale = transform.localScale.x;
+    }
+
+    void Update(){
+        if(isTwitching){
+            currentTwitchTimer -= Time.deltaTime;
+            if(currentTwitchTimer < 0){
+                currentTwitchTimer = Random.Range(twitchTimeLimits.x, twitchTimeLimits.y);
+                Transform tile = transform.GetChild(0);
+                tile.localPosition = new Vector3(
+                    Random.Range(-twitchRange, twitchRange),
+                    Random.Range(-twitchRange, twitchRange),
+                    0
+                );
+                tile.localRotation = Quaternion.Euler(0,0,Random.Range(-twitchRotationRange, twitchRotationRange));
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData){
@@ -40,8 +64,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         screenPoint.z = 10.0f; 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
         
-        Vector3 slotPos = PlayerUIManager.instance.ConvoSlotPosition();
-        float targetScale = PlayerUIManager.instance.ConvoSlotScale();
+        Vector3 slotPos = PlayerUIManager.instance.GetSlotPosition();
+        float targetScale = PlayerUIManager.instance.GetSlotScale();
         if(targetScale == 0) return;
 
         float mult = Mathf.Max(0, 1 - (Vector3.Distance(transform.position, slotPos)/Vector3.Distance(previousPos, slotPos)));
@@ -103,5 +127,24 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
                 spr.maskInteraction = SpriteMaskInteraction.None;
             } else spr.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
         }
+    }
+
+    // Phenomenon
+    public bool HasTileWithFace(TileComponent _face){
+        if(_face == null) return false;
+        
+        Tile tile = GetComponentInChildren<Tile>();
+        if(tile == null) return false;
+
+        return tile.HasFace(_face);
+    }
+
+    public void SetTwitching(bool _status){
+        if( _status == false){
+            transform.GetChild(0).localPosition = Vector3.zero;
+            transform.GetChild(0).localRotation = Quaternion.identity;
+        }
+        
+        isTwitching = _status;
     }
 }

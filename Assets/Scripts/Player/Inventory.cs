@@ -72,4 +72,15 @@ public class Inventory : MonoBehaviour{
         return tiles;
     }
 
+    public bool HasTileWithFace(TileComponent _face){
+        if(_face==null) return false;
+
+        foreach(GameObject tileObj in tileCollection){
+            Tile tile = tileObj.GetComponent<Tile>();
+            if(tile!=null && tile.HasFace(_face)) return true;
+        }
+
+        return false;
+    }
+
 }

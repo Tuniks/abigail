@@ -20,8 +20,6 @@ public class Tile : MonoBehaviour {
     
     public ITilePower tilePower;
 
-
-
     public bool isEnemy = false; 
 
     void Awake() {
@@ -126,9 +124,20 @@ public class Tile : MonoBehaviour {
         }
     }
 
-    public string GetName() => face.title;
+    public string GetName() {
+        if(face == null){
+            return facePrefab.GetComponent<TileComponent>().title;
+        }
+        return face.title;
+    }
+
+    public bool HasFace(TileComponent _face){
+        return GetName() == _face.title;
+    }
+
     public string GetDescription() => face.description;
     public bool HasTag(Tag tag) => face.tags != null && face.tags.Contains(tag);
+
 
     public float GetAttribute(Attributes att) => att switch {
         Attributes.Beauty => GetBeauty(),
@@ -146,6 +155,7 @@ public class Tile : MonoBehaviour {
     public float GetHeart() => GetStat(face.heart, background.heart, material.heart, glaze.heart, Attributes.Heart);
     public float GetIntellect() => GetStat(face.intellect, background.intellect, material.intellect, glaze.intellect, Attributes.Intellect);
     public float GetTerror() => GetStat(face.terror, background.terror, material.terror, glaze.terror, Attributes.Terror);
+
 
     private float GetStat(float a, float b, float c, float d, Attributes att) {
         float baseVal = a + b + c + d;
