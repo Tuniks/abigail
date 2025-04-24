@@ -35,16 +35,13 @@ public class ClayManager : AreaManager{
                 // Initial State
                 break;
             case 1:
-                //UpdateDialogueNode(chase, state1Dialogue);
                 UpdateDialogueNode(kate, state1Dialogue);
                 break;
             case 2:
                 dialogueRunner.StartDialogue(state2Dialogue);
-                //UpdateDialogueNode(chase, state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;
             case 3:
-                //UpdateDialogueNode(chase, state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;
         }
@@ -79,7 +76,7 @@ public class ClayManager : AreaManager{
 
     [YarnCommand]
     public void PostClayAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Clay, 3);
+        WorldState.Instance.UpdateSceneState(Areas.Clay, 3, true);
         WorldState.Instance.UpdateSceneState(Areas.Felt, 3);
     }
     
