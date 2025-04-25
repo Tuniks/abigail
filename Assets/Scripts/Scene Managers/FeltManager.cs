@@ -23,6 +23,8 @@ public class FeltManager : AreaManager{
     [Header("Tiles")]
     public Tile[] gianlucasTile;
 
+    public Tile[] bunnydeerTile;
+
     [Header("GameObjects")] 
     public Image RyanDrawing;
 
@@ -85,6 +87,12 @@ public class FeltManager : AreaManager{
     public void GiveGianlucaTile(){
         PlayerInventory.Instance.AddTilesToCollection(gianlucasTile);
     }
+    
+    [YarnCommand]
+    public void GiveBunnyDeer(){
+        PlayerInventory.Instance.AddTilesToCollection(bunnydeerTile);
+    }
+    
     
     [YarnCommand]
     public void ShowRyanDrawing(){
