@@ -67,6 +67,7 @@ public class ClayManager : AreaManager{
     [YarnCommand]
     public void PostClayAzulejoDone(){
         WorldState.Instance.UpdateSceneState(Areas.Clay, 3, true);
+        WorldState.Instance.UpdateNPCDialogueNode("Chase", "Chase4");
         WorldState.Instance.UpdateSceneState(Areas.Felt, 2);
     }
     

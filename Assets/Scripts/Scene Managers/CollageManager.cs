@@ -62,6 +62,7 @@ public class CollageManager : AreaManager{
 
     [YarnCommand]
     public void EndAzulejoGame(){
+        WorldState.Instance.UpdateNPCDialogueNode("Chase", "Chase4");
         WorldState.Instance.UpdateSceneState(Areas.Collage, 4, true);
         WorldState.Instance.UpdateSceneState(Areas.Felt, 2);
     }
