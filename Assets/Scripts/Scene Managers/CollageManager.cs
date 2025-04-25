@@ -19,6 +19,8 @@ public class CollageManager : AreaManager{
     public GameObject LandfillEntrance;
     public GameObject FootAnimation;
     public GameObject Warehouse;
+    public AudioClip Sound;
+    public AudioSource audioSource;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -99,6 +101,7 @@ public class CollageManager : AreaManager{
     {
         FootAnimation.SetActive(true);
         Warehouse.SetActive(false);
+        audioSource.PlayOneShot(Sound, 0.7F);
     }
     
 }
