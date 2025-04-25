@@ -8,10 +8,13 @@ public class FountainInteraction : MonoBehaviour
     public int collisionCount = 0;           // Count of collisions
     public bool twelveClocksHit = false;    // Boolean for 12 collisions
     public bool counting = false;           // Boolean to control whether collisions are counted
+    public AudioClip Sound;
+    public AudioSource audioSource;
 
     private int currentClockIndex = 0; // Index to keep track of the next active clock
     
-    [Header("Interaction Tiles")] public Tile[] tile = null;
+    [Header("Interaction Tiles")] 
+    public Tile[] tile = null;
 
     private void Start()
     {
@@ -39,6 +42,7 @@ public class FountainInteraction : MonoBehaviour
         {
             // Increment collision count and print it for debugging
             collisionCount++;
+            audioSource.PlayOneShot(Sound, 0.7F);
             Debug.Log("Collision count: " + collisionCount);
 
             // Turn off all clocks except the next one in the sequence
