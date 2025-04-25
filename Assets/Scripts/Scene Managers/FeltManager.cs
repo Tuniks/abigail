@@ -19,9 +19,6 @@ public class FeltManager : AreaManager{
     public GameObject doorMoms;
     public GameObject doorParty;
     
-    [Header("Scenes")]
-    public string azulejoScene = "FELT_azulejo";
-    
     [Header("Tiles")]
     public Tile[] gianlucasTile;
 
@@ -40,7 +37,8 @@ public class FeltManager : AreaManager{
                 doorClayUnblocked.SetActive(true);
                 break;
             case 2:
-                chase.SetActive(false);
+                chase.SetActive(true);
+                UpdateDialogueNode(chase, "Chase5");
                 oz.SetActive(false);
                 doorColBlocked.SetActive(false);
                 doorClayBlocked.SetActive(false);
