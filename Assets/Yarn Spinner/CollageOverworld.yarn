@@ -20,42 +20,58 @@ Abigail: Hey um…do you remember this azulejo tile I used to have? It had like,
 Dani: No? I don't think so.
 Dani: You could try playing Azulejo with people here and see if any of their tiles jog your memory?
 Dani: I'll be here pondering bureaucratic disasters until you get back.
+<<StartRound1 SceneController>>
 ===
 title: Dani1
 tags:
 ---
+<<if visited("Dani1") is false>>
 Abigail: I haven’t seen anything like that tile. 
 Dani: It’ll come back to you, I know it. 
 Dani: Down to play with me? 
 Abigail: Always.
-//Play Azulejo
+<<else>>
+Dani: Let's get back to it.
+<<endif>>
+<<StartAzulejoConversation AzulejoConvoDani1>>
 ===
-title: Dani2ANegativeTiles
+title: Dani1NegativeTiles
 tags:
 ---
 Dani: Exactly. Really bummer vibes there. 
-Dani: How about…some reminiscing about your former employer?
+Dani: How about… some reminiscing about your former employer?
+<<StartRound2 SceneController>>
+<<jump Dani2>>
 ===
-title: Dani2AFire
+title: Dani1Fire
 tags:
 ---
 Dani: I wish that place had burned down. 
 Abigail: Really? Isn’t that a little dramatic?
 Dani: I had to listen to thousands of shitty poems about the moon.
-Dani: How about…some reminiscing about your former employer?
+<<StartRound2 SceneController>>
+<<jump Dani2>>
 ===
-title: Dani2AGianlucas
+title: Dani1Gianlucas
 tags:
 ---
 Dani: What?! How can you possibly associate him with this?
 Dani: Think about the most rancid and annoying vibes you’ve ever encountered. 
-//send back to azulejo
+<<StartRound2 SceneController>>
+<<jump Dani2>>
 ===
-title: Dani2A
+title: Dani1-0
 tags:
 ---
 Dani: Dude no, think about the most rancid and annoying vibes you’ve ever encountered. 
-//send back to azulejo
+<<StartRound2 SceneController>>
+<<jump Dani2>>
+===
+title: Dani2
+---
+Dani: Ok, I got another one to see if you still think about us.
+Dani: How about… some reminiscing about your former employer?
+<<StartAzulejoConversation AzulejoConvoDani2>>
 ===
 title: Dani2BSeafood
 tags:
@@ -63,7 +79,9 @@ tags:
 Abigail: I used to go home with the smell of fish absorbed into my hair. 
 Dani: Tell me about it, and it’s definitely less fun now that I have no one to be stinky with. 
 Abigail: Your parents are there. 
-Dani: You know it’s not the same Abbs. 
+Dani: You know it’s not the same Abbs.
+<<StartRound3 SceneController>>
+<<jump Dani3>>
 ===
 title: Dani2BGeneralFood
 tags:
@@ -72,45 +90,65 @@ Dani: My parents are trying to get Gianluca to hook them up with his produce sup
 Abigail: How did that even start? Before I left things seemed chill. 
 Dani: Maybe it’s because of Power Azulejo? Kiln is starting to turn into a tourist trap. 
 Abigail: I mean isn’t that good for everyone? 
-Dani: I feel conflicted about it, it’s good for my parent’s restaurant, but it feels…weird to see people playing azulejo like that.  
+Dani: I feel conflicted about it, it’s good for my parent’s restaurant, but it feels…weird to see people playing azulejo like that.
+<<StartRound3 SceneController>>
+<<jump Dani3>>
 ===
-title: Dani2B
+title: Dani2-0
 tags:
 ---
 Dani: C’mon dude, what are you talking about?
-Dani: Did you block it out now that you’re a big shot cook? 
+Dani: Did you block it out now that you’re a big shot cook?
+<<StartRound3 SceneController>>
+<<jump Dani3>>
 ===
-title: Dani2CKilnTiles
+title: Dani3
+---
+Dani: Ok, one last round.
+Dani: Tell me about yourself!
+<<StartAzulejoConversation AzulejoConvoDani3>>
+===
+title: Dani3KilnTiles
 tags:
 ---
 Dani: Dude no way you’re thinking about Kiln while you’re out there. 
 Abigail: I guess I just get homesick sometimes. 
 Dani: But you never visit. 
-Abigail: I’ve just been really busy, I’m sorry. 
+Abigail: I’ve just been really busy, I’m sorry.
+<<EndAzulejoGame SceneController>>
+<<jump Dani4>>
 ===
-title: Dani2CGeneralFood
+title: Dani3GeneralFood
 tags:
 ---
 Dani: Of course, you’re working at some fancy restaurant, endlessly whipping up delicious food. 
 Abigail: Not really. But I’m definitely cooking a lot, that’s for sure. 
 Dani: My dad is gonna talk your ear off about the new specials when you see him. 
-Abigail: I would love that. 
+Abigail: I would love that.
+<<EndAzulejoGame SceneController>>
+<<jump Dani4>>
 ===
-title: Dani2CNegativeTiles
+title: Dani3NegativeTiles
 tags:
 ---
 Dani: Dude what are you talking about!
 Dani: If it sucks that bad why don’t you just come back?
 Abigail: It’s not…it’s complicated.
+<<EndAzulejoGame SceneController>>
+<<jump Dani4>>
 ===
-title: Dani2C
+title: Dani3-0
 tags:
 ---
-Dani: Huh, I don't really know what you mean by that. 
+Dani: Really? I'm not sure if I 100% understand you.
+Dani: But that seems poetic.
+<<EndAzulejoGame SceneController>>
+<<jump Dani4>>
 ===
-title: Dani3
+title: Dani4
 tags:
 ---
+<<if visited("Dani4") is false>>
 Abigail: Was it really like that, at the writing residency? 
 Dani: I don’t know dude, being there just really sucked.
 ->  At least you tried
@@ -133,7 +171,10 @@ Dani: It's over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
 Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
 <<Giveslime SceneController>>
-Abigail: That's perfect. Let's go. 
+Abigail: That's perfect. Let's go.
+<<else>>
+Dani: Go give the tile to Chase. I'll meet you at your mom's.
+<<endif>>
 ===
 //=== NPCS ===
 title: Hank0

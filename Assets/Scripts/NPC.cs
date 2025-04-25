@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Yarn.Unity;
 using Yarn.Unity.Addons.SpeechBubbles;
@@ -25,6 +26,9 @@ public class NPC : MonoBehaviour{
 
     // ==== STATE CONTROL ====
     private void InitializeState(){
+        string currentScene = SceneManager.GetActiveScene().name;
+        if(currentScene != "FELT_area" && currentScene != "MOMS_area") return;
+
         string stateNode = WorldState.Instance.GetCurrentNPCDialogueNode(characterName);
         if(stateNode == "") return;
 
