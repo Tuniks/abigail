@@ -15,4 +15,13 @@ public class AzulejoPhenomenon : MonoBehaviour{
     public TileComponent GetFace(){
         return face.GetComponent<TileComponent>();
     }
+
+    public bool IsAMatch(Tile tile){
+        if(tile == null) return false;
+        if(GetFace().title == tile.GetName()){
+            return true;
+        }
+
+        return false;
+    }
 }

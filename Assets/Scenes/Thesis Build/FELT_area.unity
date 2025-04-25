@@ -14426,10 +14426,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 705613140}
     - target: {fileID: 4396646887550078824, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4396646887550078824, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
       propertyPath: sortingModifier
       value: 90
       objectReference: {fileID: 0}
@@ -14504,9 +14500,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6158435293918732236, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
       insertIndex: -1
       addedObject: {fileID: 975203263}
-    - targetCorrespondingSourceObject: {fileID: 8481259164242277787, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 941997493}
   m_SourcePrefab: {fileID: 100100000, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
 --- !u!1 &488846769
 GameObject:
@@ -20004,6 +19997,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.047754288
       objectReference: {fileID: 0}
+    - target: {fileID: 3440810334271282826, guid: 6e414cbffe9c79a4aaccc6d96dfef261, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5513298479678603756, guid: 6e414cbffe9c79a4aaccc6d96dfef261, type: 3}
       propertyPath: m_Name
       value: Gianluca
@@ -20064,13 +20061,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -3.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6887586560696565049, guid: 6e414cbffe9c79a4aaccc6d96dfef261, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.41
+      objectReference: {fileID: 0}
     - target: {fileID: 6968058534363565997, guid: 6e414cbffe9c79a4aaccc6d96dfef261, type: 3}
       propertyPath: dialogueNode
       value: Gianluca0
       objectReference: {fileID: 0}
     - target: {fileID: 7106131979756338469, guid: 6e414cbffe9c79a4aaccc6d96dfef261, type: 3}
       propertyPath: m_SortingOrder
-      value: 401
+      value: 669
       objectReference: {fileID: 0}
     - target: {fileID: 7120573325673832221, guid: 6e414cbffe9c79a4aaccc6d96dfef261, type: 3}
       propertyPath: CharacterName
@@ -26560,25 +26561,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881422911}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &941997488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8481259164242277787, guid: 0bc66cd229d380a4bbd62bda072a4713, type: 3}
-  m_PrefabInstance: {fileID: 487214323}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &941997493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 941997488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3398d4830e584814b26985064dd760e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingModifier: 90
-  yOffset: 0
 --- !u!1 &942256954
 GameObject:
   m_ObjectHideFlags: 0
@@ -28419,7 +28401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998252344440750333, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.00006
+      value: -19.99982
       objectReference: {fileID: 0}
     - target: {fileID: 3127703687526284070, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: playerTransform
@@ -28483,7 +28465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020004650091786254, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.00006
+      value: -19.99982
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2363420953817181379, guid: 99c0a3cb1385cb64a9f5f274925b4a5b, type: 3}
@@ -40722,7 +40704,7 @@ MonoBehaviour:
   tile:
   - {fileID: 482378968}
   player: {fileID: 217139749}
-  interactionRadius: 2
+  interactionRadius: 3
 --- !u!1 &1478873676
 GameObject:
   m_ObjectHideFlags: 0
@@ -43244,7 +43226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -400
   m_Sprite: {fileID: 1884194353, guid: 90a80eb6e87ea4267a40f16d4a09eaae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -43263,7 +43245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537023604}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c740daf9908ea2c469c931c39ee7fa53, type: 3}
   m_Name: 
@@ -45301,7 +45283,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06485486, y: 0.41691637}
+  m_Offset: {x: -0.038642168, y: 0.32516956}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -45311,7 +45293,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.7226529, y: 2.6491346}
+  m_Size: {x: 2.7187438, y: 2.7801971}
   m_EdgeRadius: 0
 --- !u!1 &1628811343
 GameObject:
@@ -49546,7 +49528,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06485486, y: 0.41691637}
+  m_Offset: {x: -0.09106803, y: 0.35138464}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -49556,7 +49538,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.7226529, y: 2.6491346}
+  m_Size: {x: 2.6663175, y: 2.8588362}
   m_EdgeRadius: 0
 --- !u!1 &1778178117
 GameObject:
@@ -52290,7 +52272,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 10.00006
+  m_CameraDistance: 19.99982
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -55131,7 +55113,7 @@ MonoBehaviour:
   tile:
   - {fileID: 1467894571}
   player: {fileID: 217139749}
-  interactionRadius: 2
+  interactionRadius: 3
 --- !u!1 &1951897816
 GameObject:
   m_ObjectHideFlags: 0

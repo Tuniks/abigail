@@ -105,8 +105,9 @@ public class PlayerUIManager : MonoBehaviour{
         }
 
         // If hovering phenomenon drop spot, drop it
-        if(phenomenonSlot != null && currentPhenomenon != null){
+        if(phenomenonSlot != null && currentPhenomenon != null && currentPhenomenon.IsAMatch(element.GetTile())){
             phenomenonUI.PlaceTile(currentPhenomenon, element.GetTile());
+            phenomenonSlot = null;
             return;
         }
 
