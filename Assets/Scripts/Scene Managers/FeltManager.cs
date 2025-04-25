@@ -26,11 +26,6 @@ public class FeltManager : AreaManager{
     [Header("GameObjects")] 
     public Image RyanDrawing;
 
-    void Awake()
-    {
-        WorldState.Instance.UpdateSceneState(Areas.Felt, 2, true);
-    }
-
     public override void UpdateSceneState(int state){        
         switch(state){
             case 0:
