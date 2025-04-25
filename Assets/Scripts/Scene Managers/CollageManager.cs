@@ -61,7 +61,7 @@ public class CollageManager : AreaManager{
     [YarnCommand]
     public void EndAzulejoGame(){
         WorldState.Instance.UpdateSceneState(Areas.Collage, 4, true);
-        WorldState.Instance.UpdateSceneState(Areas.Felt, 4);
+        WorldState.Instance.UpdateSceneState(Areas.Felt, 2);
     }
     
     [YarnCommand]
