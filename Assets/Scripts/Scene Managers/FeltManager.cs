@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 public class FeltManager : AreaManager{
@@ -18,6 +19,11 @@ public class FeltManager : AreaManager{
     public GameObject doorMoms;
     public GameObject doorParty;
     
+    [Header("Tiles")]
+    public Tile[] gianlucasTile;
+
+    [Header("GameObjects")] 
+    public Image RyanDrawing;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -54,5 +60,16 @@ public class FeltManager : AreaManager{
     [YarnCommand]
     public void PostFeltAzulejoDone(){
         WorldState.Instance.UpdateSceneState(Areas.Felt, 1, true);
+    }
+    
+    [YarnCommand]
+    public void GiveGianlucaTile(){
+        PlayerInventory.Instance.AddTilesToCollection(gianlucasTile);
+    }
+    
+    [YarnCommand]
+    public void ShowRyanDrawing(){
+        RyanDrawing.enabled = true;
+        RyanDrawing.gameObject.SetActive(true);
     }
 }
