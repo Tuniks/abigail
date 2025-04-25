@@ -182,9 +182,40 @@ Chase: I missed you, Abigail.
 <<StoreVariables WorldState>>
 <<PostFeltAzulejoDone SceneController>>
 <<else>>
-Chase: Head over the brige to hang out with Kate, but if you wanna see Dani go through the warehouse path up north.
+Chase: Head over the brige to hang out with Kate, but if you wanna see Dani go through the warehouse path.
 Chase: And remember to look around for a tile to describe my love life. 
 <<endif>>
+===
+title: Chase4
+---
+Chase: Got anything better for me now?
+<<StartAzulejoConversation AzulejoConvoChase4>>
+===
+title: Chase4-0
+---
+Chase: C’mon dude, no way that’s my love life. 
+Chase: You didn’t ask Kate or Dani what they think?
+===
+title: Chase4-1
+---
+Chase: Oh this one is sick. 
+Abigail: Kate said it reminded her of you because you have commitment issues. 
+Chase: This rad little guy is so me. 
+Chase: C’mon Abbs, let’s go to your mom’s place.
+<<FinishChaseAzulejo SceneController>>
+===
+title: Chase4-2
+---
+Chase: Dude I used to love playing with slime. 
+Abigail: Dani said it reminded them of you because you’re all over the place. 
+Chase: Do you remember when you took a bite of yours?
+Abigail: I did not. That was Gabe. 
+Chase: Sure, sure, let’s head to your mom’s place.
+<<FinishChaseAzulejo SceneController>>
+===
+title: Chase5
+---
+Chase: Your mom is waiting. I'll meet you there.
 ===
 // === NPCS ===
 title: HauntedHouseTeens0
@@ -256,12 +287,23 @@ Abigail: Hey! I'm not old, I'm in my mid twenties!
 <<endif>>
 <<StartAzulejoConversation Ryan1>>
 ===
-title: Ryans1Spider
+title: Ryans1SpiderorCaterpillar
 tags: 
 ---
-Ryan 2: Whoa this tile is arachnificent. 
+<<if visited("Ryans1SpiderorCaterpillar") is false>>
+Ryan 2: Whoa... 
 Ryan 1: Abigail, do you want to see our drawing? 
 //go to drawing of treehouse where you can place the spider tile 
+<<else>>
+Ryan 1: Abigail, you're really good at finding purple bugs.
+Ryan 2: You wanna see our treehouse plans again?
+<<endif>>
+<<ShowRyanDrawing SceneController>>
+===
+title: Ryans1Butterfly
+tags: 
+---
+Ryan 2: Nice try, but this is closer to a pink than a purple...
 ===
 title: Ryans1Cockroach
 tags: 
@@ -385,7 +427,6 @@ Tourist: All the blogs said that getting out of West Kiln is where you find the 
 Abigail: The blogs?
 Tourist: That’s how I heard about this city!
 Tourist: Power Azulejo Addicts dot com! You can find it on the world wide web!
-Tourist: I'd love to take these babies for a spin if you're down for a round of power Azulejo? 
 ===
 title: Tourist1Win
 tags: 
@@ -424,6 +465,7 @@ Linda: I don’t know what to tell you! I’m just doing what the house wants.
 HOA President: This non-unified design scheme is making my tummy upset!
 //Open azulejo
 <<endif>>
+<<StartAzulejoConversation Linda>>
 ===
 title: Weirdhouse1Peace
 tags: 
@@ -453,11 +495,16 @@ Linda: All grown up and as helpful as ever.
 title: Weirdhouse1
 tags: 
 ---
+<<if visited("Weirdhouse1") is false>>
 HOA President: How is that supposed to help anything?
 Linda: Don't listen to him darling. 
 Weird House: I would love a little something that's orange!
 Abigail: I can keep an eye out. 
 Linda: All grown up and as helpful as ever. 
+<<else>>
+HOA President: Once again! Unhelpful! 
+Linda: If you find anything orange darling, just stick it right on!
+<<endif>>
 ===
 title: Gianluca0
 tags: 
@@ -468,9 +515,10 @@ Abigail: You say that to everyone Gianluca.
 Gianluca: Well at this exact moment it feels true!
 //Open azueljo 
 <<else>>
-Gianluca: I've always know you had exquisite taste Abigail. 
+Gianluca: I've always known you had exquisite taste Abigail. 
 //Open azulejo 
 <<endif>>
+<<StartAzulejoConversation Gianluca>>
 ===
 title: Gianluca1Tomato
 tags: 
@@ -480,7 +528,7 @@ Abigail: Their tomatoes are a little watery.
 Gianluca: Exactly! And last night, I saw a horde of cockroaches near their dumpsters. 
 Abigail: Pretty unsanitary if you ask me! 
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
-//now Gianluca tile needs to be added
+<<GiveGianlucaTile SceneController>>
 ===
 title: Gianluca1Mushroom
 tags: 
@@ -490,7 +538,7 @@ Abigail: Their mushrooms do have a weird texture.
 Gianluca: Exactly! And last night, I saw a horde of cockroaches near their dumpsters. 
 Abigail: Pretty unsanitary if you ask me! 
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
-//now Gianluca tile needs to be added
+<<GiveGianlucaTile SceneController>>
 ===
 title: Gianluca1Grapes
 tags: 
@@ -501,7 +549,7 @@ Abigail: Absolutely.
 Gianluca: Last night, I saw a horde of cockroaches near their dumpsters. 
 Abigail: Pretty unsanitary if you ask me!
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
-//now Gianluca tile needs to be added
+<<GiveGianlucaTile SceneController>>
 ===
 title: Gianluca1Seafood
 tags: 
@@ -513,7 +561,7 @@ Abigail: What place?
 Gianluca: The Neptune Diner! My rivals!
 Abigail: Oh, sorry. 
 Gianluca: It’s okay, here take a tile so you can show your support for Gianluca’s!
-//now Gianluca tile needs to be added
+<<GiveGianlucaTile SceneController>>
 ===
 title: Gianluca1Gianlucas
 tags: 
@@ -522,14 +570,14 @@ Abigail: It's a neighborhood staple that's way better than The Neptune for sure!
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
 Abigail: I already have this. 
 Gianluca: You can have another! 
-//now Gianluca tile needs to be added
+<<GiveGianlucaTile SceneController>>
 ===
 title: Gianluca1
 tags: 
 ---
 Gianluca: I know you've been gone a while, but a pizza with that on it would not pass a health inspection! 
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
-//now Gianluca tile needs to be added
+<<GiveGianlucaTile SceneController>>
 ===
 title: Tanya
 ---
@@ -563,4 +611,9 @@ title: BlockedDoor0
 tags:
 ---
 Abigail: I don't think I should go this way just yet.
+===
+title: BlockedDoor1
+tags:
+---
+Abigail: I should probably check in on Chase first.
 ===
