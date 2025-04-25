@@ -9,20 +9,8 @@ public class CollageManager : AreaManager{
     
     [Header("NPCs")]
     public GameObject dani;
-    public GameObject gwen;
-
-    [Header("Dialogue Nodes")]
-    public string gwenTradeDialogue = "GwenTrade";
-
-    public string state1Dialogue = "DaniDay1PostTrade";
-    public string state2Dialogue = "DaniDay1PostAzulejo";
-    
-    [Header("Scenes")]
-    public string azulejoScene = "COL_azulejo";
 
     [Header("Misc")]
-    public Tile[] salthairTile;
-    public Tile[] handholdTile;
     public Tile[] tvTile;
     public Tile[] slimeTile;
     public Tile[] coffeeTile;
@@ -35,51 +23,45 @@ public class CollageManager : AreaManager{
     public override void UpdateSceneState(int state){        
         switch(state){
             case 0:
-                // Pre Trade
+                // Intro
                 break;
             case 1:
-                // Trade, Pre azulejo
-                UpdateDialogueNode(dani, state1Dialogue);
+                // First round
+                UpdateDialogueNode(dani, "Dani1");
                 break;
             case 2:
                 // Post Azulejo
-                dialogueRunner.StartDialogue(state2Dialogue);
-                UpdateDialogueNode(dani, state2Dialogue);
+                UpdateDialogueNode(dani, "Dani2");
                 break;
             case 3:
-                UpdateDialogueNode(dani, state2Dialogue);
+                UpdateDialogueNode(dani, "Dani3");
+                break;
+            case 4:
+                UpdateDialogueNode(dani, "Dani4");
                 break;
         }
     }
 
     // YARN COMMANDS
     [YarnCommand]
-    public void UpdateGwenDialogue(){
-        UpdateDialogueNode(gwen, gwenTradeDialogue);
-    }
-
-    [YarnCommand]
-    public void TradeSaltwaterTile(){
+    public void StartRound1(){
         WorldState.Instance.UpdateSceneState(Areas.Collage, 1, true);
-        PlayerInventory.Instance.AddTilesToCollection(salthairTile);
     }
 
     [YarnCommand]
-    public void TradeHandTile(){
-        WorldState.Instance.UpdateSceneState(Areas.Collage, 1, true);
-        PlayerInventory.Instance.AddTilesToCollection(handholdTile);
+    public void StartRound2(){
+        WorldState.Instance.UpdateSceneState(Areas.Collage, 2, true);
     }
 
     [YarnCommand]
-    public void PreCollageAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Collage, 2);
-        SceneController.Instance.Roundtrip(azulejoScene);
+    public void StartRound3(){
+        WorldState.Instance.UpdateSceneState(Areas.Collage, 3, true);
     }
 
     [YarnCommand]
-    public void PostCollageAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Collage, 3);
-        WorldState.Instance.UpdateSceneState(Areas.Felt, 3);
+    public void EndAzulejoGame(){
+        WorldState.Instance.UpdateSceneState(Areas.Collage, 4, true);
+        WorldState.Instance.UpdateSceneState(Areas.Felt, 4);
     }
     
     [YarnCommand]
