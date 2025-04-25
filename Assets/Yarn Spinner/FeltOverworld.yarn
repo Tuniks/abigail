@@ -186,6 +186,37 @@ Chase: Head over the brige to hang out with Kate, but if you wanna see Dani go t
 Chase: And remember to look around for a tile to describe my love life. 
 <<endif>>
 ===
+title: Chase4
+---
+Chase: Got anything better for me now?
+<<StartAzulejoConversation AzulejoConvoChase4>>
+===
+title: Chase4-0
+---
+Chase: C’mon dude, no way that’s my love life. 
+Chase: You didn’t ask Kate or Dani what they think?
+===
+title: Chase4-1
+---
+Chase: Oh this one is sick. 
+Abigail: Kate said it reminded her of you because you have commitment issues. 
+Chase: This rad little guy is so me. 
+Chase: C’mon Abbs, let’s go to your mom’s place.
+<<FinishChaseAzulejo SceneController>>
+===
+title: Chase4-2
+---
+Chase: Dude I used to love playing with slime. 
+Abigail: Dani said it reminded them of you because you’re all over the place. 
+Chase: Do you remember when you took a bite of yours?
+Abigail: I did not. That was Gabe. 
+Chase: Sure, sure, let’s head to your mom’s place.
+<<FinishChaseAzulejo SceneController>>
+===
+title: Chase5
+---
+Chase: Your mom is waiting. I'll meet you there.
+===
 // === NPCS ===
 title: HauntedHouseTeens0
 tags: 
@@ -580,4 +611,9 @@ title: BlockedDoor0
 tags:
 ---
 Abigail: I don't think I should go this way just yet.
+===
+title: BlockedDoor1
+tags:
+---
+Abigail: I should probably check in on Chase first.
 ===
