@@ -14,7 +14,7 @@ public class TilePowerManager : MonoBehaviour {
 
     void Awake() {
         Tile tile = GetComponent<Tile>();
-        if (tile == null) return;
+        if (tile == null || tile.isEnemy) return; // ✅ Skip assigning power to enemy tiles
 
         // Find the strongest attribute
         float maxValue = 0f;
