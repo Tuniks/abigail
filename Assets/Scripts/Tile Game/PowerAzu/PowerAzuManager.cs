@@ -118,12 +118,11 @@ public class PowerAzuManager : MonoBehaviour {
         Vector3 direction = (worldMousePos - activeTile.transform.position).normalized;
         float statValue = CalculateDirectionalForce(activeTile, direction);
         float chargePercent = chargeTimer / maxChargeTime;
-        float finalForce = statValue * chargePercent * chargeForce;
+        float finalForce = statValue * chargeForce * chargePercent;
         rb.AddForce(direction * finalForce);
 
         hasCharged = true;
         CancelActiveTile();
-        Debug.Log($"Force: {finalForce}, Charge %: {chargePercent}, Stat: {statValue}, Dir: {direction}");
     }
 
     public void EnterLaunchMode() {
@@ -178,9 +177,14 @@ public class PowerAzuManager : MonoBehaviour {
         }
 
         currentState = GameState.Play;
+
+        // ✅ Tell enemy to start after player setup
+        if (EnemyAzuManager.instance != null) {
+            EnemyAzuManager.instance.StartEnemyTurn();
+        }
     }
 
-    void AssignPhysicsProperties(Tile tile) {
+    private void AssignPhysicsProperties(Tile tile) {
         Rigidbody2D rb = tile.GetComponent<Rigidbody2D>();
         if (rb == null)
             rb = tile.gameObject.AddComponent<Rigidbody2D>();
@@ -201,13 +205,13 @@ public class PowerAzuManager : MonoBehaviour {
         bounceMat.friction = 0f;
         collider.sharedMaterial = bounceMat;
 
-        if (!tile.gameObject.GetComponent<TileBounceFeedback>()) {
+        if (!tile.GetComponent<TileBounceFeedback>()) {
             TileBounceFeedback feedback = tile.gameObject.AddComponent<TileBounceFeedback>();
             feedback.flashEffect = flashEffectPrefab;
             feedback.bounceParticles = bounceParticlesPrefab;
         }
 
-        if (!tile.gameObject.GetComponent<ActiveTileCollisionHandler>()) {
+        if (!tile.GetComponent<ActiveTileCollisionHandler>()) {
             tile.gameObject.AddComponent<ActiveTileCollisionHandler>();
         }
     }
@@ -232,7 +236,6 @@ public class PowerAzuManager : MonoBehaviour {
         }
 
         TileActionMenu.instance.ShowMenu(tile);
-        Debug.Log("Active tile set: " + tile.name);
     }
 
     public void CancelActiveTile() {
@@ -240,7 +243,6 @@ public class PowerAzuManager : MonoBehaviour {
             activeTileRenderer.color = originalTileColor;
 
         if (activeTile != null) {
-            Debug.Log("Active tile cancelled: " + activeTile.name);
             activeTile = null;
         }
 
@@ -255,7 +257,7 @@ public class PowerAzuManager : MonoBehaviour {
         TileActionMenu.instance.HideMenu();
     }
 
-    float CalculateDirectionalForce(Tile tile, Vector3 direction) {
+    private float CalculateDirectionalForce(Tile tile, Vector3 direction) {
         Vector2 dir = new Vector2(direction.x, direction.y).normalized;
         Transform t = tile.transform;
         Vector2 up = t.up;

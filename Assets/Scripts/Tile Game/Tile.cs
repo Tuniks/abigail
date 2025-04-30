@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tile : MonoBehaviour {
@@ -17,14 +16,16 @@ public class Tile : MonoBehaviour {
     public TileComponent material;
     public TileComponent glaze;
 
-    public ITilePower tilePower; // Added to support tile powers
+    [HideInInspector]
+    public bool isEnemy = false; // ✅ Flag to prevent interaction if this is an enemy tile
 
     private IPlayerHand playerHand;
+    public ITilePower tilePower; // Added to support tile powers
+
     private Dictionary<Attributes, float> multipliers = new Dictionary<Attributes, float>();
 
     void Awake() {
         RebuildTile();
-        tilePower = GetComponent<ITilePower>(); // Assign tile power if present
     }
 
     public void Initialize(GameObject _facePrefab, GameObject _bgPrefab, GameObject _matPrefab, GameObject _glzPrefab) {
@@ -75,7 +76,10 @@ public class Tile : MonoBehaviour {
     public static bool operator ==(Tile t1, Tile t2) {
         if (!t1 && !t2) return true;
         if (!t1 || !t2) return false;
-        return (t1.facePrefab == t2.facePrefab) && (t1.bgPrefab == t2.bgPrefab) && (t1.matPrefab == t2.matPrefab) && (t1.glzPrefab == t2.glzPrefab);
+        return (t1.facePrefab == t2.facePrefab) &&
+               (t1.bgPrefab == t2.bgPrefab) &&
+               (t1.matPrefab == t2.matPrefab) &&
+               (t1.glzPrefab == t2.glzPrefab);
     }
 
     public static bool operator !=(Tile t1, Tile t2) {
@@ -90,7 +94,10 @@ public class Tile : MonoBehaviour {
     }
 
     public override int GetHashCode() {
-        return facePrefab.GetHashCode() ^ bgPrefab.GetHashCode() ^ matPrefab.GetHashCode() ^ glzPrefab.GetHashCode();
+        return facePrefab.GetHashCode() ^
+               bgPrefab.GetHashCode() ^
+               matPrefab.GetHashCode() ^
+               glzPrefab.GetHashCode();
     }
 
     public void SetHand(IPlayerHand hand) {
@@ -98,7 +105,10 @@ public class Tile : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        if (PowerAzuManager.instance != null && PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
+        if (isEnemy) return; // ✅ Do not allow interaction with enemy tiles
+
+        if (PowerAzuManager.instance != null &&
+            PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
             PowerAzuManager.instance.SetActiveTile(this);
         } else {
             if (playerHand == null) return;
@@ -107,7 +117,10 @@ public class Tile : MonoBehaviour {
     }
 
     void OnMouseOver() {
-        if (PowerAzuManager.instance != null && PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
+        if (isEnemy) return;
+
+        if (PowerAzuManager.instance != null &&
+            PowerAzuManager.instance.currentState == PowerAzuManager.GameState.Play) {
             if (Input.GetMouseButtonDown(1)) {
                 if (PowerAzuManager.instance.activeTile == this) {
                     PowerAzuManager.instance.CancelActiveTile();
@@ -125,9 +138,6 @@ public class Tile : MonoBehaviour {
     }
 
     public string GetName() {
-        if(face == null){
-            return facePrefab.GetComponent<TileComponent>().title;
-        }
         return face.title;
     }
 
@@ -136,13 +146,7 @@ public class Tile : MonoBehaviour {
     }
 
     public bool HasTag(Tag tag) {
-        if (face.tags == null) return false;
-        return face.tags.Contains(tag);
-    }
-
-    public bool HasFace(TileComponent _face){
-        if(_face == null) return false;
-        return GetName() == _face.title;
+        return face.tags != null && ((IList<Tag>)face.tags).Contains(tag); // Safe IList cast
     }
 
     public float GetAttribute(Attributes att) {
@@ -185,5 +189,9 @@ public class Tile : MonoBehaviour {
     public float GetTerror() {
         float mult = multipliers.ContainsKey(Attributes.Terror) ? multipliers[Attributes.Terror] : 1f;
         return mult * (face.terror + background.terror + material.terror + glaze.terror);
+    }
+
+    public bool HasFace(TileComponent _face) {
+        return face == _face;
     }
 }
