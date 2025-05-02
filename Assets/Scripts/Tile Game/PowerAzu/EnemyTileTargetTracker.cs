@@ -1,21 +1,23 @@
+// EnemyTileTargetTracker.cs
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyTileTargetTracker : MonoBehaviour {
-    private bool touchingTarget = false;
+    private HashSet<Transform> currentTargets = new HashSet<Transform>();
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.GetComponent<TargetZone>()) {
-            touchingTarget = true;
+    public void RegisterCurrentTarget(Transform target) {
+        if (!currentTargets.Contains(target)) {
+            currentTargets.Add(target);
         }
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.GetComponent<TargetZone>()) {
-            touchingTarget = false;
+    public void RemoveCurrentTarget(Transform target) {
+        if (currentTargets.Contains(target)) {
+            currentTargets.Remove(target);
         }
     }
 
     public bool IsTouchingTarget() {
-        return touchingTarget;
+        return currentTargets.Count > 0;
     }
 }
