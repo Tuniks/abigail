@@ -73,14 +73,15 @@ public class PowerAzuManager : MonoBehaviour {
                         chargeTimer = 0f;
                     }
 
-                    if (!hasCharged && Input.GetKey(KeyCode.E)) {
+                    if (!hasCharged && Input.GetKey(KeyCode.E) || Input.GetMouseButton(0)) {
                         chargeTimer += Time.deltaTime;
                         chargeTimer = Mathf.Clamp(chargeTimer, 0f, maxChargeTime);
                     }
-
-                    if (!hasCharged && Input.GetKeyUp(KeyCode.E)) {
+                    
+                    if (!hasCharged && (Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0))) {
                         BeginTileLaunch();
                     }
+
 
                     if (currentIndicator != null) {
                         Vector3 mousePos = Input.mousePosition;
@@ -177,8 +178,7 @@ public class PowerAzuManager : MonoBehaviour {
         }
 
         currentState = GameState.Play;
-
-        // ✅ Tell enemy to start after player setup
+        
         if (EnemyAzuManager.instance != null) {
             EnemyAzuManager.instance.StartEnemyTurn();
         }

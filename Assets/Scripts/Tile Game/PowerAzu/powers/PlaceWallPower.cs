@@ -2,17 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class PlaceWallPower : MonoBehaviour, ITilePower {
-    public GameObject ghostWallPrefab; // Visual preview
-    public GameObject wallToPlacePrefab; // Final wall
+    public GameObject ghostWallPrefab;         // Visual preview
+    public GameObject wallToPlacePrefab;       // Final wall
     public AudioClip placeSound;
     public float growDuration = 0.2f;
     public float overshootScale = 1.2f;
+    public float activationDelay = 0.2f;
     public Sprite icon;
     public Sprite Icon => icon;
 
-
     private GameObject ghostInstance;
     private bool placing = false;
+    private float activationTime;
 
     public void Activate(Tile sourceTile) {
         if (ghostWallPrefab == null || wallToPlacePrefab == null) return;
@@ -21,6 +22,7 @@ public class PlaceWallPower : MonoBehaviour, ITilePower {
         mouseWorld.z = 0;
         ghostInstance = Instantiate(ghostWallPrefab, mouseWorld, Quaternion.identity);
         placing = true;
+        activationTime = Time.time;
     }
 
     void Update() {
@@ -33,7 +35,10 @@ public class PlaceWallPower : MonoBehaviour, ITilePower {
             ghostInstance.transform.position = mouseWorld;
         }
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Time.time < activationTime + activationDelay) return;
+
+        // Confirm placement with left click or E
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) {
             GameObject wall = Instantiate(wallToPlacePrefab, mouseWorld, Quaternion.identity);
             if (placeSound != null)
                 AudioSource.PlayClipAtPoint(placeSound, wall.transform.position);
@@ -44,7 +49,8 @@ public class PlaceWallPower : MonoBehaviour, ITilePower {
             placing = false;
         }
 
-        if (Input.GetMouseButtonDown(1)) {
+        // Cancel with right click or Escape
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {
             if (ghostInstance != null) Destroy(ghostInstance);
             placing = false;
         }
