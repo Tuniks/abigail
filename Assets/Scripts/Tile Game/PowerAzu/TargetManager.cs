@@ -20,10 +20,6 @@ public class TargetManager : MonoBehaviour {
 
     [Header("Win Settings")]
     public int winningScore = 10;
-    public GameObject playerWinSpritePrefab;
-    public GameObject enemyWinSpritePrefab;
-    public GameObject objectToDisable;
-    public Canvas endgameUICanvas;
 
     private float playerScore = 0f;
     private float enemyScore = 0f;
@@ -39,15 +35,13 @@ public class TargetManager : MonoBehaviour {
 
         playerScore += points;
         UpdatePlayerUI();
+        if (audioSource && playerScoreClip) audioSource.PlayOneShot(playerScoreClip);
+        if (playerScoreText) StartCoroutine(AnimateBounce(playerScoreText.transform));
 
-        if (audioSource != null && playerScoreClip != null)
-            audioSource.PlayOneShot(playerScoreClip);
-
-        if (playerScoreText != null)
-            StartCoroutine(AnimateBounce(playerScoreText.transform));
-
-        if (playerScore >= winningScore)
-            TriggerEndgame(true);
+        if (playerScore >= winningScore) {
+            gameEnded = true;
+            EndgameManager.instance.TriggerEndgame(true);
+        }
     }
 
     public void AddScoreToEnemy(int points) {
@@ -55,24 +49,22 @@ public class TargetManager : MonoBehaviour {
 
         enemyScore += points;
         UpdateEnemyUI();
+        if (audioSource && enemyScoreClip) audioSource.PlayOneShot(enemyScoreClip);
+        if (enemyScoreText) StartCoroutine(AnimateBounce(enemyScoreText.transform));
 
-        if (audioSource != null && enemyScoreClip != null)
-            audioSource.PlayOneShot(enemyScoreClip);
-
-        if (enemyScoreText != null)
-            StartCoroutine(AnimateBounce(enemyScoreText.transform));
-
-        if (enemyScore >= winningScore)
-            TriggerEndgame(false);
+        if (enemyScore >= winningScore) {
+            gameEnded = true;
+            EndgameManager.instance.TriggerEndgame(false);
+        }
     }
 
     private void UpdatePlayerUI() {
-        if (playerScoreText != null)
+        if (playerScoreText)
             playerScoreText.text = Mathf.FloorToInt(playerScore).ToString();
     }
 
     private void UpdateEnemyUI() {
-        if (enemyScoreText != null)
+        if (enemyScoreText)
             enemyScoreText.text = Mathf.FloorToInt(enemyScore).ToString();
     }
 
@@ -80,63 +72,19 @@ public class TargetManager : MonoBehaviour {
         Vector3 original = target.localScale;
         Vector3 enlarged = original * bounceScale;
         float half = bounceDuration * 0.5f;
-        float t = 0f;
 
-        // Scale up
+        float t = 0f;
         while (t < half) {
             t += Time.deltaTime;
             target.localScale = Vector3.Lerp(original, enlarged, t / half);
             yield return null;
         }
 
-        // Scale down
         t = 0f;
         while (t < half) {
             t += Time.deltaTime;
             target.localScale = Vector3.Lerp(enlarged, original, t / half);
             yield return null;
         }
-    }
-
-    private void TriggerEndgame(bool playerWon) {
-        gameEnded = true;
-
-        if (objectToDisable != null)
-            objectToDisable.SetActive(false);
-
-        Vector3 spawnPos = playerWon && playerScoreText != null
-            ? playerScoreText.transform.position
-            : enemyScoreText.transform.position;
-
-        GameObject prefab = playerWon ? playerWinSpritePrefab : enemyWinSpritePrefab;
-        if (prefab != null)
-            StartCoroutine(SpawnWinSprite(prefab, spawnPos));
-
-        StartCoroutine(WaitForClickThenShowUI());
-    }
-
-    private IEnumerator SpawnWinSprite(GameObject prefab, Vector3 position) {
-        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
-        Transform trans = obj.transform;
-
-        Vector3 start = Vector3.one * 0.5f;
-        Vector3 end = Vector3.one * 1.2f;
-        float duration = 0.4f;
-        float t = 0f;
-
-        trans.localScale = start;
-
-        while (t < duration) {
-            t += Time.deltaTime;
-            trans.localScale = Vector3.Lerp(start, end, t / duration);
-            yield return null;
-        }
-    }
-
-    private IEnumerator WaitForClickThenShowUI() {
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E));
-
-        if (endgameUICanvas != null)
-            endgameUICanvas.enabled = true;
     }
 }

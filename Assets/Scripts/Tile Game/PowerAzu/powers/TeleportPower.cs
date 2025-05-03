@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class TeleportPower : MonoBehaviour, ITilePower {
     public GameObject teleportMarkerPrefab;
@@ -16,19 +17,27 @@ public class TeleportPower : MonoBehaviour, ITilePower {
     private float activationTime;
 
     public void Activate(Tile tile) {
-        if (teleportMarkerPrefab == null) return;
-
         owningTile = tile;
-        teleportActive = true;
-        activationTime = Time.time;
 
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorld.z = 0;
-        markerInstance = Instantiate(teleportMarkerPrefab, mouseWorld, Quaternion.identity);
+        if (owningTile.isEnemy) {
+            Vector3 furthestTargetPos = GetFurthestTargetPosition(tile.transform.position);
+            if (furthestTargetPos != Vector3.positiveInfinity) {
+                owningTile.StartCoroutine(TeleportSequence(furthestTargetPos));
+            }
+        } else {
+            if (teleportMarkerPrefab == null) return;
+
+            teleportActive = true;
+            activationTime = Time.time;
+
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorld.z = 0;
+            markerInstance = Instantiate(teleportMarkerPrefab, mouseWorld, Quaternion.identity);
+        }
     }
 
     void Update() {
-        if (!teleportActive) return;
+        if (!teleportActive || owningTile == null || owningTile.isEnemy) return;
 
         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorld.z = 0;
@@ -36,17 +45,13 @@ public class TeleportPower : MonoBehaviour, ITilePower {
         if (markerInstance != null)
             markerInstance.transform.position = mouseWorld;
 
-        // Prevent immediate teleport
         if (Time.time < activationTime + activationDelay) return;
 
-        // Confirm teleport with left click or E
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) {
-            if (owningTile != null)
-                owningTile.StartCoroutine(TeleportSequence(mouseWorld));
+            owningTile.StartCoroutine(TeleportSequence(mouseWorld));
             teleportActive = false;
         }
 
-        // Cancel with right click or Escape
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) {
             if (markerInstance != null) Destroy(markerInstance);
             teleportActive = false;
@@ -58,8 +63,7 @@ public class TeleportPower : MonoBehaviour, ITilePower {
 
         Transform tileTransform = owningTile.transform;
 
-        // Shrink & disappear
-        float t = 0;
+        float t = 0f;
         Vector3 originalScale = tileTransform.localScale;
         while (t < 1f) {
             t += Time.deltaTime / scaleDuration;
@@ -70,11 +74,9 @@ public class TeleportPower : MonoBehaviour, ITilePower {
         if (disappearSound != null)
             AudioSource.PlayClipAtPoint(disappearSound, tileTransform.position);
 
-        // Move while invisible
         tileTransform.position = targetPosition;
 
-        // Reappear & grow
-        t = 0;
+        t = 0f;
         while (t < 1f) {
             t += Time.deltaTime / scaleDuration;
             tileTransform.localScale = Vector3.Lerp(Vector3.zero, originalScale, t);
@@ -83,5 +85,15 @@ public class TeleportPower : MonoBehaviour, ITilePower {
 
         if (reappearSound != null)
             AudioSource.PlayClipAtPoint(reappearSound, tileTransform.position);
+    }
+
+    private Vector3 GetFurthestTargetPosition(Vector3 origin) {
+        if (EnemyAzuManager.instance == null || EnemyAzuManager.instance.targets == null || EnemyAzuManager.instance.targets.Count == 0)
+            return Vector3.positiveInfinity;
+
+        return EnemyAzuManager.instance.targets
+            .OrderByDescending(t => Vector3.Distance(origin, t.position))
+            .First()
+            .position;
     }
 }
