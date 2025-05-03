@@ -10,6 +10,7 @@ public class EnemyAzuManager : MonoBehaviour {
     public List<GameObject> enemyTilePrefabs;
     public List<PowerActiveSpot> enemyActiveSpots;
     public List<Transform> targets;
+    public List<Tile> playerTiles;
 
     [Header("Physics")]
     public float chargeForce = 1000f;
@@ -20,6 +21,10 @@ public class EnemyAzuManager : MonoBehaviour {
     public float enemyLaunchForceMultiplier = 0.25f;
     public float launchDelayMin = 1f;
     public float launchDelayMax = 2f;
+
+    [Header("AI Behavior")]
+    [Range(0f, 1f)] public float chanceToTargetPlayerTile = 0.25f;
+    [Range(0f, 1f)] public float chanceToUsePowerInstead = 0.25f;
 
     [Header("Bounce Feedback")]
     public GameObject flashEffectPrefab;
@@ -132,8 +137,9 @@ public class EnemyAzuManager : MonoBehaviour {
             if (activeEnemyTiles.Count > 0) {
                 Tile tile = GetNextTileToLaunch();
                 if (tile != null) {
-                    var tracker = tile.GetComponent<EnemyTileTargetTracker>();
-                    if (tracker != null && !tracker.IsTouchingTarget()) {
+                    if (Random.value < chanceToUsePowerInstead && tile.tilePower != null) {
+                        tile.tilePower.Activate(tile);
+                    } else {
                         LaunchTile(tile);
                         lastLaunchedTile = tile;
                     }
@@ -157,9 +163,12 @@ public class EnemyAzuManager : MonoBehaviour {
 
         Vector3 targetDirection;
 
-        if (targets.Count > 0 && Random.value < 0.75f) {
+        if (targets.Count > 0 && Random.value > chanceToTargetPlayerTile) {
             Transform closest = targets.OrderBy(t => Vector3.Distance(tile.transform.position, t.position)).FirstOrDefault();
             targetDirection = (closest.position - tile.transform.position).normalized;
+        } else if (playerTiles.Count > 0) {
+            Tile closestPlayerTile = playerTiles.OrderBy(t => Vector3.Distance(tile.transform.position, t.transform.position)).FirstOrDefault();
+            targetDirection = (closestPlayerTile.transform.position - tile.transform.position).normalized;
         } else {
             targetDirection = Random.insideUnitCircle.normalized;
         }
