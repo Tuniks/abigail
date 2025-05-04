@@ -60,7 +60,7 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
     }
 
     public void SetFriendTile(Tile tile, int round){
-        ItemElement item = tile.GetComponentInParent<ItemElement>();
+        GameObject item = Instantiate(tile.gameObject);
 
         GameObject tileSlot = friendSlots[round-1];
 
@@ -77,8 +77,8 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
     private string ScrewWord(string _word, int round){
         if(round >= 3) return _word;
 
-        float pct = .85f;
-        if(round == 2) pct = 7f;
+        float pct = .7f;
+        if(round == 2) pct = .55f;
 
         StringBuilder newWord = new StringBuilder(_word);
         for(int i = 0; i < _word.Length; i++){

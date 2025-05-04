@@ -101,6 +101,7 @@ public class PlayerUIManager : MonoBehaviour{
         // If hovering convo drop spot, drop it
         if(convoSlot != null && currentConvo != null && currentConvo.IsActive()){
             currentConvo.OnTileSelected(element.GetTile(), convoSlot);
+            SetCurrentSlot(null);
             return;
         }
 

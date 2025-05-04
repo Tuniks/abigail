@@ -85,9 +85,9 @@ public class ClayAzulejoConvo : BaseConvo{
         yield return new WaitForSeconds(friendTileDelay);
 
         Tile tile = currentFriendHand[Random.Range(0, currentFriendHand.Count)];
-        currentFriendHand.Remove(tile);
         convoUI.SetFriendTile(tile, tileCount);
         AddAttributes(tile);
+        currentFriendHand.Remove(tile);
 
         StartCoroutine(ResolveRound());
     }
@@ -99,6 +99,7 @@ public class ClayAzulejoConvo : BaseConvo{
 
         WordDialoguePair current = GetCurrentWord();
         convoUI.UpdateWord(current.word, tileCount);
+        currentActive = true;
 
         if(tileCount >= 3) StartCoroutine(EndConvo(current.dialogueNode));
     }
