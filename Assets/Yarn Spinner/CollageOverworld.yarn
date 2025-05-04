@@ -18,8 +18,10 @@ Dani: Yeah, it’s not the same without you.
 Dani: It’s Abigail this, Abigail that, apparently my table setting doesn’t hold a candle to yours.
 Abigail: Hey um…do you remember this azulejo tile I used to have? It had like, a swirl on it?
 Dani: No? I don't think so.
-Dani: You could try playing Azulejo with people here and see if any of their tiles jog your memory?
-Dani: I'll be here pondering bureaucratic disasters until you get back.
+Dani: You could try playing azulejo with people here and see if any of their tiles jog your memory?
+Dani: Oh and after that can you come back and we can try the sigil together.
+Abigail: This one is so creepy, it looks like a crime scene. 
+Abigail: But yeah, I’m in. 
 <<StartRound1 SceneController>>
 ===
 title: Dani1
@@ -28,12 +30,15 @@ tags:
 <<if visited("Dani1") is false>>
 Abigail: I haven’t seen anything like that tile. 
 Dani: It’ll come back to you, I know it. 
-Dani: Down to play with me? 
-Abigail: Always.
+Dani: You ready to try placing a tile? 
+Abigail: Playing here always puts me so on edge. 
+Dani: I think it's exciting. Remember when Kate's battery tile started a lightning storm?
+Abigail: Don't remind me. 
 <<else>>
-Dani: Let's get back to it.
+Dani: I'm hoping for another natural diaster! 
 <<endif>>
-<<StartAzulejoConversation AzulejoConvoDani1>>
+<<StartAzulejoConversation CollageAzulejoSigilTest>>
+//<<StartAzulejoConversation AzulejoConvoDani1>>
 ===
 title: Dani1NegativeTiles
 tags:
@@ -153,7 +158,7 @@ Abigail: Was it really like that, at the writing residency?
 Dani: I don’t know dude, being there just really sucked.
 ->  At least you tried
     Dani: I feel like I was more hopeful before I tried.
-    Dani: Now it’s like I know that I can’t do it.
+    Dani: Now I know that I'm never gonna be able to leave this place.
     Abigail: No it wasn’t. Dani-
     Dani: It’s okay Abbs don’t worry about it.
 -> Are you still writing?
@@ -175,6 +180,30 @@ Abigail: That's perfect. Let's go.
 <<else>>
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
+===
+title: TesterNode
+tags:
+---
+Lucia: Oh boy
+<<StartAzulejoConversation CollageAzulejoSigilTest>>
+===
+title: AcquaticNode
+tags:
+---
+Steffano: Wow. Now an animation is gonna play where the kraken comes. 
+===
+title: ManMadeNode
+tags:
+---
+Steffano: Wow. Now an animation is gonna play where the building gets crushed.
+<<PlayFootAnimation SceneController>>
+===
+title: NeitherNode
+tags:
+---
+Steffano: I've been petitioning the city to tear down building for years! And I'm sick of it. 
+Lucia: Maybe we'll just have to do it ourselves...
+Steffano: Or maybe we can get the sea to do it!
 ===
 //=== NPCS ===
 title: Hank0
@@ -237,7 +266,6 @@ tags:
 <<if visited("Junior0") is false>>
 Junior: Hi miss! You look like you have excellent taste! 
 Abigail: Me? I don’t know about that. 
-//start azulejo
 <<else>>
 Junior: You're back!
 <<endif>>
@@ -387,7 +415,7 @@ tags:
 Abigail: I used to love these. 
 Abigail: Maybe I'll take a swing for old time's sake. 
 <<TriggerChange SwingSet>>
-Abigail: Or not
+Abigail: Or not.
 ===
 
 
