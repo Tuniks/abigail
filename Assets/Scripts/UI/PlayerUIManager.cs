@@ -34,7 +34,7 @@ public class PlayerUIManager : MonoBehaviour{
     public Notification newTileNotification;
 
     // === Azulejo Conversation ===
-    private AzulejoConvo currentConvo = null;
+    private BaseConvo currentConvo = null;
     private ConvoSlot convoSlot = null;
 
     [Header("Azulejo Phenomenon")]
@@ -99,8 +99,8 @@ public class PlayerUIManager : MonoBehaviour{
         element.UpdateSpriteOrder(orderCount*4);
         
         // If hovering convo drop spot, drop it
-        if(convoSlot != null && currentConvo != null){
-            currentConvo.OnTileSelected(element.GetTile());
+        if(convoSlot != null && currentConvo != null && currentConvo.IsActive()){
+            currentConvo.OnTileSelected(element.GetTile(), convoSlot);
             return;
         }
 
@@ -207,7 +207,7 @@ public class PlayerUIManager : MonoBehaviour{
 
 
     // ====== AZULEJO CONVO ======
-    public void SetCurrentConvo(AzulejoConvo convo){
+    public void SetCurrentConvo(BaseConvo convo){
         currentConvo = convo;
     }
 

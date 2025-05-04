@@ -9,7 +9,7 @@ public struct FaceDialoguePair{
     public string dialogueNode;
 }
 
-public class AzulejoConvo : MonoBehaviour{
+public class AzulejoConvo : BaseConvo{
     public AzulejoConvoUI convoUI;
 
     [Header("Conversation Nodes")]
@@ -19,7 +19,7 @@ public class AzulejoConvo : MonoBehaviour{
     [Header("Juice")]
     public float endConvoDelay = 1f;
 
-    private void StartConvo(){
+    protected override void StartConvo(){
         PlayerInteractor.instance.StartAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();
@@ -37,14 +37,14 @@ public class AzulejoConvo : MonoBehaviour{
         PlayerInteractor.instance.StartConversation(node);
     }
 
-    public void QuitConvo(){
+    public override void QuitConvo(){
         PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
     }
 
-    public void OnTileSelected(Tile tile){
+    public override void OnTileSelected(Tile tile, ConvoSlot slot){
         convoUI.SetTile(tile);
         string selectedFace = tile.GetName();
 
@@ -61,17 +61,15 @@ public class AzulejoConvo : MonoBehaviour{
         StartCoroutine(EndConvo(defaultNode));
     }
 
-    public Vector3 GetSlotPosition(){
+    public override bool IsActive(){
+        return true;
+    }
+
+    public override Vector3 GetSlotPosition(){
         return convoUI.GetSlotPosition();
     }
 
-    public float GetSlotScale(){
+    public override float GetSlotScale(){
         return convoUI.GetSlotScale();
-    }
-
-    // ==== YARN COMMANDS ====
-    [YarnCommand]
-    public void StartAzulejoConversation(){
-        StartConvo();
     }
 }
