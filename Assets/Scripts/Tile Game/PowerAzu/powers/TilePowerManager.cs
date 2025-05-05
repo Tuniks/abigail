@@ -12,7 +12,7 @@ public class TilePowerManager : MonoBehaviour {
     public List<AttributePowerPair> powerAssignments;
     public ITilePower assignedPower;
 
-    void Awake() {
+    void Start() {
         Tile tile = GetComponent<Tile>();
         if (tile == null || tile.isEnemy) return; // ✅ Skip assigning power to enemy tiles
 
