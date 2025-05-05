@@ -12,10 +12,8 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
     public GameObject[] friendSlots = new GameObject[3];
     public Animator rockAnimator;
 
-
     [Header("Tile Placement")]
     public Vector3 tileOffset = Vector3.zero;
-    public Vector3 tileRotation = Vector3.zero;
     public float tileScale = 1f;
 
     public void Show(){
@@ -54,7 +52,7 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
 
         item.transform.SetParent(tileSlot.transform);
         item.transform.localPosition = tileOffset;
-        item.transform.localRotation = Quaternion.Euler(tileRotation);
+        item.transform.localRotation = Quaternion.identity;
         item.transform.localScale = new Vector3(tileScale, tileScale, tileScale);
 
         // Deactivates slot so no other tile can come on top
@@ -68,7 +66,7 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
 
         item.transform.SetParent(tileSlot.transform);
         item.transform.localPosition = tileOffset;
-        item.transform.localRotation = Quaternion.Euler(tileRotation);
+        item.transform.localRotation = Quaternion.identity;
         item.transform.localScale = new Vector3(tileScale, tileScale, tileScale);
     }
 
