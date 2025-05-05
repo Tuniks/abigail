@@ -137,7 +137,10 @@ public class Tile : MonoBehaviour {
         }
     }
 
-    public string GetName() {
+    public string GetName(){
+        if(face == null){
+             return facePrefab.GetComponent<TileComponent>().title;
+        }
         return face.title;
     }
 
@@ -192,6 +195,7 @@ public class Tile : MonoBehaviour {
     }
 
     public bool HasFace(TileComponent _face) {
-        return face == _face;
+        if(_face == null) return false;
+        return GetName() == _face.title;
     }
 }
