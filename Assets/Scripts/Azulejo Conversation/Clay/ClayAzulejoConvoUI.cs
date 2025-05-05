@@ -10,7 +10,9 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
     public TextMeshProUGUI word;
     public GameObject[] playerSlots = new GameObject[3];
     public GameObject[] friendSlots = new GameObject[3];
-    
+    public Animator rockAnimator;
+
+
     [Header("Tile Placement")]
     public Vector3 tileOffset = Vector3.zero;
     public Vector3 tileRotation = Vector3.zero;
@@ -36,7 +38,7 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
         // Clearing Friend slots
         foreach(GameObject obj in friendSlots){
             foreach(Transform child in obj.transform){
-                if(child.GetComponent<ItemElement>()){
+                if(child.GetComponent<Tile>()){
                     Destroy(child.gameObject);
                 }
             }
@@ -86,6 +88,14 @@ public class ClayAzulejoConvoUI : MonoBehaviour{
         }
 
         return newWord.ToString();
+    }
+
+    public void StartTransformationAnimation(){
+        rockAnimator.SetTrigger("Transform");
+    }
+
+    public void StartSinkAnimation(){
+        rockAnimator.SetTrigger("Sink");
     }
 
     public Vector3 GetSlotPosition(){

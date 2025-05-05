@@ -45,11 +45,14 @@ public class ClayAzulejoConvo : BaseConvo{
         attributeTotals = new float[6]{0,0,0,0,0,0};
         currentFriendHand = new List<Tile>(friendTiles);
         currentActive = true;
+        convoUI.UpdateWord("",3);
 
         convoUI.Show();
     }
 
     private IEnumerator EndConvo(string node){
+        convoUI.StartSinkAnimation();
+        
         yield return new WaitForSeconds(endConvoDelay);
 
         PlayerInteractor.instance.EndAzulejoConvo();
@@ -93,7 +96,7 @@ public class ClayAzulejoConvo : BaseConvo{
     }
 
     private IEnumerator ResolveRound(){
-        // Start animation
+        convoUI.StartTransformationAnimation();
 
         yield return new WaitForSeconds(roundDelay);
 
