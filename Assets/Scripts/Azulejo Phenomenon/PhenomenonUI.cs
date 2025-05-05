@@ -7,7 +7,7 @@ public class PhenomenonUI : MonoBehaviour{
     public GameObject bg;
     public GameObject tileHolder;
 
-    public PlayableDirector tileAnimation;
+    public Animator tileAnimator;
 
     public float tileScale = 1f;
 
@@ -31,16 +31,15 @@ public class PhenomenonUI : MonoBehaviour{
 
     private IEnumerator TriggerPhenomenon(AzulejoPhenomenon phenomenon){
         yield return new WaitForSeconds(bagWait);
-        tileAnimation.Play();
+        tileAnimator.SetTrigger("Activate");
         
         yield return new WaitForSeconds(triggerWait);
         phenomenon.TriggerPhenomenon();
 
         yield return new WaitForSeconds(animationWait - triggerWait);
-        tileAnimation.Stop();
-        Destroy(tileHolder.GetComponentInChildren<Tile>().gameObject);
-        gameObject.SetActive(false);
+        Destroy(tileHolder.GetComponentInChildren<ItemElement>().gameObject);
         tileHolder.SetActive(false);
+        gameObject.SetActive(false);
 
         // Resets phenomenon to check if bag should still shake
         PlayerUIManager.instance.SetPhenomenon(phenomenon);
