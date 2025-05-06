@@ -3944,7 +3944,8 @@ Transform:
   m_LocalPosition: {x: -3.162242, y: -1.2302313, z: -0.038394228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1158885954}
   m_Father: {fileID: 693078350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &340065402
@@ -4132,6 +4133,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &347058925
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 340065401}
+    m_Modifications:
+    - target: {fileID: 1012363495445276616, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_Name
+      value: entericon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03858304
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14774704
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
 --- !u!4 &367523927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7746848998911024562, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
@@ -14524,6 +14582,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!4 &1158885954 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3940554468807829743, guid: e8bf7e11fe730ee49b68a9ce2b46d221, type: 3}
+  m_PrefabInstance: {fileID: 347058925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159990190
 GameObject:
   m_ObjectHideFlags: 0
@@ -15707,7 +15770,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -20
   m_Sprite: {fileID: -44219322, guid: d0e6506baeb754934a46697133e4d6e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -17222,7 +17285,7 @@ Transform:
   m_GameObject: {fileID: 1458935215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.15, y: 7, z: 0}
+  m_LocalPosition: {x: 5.81, y: 8.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
