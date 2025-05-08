@@ -74,6 +74,10 @@ public class RoundManager : MonoBehaviour
     public GameObject WillThisWork;
     private DialogueRunner dialogueRunner;
     private bool TextDone = false;
+    public GameObject Option1UI;
+    public GameObject Option2UI;
+    public GameObject ChallengeCloudUI;
+    
 
     // Round Option GameObjects
     public GameObject Round1Option1; // Assigned in Inspector
@@ -149,7 +153,9 @@ public class RoundManager : MonoBehaviour
 
         if (roundCount < challengeTexts.Length)
         {
-            OptionsClouds.SetActive(true);
+            //OptionsClouds.SetActive(true);
+            Option1UI.SetActive(true);
+            Option2UI.SetActive(true);
             buttonOption1Text.text = buttonTexts[roundCount, 0];
             buttonOption2Text.text = buttonTexts[roundCount, 1];
         }
@@ -256,6 +262,8 @@ public class RoundManager : MonoBehaviour
     private void TransitionToChallengeReaction()
     {
         ClearText(); // Clear text before transitioning
+        Option1UI.SetActive(false);
+        Option2UI.SetActive(false);
 
         option1Button.gameObject.SetActive(false);
         option2Button.gameObject.SetActive(false);
@@ -346,7 +354,7 @@ public class RoundManager : MonoBehaviour
         if (selectedChallengeText != null)
         {
             CurrentChallenge.text = selectedChallengeText; // Use the stored challenge text
-            ChallengeCloud.SetActive(true);
+            ChallengeCloudUI.SetActive(true);
         }
         else
         {
@@ -418,7 +426,8 @@ public class RoundManager : MonoBehaviour
         Round1Option2.SetActive(false);
         Round2Option2.SetActive(false);
         Round3Option2.SetActive(false);
-        ChallengeCloud.SetActive(false);
+        //ChallengeCloud.SetActive(false);
+        ChallengeCloudUI.SetActive(false);
     
         uiContainer.SetActive(true);
         CurrentChallenge.text = "";

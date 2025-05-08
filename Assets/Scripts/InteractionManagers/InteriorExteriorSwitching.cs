@@ -7,16 +7,18 @@ public class InteriorExteriorSwitching : MonoBehaviour
     public GameObject Player;
 
     private bool playerIsInside = false;
-    private bool InteriorMode = false;
+    private bool interiorMode = false;
+
+    public bool hasEverEnteredInterior { get; private set; } = false;
 
     void Update()
     {
-        // Press E to go inside
-        if (playerIsInside && Input.GetKeyDown(KeyCode.E) && !InteriorMode)
+        if (playerIsInside && Input.GetKeyDown(KeyCode.E) && !interiorMode)
         {
             Interior.SetActive(true);
             Exterior.SetActive(false);
-            InteriorMode = true;
+            interiorMode = true;
+            hasEverEnteredInterior = true; // ✅ Mark it forever
         }
     }
 
@@ -26,12 +28,11 @@ public class InteriorExteriorSwitching : MonoBehaviour
         {
             playerIsInside = true;
 
-            // Automatically switch to exterior if coming from interior
-            if (InteriorMode)
+            if (interiorMode)
             {
                 Interior.SetActive(false);
                 Exterior.SetActive(true);
-                InteriorMode = false;
+                interiorMode = false; // ok to reset this
             }
         }
     }

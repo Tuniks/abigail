@@ -312,8 +312,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 293717441}
-  - component: {fileID: 293717442}
-  - component: {fileID: 293717443}
   - component: {fileID: 293717444}
   - component: {fileID: 293717445}
   m_Layer: 0
@@ -338,46 +336,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &293717442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293717440}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd1655b3b8d6544095e49375fc75e6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurtainInteractionHappened: 0
-  BeforeInteraction: {fileID: 712998599}
-  AfterInteraction: {fileID: 655097384}
-  Sound: {fileID: 8300000, guid: 3e5f4dd9063031244ae66d1aa3eb2bc4, type: 3}
-  audioSource: {fileID: 293717444}
-  tile: []
-  player: {fileID: 1443111404}
-  interactionRadius: 3
---- !u!114 &293717443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293717440}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd1655b3b8d6544095e49375fc75e6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurtainInteractionHappened: 0
-  BeforeInteraction: {fileID: 1478126752}
-  AfterInteraction: {fileID: 2032111872}
-  Sound: {fileID: 8300000, guid: f2e74b255992e4d4eab83d0823af254c, type: 3}
-  audioSource: {fileID: 293717444}
-  tile: []
-  player: {fileID: 1443111404}
-  interactionRadius: 3
 --- !u!82 &293717444
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2940,7 +2898,7 @@ PrefabInstance:
       objectReference: {fileID: 7545569452688597077, guid: 9e4d133e6ade50745b8d122645f8e8a0, type: 3}
     - target: {fileID: 1436938499517747022, guid: 7677eb80d9da4dd4591de1c808931492, type: 3}
       propertyPath: startAutomatically
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

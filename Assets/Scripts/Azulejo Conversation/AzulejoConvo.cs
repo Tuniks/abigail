@@ -18,7 +18,16 @@ public class AzulejoConvo : BaseConvo{
 
     [Header("Juice")]
     public float endConvoDelay = 1f;
+    
+    [Header("Sounds")]
+    public AudioClip TilePlacedInHand;
+    public AudioSource audioSource;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+    
     protected override void StartConvo(){
         PlayerInteractor.instance.StartAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(this);
@@ -45,6 +54,7 @@ public class AzulejoConvo : BaseConvo{
     }
 
     public override void OnTileSelected(Tile tile, ConvoSlot slot){
+        audioSource.PlayOneShot(TilePlacedInHand, 0.7F);
         convoUI.SetTile(tile);
         string selectedFace = tile.GetName();
 
