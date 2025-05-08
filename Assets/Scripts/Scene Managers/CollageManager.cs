@@ -17,6 +17,8 @@ public class CollageManager : AreaManager{
     
     [Header("Game Objects for Interactions")]
     public GameObject LandfillEntrance;
+
+    public GameObject StaticLandfill;
     public GameObject FootAnimation;
     public GameObject Warehouse;
     public AudioClip Sound;
@@ -29,18 +31,18 @@ public class CollageManager : AreaManager{
                 break;
             case 1:
                 // First round
-                UpdateDialogueNode(dani, "Dani1");
+                UpdateDialogueNode(dani, "DaniSigilAzulejo");
                 break;
             case 2:
-                // Post Azulejo
-                UpdateDialogueNode(dani, "Dani2");
+                //Post Azulejo
+                UpdateDialogueNode(dani, "Dani5");
                 break;
-            case 3:
-                UpdateDialogueNode(dani, "Dani3");
-                break;
-            case 4:
-                UpdateDialogueNode(dani, "Dani4");
-                break;
+            //case 3:
+                //UpdateDialogueNode(dani, "Dani3");
+                //break;
+            //case 4:
+                //UpdateDialogueNode(dani, "Dani4");
+                //break;
         }
     }
 
@@ -63,7 +65,7 @@ public class CollageManager : AreaManager{
     [YarnCommand]
     public void EndAzulejoGame(){
         WorldState.Instance.UpdateNPCDialogueNode("Chase", "Chase4");
-        WorldState.Instance.UpdateSceneState(Areas.Collage, 4, true);
+        WorldState.Instance.UpdateSceneState(Areas.Collage, 2, true);
         WorldState.Instance.UpdateSceneState(Areas.Felt, 2);
     }
     
@@ -95,6 +97,7 @@ public class CollageManager : AreaManager{
     public void OpenLandfill()
     {
         LandfillEntrance.SetActive(true);
+        StaticLandfill.SetActive(false);
     }
     
     [YarnCommand]

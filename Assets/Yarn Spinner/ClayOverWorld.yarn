@@ -2,48 +2,80 @@
 title: KateAz0
 tags:
 ---
-Kate: Whether or not I'm seeing someone isn't really your business Abigail. 
+<<HideIndicator ToggleIndicatorKate>>
+Kate: Ready for the pools to tell you the secrets of your heart?
+Abigail: You know I don't believe in that stuff.
+Kate: The pools read the energy around them, and then give you a word to contemplate. It's gonna happen whether you believe in it or not.
+Abigail: Let's just play.
 <<StartAzulejoConversation Kate>>
 ===
 title: KateAzBeauty
 tags:
 ---
-Kate: BEAUTY
+Kate: Do you remember what the pools said when we first got together?
+Abigail: Wasn’t it ephemeral?
+Kate: I guess we should have seen it coming.
+<<jump Kate2>>
 ===
 title: KateAzVigor
 tags:
 ---
-Kate: VIGOR
+Kate: I don’t want to, but I feel really angry at you Abigail.
+Abigail: Yeah, that’s fair. I'm upset with my self too, about how I handled things.
+Abigail: Would punching me in the face help?
+Kate: Nope!
+<<jump Kate2>>
 ===
 title: KateAzMagic
 tags:
 ---
-Kate: MAGIC
+Kate: For a while, it's felt like you stopped existing.
+Abigail: I’ve been feeling that way too. Like I’m not really anywhere.
+Kate: Well, right now, you’re here with me.
+Abigail: Being here is kinda the best I’ve felt in months.
+<<jump Kate2>>
 ===
 title: KateAzHeart
 tags:
 ---
-Kate: HEART
+Abigail: I’ve really missed you Kate.
+Kate: C’mon, I’m sure you’ve found plenty of cool city girls.
+Abigail: I’ve never met anyone who made me feel the way you did.
+Kate: I don’t really know what to do with that.
+<<jump Kate2>>
 ===
 title: KateAzIntellect
 tags:
 ---
-Kate: INTELLECT
+Kate: I wish I could logic myself out of how I feel about seeing you.
+Kate: It’s been years and now you’re here and that’s nice but...
+Abigail: But you, you wish I wasn’t?
+Kate: No, I just, it’s not how I imagined it would be.
+<<jump Kate2>>
 ===
 title: KateAzTerror
 tags:
 ---
-Kate: TERROR
+Kate: I don’t like how this feels.
+Kate: I’ve dreaded you coming back and I’ve wished for it.
+Abigail: I know Kate, I, I’m sorry.
+Kate: It’s fine, I’ll be okay, I always am.
+<<jump Kate2>>
 ===
 title: KateAzBase
 tags:
 ---
-Kate: BASE
+Kate: I don’t want to be bitter with you Abigail.
+Abigail: I deserve it though.
+Kate: Yeah, but I don’t deserve to feel this way.
+Abigail: That’s true, you deserve…you deserve so many good things.
+<<jump Kate2>>
 ===
 title: Kate0
 tags:
 ---
 <<if visited("Kate0") is false>>
+<<HideIndicator ToggleIndicatorKate>>
 Kate: Abigail! What are you doing here?
 Abigail: Oh you know, just, looking for a tile from my childhood that I think transported me back here. 
 Kate: You're long over due for a visit so I thought this was a purposeful trip, but that's cool. 
@@ -64,8 +96,10 @@ Abigail: I'd really like that. I have to go check out Miller's Antiques but when
 Kate: I'd love to. 
 <<OpenAntiqueShop SceneController>>
 <<else>>
+<<HideIndicator ToggleIndicatorKate>>
 Kate: Once you're done checking out Miller's Antiques we can play Azulejo. 
 <<endif>>
+<<ShowIndicator ToggleIndicatorKate>>
 ===
 title: AntiqueShop
 tags:
@@ -111,24 +145,28 @@ title: Kate2
 tags:
 ---
 <<if visited("Kate2") is false>>
-Kate: Admit it Abigail. The pools knew!
-Abigail: You're telling me the pools know that we dated and then broke each other's hearts?
-Abigail: Speaking of romantic trainwrecks, any chance you have a tile that reminds you of Chase's love life?
-Kate: Uh yeah, here. This weird little guy with wings.
+Kate: So um, did you meet Chase’s annoying new friend?
+Abigail: Yeah, and now Chase wants me to find a tile that represents his love life or something.
 <<GiveFlyingPill SceneController>>
-Kate: Dude's got commitment issues, loves to just fly away. 
-Abigail: Thanks, glad Chase asked me for this and not Gabe, that dude's love life has always been bleak. 
-Kate: Yeah, um, about that...
-Kate: I'm not seeing anyone right now but I was and unfortunately it was Gabe. 
+Kate: Here. Give him this weird little guy with wings.
+Kate: Dude's got commitment issues, loves to just fly away.
+Abigail: This is perfect, thanks.
+Kate: I’m sorry I got so defensive earlier, when you asked if I’m dating anyone.
+Kate: I'm not seeing anyone right now but I was and unfortunately it was Gabe.
 Abigail: Why exactly are you telling me this?
-Kate: Because we're all about to go to your house for dinner? Your mom invited everyone. 
-Abigail: Oh my god. 
-Kate: It wasn't serious. At least for me it wasn't serious. 
-Abigail: Let's just go meet up with Chase. 
+Kate: Because we're all about to go to your house for dinner? Your mom invited everyone.
+Abigail: Oh my god.
+Kate: It wasn't serious. At least for me it wasn't serious.
+Abigail: Let's just go meet up with Chase.
 <<PostClayAzulejoDone SceneController>>
 <<else>>
-Kate: I'm excited to see your mom. I miss that lady. 
+Kate: I'm excited to see your mom. I miss that lady.
 <<endif>>
+===
+title: Kate3
+tags:
+---
+Kate: I'm excited to see your mom. I miss that lady. 
 ===
 //=== CLAY NPCS ===
 title: Harold0

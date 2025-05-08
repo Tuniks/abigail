@@ -20,6 +20,8 @@ public class ClayManager : AreaManager{
     
     [Header("Tiles")]
     public GameObject antiqueShop;
+
+    public GameObject staticantiqueshop;
     public Tile[] salthairTile;
     public Tile[] handholdTile;
     public Tile[] clockTile;
@@ -81,6 +83,7 @@ public class ClayManager : AreaManager{
     public void OpenAntiqueShop()
     {
         AntiqueShopEntrance.SetActive(true);
+        staticantiqueshop.SetActive(false);
         
     }
     

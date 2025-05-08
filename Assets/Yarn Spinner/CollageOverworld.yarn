@@ -7,7 +7,7 @@ Abigail: Hi.
 title: Dani0
 tags:
 ---
-Dani: Now I know that I'm never gonna be able to leave this place.
+<<HideIndicator IndicatorToggleDani>>
 Abigail: Hey loser.
 Abigail: Knew I’d find you over here.
 Dani: I’m a fan of mesmerizing catastrophes, what can I say?
@@ -23,6 +23,7 @@ Dani: You could try playing azulejo with people here and see if any of their til
 Dani: Oh and after that can you come back and we can try the sigil together.
 Abigail: This one is so creepy, it looks like a crime scene. 
 Abigail: But yeah, I’m in. 
+<<ShowIndicator IndicatorToggleDani>>
 <<StartRound1 SceneController>>
 ===
 title: Dani1
@@ -40,116 +41,6 @@ Dani: I'm hoping for another natural diaster!
 <<endif>>
 <<StartAzulejoConversation CollageAzulejoSigilTest>>
 //<<StartAzulejoConversation AzulejoConvoDani1>>
-===
-title: Dani1NegativeTiles
-tags:
----
-Dani: Exactly. Really bummer vibes there. 
-Dani: How about… some reminiscing about your former employer?
-<<StartRound2 SceneController>>
-<<jump Dani2>>
-===
-title: Dani1Fire
-tags:
----
-Dani: I wish that place had burned down. 
-Abigail: Really? Isn’t that a little dramatic?
-Dani: I had to listen to thousands of shitty poems about the moon.
-<<StartRound2 SceneController>>
-<<jump Dani2>>
-===
-title: Dani1Gianlucas
-tags:
----
-Dani: What?! How can you possibly associate him with this?
-Dani: Think about the most rancid and annoying vibes you’ve ever encountered. 
-<<StartRound2 SceneController>>
-<<jump Dani2>>
-===
-title: Dani1-0
-tags:
----
-Dani: Dude no, think about the most rancid and annoying vibes you’ve ever encountered. 
-<<StartRound2 SceneController>>
-<<jump Dani2>>
-===
-title: Dani2
----
-Dani: Ok, I got another one to see if you still think about us.
-Dani: How about… some reminiscing about your former employer?
-<<StartAzulejoConversation AzulejoConvoDani2>>
-===
-title: Dani2BSeafood
-tags:
----
-Abigail: I used to go home with the smell of fish absorbed into my hair. 
-Dani: Tell me about it, and it’s definitely less fun now that I have no one to be stinky with. 
-Abigail: Your parents are there. 
-Dani: You know it’s not the same Abbs.
-<<StartRound3 SceneController>>
-<<jump Dani3>>
-===
-title: Dani2BGeneralFood
-tags:
----
-Dani: My parents are trying to get Gianluca to hook them up with his produce supplier, but dude is being so cagey ever since this whole Neptune Diner rivalry really started up.
-Abigail: How did that even start? Before I left things seemed chill. 
-Dani: Maybe it’s because of Power Azulejo? Kiln is starting to turn into a tourist trap. 
-Abigail: I mean isn’t that good for everyone? 
-Dani: I feel conflicted about it, it’s good for my parent’s restaurant, but it feels…weird to see people playing azulejo like that.
-<<StartRound3 SceneController>>
-<<jump Dani3>>
-===
-title: Dani2-0
-tags:
----
-Dani: C’mon dude, what are you talking about?
-Dani: Did you block it out now that you’re a big shot cook?
-<<StartRound3 SceneController>>
-<<jump Dani3>>
-===
-title: Dani3
----
-Dani: Ok, one last round.
-Dani: Tell me about yourself!
-<<StartAzulejoConversation AzulejoConvoDani3>>
-===
-title: Dani3KilnTiles
-tags:
----
-Dani: Dude no way you’re thinking about Kiln while you’re out there. 
-Abigail: I guess I just get homesick sometimes. 
-Dani: But you never visit. 
-Abigail: I’ve just been really busy, I’m sorry.
-<<EndAzulejoGame SceneController>>
-<<jump Dani4>>
-===
-title: Dani3GeneralFood
-tags:
----
-Dani: Of course, you’re working at some fancy restaurant, endlessly whipping up delicious food. 
-Abigail: Not really. But I’m definitely cooking a lot, that’s for sure. 
-Dani: My dad is gonna talk your ear off about the new specials when you see him. 
-Abigail: I would love that.
-<<EndAzulejoGame SceneController>>
-<<jump Dani4>>
-===
-title: Dani3NegativeTiles
-tags:
----
-Dani: Dude what are you talking about!
-Dani: If it sucks that bad why don’t you just come back?
-Abigail: It’s not…it’s complicated.
-<<EndAzulejoGame SceneController>>
-<<jump Dani4>>
-===
-title: Dani3-0
-tags:
----
-Dani: Really? I'm not sure if I 100% understand you.
-Dani: But that seems poetic.
-<<EndAzulejoGame SceneController>>
-<<jump Dani4>>
 ===
 title: Dani4
 tags:
@@ -182,22 +73,96 @@ Abigail: That's perfect. Let's go.
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
 ===
-title: TesterNode
+title: DaniSigilAzulejo
 tags:
 ---
-Lucia: Oh boy
-<<StartAzulejoConversation CollageAzulejoSigilTest>>
+<<HideIndicator IndicatorToggleDani>>
+<<if visited("DaniSigilAzulejo") is false>>
+Abigail: I haven’t seen anything like that tile. 
+Dani: It’ll come back to you, I know it. 
+Dani: You ready to try placing a tile? 
+Abigail: Playing here always puts me so on edge. 
+Dani: I think it's exciting. Remember when Kate's battery tile started a lightning storm?
+Abigail: Don't remind me. 
+<<else>>
+Dani: I'm hoping for another natural diaster! 
+<<endif>>
+<<StartAzulejoConversation Dani>>
+<<ShowIndicator IndicatorToggleDani>>
 ===
 title: AcquaticNode
 tags:
 ---
+<<if visited("AcquaticNode") is false>>
+<<HideIndicator IndicatorToggleDani>>
+<<EndAzulejoGame SceneController>>
 Steffano: Wow. Now an animation is gonna play where the kraken comes. 
+Abigail: Was it really like that, at the writing residency? 
+Dani: I don’t know dude, being there just really sucked.
+->  At least you tried
+    Dani: I feel like I was more hopeful before I tried.
+    Dani: Now I know that I'm never gonna be able to leave this place.
+    Abigail: No it wasn’t. Dani-
+    Dani: It’s okay Abbs don’t worry about it.
+-> Are you still writing?
+    Dani: Of course, I wouldn’t just stop.
+    Abigail: No I know, I’m just-
+    Dani: I can’t believe you’d ask me that.
+    Abigail: I asked because I want to know what’s going on with you.
+    Dani: I’m sorry, I shouldn’t have said that Abbs.
+Dani: Are you ready to see Kate later? Your mom invited everyone over for dinner. 
+Abigail: Oh my god.
+Dani: I apologize in advance for this, but I need to prepare you for the jokes Gabe might make later.
+Dani: Kate and Gabe. Uh...they happened.
+Abigail: What??? No.
+Dani: It's over now. She was “too busy for a relationship”, but it happened.
+Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
+Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
+<<Giveslime SceneController>>
+Abigail: That's perfect. Let's go.
+<<else>>
+Dani: Go give the tile to Chase. I'll meet you at your mom's.
+<<endif>>
+===
+title: Dani5
+tags:
+---
+Dani: Go give the tile to Chase. I'll meet you at your mom's.
 ===
 title: ManMadeNode
 tags:
 ---
+<<if visited("AcquaticNode") is false>>
+<<HideIndicator IndicatorToggleDani>>
+<<EndAzulejoGame SceneController>>
 Steffano: Wow. Now an animation is gonna play where the building gets crushed.
 <<PlayFootAnimation SceneController>>
+Abigail: Was it really like that, at the writing residency? 
+Dani: I don’t know dude, being there just really sucked.
+->  At least you tried
+    Dani: I feel like I was more hopeful before I tried.
+    Dani: Now I know that I'm never gonna be able to leave this place.
+    Abigail: No it wasn’t. Dani-
+    Dani: It’s okay Abbs don’t worry about it.
+-> Are you still writing?
+    Dani: Of course, I wouldn’t just stop.
+    Abigail: No I know, I’m just-
+    Dani: I can’t believe you’d ask me that.
+    Abigail: I asked because I want to know what’s going on with you.
+    Dani: I’m sorry, I shouldn’t have said that Abbs.
+Dani: Are you ready to see Kate later? Your mom invited everyone over for dinner. 
+Abigail: Oh my god.
+Dani: I apologize in advance for this, but I need to prepare you for the jokes Gabe might make later.
+Dani: Kate and Gabe. Uh...they happened.
+Abigail: What??? No.
+Dani: It's over now. She was “too busy for a relationship”, but it happened.
+Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
+Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
+<<Giveslime SceneController>>
+Abigail: That's perfect. Let's go.
+<<else>>
+Dani: Go give the tile to Chase. I'll meet you at your mom's.
+<<endif>>
 ===
 title: NeitherNode
 tags:

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ObjectMovement : MonoBehaviour
 {
-    public float pushForce = 5f;           // How strong the bump is
-    public float slowdownRate = 5f;        // How quickly it comes to a stop
+    public float pushForce = 5f;           
+    public float slowdownRate = 5f;        
     private Rigidbody2D rb;
     private Vector2 currentVelocity;
+    public AudioClip BallKickedSound;
+    public AudioSource audioSource;
+
 
     void Start()
     {
@@ -26,6 +29,7 @@ public class ObjectMovement : MonoBehaviour
             
             Vector2 direction = (transform.position - collision.transform.position).normalized;
             currentVelocity = direction * pushForce;
+            audioSource.PlayOneShot(BallKickedSound, 0.7F);
         }
     }
 
