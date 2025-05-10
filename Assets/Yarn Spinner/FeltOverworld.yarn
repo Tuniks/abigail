@@ -3,7 +3,7 @@ title: Chase0
 tags:
 ---
 <<if visited("Chase0") is false>>
-Chase: I missed you, Abigail.
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Abigail, you’re back!
 Abigail: Temporarily. Wow you...
 -> Look exactly the same, dude.
@@ -27,18 +27,21 @@ Chase: C'mon, Abbs, we gotta get you in the Kiln mood!
 Oz: Do you remember how to play Azulejo?
 Abigail: I moved Oz, I didn't get lobotomized.
 <<else>>
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Ok, let's get back to the game!
 <<endif>>
+<<ShowIndicator ChaseIndicatorToggle>>
 <<StartAzulejoConversation AzulejoConvoChase1>>
 ===
 title: Chase0-0
 tags:
 ---
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: C'mon Abbs you gotta try a little harder than that!
 Oz: That wouldn't scare a kid!
-Chase: Whales on the other hand...
-Oz: I know man, you're always saying they freak you out!
-Chase: No animal should be that big!
+Oz: Whales on the other hand...
+Chase: They freak me out so much. 
+Oz: No animal should be that big!
 <<UpdateChaseOzNode SceneController Chase1>>
 <<jump Chase1>>
 ===
@@ -46,6 +49,7 @@ title: Chase0-1
 tags:
 ---
 // If bookmark
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Nice try but big words don't scare me anymore Abbs. 
 Chase: The two weeks I spend reading the dictionary fixed that one.
 Chase: Whales on the other hand...
@@ -58,6 +62,7 @@ title: Chase0-2
 tags:
 ---
 // If bugs
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Nice try but creepy crawlies don't scare me anymore Abbs. 
 Chase: My entomology phase helped me get over that one.
 Chase: Whales on the other hand...
@@ -70,6 +75,7 @@ title: Chase0-3
 tags:
 ---
 // If rat skull
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Nice try but death doesn't scare me anymore Abbs.
 Chase: My Buddhism phase helped me get over that one.
 Chase: Whales on the other hand...
@@ -82,6 +88,7 @@ title: Chase0-4
 tags:
 ---
 // If gianlucas
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Whoa dude don't take that out here!
 Oz: Sarah told me the owner has banned any talk of that "unsanitary hellhole" at The Neptune. 
 Abigail: I'm sorry, I didn't know. 
@@ -96,14 +103,16 @@ tags:
 Chase: Okay round two!
 Chase: How about...
 <<else>>
-Chase: Wanna give another try?
+Chase: Wanna give it another try?
 <<endif>>
+<<ShowIndicator ChaseIndicatorToggle>>
 <<StartAzulejoConversation AzulejoConvoChase2>>
 ===
 title: Chase1-0
 tags:
 ---
 // Default
+<<HideIndicator ChaseIndicatorToggle>>
 Oz: That's your take?
 Oz: It's a miracle you dated Kate with moves like that. 
 Chase: C'mon Oz, cut it out.
@@ -113,6 +122,7 @@ Chase: C'mon Oz, cut it out.
 title: Chase1-1
 tags:
 ---
+<<HideIndicator ChaseIndicatorToggle>>
 // If sunflower/flower power
 Oz: Sarah isn't really a flowers kinda girl.
 Chase: See Oz, you know her so well. You gotta go for it!
@@ -123,6 +133,7 @@ title: Chase1-2
 tags:
 ---
 // If butterfly
+<<HideIndicator ChaseIndicatorToggle>>
 Oz: Sarah isn't really a cutesy kinda girl.
 Chase: See Oz, you know her so well. You gotta go for it!
 <<UpdateChaseOzNode SceneController Chase2>>
@@ -132,9 +143,10 @@ title: Chase1-3
 tags:
 ---
 // If constellation
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Just because that was your move with Kate doesn't mean it'll work with Sarah.
 Abigail: It wasn't a move Chase.
-Oz: Sarah isn't really about all that science stuff. She's more of a fantasy kinda girl. 
+Oz: Sarah's more about the here and now, she's not thinking about different universes. 
 Chase: See Oz, you know her so well. You gotta go for it!
 <<UpdateChaseOzNode SceneController Chase2>>
 <<jump Chase2>>
@@ -143,23 +155,27 @@ title: Chase2
 tags:
 ---
 <<if visited("Chase2") is false>>
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Speaking of romance...
 <<else>>
+<<HideIndicator ChaseIndicatorToggle>>
 Chase: Wanna give another try?
 <<endif>>
 <<StartAzulejoConversation AzulejoConvoChase3>>
+<<ShowIndicator ChaseIndicatorToggle>>
 ===
 title: Chase3
 tags:
 ---
 <<if visited("Chase3") is false>>
+<<HideIndicator ChaseIndicatorToggle>>
 <<UpdateChaseOzNode SceneController Chase3>>
 <<HideIndicator ChaseIndicator>>
 <<declare $tile_type = "" as String>>
 <<LoadVariables WorldState>>
 Chase: Dude absolutely not, you gotta find something better than that. 
 Chase: There are tiles everywhere if you look Abbs. Find one and bring it to me. 
-Oz: Sorry guys, gotta dip, duty calls.
+Oz: I gotta go see a man about a dog.
 <<GoodbyebyeOz SceneController>>
 Abigail:...
 Abigail: Chase, do you remember this one tile, it had like a swirl on it? And it felt like
@@ -173,9 +189,9 @@ Abigail: My Kate?
 Chase: Yeah... Is it gonna be weird? To see her?
 Abigail: No, no. Weird? Not at all. No.
 Chase: Uh-huh. It shows.
-Abigail: I don't know. Dani told me they'd be down in Wharf, so I might do that instead.
+Abigail: I don't know. Dani told me they'd be in Wharf, so I might do that instead.
 Chase: Well, whatever you do make sure you find me a tile to describe my love life. 
-Chase: The bridge will lead you to Argil with Kate, and the warehouse path up north will lead you to the Wharf for Dani.
+Chase: The bridge will take you to Kate, and the warehouse path will lead you to Dani.
 Abigail: Yeah dude I know how to get around.
 Chase: Oh, after your azulejo performance I thought you had erased us from your memory.
 Abigail: I hate you, Chase.
@@ -209,7 +225,7 @@ title: Chase4-2
 ---
 Chase: Dude I used to love playing with slime. 
 Abigail: Dani said it reminded them of you because you’re all over the place. 
-Chase: Do you remember when you took a bite of yours?
+Chase: Do you remember when you took a bite of your slime?
 Abigail: I did not. That was Gabe. 
 Chase: Sure, sure, let’s head to your mom’s place.
 <<FinishChaseAzulejo SceneController>>
@@ -263,9 +279,28 @@ Albert: She’s so transgressive. I wish she were my mom.
 title: HauntedHouseTeens1TV
 tags: 
 ---
-Albert: Dude where did you get this? It’s so cool. 
-Fellini: Linda is a real beacon of hope for me. She’s a radiant light in an oppressive world that wants to dim her creativity. 
-Albert: She’s so transgressive. I wish she were my mom. 
+Fellini: The revolution will not be televised!
+Albert: Where did you hear that?
+Fellini: In a song...
+Abigail: It's a good one. 
+===
+title: HauntedHouseTeens1CannedFish
+tags: 
+---
+Fellini: Not even the humble tuna can escape capitalism's gaping maw. 
+Albert: There's something evangelical about putting death in a can. 
+===
+title: HauntedHouseTeens1BunnyDeer
+tags: 
+---
+Albert: Be careful with this one Abigail. 
+Fellini: Yeah bunny deer is serious business you should know. 
+===
+title: HauntedHouseTeens1Troll
+tags: 
+---
+Fellini: She's my muse!
+Albert: No you bozo she's my muse!
 ===
 title: HauntedHouseTeens1
 tags: 
@@ -294,7 +329,6 @@ tags:
 <<if visited("Ryans1SpiderorCaterpillar") is false>>
 Ryan 2: Whoa... 
 Ryan 1: Abigail, do you want to see our drawing? 
-//go to drawing of treehouse where you can place the spider tile 
 <<else>>
 Ryan 1: Abigail, you're really good at finding purple bugs.
 Ryan 2: You wanna see our treehouse plans again?
@@ -304,7 +338,7 @@ Ryan 2: You wanna see our treehouse plans again?
 title: Ryans1Butterfly
 tags: 
 ---
-Ryan 2: Nice try, but this is closer to a pink than a purple...
+Ryan 2: Nice try, but this is closer to a pink bug than a purple one...
 ===
 title: Ryans1Cockroach
 tags: 
@@ -334,7 +368,7 @@ title: Margarette0
 tags: 
 ---
 <<if visited("Margarette0") is false>>
-Margarette: Abigail! I thought you were never coming back!
+Margarette: Abigail honey! I knew in my joints that you were here!
 Margarette: What’s the 411?
 <<else>>
 Margarette: Back for some more azulejo?
@@ -365,6 +399,42 @@ Margarette: That Gianluca, he’s let the rivalry take over his whole life.
 Margarette: He stopped talking to me completely when he saw me eating brunch at Neptune Diner. 
 Margarette: Did you know Gianluca got a C on his latest health inspection?
 ===
+title: Margarette1Bookmark
+tags: 
+---
+Margarette: Oh god, is your mom still mad at me for that?
+Abigail: Mad at you for what?
+Margarette: Last year, she tried to put together a book club, and for the life of me I couldn't keep up. 
+Margarette: It turned into all of us just listening to her summarize the book!
+Margarette: She must have gotten sick of it, because she stopped organizing meetings. 
+===
+title: Margarette1Troll
+tags: 
+---
+Margarette: I once caught the Lady of the Bridge flirting with my husband!
+Margarette: I'm the only person in this town she's scared of now. 
+===
+title: Margarette1Cockroach
+tags: 
+---
+Margarette: GROSS! Belongs in the sewer!
+===
+title: Margarette1FlowerPower
+tags: 
+---
+Margarette: Oh now that takes me back. Ask your mom about that one sweetie.
+===
+title: Margarette1SpiderorCaterpillar
+tags: 
+---
+Margarette: You should show this to the Ryans at the playground they'll get a big kick out of it. 
+===
+title: Margarette1Sunflower
+tags: 
+---
+Margarette: Not a fan. Carnations all the way for me.
+Margarette: One time I saw Gianluca eating at The Neptune and I said "What in carnation is going on here?"
+===
 title: Vendor0
 tags: 
 ---
@@ -391,7 +461,7 @@ tags:
 ---
 Timothy: Cryptozoology camp! 
 Abigail: God, my mom was so into all that cryptid stuff.
-Timothy: My dad once told me my mother is bigfoot. 
+Timothy: My dad once implied that my mother is bigfoot. 
 Abigail: Ok not that into it. 
 ===
 title: Vendor1Constellation
@@ -418,6 +488,17 @@ tags:
 Timothy: I don't think so...
 Timothy: I have the crispest memory of you falling from a tree.
 Timothy: Or was it slamming into the goal posts?
+===
+title: Vendor1Sunflower
+tags: 
+---
+Timothy: AHCHOO!
+Timothy: I guess you don't remember I have severe pollen allergies. 
+===
+title: Vendor1Teabag
+tags: 
+---
+Timothy: More of a coffee guy. 
 ===
 title: Tourist0
 tags: 
@@ -578,6 +659,18 @@ tags:
 ---
 Gianluca: I know you've been gone a while, but a pizza with that on it would not pass a health inspection! 
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Lemonade
+tags: 
+---
+Gianluca: I've been trying to get your mom to give me her recipe for years. 
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Bookmark
+tags: 
+---
+Gianluca: I've been trying to get your mom to give me her recipe for years. 
 <<GiveGianlucaTile SceneController>>
 ===
 title: Tanya
