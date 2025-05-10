@@ -19,10 +19,12 @@ Dani: Yeah, it’s not the same without you.
 Dani: It’s Abigail this, Abigail that, apparently my table setting doesn’t hold a candle to yours.
 Abigail: Hey um…do you remember this azulejo tile I used to have? It had like, a swirl on it?
 Dani: No? I don't think so.
-Dani: You could try playing azulejo with people here and see if any of their tiles jog your memory?
-Dani: Oh and after that can you come back and we can try the sigil together.
-Abigail: This one is so creepy, it looks like a crime scene. 
-Abigail: But yeah, I’m in. 
+Dani: You could try playing azulejo and see if any tiles jog your memory?
+Abigail: I’m not activating that azulejo sigil Dani.
+Dani: Come on Abigail!
+Abigail: This one is so creepy, it looks like a crime scene.
+Dani: I get good vibes from it, like it’ll bring about a positive change.
+Dani: Let me know how your search goes!
 <<ShowIndicator IndicatorToggleDani>>
 <<StartRound1 SceneController>>
 ===
@@ -30,14 +32,15 @@ title: Dani1
 tags:
 ---
 <<if visited("Dani1") is false>>
-Abigail: I haven’t seen anything like that tile. 
-Dani: It’ll come back to you, I know it. 
-Dani: You ready to try placing a tile? 
-Abigail: Playing here always puts me so on edge. 
-Dani: I think it's exciting. Remember when Kate's battery tile started a lightning storm?
-Abigail: Don't remind me. 
+Abigail: I haven’t seen anything like that tile.
+Dani: It’ll come back to you, I know it.
+Dani: Are you ready to check out the azulejo sigil scaredy cat?
+Abigail: Playing here always puts me so on edge.
+Dani: I think it's exciting. Remember when your eye tile turned all the buildings invisible?
+Abigail: Only for a few seconds!
+Dani: It was a transcendent and absurd moment. I feel like you could use one of those right now.
 <<else>>
-Dani: I'm hoping for another natural diaster! 
+Dani: I'm hoping I turn invisible this time!
 <<endif>>
 <<StartAzulejoConversation CollageAzulejoSigilTest>>
 //<<StartAzulejoConversation AzulejoConvoDani1>>
@@ -68,7 +71,7 @@ Dani: It's over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
 Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
 <<Giveslime SceneController>>
-Abigail: That's perfect. Let's go.
+Abigail: That's great. Let's go.
 <<else>>
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
@@ -96,8 +99,16 @@ tags:
 <<if visited("AcquaticNode") is false>>
 <<HideIndicator IndicatorToggleDani>>
 <<EndAzulejoGame SceneController>>
-Steffano: Wow. Now an animation is gonna play where the kraken comes. 
-Abigail: Was it really like that, at the writing residency? 
+Lucia: That’s not good.
+//<<Kraken wiggling yarn command>>
+Steffano: Wrong building Kraken!
+Lucia: Stef don’t yell at her.
+Steffano: I thought you wanted the old warehouse demolished. 
+Lucia: Not so badly that I'll yell at a powerful sea creature!
+Dani: It’s always a gamble, but I like the way playing here feels like it does something, you know?
+Abigail: Yeah. And um, if you ever want to talk about what happened with the writing residency, I’m here.
+Dani: I know Abbs, it’s just…it’s really embarrassing.
+Dani: It was supposed to be this big opportunity or whatever, but it just felt…
 Dani: I don’t know dude, being there just really sucked.
 ->  At least you tried
     Dani: I feel like I was more hopeful before I tried.
@@ -119,7 +130,7 @@ Dani: It's over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
 Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
 <<Giveslime SceneController>>
-Abigail: That's perfect. Let's go.
+Abigail: That's great. Let's go.
 <<else>>
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
@@ -135,9 +146,14 @@ tags:
 <<if visited("AcquaticNode") is false>>
 <<HideIndicator IndicatorToggleDani>>
 <<EndAzulejoGame SceneController>>
-Steffano: Wow. Now an animation is gonna play where the building gets crushed.
 <<PlayFootAnimation SceneController>>
-Abigail: Was it really like that, at the writing residency? 
+Lucia: Thank you foot!
+Steffano: That wasn’t a very thorough demolition…
+Lucia: True, but a splashy incident description could move my demolition request to the top of the list!
+Dani: It’s always a gamble, but I like the way playing here feels like it does something, you know?
+Abigail: Yeah. And um, if you ever want to talk about what happened with the writing residency, I’m here.
+Dani: I know Abbs, it’s just…it’s really embarrassing.
+Dani: It was supposed to be this big opportunity or whatever, but it just felt…
 Dani: I don’t know dude, being there just really sucked.
 ->  At least you tried
     Dani: I feel like I was more hopeful before I tried.
@@ -167,18 +183,24 @@ Dani: Go give the tile to Chase. I'll meet you at your mom's.
 title: NeitherNode
 tags:
 ---
-Steffano: I've been petitioning the city to tear down building for years! And I'm sick of it. 
-Lucia: Maybe we'll just have to do it ourselves...
+Dani: You have to respond to the tiles that are already there Abbs. You can't just put whatever you want. 
+Abigail: I'm trying to! 
+Steffano: I've been petitioning the city to tear down building for years! And I'm sick of it.
+Lucia: Maybe we'll just have to do it ourselves...through the power of man's innovation!
 Steffano: Or maybe we can get the sea to do it!
 ===
 //=== NPCS ===
 title: Hank0
 tags:
 ---
+<<if visited("Hank0") is false>>
 Hank: I used to come to this coffee shop every morning.
 Abigail: Well ran dry?
 Hank: It ain't even walking friend.
-//Hank: Now I rely on Power Azulejo for my energy. IF we want to be able to play power azulejo with him
+Hank: Now I rely on Power Azulejo for my morning boost, I like it a latte.
+<<else>>
+Hank: Let's play again. 
+<<endif>>
 ===
 title: Gwen0
 tags:
@@ -256,9 +278,9 @@ Abigail: My first job in the city was a fry cook and the grease got everywhere.
 title: Junior1CannedFish
 tags:
 ---
-Junior: I just made calamari for our family dinner last night!
-Abigail: Wow, calamari is good, but I hate frying so much. 
-Abigail: My first job in the city was a fry cook and the grease got everywhere. 
+Abigail: It’s affordable and delicious!
+Junior: Exactly! I love using a can to make puttanesca.
+Abigail: That’s a classic, I’m always making it at work.
 <<jump Junior1UnlockLandfill>>
 ===
 title: Junior1Gianlucas
@@ -311,37 +333,61 @@ title: LuciaSteffano0
 tags:
 ---
 <<if visited("LuciaSteffano0") is false>>
-Lucia: These docks used to be full of ships going in and out like you wouldn't believe.
-Abigail: Yeah we learned about it in school.
-Steffano: We lived it. Now it's just a bunch of bummy young people playing Azulejo. 
-Lucia: Things used to happen here! This town used to be the center of a universe, kid!
+Lucia: This warehouse used to be a center of commerce!
+Abigail: Yeah, we learned about it in school.
+Lucia: But more than that, it was the center of my universe. 
+Lucia: I'm gonna keep going on and on about it until they tear this building down like I've been begging them to for years!
+Steffano: You have free will! You don't have to stand here.
+Lucia: Maybe I'll just do it myself! 
 //start azulejo
 <<else>>
-Steffano: Lucia hasn't scared you away kid?
+Lucia: Got any more destructive suggestions kid?
 <<endif>>
 <<StartAzulejoConversation Lucia>>
 ===
-title: LuciaSteffano1SeaRelated
+title: LuciaSteffano1Fire
 tags:
 ---
-<<if visited("LuciaSteffano1SeaRelated") is false>>
-Steffano: She gets it! Maybe the good old days will live on!
-Lucia: No they won't. We’re in a new strange age where anything can and will happen. 
+Lucia: It's a good thought kid. 
+Steffano: But the burning building has shown us that fire likes to stick around here. 
+Lucia: It's useless Stef! I'm gonna be stuck here whining about the good old days forever. 
+Steffano: Maybe the universe is listening to you, and a change is right around the corner.
+Lucia: Cool it on the optimism. 
 //Foot animation plays 
-<<PlayFootAnimation SceneController>>
-Steffano: Ahhhh!
-Lucia: See! Anything at all! 
-<<else>>
-Lucia: See, this place used to have an identity!
-Lucia: And for me, that made it the center of a universe!
-Abigail: Which one?
-Steffano: Doesn't matter anymore.
-<<endif>>
+//<<PlayFootAnimation SceneController>>
+===
+title: LuciaSteffano1Squid
+tags:
+---
+Lucia: It would take a giant kraken to decimate this warehouse! 
+Steffano: Hey, anything can happen!
+===
+title: LuciaSteffano1Explosion
+tags:
+---
+Lucia: Yeah...explosives could work. 
+Steffano: How are you going to get explosives?
+Lucia: I know a guy!
+Steffano: I know everyone you know! And I do not know a guy!
+===
+title: LuciaSteffano2PostToe
+tags:
+---
+Lucia: I have a really good feeling about this request Stef!
+Steffano: Glad to hear you're finally gonna move on. 
+Lucia: Yeah! Now I'm ready to complain about the landfill! It's an eyesore. 
+===
+title: LuciaSteffano2PostKraken
+tags:
+---
+Steffano: Ms. Kraken, could you please bring one of your tentacles over here!
+Kraken: WhAt dID YoU JuSt CAll mE?!?!
+Lucia: Nothing! He said nothing! 
 ===
 title: LuciaSteffano1
 tags:
 ---
-Lucia: Use your eyes kid! Do you see that around here?
+Lucia: Kid, have you ever truly destroyed something? You gotta think bigger. 
 ===
 //=== INTERACTIONS ===
 title: TrashKing0
