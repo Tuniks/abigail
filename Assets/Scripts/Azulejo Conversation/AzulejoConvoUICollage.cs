@@ -41,6 +41,7 @@ public class AzulejoConvoUICollage : MonoBehaviour{
         BodyStatic.SetActive(false);
         open.SetActive(false);
         close.SetActive(true);
+        tileSlot.SetActive(false);
     }
     
 

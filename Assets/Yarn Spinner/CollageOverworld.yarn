@@ -70,8 +70,8 @@ Abigail: What??? No.
 Dani: It's over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
 Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
-<<Giveslime SceneController>>
 Abigail: That's great. Let's go.
+<<Giveslime SceneController>>
 <<else>>
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
@@ -81,14 +81,15 @@ tags:
 ---
 <<HideIndicator IndicatorToggleDani>>
 <<if visited("DaniSigilAzulejo") is false>>
-Abigail: I haven’t seen anything like that tile. 
-Dani: It’ll come back to you, I know it. 
-Dani: You ready to try placing a tile? 
-Abigail: Playing here always puts me so on edge. 
-Dani: I think it's exciting. Remember when Kate's battery tile started a lightning storm?
-Abigail: Don't remind me. 
+Abigail: I haven’t seen anything like that tile.
+Dani: It’ll come back to you, I know it.
+Dani: Are you ready to check out the azulejo sigil scaredy cat?
+Abigail: Playing here always puts me so on edge.
+Dani: I think it's exciting. Remember when your eye tile turned all the buildings invisible?
+Abigail: Only for a few seconds!
+Dani: It was a transcendent and absurd moment. I feel like you could use one of those right now.
 <<else>>
-Dani: I'm hoping for another natural diaster! 
+Dani: I'm hoping I turn invisible this time!
 <<endif>>
 <<StartAzulejoConversation Dani>>
 <<ShowIndicator IndicatorToggleDani>>
@@ -398,8 +399,8 @@ Abigail: Hi, I'm a friend of Junior's...
 Trashking: I'm da king of da trash!
 Abigail: That's...cool. 
 Trashking: In my benevolence, I'll give you a gift!
-<<Givetv SceneController>>
 Abigail: Thanks. 
+<<Givetv SceneController>>
 <<else>>
 Trashking: I'm thinking of getting a hot tub in here. 
 <<endif>>
