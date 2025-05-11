@@ -8,13 +8,21 @@ public class InteriorExteriorSwitching : MonoBehaviour
 
     private bool playerIsInside = false;
     private bool interiorMode = false;
+    public AudioClip EnterSound;
+    public AudioSource audioSource;
 
     public bool hasEverEnteredInterior { get; private set; } = false;
+    
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
         if (playerIsInside && Input.GetKeyDown(KeyCode.E) && !interiorMode)
         {
+            audioSource.PlayOneShot(EnterSound, 0.7F);
             Interior.SetActive(true);
             Exterior.SetActive(false);
             interiorMode = true;
