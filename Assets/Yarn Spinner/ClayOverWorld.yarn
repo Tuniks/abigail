@@ -117,11 +117,11 @@ Mr.Miller: How's your mom doing these days?
 Abigail: I think she’s doing okay, but I don’t call her as much as I should. 
 Mr.Miller: Well, she's a lovely lady your mother. You know I made her a special flower power tile way back when.
 Mr.Miller: I don't think I have anything like what you're looking for, but I have a feeling you could use this instead.
-<<GiveClock SceneController>>
 Mr.Miller: Time is a funny thing Miss Abigail, it goes and goes without us even noticing. 
 Mr.Miller: Maybe this can help you notice. 
 Abigail: Thank you Mr. Miller. How much is it?
 Mr.Miller: How about you give your mom a kiss for me and we're even?
+<<GiveClock SceneController>>
 <<VisitAntiqueShop SceneController>>
 <<else>>
 Mr.Miller: Say hi to your mother for me!
@@ -147,7 +147,6 @@ tags:
 <<if visited("Kate2") is false>>
 Kate: So um, did you meet Chase’s annoying new friend?
 Abigail: Yeah, and now Chase wants me to find a tile that represents his love life or something.
-<<GiveFlyingPill SceneController>>
 Kate: Here. Give him this weird little guy with wings.
 Kate: Dude's got commitment issues, loves to just fly away.
 Abigail: This is perfect, thanks.
@@ -158,6 +157,7 @@ Kate: Because we're all about to go to your house for dinner? Your mom invited e
 Abigail: Oh my god.
 Kate: It wasn't serious. At least for me it wasn't serious.
 Abigail: Let's just go meet up with Chase.
+<<GiveFlyingPill SceneController>>
 <<PostClayAzulejoDone SceneController>>
 <<else>>
 Kate: I'm excited to see your mom. I miss that lady.

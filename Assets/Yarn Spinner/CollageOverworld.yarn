@@ -98,14 +98,16 @@ title: AcquaticNode
 tags:
 ---
 <<if visited("AcquaticNode") is false>>
+<<focus_camera "PirateShipView">>
 <<HideIndicator IndicatorToggleDani>>
 <<EndAzulejoGame SceneController>>
-Lucia: That’s not good.
-//<<Kraken wiggling yarn command>>
+Lucia: Something's shifted...
+<<PlayKrakenAnimation SceneController>>
 Steffano: Wrong building Kraken!
 Lucia: Stef don’t yell at her.
 Steffano: I thought you wanted the old warehouse demolished. 
 Lucia: Not so badly that I'll yell at a powerful sea creature!
+<<reset_camera_focus>>
 Dani: It’s always a gamble, but I like the way playing here feels like it does something, you know?
 Abigail: Yeah. And um, if you ever want to talk about what happened with the writing residency, I’m here.
 Dani: I know Abbs, it’s just…it’s really embarrassing.
@@ -130,8 +132,9 @@ Abigail: What??? No.
 Dani: It's over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
 Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
-<<Giveslime SceneController>>
 Abigail: That's great. Let's go.
+<<Giveslime SceneController>>
+<<UpdateLuciaKraken SceneController>>
 <<else>>
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
@@ -144,13 +147,16 @@ Dani: Go give the tile to Chase. I'll meet you at your mom's.
 title: ManMadeNode
 tags:
 ---
-<<if visited("AcquaticNode") is false>>
+<<if visited("ManMadeNode") is false>>
+<<focus_camera "WarehouseCrushView">>
+Lucia: Something's shifted...
 <<HideIndicator IndicatorToggleDani>>
 <<EndAzulejoGame SceneController>>
 <<PlayFootAnimation SceneController>>
 Lucia: Thank you foot!
 Steffano: That wasn’t a very thorough demolition…
 Lucia: True, but a splashy incident description could move my demolition request to the top of the list!
+<<reset_camera_focus>>
 Dani: It’s always a gamble, but I like the way playing here feels like it does something, you know?
 Abigail: Yeah. And um, if you ever want to talk about what happened with the writing residency, I’m here.
 Dani: I know Abbs, it’s just…it’s really embarrassing.
@@ -175,8 +181,9 @@ Abigail: What??? No.
 Dani: It's over now. She was “too busy for a relationship”, but it happened.
 Abigail: Awesome. Well, I need to bring some tile to Chase on our way back. Something that feels like his love life?
 Dani: Oh I have the perfect one! He's all over the place, and he always has people clinging to him he doesn’t really want there.
-<<Giveslime SceneController>>
 Abigail: That's perfect. Let's go.
+<<Giveslime SceneController>>
+<<UpdateLuciaFoot SceneController>>
 <<else>>
 Dani: Go give the tile to Chase. I'll meet you at your mom's.
 <<endif>>
@@ -186,9 +193,11 @@ tags:
 ---
 Dani: You have to respond to the tiles that are already there Abbs. You can't just put whatever you want. 
 Abigail: I'm trying to! 
+<<focus_camera "LuciaSteffanoView">>
 Steffano: I've been petitioning the city to tear down building for years! And I'm sick of it.
 Lucia: Maybe we'll just have to do it ourselves...through the power of man's innovation!
 Steffano: Or maybe we can get the sea to do it!
+<<reset_camera_focus>>
 ===
 //=== NPCS ===
 title: Hank0

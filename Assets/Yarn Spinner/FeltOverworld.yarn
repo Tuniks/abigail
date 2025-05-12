@@ -205,16 +205,21 @@ Chase: And remember to look around for a tile to describe my love life.
 ===
 title: Chase4
 ---
+<<HideIndicator ChaseIndicator>>
 Chase: Got anything better for me now?
 <<StartAzulejoConversation AzulejoConvoChase4>>
+<<ShowIndicator ChaseIndicatorToggle>>
 ===
 title: Chase4-0
 ---
+<<HideIndicator ChaseIndicator>>
 Chase: C’mon dude, no way that’s my love life. 
 Chase: You didn’t ask Kate or Dani what they think?
+<<ShowIndicator ChaseIndicatorToggle>>
 ===
 title: Chase4-1
 ---
+<<HideIndicator ChaseIndicator>>
 Chase: Oh this one is sick. 
 Abigail: Kate said it reminded her of you because you have commitment issues. 
 Chase: This rad little guy is so me. 
@@ -223,6 +228,7 @@ Chase: C’mon Abbs, let’s go to your mom’s place.
 ===
 title: Chase4-2
 ---
+<<HideIndicator ChaseIndicator>>
 Chase: Dude I used to love playing with slime. 
 Abigail: Dani said it reminded them of you because you’re all over the place. 
 Chase: Do you remember when you took a bite of your slime?
@@ -700,6 +706,13 @@ tags:
 //Once ball collides
 Linda: Abigail it looks wonderful!
 Weird House: I feel more vibrant than ever. 
+<<PostOrangeLindaConvo SceneController>>
+===
+title: PostOrangeLinda
+tags: 
+---
+Linda: C'mon! Don't you think it looks nice?
+HOA President: Linda...you will be the death of me. 
 ===
 // === MISC ===
 title: BlockedDoor0
