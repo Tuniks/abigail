@@ -10,6 +10,8 @@ public class FeltManager : AreaManager{
     [Header("NPCs")]
     public GameObject chase;
     public GameObject oz;
+    public GameObject linda;
+    public GameObject HOA;
 
     [Header("Portals")]
     public GameObject doorColBlocked;
@@ -93,6 +95,11 @@ public class FeltManager : AreaManager{
         PlayerInventory.Instance.AddTilesToCollection(bunnydeerTile);
     }
     
+    [YarnCommand]
+    public void PostOrangeLindaConvo(){
+        UpdateDialogueNode(linda, "PostOrangeLinda");
+        UpdateDialogueNode(HOA, "PostOrangeLinda");
+    }
     
     [YarnCommand]
     public void ShowRyanDrawing(){

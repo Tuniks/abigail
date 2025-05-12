@@ -78,6 +78,23 @@ public class RoundManager : MonoBehaviour
     public GameObject Option2UI;
     public GameObject ChallengeCloudUI;
     
+    
+    public AudioClip TileSelectSound;
+    public AudioClip OptionSelectSound;
+    public AudioClip HoverSound;
+    public AudioSource audioSource;
+
+    public RectTransform targetButton;
+    public RectTransform otherUIElement;
+    
+    public RectTransform targetButton1;
+    public RectTransform otherUIElement1;
+
+
+    private Vector3 originalScaleButton;
+    private Vector3 originalScaleOther;
+    private Vector3 scaledUpButton;
+    private Vector3 scaledUpOther;
 
     // Round Option GameObjects
     public GameObject Round1Option1; // Assigned in Inspector
@@ -112,6 +129,15 @@ public class RoundManager : MonoBehaviour
     
     void Start()
     {
+        if (targetButton == null) targetButton = GetComponent<RectTransform>();
+
+        originalScaleButton = targetButton.localScale;
+        originalScaleOther = otherUIElement.localScale;
+
+        scaledUpButton = originalScaleButton * 1.1f;
+        scaledUpOther = originalScaleOther * 1.1f;
+        
+        audioSource = GetComponent<AudioSource>();
         // Find the DialogueRunner in the scene
         dialogueRunner = FindObjectOfType<DialogueRunner>();
 
@@ -238,6 +264,7 @@ public class RoundManager : MonoBehaviour
     {
         option1Selected = true;
         Debug.Log("Option 1 clicked!");
+        audioSource.PlayOneShot(OptionSelectSound, 0.7F);
 
         // Store the selected text immediately here
         selectedChallengeText = buttonOption1Text.text;
@@ -246,10 +273,37 @@ public class RoundManager : MonoBehaviour
         TransitionToChallengeReaction();
     }
 
+    public void OnOption1Hover()
+    {
+        audioSource.PlayOneShot(HoverSound, 0.7F);
+        targetButton.localScale = scaledUpButton;
+        otherUIElement.localScale = scaledUpOther;
+    }
+
+    public void OnOption1HoverExit()
+    {
+        targetButton.localScale = originalScaleButton;
+        otherUIElement.localScale = originalScaleOther;
+    }
+    
+    public void OnOption2Hover()
+    {
+        audioSource.PlayOneShot(HoverSound, 0.7F);
+        targetButton1.localScale = scaledUpButton;
+        otherUIElement1.localScale = scaledUpOther;
+    }
+    
+    public void OnOption2HoverExit()
+    {
+        targetButton1.localScale = originalScaleButton;
+        otherUIElement1.localScale = originalScaleOther;
+    }
+
     public void OnOption2Click()
     {
         option1Selected = false;
         Debug.Log("Option 2 clicked!");
+        audioSource.PlayOneShot(OptionSelectSound, 0.7F);
 
         // Store the selected text immediately here
         selectedChallengeText = buttonOption2Text.text;
@@ -370,6 +424,7 @@ public class RoundManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
             {
+                audioSource.PlayOneShot(TileSelectSound, 0.7F);
                 Ray ray = Camera.main.ScreenPointToRay(Input
                     .mousePosition); // Cast a ray from the camera to the mouse position
                 if (Physics.Raycast(ray, out RaycastHit hit)) // Check for a hit

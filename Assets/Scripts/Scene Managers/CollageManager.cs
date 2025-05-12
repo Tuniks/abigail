@@ -10,7 +10,9 @@ public class CollageManager : AreaManager{
     [Header("NPCs")]
     public GameObject dani;
 
-    [Header("Misc")]
+    public GameObject lucia;
+
+    [Header("Tiles")]
     public Tile[] tvTile;
     public Tile[] slimeTile;
     public Tile[] coffeeTile;
@@ -21,7 +23,14 @@ public class CollageManager : AreaManager{
     public GameObject StaticLandfill;
     public GameObject FootAnimation;
     public GameObject Warehouse;
-    public AudioClip Sound;
+    public GameObject Sigil;
+    public GameObject KrakenAnimation;
+    public GameObject PirateShip;
+    
+    [Header("Misc")]
+    public AudioClip CrushSound;
+
+    public AudioClip KrakenSound;
     public AudioSource audioSource;
 
     public override void UpdateSceneState(int state){        
@@ -105,7 +114,27 @@ public class CollageManager : AreaManager{
     {
         FootAnimation.SetActive(true);
         Warehouse.SetActive(false);
-        audioSource.PlayOneShot(Sound, 0.7F);
+        audioSource.PlayOneShot(CrushSound, 0.7F);
+        Sigil.SetActive(false);
+    }
+    
+    [YarnCommand]
+    public void PlayKrakenAnimation()
+    {
+        KrakenAnimation.SetActive(true);
+        PirateShip.SetActive(false);
+        audioSource.PlayOneShot(KrakenSound, 0.7F);
+        Sigil.SetActive(false);
+    }
+    
+    [YarnCommand]
+    public void UpdateLuciaKraken(){
+        UpdateDialogueNode(lucia, "LuciaSteffano2PostKraken");
+    }
+    
+    [YarnCommand]
+    public void UpdateLuciaFoot(){
+        UpdateDialogueNode(lucia, "LuciaSteffano2PostToe");
     }
     
 }
