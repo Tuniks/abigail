@@ -28,6 +28,10 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
         /// </summary>
         [SerializeField] private BubbleDialogueView bubbleDialogueView;
 
+        private void Start(){
+            inputCooldown = 0.6f;
+        }
+
         private void Update()
         {
             if (inputCooldown > 0.0f)
@@ -106,7 +110,7 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
                     break;
             }
 
-            inputCooldown = .55f;
+            inputCooldown = 0.6f;
         }
     }
     #endif
