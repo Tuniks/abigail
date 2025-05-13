@@ -16,4 +16,20 @@ public class PlayerInventory : Inventory{
 
         base.Awake();
     }
+
+    // ============ DELETE POST SHOWCASE ============
+    void Update(){
+        if(Input.GetKeyDown("0")){
+            ResetGame();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Backspace)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private void ResetGame(){
+        SceneManager.LoadScene("START");
+        Destroy(this.gameObject);
+    }
 }
