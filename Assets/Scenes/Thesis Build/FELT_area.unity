@@ -9658,6 +9658,14 @@ MonoBehaviour:
     dialogueNode: Vendor1Constellation
   - facePrefab: {fileID: 5965758887917730016, guid: d572032806b074ca48f3737c24a7876a, type: 3}
     dialogueNode: Vendor1Rope
+  - facePrefab: {fileID: 1786020399898891478, guid: aec87de311baa4fbfaad10c3eb63a287, type: 3}
+    dialogueNode: Vendor1Troll
+  - facePrefab: {fileID: 5965758887917730016, guid: 8267dc8116a954544bd6b1a8e9c943ff, type: 3}
+    dialogueNode: Vendor1Clock
+  - facePrefab: {fileID: 5965758887917730016, guid: 7aebf2c9febc64e83ab6a6bec37bb76b, type: 3}
+    dialogueNode: Vendor1Clock
+  - facePrefab: {fileID: 5965758887917730016, guid: 1138e32924f84410cae5ad11c87d8667, type: 3}
+    dialogueNode: Vendor1Teabag
   defaultNode: Vendor1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -34714,8 +34722,105 @@ MonoBehaviour:
   Interior: {fileID: 275827331}
   Exterior: {fileID: 294545703}
   Player: {fileID: 975203254}
-  EnterSound: {fileID: 0}
-  audioSource: {fileID: 0}
+  EnterSound: {fileID: 8300000, guid: 809f266f4454a4b52a9f2bc7f06e89fe, type: 3}
+  audioSource: {fileID: 1142130137}
+--- !u!82 &1142130137
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142130131}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1151278769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
@@ -45638,6 +45743,14 @@ MonoBehaviour:
     dialogueNode: Gianluca1Seafood
   - facePrefab: {fileID: 5965758887917730016, guid: 2c349804219e743b4a2777551afca3a5, type: 3}
     dialogueNode: Gianluca1Seafood
+  - facePrefab: {fileID: 5965758887917730016, guid: c26bf58678b614babb3338ddfa82781d, type: 3}
+    dialogueNode: Gianluca1Bugs
+  - facePrefab: {fileID: 5965758887917730016, guid: 442b7c09797834343a2f8da1af0ae16a, type: 3}
+    dialogueNode: Gianluca1Bugs
+  - facePrefab: {fileID: 7046932481425626341, guid: 39c134e105d11ba45a0a41c961c5dee4, type: 3}
+    dialogueNode: Gianluca1Bugs
+  - facePrefab: {fileID: 1786020399898891478, guid: 2a7e7f19f3dcd43c0a582f3061f0b561, type: 3}
+    dialogueNode: Gianluca1Bugs
   defaultNode: Gianluca1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -49601,6 +49714,12 @@ MonoBehaviour:
     dialogueNode: Margarette1SpiderorCaterpillar
   - facePrefab: {fileID: 5965758887917730016, guid: 7aebf2c9febc64e83ab6a6bec37bb76b, type: 3}
     dialogueNode: Margarette1Sunflower
+  - facePrefab: {fileID: 5965758887917730016, guid: 1138e32924f84410cae5ad11c87d8667, type: 3}
+    dialogueNode: Margarette1Tea
+  - facePrefab: {fileID: 1786020399898891478, guid: d1ea065980d8d32488866add20a4cf3d, type: 3}
+    dialogueNode: Margarette1Toucan
+  - facePrefab: {fileID: 1786020399898891478, guid: c09f969cd9d2c4c04b99a80b195711a7, type: 3}
+    dialogueNode: Margarette1Butterfly
   defaultNode: Margarette1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -57190,6 +57309,12 @@ MonoBehaviour:
     dialogueNode: HauntedHouseTeens1BunnyDeer
   - facePrefab: {fileID: 1786020399898891478, guid: aec87de311baa4fbfaad10c3eb63a287, type: 3}
     dialogueNode: HauntedHouseTeens1Troll
+  - facePrefab: {fileID: 1786020399898891478, guid: 929b3ff103a87447992e272a511afc5f, type: 3}
+    dialogueNode: HauntedHouseTeens1BellBathing
+  - facePrefab: {fileID: 1786020399898891478, guid: 310c1a0168c287e4e8b1e00e3fd85738, type: 3}
+    dialogueNode: HauntedHouseTeens1BellBathing
+  - facePrefab: {fileID: 5965758887917730016, guid: 8267dc8116a954544bd6b1a8e9c943ff, type: 3}
+    dialogueNode: HauntedHouseTeens1Clock
   defaultNode: HauntedHouseTeens1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -66645,6 +66770,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8003738540193012630, guid: ca270838c6f4ac94b82fc03fc646cd0c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1142130135}
+    - targetCorrespondingSourceObject: {fileID: 8003738540193012630, guid: ca270838c6f4ac94b82fc03fc646cd0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1142130137}
   m_SourcePrefab: {fileID: 100100000, guid: ca270838c6f4ac94b82fc03fc646cd0c, type: 3}
 --- !u!1001 &6162217165541565879
 PrefabInstance:
