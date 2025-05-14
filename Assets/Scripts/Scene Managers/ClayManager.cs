@@ -41,6 +41,8 @@ public class ClayManager : AreaManager{
     [Header("GameObjects")]
     public GameObject AntiqueShopEntrance;
 
+    private string lastPowerAzulejo = "";
+
     public override void UpdateSceneState(int state){        
         switch(state){
             case 0:
@@ -88,7 +90,6 @@ public class ClayManager : AreaManager{
             dialogueRunner.StartDialogue(powerTouristLossNode);
         }
     }
-
 
     // YARN COMMANDS
     [YarnCommand]

@@ -109,5 +109,4 @@ public class WorldState : MonoBehaviour{
     public bool GetWonLastMatch(){
         return wonLastMatch;
     }
-
 }
