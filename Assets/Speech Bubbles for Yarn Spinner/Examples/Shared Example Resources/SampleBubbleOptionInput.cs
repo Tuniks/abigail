@@ -29,7 +29,7 @@ namespace Yarn.Unity.Addons.SpeechBubbles.Sample
         [SerializeField] private BubbleDialogueView bubbleDialogueView;
 
         private void Start(){
-            inputCooldown = 0.6f;
+            inputCooldown = 1f;
         }
 
         private void Update()

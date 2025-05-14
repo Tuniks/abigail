@@ -22,6 +22,8 @@ public class EndgameManager : MonoBehaviour {
         GameObject prefab = playerWon ? playerWinSpritePrefab : enemyWinSpritePrefab;
 
         if (prefab) StartCoroutine(SpawnWinSprite(prefab, spawnPos));
+        
+        WorldState.Instance.SetWonLastMatch(playerWon);
         StartCoroutine(WaitForPressToContinue());
     }
 

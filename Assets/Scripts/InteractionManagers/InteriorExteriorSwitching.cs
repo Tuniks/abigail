@@ -22,12 +22,16 @@ public class InteriorExteriorSwitching : MonoBehaviour
     {
         if (playerIsInside && Input.GetKeyDown(KeyCode.E) && !interiorMode)
         {
-            audioSource.PlayOneShot(EnterSound, 0.7F);
-            Interior.SetActive(true);
-            Exterior.SetActive(false);
-            interiorMode = true;
-            hasEverEnteredInterior = true; // ✅ Mark it forever
+            EnterArea();
         }
+    }
+
+    public void EnterArea(){
+        audioSource.PlayOneShot(EnterSound, 0.7F);
+        Interior.SetActive(true);
+        Exterior.SetActive(false);
+        interiorMode = true;
+        hasEverEnteredInterior = true; // ✅ Mark it forever
     }
 
     private void OnTriggerEnter2D(Collider2D other)

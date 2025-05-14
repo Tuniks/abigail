@@ -5114,10 +5114,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 1304779543}
   kate: {fileID: 1427737347}
+  mrmiller: {fileID: 904688396}
+  tourist: {fileID: 1152313895}
   state1Dialogue: KateAz0
   state2Dialogue: Kate3
-  powerAzuMrMillerScene: CLAY_azulejo
-  powerAzuTouristScene: CLAY_azulejo
+  antiqueShopLogic: {fileID: 838434500}
+  powerAzuMrMillerScene: POWER_azulejo_MrMiller
+  powerMillerVictoryNode: AntiqueShopVictory
+  powerMillerLossNode: AntiqueShopLoss
+  powerAzuTouristScene: POWER_azulejo_Tourist
+  powerTouristVictoryNode: Tourist1Win
+  powerTouristLossNode: Tourist1Loss
   antiqueShop: {fileID: 627227064}
   staticantiqueshop: {fileID: 598846581}
   salthairTile:
@@ -11926,6 +11933,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!1 &904688396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 125611512303829178, guid: 7d80564c966f64849940a364f69150d1, type: 3}
+  m_PrefabInstance: {fileID: 406413977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &907421565 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8332431844535128877, guid: 84a457fbdcd75e2419b79f5cc40857e8, type: 3}
@@ -15657,6 +15669,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMobile: 0
   offset: 0
+--- !u!1 &1152313895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6356935633884398368, guid: f4ed973dcc985ea4fb3bdbf6482953e6, type: 3}
+  m_PrefabInstance: {fileID: 1779891600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1155781429
 GameObject:
   m_ObjectHideFlags: 0
