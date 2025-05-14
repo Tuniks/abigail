@@ -30,6 +30,8 @@ public class FeltManager : AreaManager{
     [Header("GameObjects")] 
     public Image RyanDrawing;
 
+    public GameObject HouseCollider;
+
     public override void UpdateSceneState(int state){        
         switch(state){
             case 0:
@@ -109,5 +111,10 @@ public class FeltManager : AreaManager{
     public void ShowRyanDrawing(){
         RyanDrawing.enabled = true;
         RyanDrawing.gameObject.SetActive(true);
+    }
+    
+    [YarnCommand]
+    public void LindaHouse(){
+        HouseCollider.SetActive(true);
     }
 }
