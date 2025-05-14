@@ -191,10 +191,10 @@ Dani: Go give the tile to Chase. I'll meet you at your mom's.
 title: NeitherNode
 tags:
 ---
-Dani: You have to respond to the tiles that are already there Abbs. You can't just put whatever you want. 
+Dani: You have to respond to the tiles that are there, Abbs Abbs. You can't just put whatever you want. 
 Abigail: I'm trying to! 
 <<focus_camera "LuciaSteffanoView">>
-Steffano: I've been petitioning the city to tear down building for years! And I'm sick of it.
+Steffano: I've been petitioning the city to tear down this building for years! And I'm sick of it.
 Lucia: Maybe we'll just have to do it ourselves...through the power of man's innovation!
 Steffano: Or maybe we can get the sea to do it!
 <<reset_camera_focus>>
@@ -209,8 +209,27 @@ Abigail: Well ran dry?
 Hank: It ain't even walking friend.
 Hank: Now I rely on Power Azulejo for my morning boost, I like it a latte.
 <<else>>
-Hank: Let's play again. 
+Hank: Not to give you the cold brew shoulder, but I'm busy.
 <<endif>>
+===
+title: Hank1Win
+tags: 
+---
+//This text would start after if Abigail Wins
+Hank: This is the start of a brew-tiful friendship.
+Hank: I'll play you anytime. 
+===
+title: Hank1Loss
+tags: 
+---
+//This text would start after if Abigail Losses 
+Hank: I guess I'm not your average cup of joe. 
+Hank: Come back anytime and hit me with your best espresso shot.
+===
+title: Hank2
+tags: 
+---
+Hank: Not to give you the cold brew shoulder, but I'm busy.
 ===
 title: Gwen0
 tags:
@@ -247,10 +266,50 @@ title: Gwen1Explosion
 tags:
 ---
 Gwen: There’s nothing I love more than a release…
-Abigail: I love your hair.
-Gwen: I'm straight.
-Abigail: No, I wasn't hitting on you-
-Gwen: Sure...
+Abigail: This tile makes me think of fireworks. 
+Gwen: Is that what you feel when you look at me?
+Abigail: No, I was just...
+Gwen: I tend to have that effect on people.
+===
+title: Gwen1TrollorLinda
+tags:
+---
+Gwen: So you're talking to me while thinking about some other girl?
+Abigail: Um, I guess? 
+Gwen: I can't believe this. 
+===
+title: Gwen1BathingBaby
+tags:
+---
+Gwen: So you're talking to me while thinking about some other girl?
+Abigail: This is actually a baby. 
+Gwen: Even worse!
+===
+title: Gwen1SkullorSpider
+tags:
+---
+Gwen: Well, you're dark and twisty aren't you?
+Abigail: I don't know, maybe...
+Gwen: That's pretty cool...
+===
+title: Gwen1Gianlucas
+tags:
+---
+Gwen: I heard somewhere that pizza is a aphrodisiac
+Abigail: There is no way that's true. 
+Gwen: Well, it's worked for me before. 
+===
+title: Gwen1Grapes
+tags:
+---
+Gwen: I've always wanted someone to feed me grapes. 
+Abigail: One time I choked on a grape. Did not chew enough.
+===
+title: Gwen1Constellation
+tags:
+---
+Gwen: Are you saying you wanna go stargazing with me?
+Abigail: No um, I don't know. Just, thinking about the stars...
 ===
 title: Gwen1
 tags:
@@ -273,7 +332,7 @@ title: Junior1Produce
 tags:
 ---
 Junior: Nothing beats fresh produce! 
-Abigail: Tell me about it, the restaurant I use to work at was always cutting corners with frozen vegetables. 
+Abigail: Tell me about it, the restaurant I used to work at was always cutting corners with frozen vegetables. 
 Abigail: But people could always tell, and it was so embarrassing when they sent the food back.
 <<jump Junior1UnlockLandfill>>
 ===
@@ -311,6 +370,13 @@ Abigail: That’s very impressive, I could barely say tiramisu when I was your a
 Abigail: I only learned how to make it last year, it was one of the dessert specials at this restaurant I worked for. 
 <<jump Junior1UnlockLandfill>>
 ===
+title: Junior1Clock
+tags:
+---
+Junior: You shouldn't eat a clock!
+Junior: It's pretty time consuming. 
+Junior: hehehehe.
+===
 title: Junior1UnlockLandfill
 tags:
 ---
@@ -324,7 +390,7 @@ Abigail: Um, okay?
 //yarncommand for unlocking landfill
 <<else>>
 Junior: Have you meet the trash king yet?
-Junior: He's all excited about getting a hotub, but I think a sauna would be much classier. 
+Junior: He's all excited about getting a hot tub, but I think a sauna would be much classier. 
 <<endif>>
 ===
 title: Junior1
