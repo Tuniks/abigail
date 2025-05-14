@@ -51,7 +51,7 @@ tags:
 // If bookmark
 <<HideIndicator ChaseIndicatorToggle>>
 Chase: Nice try but big words don't scare me anymore Abbs. 
-Chase: The two weeks I spend reading the dictionary fixed that one.
+Chase: The two weeks I spent reading the dictionary fixed that one.
 Chase: Whales on the other hand...
 Oz: I know man, you're always saying they freak you out!
 Chase: No animal should be that big!
@@ -199,7 +199,7 @@ Chase: I missed you, Abigail.
 <<StoreVariables WorldState>>
 <<PostFeltAzulejoDone SceneController>>
 <<else>>
-Chase: Head over the brige to hang out with Kate, but if you wanna see Dani go through the warehouse path.
+Chase: Head over the bridge to hang out with Kate, but if you wanna see Dani go through the warehouse path.
 Chase: And remember to look around for a tile to describe my love life. 
 <<endif>>
 ===
@@ -220,20 +220,31 @@ Chase: You didn’t ask Kate or Dani what they think?
 title: Chase4-1
 ---
 <<HideIndicator ChaseIndicator>>
-Chase: Oh this one is sick. 
-Abigail: Kate said it reminded her of you because you have commitment issues. 
-Chase: This rad little guy is so me. 
-Chase: C’mon Abbs, let’s go to your mom’s place.
+Abigail: Kate said it reminded her of you because you have commitment issues.
+Chase: This rad little guy is so me.
+Abigail: Chase, I don't know about this dinner...
+Chase: It's gonna be awesome. 
+Chase: I've been trying to get people together for weeks, but then everyone's busy and it always falls through. 
+Chase: But everyone wants to see you Abbs. 
+Chase: You've always been like that for us, someone who brings us together. 
+Abigail: What if all these things that you remember about me, what if they aren't there anymore?
+Chase: No way, you'll always be Abigail. 
 <<FinishChaseAzulejo SceneController>>
 ===
 title: Chase4-2
 ---
 <<HideIndicator ChaseIndicator>>
-Chase: Dude I used to love playing with slime. 
-Abigail: Dani said it reminded them of you because you’re all over the place. 
+Chase: Dude I used to love playing with slime.
+Abigail: Dani said it reminded them of you because you’re all over the place.
 Chase: Do you remember when you took a bite of your slime?
-Abigail: I did not. That was Gabe. 
-Chase: Sure, sure, let’s head to your mom’s place.
+Abigail: I did not. That was Gabe.
+Abigail: Chase, I don't know about this dinner...
+Chase: It's gonna be awesome. 
+Chase: I've been trying to get people together for weeks, but then everyone's busy and it always falls through. 
+Chase: But everyone wants to see you Abbs. 
+Chase: You've always been like that for us, someone who brings us together. 
+Abigail: What if all these things that you remember about me, what if they aren't there anymore?
+Chase: No way, you'll always be Abigail. 
 <<FinishChaseAzulejo SceneController>>
 ===
 title: Chase5
@@ -307,6 +318,18 @@ tags:
 ---
 Fellini: She's my muse!
 Albert: No you bozo she's my muse!
+===
+title: HauntedHouseTeens1BellBathing
+tags: 
+---
+Albert: That old stuff doesn't vibrate with meaning anymore. 
+Fellini: But I did love all the field trips we took there at school...
+===
+title: HauntedHouseTeens1Clock
+tags: 
+---
+Fellini: I would pay 1,000 dollars to know the exact time I'm going to die.
+Albert: You don't have any money!
 ===
 title: HauntedHouseTeens1
 tags: 
@@ -439,7 +462,25 @@ title: Margarette1Sunflower
 tags: 
 ---
 Margarette: Not a fan. Carnations all the way for me.
-Margarette: One time I saw Gianluca eating at The Neptune and I said "What in carnation is going on here?"
+Margarette: One time I saw Gianluca eating at The Neptune and I said: What in carnation is going on here?
+===
+title: Margarette1Tea
+tags: 
+---
+Margarette: Did your mom tell you about the mushroom tea she gave me for my birthday?
+Margarette: Let's just say I never need to drink that again...
+===
+title: Margarette1Toucan
+tags: 
+---
+Margarette: Your mother and Tuca are like two peas in a pod. 
+Margarette: I swear she's always in that big window at your house. 
+===
+title: Margarette1Butterfly
+tags: 
+---
+Margarette: This tile looks so much like Tanya. 
+Margarette: Any time I need a glimpse of my future I wander up to the forest and look for her.
 ===
 title: Vendor0
 tags: 
@@ -495,6 +536,17 @@ Timothy: I don't think so...
 Timothy: I have the crispest memory of you falling from a tree.
 Timothy: Or was it slamming into the goal posts?
 ===
+title: Vendor1Troll
+tags: 
+---
+Timothy: Huh, she kinda has my eyes...
+Abigail: Yeah, the resemblance is uncanny. 
+===
+title: Vendor1Clock
+tags: 
+---
+Timothy: I never went to Mr. Miller's clock making camp. You must be thinking of someone else.
+===
 title: Vendor1Sunflower
 tags: 
 ---
@@ -504,24 +556,29 @@ Timothy: I guess you don't remember I have severe pollen allergies.
 title: Vendor1Teabag
 tags: 
 ---
-Timothy: More of a coffee guy. 
+Timothy: I'm more of a coffee guy. 
 ===
 title: Tourist0
 tags: 
 ---
+<<if visited("Tourist0") is false>>
 Tourist: These are absolutely blowing my mind! My heart is on fire! My soul is delighted!
 Abigail: Yeah these tiles are pretty nice.
 Tourist: All the blogs said that getting out of West Kiln is where you find the real genuine true authentic azulejo tiles. And oh boy were they right!
 Abigail: The blogs?
 Tourist: That’s how I heard about this city!
 Tourist: Power Azulejo Addicts dot com! You can find it on the world wide web!
+Tourist: You wanna play some Power Azulejo with me?
+<<else>>
+Tourist: This was so worth going into debt for!
+<<endif>>
 ===
 title: Tourist1Win
 tags: 
 ---
 //This text would start after if Abigail Wins
 <<HideIndicator VendorIndicator>>
-Tourist: You're pretty good! Are you going to the Azulejo musuem tournament?
+Tourist: You're pretty good! Are you going to the Azulejo museum tournament?
 Abigail: Maybe?
 Tourist: I wouldn't miss it for the world! I'm gonna make my pals on the forums so jealous. 
 ===
@@ -660,6 +717,13 @@ Abigail: I already have this.
 Gianluca: You can have another! 
 <<GiveGianlucaTile SceneController>>
 ===
+title: Gianluca1Bugs
+tags: 
+---
+Gianluca: That was one time!
+Gianluca: Will another tile help you forget about it?
+<<GiveGianlucaTile SceneController>>
+===
 title: Gianluca1
 tags: 
 ---
@@ -704,7 +768,7 @@ title: WeirdhouseOrangeInteraction
 tags: 
 ---
 //Once ball collides
-Linda: Abigail it looks wonderful!
+Linda: Abigail, it looks wonderful!
 Weird House: I feel more vibrant than ever. 
 <<PostOrangeLindaConvo SceneController>>
 ===

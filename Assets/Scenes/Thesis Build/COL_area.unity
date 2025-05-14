@@ -13226,6 +13226,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!4 &997978020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+  m_PrefabInstance: {fileID: 1195771063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1003411642
 GameObject:
   m_ObjectHideFlags: 0
@@ -13655,7 +13660,8 @@ Transform:
   m_LocalPosition: {x: 4.42, y: -1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 997978020}
   m_Father: {fileID: 883789784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041415511
@@ -15861,6 +15867,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1195771063
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1038606034}
+    m_Modifications:
+    - target: {fileID: 1041362271937325186, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592670665579125061, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_Name
+      value: TileShimmer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870675939882082613, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7936a72cfcf5d9d4c9cbc5160ffbfec3, type: 3}
 --- !u!4 &1203429488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5145328488372203876, guid: 3eaf0d02df7157e469b800708a6c618b, type: 3}
@@ -23060,6 +23127,24 @@ MonoBehaviour:
     dialogueNode: Gwen1Explosion
   - facePrefab: {fileID: 2881862665058423271, guid: c3254f953ae305b45b3e876b7690f87e, type: 3}
     dialogueNode: Gwen1Toe
+  - facePrefab: {fileID: 2881862665058423271, guid: c3254f953ae305b45b3e876b7690f87e, type: 3}
+    dialogueNode: Gwen1Toe
+  - facePrefab: {fileID: 1786020399898891478, guid: aec87de311baa4fbfaad10c3eb63a287, type: 3}
+    dialogueNode: Gwen1TrollorLinda
+  - facePrefab: {fileID: 2881862665058423271, guid: 58b50ff1f10dc824199cb4f0c827b07f, type: 3}
+    dialogueNode: Gwen1TrollorLinda
+  - facePrefab: {fileID: 1786020399898891478, guid: 310c1a0168c287e4e8b1e00e3fd85738, type: 3}
+    dialogueNode: Gwen1BathingBaby
+  - facePrefab: {fileID: 1786020399898891478, guid: 63215cbf10d144417b9a8ffd82c1454c, type: 3}
+    dialogueNode: Gwen1SkullorSpider
+  - facePrefab: {fileID: 7046932481425626341, guid: 39c134e105d11ba45a0a41c961c5dee4, type: 3}
+    dialogueNode: Gwen1SkullorSpider
+  - facePrefab: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
+    dialogueNode: Gwen1Gianlucas
+  - facePrefab: {fileID: 1786020399898891478, guid: 9dca23953ce84b9459c7eb3f9bc9d793, type: 3}
+    dialogueNode: Gwen1Grapes
+  - facePrefab: {fileID: 8836389122820674767, guid: 5c44ed57a676310458745765ca49c3ba, type: 3}
+    dialogueNode: Gwen1Constellation
   defaultNode: Gwen1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -26193,6 +26278,8 @@ MonoBehaviour:
     dialogueNode: Junior1TeaorLemonade
   - facePrefab: {fileID: 6729106790500611236, guid: 2c455fa25f461f649b0fd432b6e6cda9, type: 3}
     dialogueNode: Junior1TeaorLemonade
+  - facePrefab: {fileID: 5965758887917730016, guid: 8267dc8116a954544bd6b1a8e9c943ff, type: 3}
+    dialogueNode: Junior1Clock
   defaultNode: Junior1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}

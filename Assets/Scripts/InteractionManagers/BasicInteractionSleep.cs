@@ -31,7 +31,7 @@ public class BasicInteractionSleep : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && !CurtainInteractionHappened && distance <= interactionRadius) //if the player pressess E, the curtain interaction hasn't happened and the distance is within the interactino radisu then set after interaction sprite and chnage the bool
             {
-                SceneManager.LoadScene("START");
+                SceneManager.LoadScene("CREDITS");
             }
         }
     }
