@@ -26,6 +26,9 @@ public class HauntedPlayer : MonoBehaviour{
     private float currentCharge = 0;
     private bool canLaunch = true;
 
+    [Header("Sounds")]
+    public AudioClip launchSound;
+
     void Start(){
         
     }
@@ -72,6 +75,8 @@ public class HauntedPlayer : MonoBehaviour{
         
         Vector3 direction = targetPos - transform.position;
         rb.AddForce(direction.normalized * (minForce + (maxForce * currentCharge)), ForceMode.Impulse);
+
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(launchSound);
 
         StartCoroutine(DestroyRock(newRock));
         StartCoroutine(ResetLaunch());

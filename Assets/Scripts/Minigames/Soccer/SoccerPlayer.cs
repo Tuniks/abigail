@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SoccerPlayer : MonoBehaviour{
+    [Header("Game Variables")]
     public Camera cam;
     public Transform pointer;
     public Slider slider;
@@ -24,6 +25,11 @@ public class SoccerPlayer : MonoBehaviour{
     private int myScore = 0;
     private int opponentScore = 0;
 
+    [Header("Sounds")]
+    public AudioClip resetSound;
+    public AudioClip launchBallSound;
+    public AudioClip goalSound;
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         ResetGame();
@@ -31,6 +37,7 @@ public class SoccerPlayer : MonoBehaviour{
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.Space)){
+            PlayerInteractor.instance.GetAudioSource().PlayOneShot(resetSound);
             ResetTile();
         }
 
@@ -76,6 +83,8 @@ public class SoccerPlayer : MonoBehaviour{
         Vector3 distVector = newPos-transform.position;
 
         rb.AddForce(distVector.normalized * ((currentCharge * maxForce)+minForce), ForceMode2D.Impulse);
+        
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(launchBallSound);
     }
 
     private void ResetTile(bool _score = false){
@@ -95,6 +104,7 @@ public class SoccerPlayer : MonoBehaviour{
 
     private void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.CompareTag("Target")){
+            PlayerInteractor.instance.GetAudioSource().PlayOneShot(goalSound);
             ResetTile(true);
         }
     }

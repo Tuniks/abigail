@@ -8,6 +8,7 @@ public class PlayerInteractor : MonoBehaviour{
     // General References
     static public PlayerInteractor instance;
     public DialogueRunner dialogueRunner;
+    private AudioSource audioSource;
     
     // UI
     public GameObject interactPrompt;
@@ -23,9 +24,13 @@ public class PlayerInteractor : MonoBehaviour{
     private Tile lastTileUsed = null;
     private Action hijackCallback = null;
 
+    // Audio
+    public AudioClip phenomenonNearbySoundLoop;
+
     void Start(){
         instance = this;
         pc = GetComponent<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update(){
@@ -102,6 +107,9 @@ public class PlayerInteractor : MonoBehaviour{
             interactables.Add(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
+            audioSource.clip = phenomenonNearbySoundLoop;
+            audioSource.loop = true;
+            audioSource.Play();
         }
     }
 
@@ -110,6 +118,8 @@ public class PlayerInteractor : MonoBehaviour{
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(null);
+            audioSource.Stop();
+            audioSource.loop = false;
         }
     }
 
@@ -147,5 +157,9 @@ public class PlayerInteractor : MonoBehaviour{
 
     private void SetCurrentPhenomenon(AzulejoPhenomenon _phenomenon){
         PlayerUIManager.instance.SetPhenomenon(_phenomenon);
+    }
+
+    public AudioSource GetAudioSource(){
+        return audioSource;
     }
 }
