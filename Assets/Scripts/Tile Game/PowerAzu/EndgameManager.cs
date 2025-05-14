@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndgameManager : MonoBehaviour {
     public static EndgameManager instance;
 
     public GameObject playerWinSpritePrefab;
     public GameObject enemyWinSpritePrefab;
-    public GameObject objectToDisable;
     public Canvas endgameUICanvas;
     public Transform playerScorePosition;
     public Transform enemyScorePosition;
+    public string nextSceneName;
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -18,13 +18,11 @@ public class EndgameManager : MonoBehaviour {
     }
 
     public void TriggerEndgame(bool playerWon) {
-        if (objectToDisable) objectToDisable.SetActive(false);
-
         Vector3 spawnPos = playerWon ? playerScorePosition.position : enemyScorePosition.position;
         GameObject prefab = playerWon ? playerWinSpritePrefab : enemyWinSpritePrefab;
 
         if (prefab) StartCoroutine(SpawnWinSprite(prefab, spawnPos));
-        StartCoroutine(WaitForClickThenShowUI());
+        StartCoroutine(WaitForPressToContinue());
     }
 
     private IEnumerator SpawnWinSprite(GameObject prefab, Vector3 position) {
@@ -44,8 +42,9 @@ public class EndgameManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator WaitForClickThenShowUI() {
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E));
+    private IEnumerator WaitForPressToContinue() {
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
         if (endgameUICanvas) endgameUICanvas.enabled = true;
+        if (!string.IsNullOrEmpty(nextSceneName)) SceneManager.LoadScene(nextSceneName);
     }
 }
