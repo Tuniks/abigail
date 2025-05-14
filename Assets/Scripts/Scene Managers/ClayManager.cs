@@ -74,10 +74,8 @@ public class ClayManager : AreaManager{
         antiqueShopLogic.EnterArea();
         if(WorldState.Instance.GetWonLastMatch()){
             UpdateDialogueNode(mrmiller, powerMillerVictoryNode);
-            dialogueRunner.StartDialogue(powerMillerVictoryNode);
         } else{
             UpdateDialogueNode(mrmiller, powerMillerLossNode);
-            dialogueRunner.StartDialogue(powerMillerLossNode); 
         } 
     }
 
