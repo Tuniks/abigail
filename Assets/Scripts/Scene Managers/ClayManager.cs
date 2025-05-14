@@ -10,15 +10,24 @@ public class ClayManager : AreaManager{
     [Header("NPCs")]
     //public GameObject chase;
     public GameObject kate;
+    public GameObject mrmiller;
+    public GameObject tourist;
 
     [Header("Dialogue Nodes")]
     public string state1Dialogue = "KateAz0";
     public string state2Dialogue = "Kate3";
     
-    [Header("Scenes")]
-    public string powerAzuMrMillerScene = "CLAY_azulejo";
-    public string powerAzuTouristScene = "CLAY_azulejo";
-    
+    [Header("Mr Miller Power Azulejo")]
+    public InteriorExteriorSwitching antiqueShopLogic;
+    public string powerAzuMrMillerScene = "POWER_azulejo_MrMiller";
+    public string powerMillerVictoryNode = "AntiqueShopVictory";
+    public string powerMillerLossNode = "AntiqueShopLoss";
+
+    [Header("Tourist Power Azulejo")]
+    public string powerAzuTouristScene = "POWER_azulejo_Tourist";
+    public string powerTouristVictoryNode = "Tourist1Win";
+    public string powerTouristLossNode = "Tourist1Loss";
+
     [Header("Tiles")]
     public GameObject antiqueShop;
 
@@ -31,8 +40,6 @@ public class ClayManager : AreaManager{
     
     [Header("GameObjects")]
     public GameObject AntiqueShopEntrance;
-
-    private string lastPowerAzulejo = "";
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -47,15 +54,41 @@ public class ClayManager : AreaManager{
                 break;
         }
 
+        string lastPowerAzulejo = WorldState.Instance.GetLastOpponent();
         if(lastPowerAzulejo != ""){
             if(lastPowerAzulejo == "miller"){
-
+                OpenAntiqueShop();
+                MrMillerPostAzulejo();
             } else if (lastPowerAzulejo == "tourist"){
-
+                TouristPostAzulejo();
             }
-            lastPowerAzulejo = "";
+            
+            WorldState.Instance.SetLastOpponent("");
         }
     }
+
+    // NON YARN COMMANDS
+    private void MrMillerPostAzulejo(){
+        antiqueShopLogic.EnterArea();
+        if(WorldState.Instance.GetWonLastMatch()){
+            UpdateDialogueNode(mrmiller, powerMillerVictoryNode);
+            dialogueRunner.StartDialogue(powerMillerVictoryNode);
+        } else{
+            UpdateDialogueNode(mrmiller, powerMillerLossNode);
+            dialogueRunner.StartDialogue(powerMillerLossNode); 
+        } 
+    }
+
+    private void TouristPostAzulejo(){
+        if(WorldState.Instance.GetWonLastMatch()){
+            UpdateDialogueNode(tourist, powerTouristVictoryNode);
+            dialogueRunner.StartDialogue(powerTouristVictoryNode);
+        } else{
+            UpdateDialogueNode(tourist, powerTouristLossNode);
+            dialogueRunner.StartDialogue(powerTouristLossNode);
+        }
+    }
+
 
     // YARN COMMANDS
     [YarnCommand]
@@ -71,15 +104,21 @@ public class ClayManager : AreaManager{
     }
     
     [YarnCommand]
-    public void OpenAntiqueShop()
-    {
+    public void OpenAntiqueShop(){
         AntiqueShopEntrance.SetActive(true);
         staticantiqueshop.SetActive(false); 
     }
     
     [YarnCommand]
     public void StartMrMillerPowerAzulejo(){
+        WorldState.Instance.SetLastOpponent("miller");
+        SceneController.Instance.Roundtrip(powerAzuMrMillerScene);
+    }
 
+    [YarnCommand]
+    public void StartTouristPowerAzulejo(){
+        WorldState.Instance.SetLastOpponent("tourist");
+        SceneController.Instance.Roundtrip(powerAzuTouristScene);
     }
     
     [YarnCommand]

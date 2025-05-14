@@ -9,7 +9,7 @@ public class CollageManager : AreaManager{
     
     [Header("NPCs")]
     public GameObject dani;
-
+    public GameObject hank;
     public GameObject lucia;
 
     [Header("Tiles")]
@@ -27,6 +27,11 @@ public class CollageManager : AreaManager{
     public GameObject KrakenAnimation;
     public GameObject PirateShip;
     
+    [Header("Hank Power Azulejo")]
+    public string powerAzuHankScene = "POWER_azulejo_Hank";
+    public string powerHankVictoryNode = "Hank1Win";
+    public string powerHankLossNode = "Hank1Loss";
+
     [Header("Misc")]
     public AudioClip CrushSound;
 
@@ -52,6 +57,26 @@ public class CollageManager : AreaManager{
             //case 4:
                 //UpdateDialogueNode(dani, "Dani4");
                 //break;
+        }
+
+        string lastPowerAzulejo = WorldState.Instance.GetLastOpponent();
+        if(lastPowerAzulejo != ""){
+            if(lastPowerAzulejo == "hank"){
+                HankPostAzulejo();
+            } 
+            
+            WorldState.Instance.SetLastOpponent("");
+        }
+    }
+
+    // NON YARN COMMANDS
+    private void HankPostAzulejo(){
+        if(WorldState.Instance.GetWonLastMatch()){
+            UpdateDialogueNode(hank, powerHankVictoryNode);
+            dialogueRunner.StartDialogue(powerHankVictoryNode);
+        } else{
+            UpdateDialogueNode(hank, powerHankLossNode);
+            dialogueRunner.StartDialogue(powerHankLossNode); 
         }
     }
 
@@ -131,4 +156,10 @@ public class CollageManager : AreaManager{
         UpdateDialogueNode(lucia, "LuciaSteffano2PostToe");
     }
     
+    [YarnCommand]
+    public void StartHankPowerAzulejo(){
+        WorldState.Instance.SetLastOpponent("hank");
+        SceneController.Instance.Roundtrip(powerAzuHankScene);
+    }
+
 }

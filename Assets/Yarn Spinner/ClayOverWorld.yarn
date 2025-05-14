@@ -101,32 +101,6 @@ Kate: Yeah, but I don’t deserve to feel this way.
 Abigail: That’s true, you deserve…you deserve so many good things.
 <<jump Kate2>>
 ===
-title: AntiqueShop
-tags:
----
-<<if visited("AntiqueShop") is false>>
-<<LoadVariables WorldState>>
-Mr.Miller: Abigail! What can I help you with today darling? 
-<<if $tile_type is "saltwater">>
-    Abigail: I'm looking for a specific Tile. It kinda feels like saltwater in your hair.
-<<else>>
-    Abigail: I'm looking for a specific Tile. It kinda feels like holding someone's hand.
-<<endif>>
-Mr.Miller: Hmm, let me see if I have anything like that around.
-Mr.Miller: How's your mom doing these days?
-Abigail: I think she’s doing okay, but I don’t call her as much as I should. 
-Mr.Miller: Well, she's a lovely lady your mother. You know I made her a special flower power tile way back when.
-Mr.Miller: I don't think I have anything like what you're looking for, but I have a feeling you could use this instead.
-Mr.Miller: Time is a funny thing Miss Abigail, it goes and goes without us even noticing. 
-Mr.Miller: Maybe this can help you notice. 
-Abigail: Thank you Mr. Miller. How much is it?
-Mr.Miller: How about you give your play a round of power azulejo with me and we're even?
-<<GiveClock SceneController>>
-<<VisitAntiqueShop SceneController>>
-<<else>>
-Mr.Miller: Ready to play again?
-<<endif>>
-===
 title: Kate2
 tags:
 ---
@@ -153,6 +127,42 @@ title: Kate3
 tags:
 ---
 Kate: I'm excited to see your mom. I miss that lady. 
+===
+title: AntiqueShop
+tags:
+---
+<<if visited("AntiqueShop") is false>>
+<<LoadVariables WorldState>>
+Mr.Miller: Abigail! What can I help you with today darling? 
+<<if $tile_type is "saltwater">>
+    Abigail: I'm looking for a specific Tile. It kinda feels like saltwater in your hair.
+<<else>>
+    Abigail: I'm looking for a specific Tile. It kinda feels like holding someone's hand.
+<<endif>>
+Mr.Miller: Hmm, let me see if I have anything like that around.
+Mr.Miller: How's your mom doing these days?
+Abigail: I think she’s doing okay, but I don’t call her as much as I should. 
+Mr.Miller: Well, she's a lovely lady your mother. You know I made her a special flower power tile way back when.
+Mr.Miller: I don't think I have anything like what you're looking for, but I have a feeling you could use this instead.
+<<GiveClock SceneController>>
+Mr.Miller: Time is a funny thing Miss Abigail, it goes and goes without us even noticing. 
+Mr.Miller: Maybe this can help you notice. 
+Abigail: Thank you Mr. Miller. How much is it?
+Mr.Miller: How about you give your play a round of power azulejo with me and we're even?
+<<VisitAntiqueShop SceneController>>
+<<StartMrMillerPowerAzulejo SceneController>>
+<<else>>
+Mr.Miller: Ready to play again?
+<<endif>>
+===
+title: AntiqueShopVictory
+---
+Mr.Miller: I went easy on you cause I thought you were rusty!
+Mr.Miller: Next time I won't hold back, young girl.
+===
+title: AntiqueShopLoss
+---
+Mr.Miller: This old man still has it!
 ===
 //=== CLAY NPCS ===
 title: Harold0
@@ -532,4 +542,41 @@ Delilah: It’s nice to remember though, how it all felt at the beginning.
 <<else>>
 Delilah: Thank you for helping me remember. 
 <<endif>>
+===
+title: Tourist0
+tags: 
+---
+<<if visited("Tourist0") is false>>
+Tourist: These are absolutely blowing my mind! My heart is on fire! My soul is delighted!
+Abigail: Yeah these tiles are pretty nice.
+Tourist: All the blogs said that getting out of West Kiln is where you find the real genuine true authentic azulejo tiles. And oh boy were they right!
+Abigail: The blogs?
+Tourist: That’s how I heard about this city!
+Tourist: Power Azulejo Addicts dot com! You can find it on the world wide web!
+Tourist: You wanna play some Power Azulejo with me?
+<<StartTouristPowerAzulejo SceneController>>
+<<else>>
+Tourist: This was so worth going into debt for!
+<<endif>>
+===
+title: Tourist1Win
+tags: 
+---
+Tourist: You're pretty good! Are you going to the Azulejo museum tournament?
+Abigail: Maybe?
+Tourist: I wouldn't miss it for the world! I'm gonna make my pals on the forums so jealous. 
+===
+title: Tourist1Loss
+tags: 
+---
+Tourist: My pals on the forums will not be hearing about this...
+Tourist: Can we rematch at the Azulejo Museum tournament?
+Abigail: Maybe?
+Tourist: Sweet! See you then. 
+===
+title: Tourist2
+tags: 
+---
+//trying to talk again after Azulejo game NOT IMPLEMENTED I GOT LAZY
+Tourist: This was so worth going into debt for!
 ===

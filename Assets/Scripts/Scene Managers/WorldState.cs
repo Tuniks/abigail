@@ -32,6 +32,8 @@ public class WorldState : MonoBehaviour{
 
     private Dictionary<string, string> npcConversationState = new Dictionary<string, string>();
 
+    // POWER AZULEJO STUFF
+    private string lastOpponent = "";
     private bool wonLastMatch = false;
 
     void Awake(){
@@ -92,8 +94,20 @@ public class WorldState : MonoBehaviour{
         return Vector3.zero;
     }
 
+    public void SetLastOpponent(string _opp){
+        lastOpponent = _opp;
+    }
+
+    public string GetLastOpponent(){
+        return lastOpponent;
+    }
+
     public void SetWonLastMatch(bool status){
         wonLastMatch = status;
+    }
+
+    public bool GetWonLastMatch(){
+        return wonLastMatch;
     }
 
 }

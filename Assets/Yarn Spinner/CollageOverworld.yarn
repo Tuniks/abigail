@@ -208,6 +208,7 @@ Hank: I used to come to this coffee shop every morning.
 Abigail: Well ran dry?
 Hank: It ain't even walking friend.
 Hank: Now I rely on Power Azulejo for my morning boost, I like it a latte.
+<<StartHankPowerAzulejo SceneController>>
 <<else>>
 Hank: Not to give you the cold brew shoulder, but I'm busy.
 <<endif>>
@@ -215,14 +216,12 @@ Hank: Not to give you the cold brew shoulder, but I'm busy.
 title: Hank1Win
 tags: 
 ---
-//This text would start after if Abigail Wins
 Hank: This is the start of a brew-tiful friendship.
 Hank: I'll play you anytime. 
 ===
 title: Hank1Loss
 tags: 
 ---
-//This text would start after if Abigail Losses 
 Hank: I guess I'm not your average cup of joe. 
 Hank: Come back anytime and hit me with your best espresso shot.
 ===
