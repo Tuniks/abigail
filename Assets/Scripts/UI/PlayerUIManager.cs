@@ -44,6 +44,11 @@ public class PlayerUIManager : MonoBehaviour{
     private PhenomenonSlot phenomenonSlot = null;
     private TileComponent phenomenonTarget = null;
 
+    [Header("Bullshit ass dumb ass sounds")]
+    public AudioClip bagOpenSound;
+    public AudioClip bagCloseSound;
+    public AudioClip newTileNotificationSound;
+
     void Start(){
         instance = this;
         playerInventory = PlayerInventory.Instance;
@@ -76,6 +81,8 @@ public class PlayerUIManager : MonoBehaviour{
         SetInventoryUI();
         invDirector.playableAsset = openAnimation;
         invDirector.Play();
+
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagOpenSound);
     }
 
     public void HideInventory(bool isManual = false){
@@ -85,6 +92,7 @@ public class PlayerUIManager : MonoBehaviour{
         invDirector.Play();
         tileDetailsScreen.SetActive(false);
         phenomenonUI.HideUI();
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagCloseSound);
     }
 
     public Transform GetHeldItemParent(){
@@ -280,5 +288,6 @@ public class PlayerUIManager : MonoBehaviour{
 
     public void ShowNewTileNotification(){
         newTileNotification.Show();
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(newTileNotificationSound);
     }
 }
