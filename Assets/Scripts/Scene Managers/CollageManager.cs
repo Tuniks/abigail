@@ -77,13 +77,7 @@ public class CollageManager : AreaManager{
         WorldState.Instance.UpdateSceneState(Areas.Collage, 2, true);
         WorldState.Instance.UpdateSceneState(Areas.Felt, 2);
     }
-    
-    [YarnCommand]
-    public void GoToSteamLinkSceneFromCollage()
-    {
-        SceneManager.LoadScene("STEAMLINK");
-    }
-    
+
     [YarnCommand]
     public void Givetv()
     {

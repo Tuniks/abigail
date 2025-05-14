@@ -1,4 +1,34 @@
 ﻿//=== MAIN QUEST LINE ===
+title: Kate0
+tags:
+---
+<<if visited("Kate0") is false>>
+<<HideIndicator ToggleIndicatorKate>>
+Kate: Abigail! What are you doing here?
+Abigail: Oh you know, just, looking for a tile from my childhood that I think transported me back here. 
+Kate: You're long overdue for a visit so I thought this was a purposeful trip, but that's cool. 
+Abigail: I didn't mean it like that Kate. Can we start over?
+Kate: Whatever you want Abigail.
+Abigail: It's really good to see you. Are you still the busiest person alive?
+Kate: Yeah, kinda. I just have my job at the library, managing the venue in Wharf, volunteering at the beach, not to mention checking in on all of our friends.
+Abigail: Is Dani doing okay?
+Kate: Is Dani ever doing okay?
+Kate: Sorry, I'm just a little at my wits end with them right now.
+Abigail: That's fair. They just seem lonely is all. 
+Kate: Yeah, me too, but I'm not just sulking around.
+Abigail: So you're not seeing anyone right now?
+Kate: That's not really your business Abigail. 
+Abigail: I'm sorry, I'm messing this up.
+Kate: No you're not, I'm not being nice. We were friends first, let's just try and be friends.
+Abigail: I'd really like that. I have to go check out Miller's Antiques but when I come back maybe we could play Azulejo?
+Kate: I'd love to. 
+<<OpenAntiqueShop SceneController>>
+<<else>>
+<<HideIndicator ToggleIndicatorKate>>
+Kate: Once you're done checking out Miller's Antiques we can play Azulejo. 
+<<endif>>
+<<ShowIndicator ToggleIndicatorKate>>
+===
 title: KateAz0
 tags:
 ---
@@ -71,36 +101,6 @@ Kate: Yeah, but I don’t deserve to feel this way.
 Abigail: That’s true, you deserve…you deserve so many good things.
 <<jump Kate2>>
 ===
-title: Kate0
-tags:
----
-<<if visited("Kate0") is false>>
-<<HideIndicator ToggleIndicatorKate>>
-Kate: Abigail! What are you doing here?
-Abigail: Oh you know, just, looking for a tile from my childhood that I think transported me back here. 
-Kate: You're long overdue for a visit so I thought this was a purposeful trip, but that's cool. 
-Abigail: I didn't mean it like that Kate. Can we start over?
-Kate: Whatever you want Abigail.
-Abigail: It's really good to see you. Are you still the busiest person alive?
-Kate: Yeah, kinda. I just have my job at the library, managing the venue in Wharf, volunteering at the beach, not to mention checking in on all of our friends.
-Abigail: Is Dani doing okay?
-Kate: Is Dani ever doing okay?
-Kate: Sorry, I'm just a little at my wits end with them right now.
-Abigail: That's fair. They just seem lonely is all. 
-Kate: Yeah, me too, but I'm not just sulking around.
-Abigail: So you're not seeing anyone right now?
-Kate: That's not really your business Abigail. 
-Abigail: I'm sorry, I'm messing this up.
-Kate: No you're not, I'm not being nice. We were friends first, let's just try and be friends.
-Abigail: I'd really like that. I have to go check out Miller's Antiques but when I come back maybe we could play Azulejo?
-Kate: I'd love to. 
-<<OpenAntiqueShop SceneController>>
-<<else>>
-<<HideIndicator ToggleIndicatorKate>>
-Kate: Once you're done checking out Miller's Antiques we can play Azulejo. 
-<<endif>>
-<<ShowIndicator ToggleIndicatorKate>>
-===
 title: AntiqueShop
 tags:
 ---
@@ -125,19 +125,6 @@ Mr.Miller: How about you give your play a round of power azulejo with me and we'
 <<VisitAntiqueShop SceneController>>
 <<else>>
 Mr.Miller: Ready to play again?
-<<endif>>
-===
-title: Kate1
-tags:
----
-<<if visited("Kate1") is false>>
-Kate: Ready for the pools to tell you the secrets of your heart?
-Abigail: You know I don't believe in that stuff.
-Kate: The pools read the energy around them, and then give you words to contemplate. It's gonna happen whether you believe in it or not. 
-Abigail: Let's just play. 
-<<PreClayAzulejoDone SceneController>>
-<<else>>
-Kate: I'm excited to see your mom. I miss that lady. 
 <<endif>>
 ===
 title: Kate2

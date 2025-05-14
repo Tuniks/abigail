@@ -12,11 +12,12 @@ public class ClayManager : AreaManager{
     public GameObject kate;
 
     [Header("Dialogue Nodes")]
-    public string state1Dialogue = "Kate1";
-    public string state2Dialogue = "Kate2";
+    public string state1Dialogue = "KateAz0";
+    public string state2Dialogue = "Kate3";
     
     [Header("Scenes")]
-    public string azulejoScene = "CLAY_azulejo";
+    public string powerAzuMrMillerScene = "CLAY_azulejo";
+    public string powerAzuTouristScene = "CLAY_azulejo";
     
     [Header("Tiles")]
     public GameObject antiqueShop;
@@ -31,6 +32,8 @@ public class ClayManager : AreaManager{
     [Header("GameObjects")]
     public GameObject AntiqueShopEntrance;
 
+    private string lastPowerAzulejo = "";
+
     public override void UpdateSceneState(int state){        
         switch(state){
             case 0:
@@ -40,70 +43,59 @@ public class ClayManager : AreaManager{
                 UpdateDialogueNode(kate, state1Dialogue);
                 break;
             case 2:
-                dialogueRunner.StartDialogue(state2Dialogue);
                 UpdateDialogueNode(kate, state2Dialogue);
                 break;
-            case 3:
-                UpdateDialogueNode(kate, state2Dialogue);
-                break;
+        }
+
+        if(lastPowerAzulejo != ""){
+            if(lastPowerAzulejo == "miller"){
+
+            } else if (lastPowerAzulejo == "tourist"){
+
+            }
+            lastPowerAzulejo = "";
         }
     }
 
     // YARN COMMANDS
-    [YarnCommand]
-    public void FlashTile(){
-
-    }
-
     [YarnCommand]
     public void VisitAntiqueShop(){
         WorldState.Instance.UpdateSceneState(Areas.Clay, 1, true);
     }
 
     [YarnCommand]
-    public void PreClayAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Clay, 2);
-        SceneController.Instance.Roundtrip(azulejoScene);
-    }
-
-    [YarnCommand]
     public void PostClayAzulejoDone(){
-        WorldState.Instance.UpdateSceneState(Areas.Clay, 3, true);
+        WorldState.Instance.UpdateSceneState(Areas.Clay, 2);
         WorldState.Instance.UpdateNPCDialogueNode("Chase", "Chase4");
         WorldState.Instance.UpdateSceneState(Areas.Felt, 2);
-    }
-    
-    [YarnCommand]
-    public void GoToSteamLinkScene()
-    {
-        SceneManager.LoadScene("STEAMLINK");
     }
     
     [YarnCommand]
     public void OpenAntiqueShop()
     {
         AntiqueShopEntrance.SetActive(true);
-        staticantiqueshop.SetActive(false);
-        
+        staticantiqueshop.SetActive(false); 
     }
     
     [YarnCommand]
-    public void GiveClock()
-    {
+    public void StartMrMillerPowerAzulejo(){
+
+    }
+    
+    [YarnCommand]
+    public void GiveClock(){
         PlayerInventory.Instance.AddTilesToCollection(clockTile);
         
     }
     
     [YarnCommand]
-    public void GiveFlyingPill()
-    {
+    public void GiveFlyingPill(){
         PlayerInventory.Instance.AddTilesToCollection(flyingTile);
         
     }
     
     [YarnCommand]
-    public void GiveBellTile()
-    {
+    public void GiveBellTile(){
         PlayerInventory.Instance.AddTilesToCollection(bellTile);
         
     }

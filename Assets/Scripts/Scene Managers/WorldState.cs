@@ -32,6 +32,8 @@ public class WorldState : MonoBehaviour{
 
     private Dictionary<string, string> npcConversationState = new Dictionary<string, string>();
 
+    private bool wonLastMatch = false;
+
     void Awake(){
         DontDestroyOnLoad(gameObject);
         if(Instance == null){
@@ -88,6 +90,10 @@ public class WorldState : MonoBehaviour{
         if(lastPositionInArea.ContainsKey(area)) return lastPositionInArea[area];
 
         return Vector3.zero;
+    }
+
+    public void SetWonLastMatch(bool status){
+        wonLastMatch = status;
     }
 
 }
