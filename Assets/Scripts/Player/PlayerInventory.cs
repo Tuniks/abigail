@@ -30,6 +30,7 @@ public class PlayerInventory : Inventory{
 
     private void ResetGame(){
         SceneManager.LoadScene("START");
+        Destroy(WorldState.Instance.gameObject);
         Destroy(this.gameObject);
     }
 }
