@@ -11,6 +11,8 @@ public class HauntedGhosts : MonoBehaviour{
     private List<GameObject> currentGhosts;
     private GameObject current = null;
     
+    public AudioClip ghostHitSound;
+
     void Start(){
         currentGhosts = new List<GameObject>(totalGhosts);
     }
@@ -32,6 +34,7 @@ public class HauntedGhosts : MonoBehaviour{
     public void GhostHit(GameObject ghost){
         ghost.SetActive(false);
         currentGhosts.Remove(ghost);
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(ghostHitSound);
     }
 
     public void ResetMinigame(){
