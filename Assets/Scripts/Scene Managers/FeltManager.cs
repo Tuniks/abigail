@@ -87,7 +87,11 @@ public class FeltManager : AreaManager{
 
     [YarnCommand]
     public void GiveGianlucaTile(){
-        PlayerInventory.Instance.AddTilesToCollection(gianlucasTile);
+        GameObject tileObj = Instantiate(gianlucasTile[0].gameObject);
+        tileObj.SetActive(false);
+        Tile[] tiles = new Tile[]{tileObj.GetComponent<Tile>()};
+
+        PlayerInventory.Instance.AddTilesToCollection(tiles);
     }
     
     [YarnCommand]

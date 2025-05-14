@@ -19,6 +19,10 @@ public class FeltInteractions : AreaInteractions{
     public GameObject hauntedMinigame;
     public HauntedGhosts hauntedGhosts;
 
+    [Header("Sounds")]
+    public AudioClip startMinigameSound;
+    public AudioClip endMinigameSound;
+
     // Ryans
     [YarnCommand]
     public void RyansThrowFlyTile(){
@@ -35,6 +39,8 @@ public class FeltInteractions : AreaInteractions{
         soccerUI.SetActive(true);
         soccerMinigame.SetActive(true);
 
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(startMinigameSound);
+
         PlayerInteractor.instance.StartAzulejoConvo();
         PlayerInteractor.instance.HijackInteractor(EndSoccerMinigame);
 
@@ -43,6 +49,8 @@ public class FeltInteractions : AreaInteractions{
     public void EndSoccerMinigame(){
         soccerUI.SetActive(false);
         soccerMinigame.SetActive(false);
+
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(endMinigameSound);
 
         PlayerInteractor.instance.EndAzulejoConvo();
         PlayerInteractor.instance.EndHijack();
@@ -55,6 +63,8 @@ public class FeltInteractions : AreaInteractions{
         hauntedMinigame.SetActive(true);
         hauntedGhosts.ResetMinigame();
 
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(startMinigameSound);
+
         PlayerInteractor.instance.StartAzulejoConvo();
         PlayerInteractor.instance.HijackInteractor(EndHauntedMinigame);
     }
@@ -62,6 +72,9 @@ public class FeltInteractions : AreaInteractions{
     public void EndHauntedMinigame(){
         hauntedUI.SetActive(false);
         hauntedMinigame.SetActive(false);
+
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(endMinigameSound);
+
         PlayerInteractor.instance.EndAzulejoConvo();
         PlayerInteractor.instance.EndHijack();
     }
