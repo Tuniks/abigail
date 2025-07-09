@@ -6,6 +6,7 @@ using UnityEngine.WSA;
 
 public class PowerTilePhysics : MonoBehaviour{
     private Rigidbody2D rb;
+    private PowerMovementManager pmm;
 
     [Header("Tile Attributes")]
     public bool isPlayerTile = true;
@@ -20,6 +21,7 @@ public class PowerTilePhysics : MonoBehaviour{
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        pmm = PowerMovementManager.Instance;
     }
 
     void Update(){
