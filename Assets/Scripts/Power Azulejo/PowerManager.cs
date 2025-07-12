@@ -15,6 +15,7 @@ public class PowerManager : MonoBehaviour{
     public static PowerManager Instance;
 
     [Header("Game Settings")]
+    public PowerSumoGame game;
     public bool showTutorial = true;
 
     [Header("Tutorial References")]
@@ -29,36 +30,15 @@ public class PowerManager : MonoBehaviour{
     void Start(){
         if(showTutorial){
             ChangeState(PowerStage.Tutorial);
-        } else ChangeState(PowerStage.Selection);
+        } else ChangeState(PowerStage.Game);
     }
 
-    // Managing States 
+    // ===== Managing States ======= 
     private void ChangeState(PowerStage newStage){
         if(newStage == currentStage) return;
-
+        
         // Exiting current state
         switch(currentStage){
-            case PowerStage.None:
-                break;
-            case PowerStage.Tutorial:
-                EnterTutorialStage();
-                break;
-            case PowerStage.Selection:
-                EnterSelectionStage();
-                break;
-            case PowerStage.Intro:
-                EnterIntroStage();
-                break;
-            case PowerStage.Game:
-                EnterGameStage();
-                break;
-            case PowerStage.End:
-                EnterEndStage();
-                break;
-        }
-
-        // Entering new state
-        switch(newStage){
             case PowerStage.None:
                 break;
             case PowerStage.Tutorial:
@@ -75,6 +55,27 @@ public class PowerManager : MonoBehaviour{
                 break;
             case PowerStage.End:
                 ExitEndStage();
+                break;
+        }
+
+        // Entering new state
+        switch(newStage){
+            case PowerStage.None:
+                break;
+            case PowerStage.Tutorial:
+                EnterTutorialStage();
+                break;
+            case PowerStage.Selection:
+                EnterSelectionStage();
+                break;
+            case PowerStage.Intro:
+                EnterIntroStage();
+                break;
+            case PowerStage.Game:
+                EnterGameStage();
+                break;
+            case PowerStage.End:
+                EnterEndStage();
                 break;
         }
 
@@ -111,7 +112,7 @@ public class PowerManager : MonoBehaviour{
 
     // Game
     private void EnterGameStage(){
-
+        game.StartGame();  
     }
 
     private void ExitGameStage(){
@@ -125,6 +126,12 @@ public class PowerManager : MonoBehaviour{
 
     private void ExitEndStage(){
 
+    }
+
+
+    // ========= GETTERS AND SETTERS =========
+    public PowerSumoGame GetPowerSumoGame(){
+        return game;
     }
 
 }

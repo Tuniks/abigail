@@ -6,7 +6,8 @@ using UnityEngine.WSA;
 
 public class PowerTilePhysics : MonoBehaviour{
     private Rigidbody2D rb;
-    private PowerMovementManager pmm;
+    private PowerCameraManager pmm;
+    private PowerSumoGame game;
 
     [Header("Tile Attributes")]
     public bool isPlayerTile = true;
@@ -21,7 +22,8 @@ public class PowerTilePhysics : MonoBehaviour{
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
-        pmm = PowerMovementManager.Instance;
+        pmm = PowerCameraManager.Instance;
+        game = PowerManager.Instance.GetPowerSumoGame();
     }
 
     void Update(){
@@ -37,6 +39,8 @@ public class PowerTilePhysics : MonoBehaviour{
     private void OnMouseDown(){
         if(!isPlayerTile) return;
         if(isAiming) return;
+
+        if(!game.CanPlayerMove(this.gameObject)) return;
 
         pointer.gameObject.SetActive(true);
         isAiming = true;
@@ -67,6 +71,8 @@ public class PowerTilePhysics : MonoBehaviour{
         Vector3 distVector = newPos-transform.position;
 
         rb.AddForce(distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
+
+        game.MovePlayer(this.gameObject);
     }
 
 }
