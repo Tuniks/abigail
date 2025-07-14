@@ -606,10 +606,17 @@ PrefabInstance:
       propertyPath: destination
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5557750503317744848, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 830662778}
+    - targetCorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 830662780}
   m_SourcePrefab: {fileID: 100100000, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
 --- !u!4 &319273192 stripped
 Transform:
@@ -1035,10 +1042,10 @@ PolygonCollider2D:
     - - {x: -1.0497432, y: 1.1642731}
       - {x: -1.8079114, y: 0.45582712}
       - {x: -1.5078626, y: -2.8135018}
-      - {x: -1.215001, y: -3.631365}
+      - {x: -1.4920461, y: -3.9950805}
       - {x: -0.24503645, y: -2.8736696}
-      - {x: 0.46816602, y: -2.3719447}
-      - {x: 0.5916238, y: -1.8056395}
+      - {x: 1.0861881, y: -1.6964735}
+      - {x: 1.2948904, y: -1.0262492}
       - {x: 0.56871843, y: 1.7598276}
   m_UseDelaunayMesh: 0
 --- !u!1 &762328311
@@ -1249,6 +1256,42 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7238fe71848d6944a50dc8c40a550da, type: 3}
+--- !u!1 &830662777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+  m_PrefabInstance: {fileID: 319273191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &830662778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830662777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6acee369c937b6f4e8e6578d685ca627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: 2
+  isBlocked: 0
+  blockedDialogueNode: blockedDoor
+--- !u!114 &830662780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830662777}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388f5ebb124c8fb43ba62fa621aacd9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: 2
+  isBlocked: 0
+  blockedDialogueNode: blockedDoor
+  unblockedDialogueNode: UnBlockedDoorMom
 --- !u!1 &856763048
 GameObject:
   m_ObjectHideFlags: 0

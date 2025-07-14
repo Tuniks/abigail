@@ -12,7 +12,7 @@ public class ScenePortal : MonoBehaviour{
         if(isBlocked){
             return blockedDialogueNode;
         }
-
+        
         SceneController.Instance.Travel(destination);
         return null;
     }

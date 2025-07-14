@@ -18,6 +18,8 @@ public class MomsManager : AreaManager{
     [Header("Misc")]
     public Tile[] tilesInChest;
     public Tile toucanTile;
+    public GameObject SunflowerInteraction;
+    public GameObject EmptySunflower;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -48,13 +50,20 @@ public class MomsManager : AreaManager{
 
     [YarnCommand]
     public void PostAzulejoDone(){
-        PlayerInventory.Instance.AddTilesToCollection(new Tile[]{toucanTile});
+        //PlayerInventory.Instance.AddTilesToCollection(new Tile[]{toucanTile});
         WorldState.Instance.UpdateSceneState(Areas.Moms, 2, true);
     }
 
     [YarnCommand]
     public void UpdateMomDaniNode(string node){
         UpdateDialogueNode(mom, node);
-        UpdateDialogueNode(dani, node);
+        //UpdateDialogueNode(dani, node);
     }
+    
+    [YarnCommand]
+    public void TurnOnSunflower(){
+        SunflowerInteraction.SetActive(true);
+        EmptySunflower.SetActive(false);
+    }
+    
 }
