@@ -13,10 +13,18 @@ public enum PowerStage {
 
 public class PowerManager : MonoBehaviour{
     public static PowerManager Instance;
+    private PowerTileBuilder builder;
 
     [Header("Game Settings")]
     public PowerSumoGame game;
     public bool showTutorial = true;
+
+    [Header("Game Data")]
+    public List<Tile> playerInventory;
+    public PowerTile[] playerTiles;
+
+    public List<Tile> enemyInventory;
+    public PowerTile[] enemyTiles;
 
     [Header("Tutorial References")]
     public GameObject tutorialUI;
@@ -28,6 +36,8 @@ public class PowerManager : MonoBehaviour{
     }
 
     void Start(){
+        builder = GetComponent<PowerTileBuilder>();
+
         if(showTutorial){
             ChangeState(PowerStage.Tutorial);
         } else ChangeState(PowerStage.Game);
@@ -112,7 +122,9 @@ public class PowerManager : MonoBehaviour{
 
     // Game
     private void EnterGameStage(){
-        game.StartGame();  
+        BuildTiles();
+        game.StartGame();
+
     }
 
     private void ExitGameStage(){
@@ -128,6 +140,19 @@ public class PowerManager : MonoBehaviour{
 
     }
 
+
+    // ========= AUX ========
+    private void BuildTiles(){
+        // Building player tiles
+        for(int i = 0; i < playerTiles.Length; i++){
+            builder.BuildTile(playerInventory[i], playerTiles[i], true);
+        }
+
+        // Building enemy tiles
+        for(int i = 0; i < enemyTiles.Length; i++){
+            builder.BuildTile(enemyInventory[i], enemyTiles[i], false);
+        }
+    }
 
     // ========= GETTERS AND SETTERS =========
     public PowerSumoGame GetPowerSumoGame(){

@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PowerTile : MonoBehaviour{
     public Tile parent;
+    
+    public bool isPlayerTile = false;
 
-    void Start(){
-        GenerateTile();
-    }
-
-    public void GenerateTile(){
+    public void GenerateTileData(){
         
     }
 
+    public void SetParent(Tile _parent){
+        parent = _parent;
+    }
+
+    public void SetIsPlayer(bool _state){
+        isPlayerTile = _state;
+    }
 
 }

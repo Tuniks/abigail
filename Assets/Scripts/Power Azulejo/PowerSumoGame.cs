@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PowerSumoGame : MonoBehaviour{
     [Header("Game Variables")]
-
     public int playerMaxStamina = 3;
     public int enemyMaxStamina = 3;
+    public bool canMultiMove = false;
 
     [Header("Timing")]
     public float timeBetweenActions = 1f;
@@ -50,7 +50,7 @@ public class PowerSumoGame : MonoBehaviour{
         if(!isGameOn || !isPlayerTurn) return false;
 
         if(playerCurrentStamina - cost < 0) return false;
-        if(playerMovedList.Contains(tile)) return false;
+        if(!canMultiMove && playerMovedList.Contains(tile)) return false;
 
         return true;
     }
