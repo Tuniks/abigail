@@ -154,9 +154,21 @@ public class PowerManager : MonoBehaviour{
         }
     }
 
+    public void TriggerEnding(bool playerWon){
+        
+    }
+
     // ========= GETTERS AND SETTERS =========
     public PowerSumoGame GetPowerSumoGame(){
         return game;
     }
+
+    public PowerTile[] GetPlayerTiles(){
+        return playerTiles;
+    }
+
+    public PowerTile[] GetEnemyTiles(){
+        return enemyTiles;
+    }   
 
 }

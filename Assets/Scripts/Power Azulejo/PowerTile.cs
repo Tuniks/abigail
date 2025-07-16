@@ -10,7 +10,17 @@ public class PowerTile : MonoBehaviour{
     public void GenerateTileData(){
         
     }
+    
+    public void Die(){
+        PowerManager.Instance.GetPowerSumoGame().RegisterDeath(isPlayerTile, this.gameObject);
+        Destroy(gameObject);
+    }
 
+    public void LaunchTile(Vector3 dir, float pct){
+        GetComponent<PowerTilePhysics>().LaunchInDirection(dir, pct);
+    }
+
+    // ========= GETTERS E SETTERS =========
     public void SetParent(Tile _parent){
         parent = _parent;
     }
@@ -18,5 +28,4 @@ public class PowerTile : MonoBehaviour{
     public void SetIsPlayer(bool _state){
         isPlayerTile = _state;
     }
-
 }

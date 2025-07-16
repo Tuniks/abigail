@@ -132,7 +132,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e86cc7929a2cd9f47bb629af61019c97, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -166,7 +166,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &6231850881217835905
 Rigidbody2D:
@@ -180,8 +180,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 2
+  m_Mass: 5
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -193,7 +193,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2803709583986135342
 MonoBehaviour:
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bca4173dbbbf364e8b54e6b70e46c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForce: 7
+  maxForce: 50
   pointer: {fileID: 0}
-  maxPointerLength: 2
+  maxPointerLength: 5
   minPointerLength: 0.25

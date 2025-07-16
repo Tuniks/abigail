@@ -35,7 +35,7 @@ public class PowerTilePhysics : MonoBehaviour{
             UpdatePointer();
             
             if(Input.GetMouseButtonUp(0)){
-                Launch();
+                LaunchPlayer();
             }
         }
     }
@@ -64,7 +64,7 @@ public class PowerTilePhysics : MonoBehaviour{
         pointer.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, distVector, Vector3.forward));
     }
 
-    private void Launch(){
+    private void LaunchPlayer(){
         pointer.gameObject.SetActive(false);
         isAiming = false;
 
@@ -77,6 +77,16 @@ public class PowerTilePhysics : MonoBehaviour{
         rb.AddForce(distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
 
         game.MovePlayer(this.gameObject);
+    }
+
+    public void LaunchInDirection(Vector3 dir, float forcePercentage){
+        rb.AddForce(dir.normalized * forcePercentage * maxForce, ForceMode2D.Impulse);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col){
+        if(col.CompareTag("PowerHole")){
+            powerTile.Die();
+        }
     }
 
 }
