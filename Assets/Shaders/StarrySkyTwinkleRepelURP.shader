@@ -1,4 +1,4 @@
-Shader "Custom/URP/StarrySkyTwinkleRepel_NoTile"
+Shader "Custom/URP/StarrySkyTwinkleRepel_NoTile_Bounce_SpikesDist"
 {
     Properties
     {
@@ -15,7 +15,11 @@ Shader "Custom/URP/StarrySkyTwinkleRepel_NoTile"
 
         _RepelRadius     ("Repel Radius (cells)",   Float)             = 5
         _RepelStrength   ("Repel Strength (cells)", Range(0,1))        = 0.5
-        _EdgeBoost       ("Edge Boost (0‑1)",       Range(0,1))        = 0.5
+        _EdgeBoost       ("Edge Boost (0-1)",       Range(0,1))        = 0.5
+
+        _BounceChance    ("Bounce Chance (%)",      Range(0,1))        = 0.3
+        _BounceSpeed     ("Bounce Speed",           Range(0.1,10))     = 2.0
+        _SpawnSpeed      ("Spawn Speed",            Range(0.1,10))     = 1.0
 
         _SkyColor        ("Sky Color",              Color)             = (0,0,0.1,1)
         _MouseUV         ("Mouse Position (UV)",    Vector)            = (0,0,0,0)
@@ -44,6 +48,9 @@ Shader "Custom/URP/StarrySkyTwinkleRepel_NoTile"
                 float  _RepelRadius;
                 float  _RepelStrength;
                 float  _EdgeBoost;
+                float  _BounceChance;
+                float  _BounceSpeed;
+                float  _SpawnSpeed;
                 float4 _SkyColor;
                 float4 _MouseUV;
             CBUFFER_END
@@ -69,78 +76,81 @@ Shader "Custom/URP/StarrySkyTwinkleRepel_NoTile"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                float2 uv     = IN.uv;
-                float2 gridUV = uv * _StarCount.xy;
-                float2 cell   = floor(gridUV);
-                float2 cellUV = frac(gridUV);
-                float4 col    = _SkyColor;
+                float2 uv      = IN.uv;
+                float2 gridUV  = uv * _StarCount.xy;
+                float2 cell    = floor(gridUV);
+                float2 cellUV  = frac(gridUV);
+                float2 fragGrid= gridUV;
+                float4 col     = _SkyColor;
 
-                // grid-space fragment position
-                float2 fragGrid = gridUV;
-
-                // Iterate neighbors to avoid cutoffs
+                // iterate neighborhood cells
                 [unroll]
                 for (int ox = -1; ox <= 1; ox++)
+                for (int oy = -1; oy <= 1; oy++)
                 {
-                    [unroll]
-                    for (int oy = -1; oy <= 1; oy++)
-                    {
-                        float2 nCell = cell + float2(ox, oy);
-                        float2 seed  = rand2(nCell);
-                        float2 starPos = seed;
+                    float2 nCell   = cell + float2(ox, oy);
+                    float2 seed    = rand2(nCell);
+                    float2 starPos = seed;
 
-                        // base size with variance
-                        float sv      = pow(seed.y, 2.0);
-                        float scale   = lerp(1 - _SizeVariance, 1 + _SizeVariance, sv);
-                        float baseSize = _BaseStarSize * scale;
+                    // triangular distribution centered at ~0.5 for spikes
+                    float tri     = (seed.x + seed.y) * 0.5;
+                    float spikesF = floor(tri * 5.0 + 0.5) + 2;
 
-                        // repulsion
-                        float2 starGrid = nCell + starPos;
-                        float2 mouseGrid= _MouseUV.xy * _StarCount.xy;
-                        float2 dG       = starGrid - mouseGrid;
-                        float  distG    = length(dG) + 1e-5;
-                        float  repel    = saturate((_RepelRadius - distG) / _RepelRadius);
-                        float2 dirG     = dG / distG;
-                        float2 disp     = dirG * repel * _RepelStrength;
-                        float  edgeF    = 1 - repel;
+                    // base size + variance
+                    float sv       = pow(seed.y, 2.0);
+                    float scale    = lerp(1 - _SizeVariance, 1 + _SizeVariance, sv);
+                    float baseSize = _BaseStarSize * scale;
 
-                        // size + edge boost
-                        float starSize = baseSize * (1 + edgeF * _EdgeBoost);
+                    // repulsion
+                    float2 starGrid   = nCell + starPos;
+                    float2 mouseGrid  = _MouseUV.xy * _StarCount.xy;
+                    float2 dG         = starGrid - mouseGrid;
+                    float  distG      = length(dG) + 1e-5;
+                    float  repel      = saturate((_RepelRadius - distG) / _RepelRadius);
+                    float2 dirG       = dG / distG;
+                    float2 disp       = dirG * repel * _RepelStrength;
+                    float  edgeF      = 1 - repel;
 
-                        // flicker
-                        float speedVar = _FlickerSpeed * lerp(0.5,1.5, seed.x * _FlickerVar);
-                        float rawF = lerp(
-                            sin(_Time.y * speedVar + seed.x * 6.2831),
-                            sin(_Time.y * speedVar * 1.37 + seed.y * 6.2831),
-                            lerp(0.3,0.7, seed.x)
-                        );
-                        float flick = saturate(rawF * 0.5 + 0.5);
-                        float brightness = flick * (1 + edgeF * _EdgeBoost) / 9.0;
+                    // spawn growth envelope
+                    float spawnT      = _Time.y * _SpawnSpeed + seed.x;
+                    float spawnE      = saturate(sin(spawnT * 3.14159));
+                    
+                    // effective size
+                    float starSize   = baseSize * (1 + edgeF * _EdgeBoost) * spawnE;
 
-                        // rotation
-                        float rotSpeed  = (seed.x * 2 - 1) * 0.3;
-                        float angleOff  = _Time.y * rotSpeed;
+                    // flicker
+                    float speedVar   = _FlickerSpeed * lerp(0.5,1.5, seed.x * _FlickerVar);
+                    float rawF       = lerp(
+                        sin(_Time.y * speedVar + seed.x * 6.2831),
+                        sin(_Time.y * speedVar * 1.37 + seed.y * 6.2831),
+                        lerp(0.3,0.7, seed.x)
+                    );
+                    float flick      = saturate(rawF * 0.5 + 0.5);
+                    float brightness = flick * (1 + edgeF * _EdgeBoost);
 
-                        // relative pos
-                        float2 localPos = fragGrid - starGrid + disp;
-                        localPos        = rotateVec(localPos, angleOff);
+                    // position + rotation
+                    float2 localPos  = fragGrid - starGrid + disp;
+                    float rotSpeed   = (seed.x * 2 - 1) * 0.3;
+                    localPos         = rotateVec(localPos, _Time.y * rotSpeed);
 
-                        // spiky shape
-                        float ang      = atan2(localPos.y, localPos.x);
-                        float rad      = length(localPos);
-                        float spikes   = floor(seed.y * 6.999) + 2;
-                        float shapeR   = starSize * (1 + sin(ang * spikes) * _SpikeAmount);
-                        float edge     = smoothstep(shapeR, shapeR * 0.6, rad);
+                    // spiky shape
+                    float ang        = atan2(localPos.y, localPos.x);
+                    float rad        = length(localPos);
+                    float shapeR     = starSize * (1 + sin(ang * spikesF) * _SpikeAmount);
+                    float edge       = smoothstep(shapeR, shapeR * 0.6, rad);
 
-                        // color
-                        float3 starCol = lerp(_StarColorA.rgb, _StarColorB.rgb, seed.x);
-                        col.rgb += starCol * edge * brightness;
-                    }
+                    // bounce effect
+                    float doBounce   = step(1 - _BounceChance, seed.y);
+                    float bounceT    = sin(_Time.y * _BounceSpeed + seed.x * 6.2831) * 0.5 + 0.5;
+                    float bounceE    = lerp(1.0, bounceT, doBounce);
+
+                    // color
+                    float3 starCol   = lerp(_StarColorA.rgb, _StarColorB.rgb, seed.x);
+                    col.rgb         += starCol * edge * brightness * bounceE;
                 }
 
                 return col;
             }
-
             ENDHLSL
         }
     }
