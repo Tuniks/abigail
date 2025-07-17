@@ -95,11 +95,13 @@ public class PowerManager : MonoBehaviour{
 
     // Tutorial
     private void EnterTutorialStage(){
+        tutorialUI.SetActive(true);
+        tutorialUI.GetComponent<PowerSumoTutorial>().Initialize();
 
     }
 
     private void ExitTutorialStage(){
-
+        tutorialUI.SetActive(false);
     }
 
     // Selection
@@ -142,6 +144,11 @@ public class PowerManager : MonoBehaviour{
 
 
     // ========= AUX ========
+    public void TriggerTutorialEnd(){
+        ChangeState(PowerStage.Game);
+    }
+
+
     private void BuildTiles(){
         // Building player tiles
         for(int i = 0; i < playerTiles.Length; i++){
