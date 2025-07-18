@@ -1,7 +1,7 @@
-// IntroManager.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class IntroManager : MonoBehaviour
@@ -15,11 +15,23 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private float minScrambleFrequency = 1f;
     [SerializeField] private float maxScrambleFrequency = 20f;
 
-    [Header("Reveal Bounce Settings")]
-    [SerializeField] private float revealBounceUp = 1.1f;
-    [SerializeField] private float revealBounceDown = 0.9f;
-    [SerializeField] private float revealBounceDuration = 0.1f;
+    [Header("End-Sequence Settings")]
+    [Tooltip("How many snaps until we trigger the end sequence.")]
+    [SerializeField] private int requiredCollisions = 3;
+    [Tooltip("All draggable tiles (will fade these).")]
+    [SerializeField] private List<GameObject> validColliders;
+    [Tooltip("Full-screen CanvasGroup for scene fade.")]
+    [SerializeField] private CanvasGroup screenFader;
+    [Tooltip("Name of the scene to load after fade.")]
+    [SerializeField] private string nextSceneName;
 
+    [Header("Fade Durations")]
+    [SerializeField] private float tileFadeTime = 0.5f;
+    [SerializeField] private float targetFadeTime = 0.5f;
+    [SerializeField] private float textFadeTime = 0.5f;
+    [SerializeField] private float sceneFadeTime = 1f;
+
+    private int collisionCount = 0;
     private int currentIndex = 0;
     private string originalText;
     private bool isScrambling = false;
@@ -30,13 +42,15 @@ public class IntroManager : MonoBehaviour
     {
         if (dialogueText != null)
             originalText = dialogueText.text;
+
+        if (screenFader != null)
+            screenFader.alpha = 0f;
     }
 
     void Update()
     {
         if (!isScrambling) return;
 
-        // ramp how often we scramble
         float freq = Mathf.Lerp(minScrambleFrequency, maxScrambleFrequency, currentIntensity);
         float interval = 1f / freq;
 
@@ -48,10 +62,10 @@ public class IntroManager : MonoBehaviour
         }
     }
 
-    // called each drag‐frame with 0–1 proximity
     public void SetScrambleIntensity(float intensity)
     {
         intensity = Mathf.Clamp01(intensity);
+
         if (intensity > 0f)
         {
             if (!isScrambling)
@@ -69,96 +83,87 @@ public class IntroManager : MonoBehaviour
         }
     }
 
-    // call on snap—wave reveal will run over totalRevealTime seconds
     public void RevealText(float totalRevealTime)
     {
-        if (textSequence == null || textSequence.Count == 0) return;
+        if (textSequence != null && textSequence.Count > 0)
+        {
+            dialogueText.text = textSequence[currentIndex];
+            originalText = dialogueText.text;
+            currentIndex = Mathf.Min(currentIndex + 1, textSequence.Count - 1);
+        }
 
-        StopAllCoroutines();
-        isScrambling = false;
-        scrambleTimer = 0f;
-
-        string full = textSequence[currentIndex];
-        StartCoroutine(WaveReveal(full, totalRevealTime));
-
-        if (currentIndex < textSequence.Count - 1)
-            currentIndex++;
+        collisionCount++;
+        if (collisionCount >= requiredCollisions)
+            StartCoroutine(EndSequence());
     }
 
-    private IEnumerator WaveReveal(string fullText, float totalTime)
+    private IEnumerator EndSequence()
     {
-        int len = fullText.Length;
-        float delay = totalTime / Mathf.Max(1, len);
-
-        for (int i = 0; i <= len; i++)
+        // 1) Fade out all remaining tiles
+        List<SpriteRenderer> tileRenderers = new List<SpriteRenderer>();
+        foreach (GameObject go in validColliders)
         {
-            char[] chars = new char[len];
-            for (int j = 0; j < len; j++)
+            if (go == null) continue;
+            SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+            if (sr != null)
+                tileRenderers.Add(sr);
+        }
+
+        float t = 0f;
+        while (t < tileFadeTime)
+        {
+            t += Time.deltaTime;
+            float alpha = 1f - (t / tileFadeTime);
+            foreach (var renderer in tileRenderers)
+                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, alpha);
+            yield return null;
+        }
+
+        // 2) Fade out this target GameObject
+        SpriteRenderer targetSR = GetComponent<SpriteRenderer>();
+        if (targetSR != null)
+        {
+            t = 0f;
+            Color start = targetSR.color;
+            while (t < targetFadeTime)
             {
-                if (j < i)
-                {
-                    chars[j] = fullText[j];
-                }
-                else if (char.IsWhiteSpace(fullText[j]))
-                {
-                    chars[j] = ' ';
-                }
-                else
-                {
-                    // match case of original
-                    char orig = fullText[j];
-                    if (char.IsUpper(orig))
-                        chars[j] = (char)('A' + Random.Range(0, 26));
-                    else
-                        chars[j] = (char)('a' + Random.Range(0, 26));
-                }
+                t += Time.deltaTime;
+                float a = 1f - (t / targetFadeTime);
+                targetSR.color = new Color(start.r, start.g, start.b, a);
+                yield return null;
             }
-
-            dialogueText.text = new string(chars);
-            yield return new WaitForSeconds(delay);
         }
 
-        // lock in correct text
-        dialogueText.text = fullText;
-        originalText = fullText;
+        // 3) Fade out the TMP text
+        if (dialogueText != null)
+        {
+            t = 0f;
+            Color startText = dialogueText.color;
+            while (t < textFadeTime)
+            {
+                t += Time.deltaTime;
+                float a = 1f - (t / textFadeTime);
+                dialogueText.color = new Color(startText.r, startText.g, startText.b, a);
+                yield return null;
+            }
+        }
 
-        // little bounce to show it's locked
-        yield return StartCoroutine(TextBounce());
+        // 4) Fade full screen then load next scene
+        if (screenFader != null)
+        {
+            t = 0f;
+            while (t < sceneFadeTime)
+            {
+                t += Time.deltaTime;
+                screenFader.alpha = t / sceneFadeTime;
+                yield return null;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(nextSceneName))
+            SceneManager.LoadScene(nextSceneName);
     }
 
-    private IEnumerator TextBounce()
-    {
-        var rt = dialogueText.transform;
-        Vector3 orig = rt.localScale;
-        Vector3 up = orig * revealBounceUp;
-        Vector3 down = orig * revealBounceDown;
-
-        // up
-        for (float t = 0; t < revealBounceDuration; t += Time.deltaTime)
-        {
-            rt.localScale = Vector3.Lerp(orig, up, t / revealBounceDuration);
-            yield return null;
-        }
-        rt.localScale = up;
-
-        // down
-        for (float t = 0; t < revealBounceDuration; t += Time.deltaTime)
-        {
-            rt.localScale = Vector3.Lerp(up, down, t / revealBounceDuration);
-            yield return null;
-        }
-        rt.localScale = down;
-
-        // back
-        for (float t = 0; t < revealBounceDuration; t += Time.deltaTime)
-        {
-            rt.localScale = Vector3.Lerp(down, orig, t / revealBounceDuration);
-            yield return null;
-        }
-        rt.localScale = orig;
-    }
-
-    // scramble but preserve letter case
     private string ScrambleText(string text, float amount)
     {
         char[] chars = text.ToCharArray();
@@ -177,6 +182,7 @@ public class IntroManager : MonoBehaviour
                     chars[idx] = (char)('a' + Random.Range(0, 26));
             }
         }
+
         return new string(chars);
     }
 }
