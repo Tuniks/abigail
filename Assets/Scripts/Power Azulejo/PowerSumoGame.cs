@@ -135,4 +135,11 @@ public class PowerSumoGame : MonoBehaviour{
         return canMultiMove;
     }
 
+    public bool IsPlayerTurn(){
+        return isPlayerTurn;
+    }
+
+    public int GetPlayerStamina(){
+        return playerCurrentStamina;
+    }
 }

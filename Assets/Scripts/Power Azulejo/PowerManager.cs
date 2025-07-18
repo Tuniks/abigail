@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PowerStage {
     None,
@@ -41,6 +42,7 @@ public class PowerManager : MonoBehaviour{
 
     [Header("Ending References")]
     public GameObject endUI;
+    public string nextScene = "FELT_area_demo";
 
     private PowerStage currentStage = PowerStage.None;
     private bool playerWon = false;
@@ -203,8 +205,7 @@ public class PowerManager : MonoBehaviour{
     }
 
     public void TriggerEndEnd(){
-        // Return to last scene
-        Debug.Log("aaaaa");
+        SceneManager.LoadScene(nextScene);
     }
 
     // ========= GETTERS AND SETTERS =========

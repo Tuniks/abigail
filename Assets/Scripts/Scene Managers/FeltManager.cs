@@ -30,6 +30,10 @@ public class FeltManager : AreaManager{
     [Header("GameObjects")] 
     public Image RyanDrawing;
 
+    [Header("Oz Power Azulejo")]
+    public string OzPowerAzulejoScene = "PWR_oz";
+    public string OzPostPowerAzulejoDialogueNode = "";
+
     public GameObject HouseCollider;
 
     public override void UpdateSceneState(int state){        
@@ -68,6 +72,16 @@ public class FeltManager : AreaManager{
                 doorPartyBlocked.SetActive(false);
                 break;
         }
+
+        string lastPowerAzulejo = WorldState.Instance.GetLastOpponent();
+        if(lastPowerAzulejo == "oz"){
+            OzPostAzulejo();
+            WorldState.Instance.SetLastOpponent("");
+        }
+    }
+
+    private void OzPostAzulejo(){
+        dialogueRunner.StartDialogue(OzPostPowerAzulejoDialogueNode);
     }
 
     // YARN COMMANDS
@@ -116,5 +130,11 @@ public class FeltManager : AreaManager{
     [YarnCommand]
     public void LindaHouse(){
         HouseCollider.SetActive(true);
+    }
+
+    [YarnCommand]
+    public void StartOzPowerAzulejo(){
+        WorldState.Instance.SetLastOpponent("oz");
+        SceneController.Instance.Roundtrip(OzPowerAzulejoScene);
     }
 }
