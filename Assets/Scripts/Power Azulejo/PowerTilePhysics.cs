@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class PowerTilePhysics : MonoBehaviour{
     // Tile References
