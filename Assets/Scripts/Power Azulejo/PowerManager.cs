@@ -154,11 +154,11 @@ public class PowerManager : MonoBehaviour{
         PowerCameraManager.Instance.SetCameraState(false);
         
         foreach(PowerTile tile in playerTiles){
-            tile.gameObject.SetActive(false);
+            if(tile != null) tile.gameObject.SetActive(false);
         }
 
         foreach(PowerTile tile in enemyTiles){
-            tile.gameObject.SetActive(false);
+            if(tile != null) tile.gameObject.SetActive(false);
         }
     }
 
