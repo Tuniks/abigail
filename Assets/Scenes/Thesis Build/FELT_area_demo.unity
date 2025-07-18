@@ -9487,23 +9487,23 @@ MonoBehaviour:
   - facePrefab: {fileID: 5965758887917730016, guid: 92b091061272a46a98aea6ca57f88839, type: 3}
     dialogueNode: Timothy1Bookmark
   - facePrefab: {fileID: 5965758887917730016, guid: 243c304e0c6bf4de2919b2a3173ab85a, type: 3}
-    dialogueNode: Timothy1Flowerpower
+    dialogueNode: Timothy1SunflowerorFlowerpower
   - facePrefab: {fileID: 1786020399898891478, guid: 62aaac7c446db8b4f8562b52c26c9540, type: 3}
     dialogueNode: Vendor1Soccer
   - facePrefab: {fileID: 7046932481425626341, guid: 39c134e105d11ba45a0a41c961c5dee4, type: 3}
-    dialogueNode: Timothy1Spider
+    dialogueNode: Timothy1BeetleorLarvaorSpider
   - facePrefab: {fileID: 1786020399898891478, guid: 027ee2aba0e3b994ebab0040e36f69b8, type: 3}
     dialogueNode: Timothy1Explosion
   - facePrefab: {fileID: 5965758887917730016, guid: c26bf58678b614babb3338ddfa82781d, type: 3}
     dialogueNode: Timothy1Cockroach
   - facePrefab: {fileID: 5965758887917730016, guid: 7aebf2c9febc64e83ab6a6bec37bb76b, type: 3}
-    dialogueNode: Timothy1Sunflower
+    dialogueNode: Timothy1SunflowerorFlowerpower
   - facePrefab: {fileID: 1786020399898891478, guid: 63215cbf10d144417b9a8ffd82c1454c, type: 3}
     dialogueNode: Timothy1Skull
   - facePrefab: {fileID: 5965758887917730016, guid: 6b0f9cbbc02bc4d5ea30fcd1050857bc, type: 3}
     dialogueNode: Timothy1Bunnydeer
   - facePrefab: {fileID: 1786020399898891478, guid: 2a7e7f19f3dcd43c0a582f3061f0b561, type: 3}
-    dialogueNode: Timothy1Larva
+    dialogueNode: Timothy1BeetleorLarvaorSpider
   - facePrefab: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
     dialogueNode: Timothy1Gianluca
   - facePrefab: {fileID: 1786020399898891478, guid: 84263dccce561e24fb2d7e5b595f6db1, type: 3}
@@ -9511,7 +9511,7 @@ MonoBehaviour:
   - facePrefab: {fileID: 1786020399898891478, guid: ff35c35c27a6a824ab87f039d271645d, type: 3}
     dialogueNode: Timothy1Ghost
   - facePrefab: {fileID: 1786020399898891478, guid: 2dc30257180f6454ab264280f73373ec, type: 3}
-    dialogueNode: Timothy1Beetle
+    dialogueNode: Timothy1BeetleorLarvaorSpider
   defaultNode: Vendor1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -20429,11 +20429,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.84015656, y: 5.3311005}
+    - - {x: 2.0280266, y: 5.47085}
       - {x: -0.533021, y: 5.1096582}
       - {x: -0.17588943, y: 2.1240253}
-      - {x: 0.5242382, y: 1.4150317}
-      - {x: 1.2287455, y: 1.878665}
+      - {x: -0.06970441, y: 0.5415938}
+      - {x: 2.8708067, y: 1.5292902}
   m_UseDelaunayMesh: 0
 --- !u!1 &686016385
 GameObject:
@@ -28180,7 +28180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.8
+      value: -63.28
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28832,7 +28832,7 @@ Transform:
   m_GameObject: {fileID: 1002514683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.2, y: 4.41, z: 0}
+  m_LocalPosition: {x: 64.6, y: 2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30861,11 +30861,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3398599687033082331, guid: 5a9591bc6ad96be408c2e2fec5090cda, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -88.1
+      value: -88.31
       objectReference: {fileID: 0}
     - target: {fileID: 3398599687033082331, guid: 5a9591bc6ad96be408c2e2fec5090cda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.8
+      value: -26.1
       objectReference: {fileID: 0}
     - target: {fileID: 3398599687033082331, guid: 5a9591bc6ad96be408c2e2fec5090cda, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31710,7 +31710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33907,6 +33907,8 @@ MonoBehaviour:
   bunnydeerTile:
   - {fileID: 619189402}
   RyanDrawing: {fileID: 1038700958}
+  OzPowerAzulejoScene: PWR_oz
+  OzPostPowerAzulejoDialogueNode: Chase1-Demo
   HouseCollider: {fileID: 1776594675}
 --- !u!114 &1181349035
 MonoBehaviour:
@@ -34137,7 +34139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.5
+      value: -43.2
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -35128,11 +35130,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -8.705565, y: -2.4313927}
-      - {x: -8.639913, y: -6.2995853}
-      - {x: -7.323484, y: -5.9561043}
-      - {x: -8.499048, y: -3.4778745}
-      - {x: -7.500335, y: -2.3598423}
+    - - {x: -10.417502, y: -2.1518917}
+      - {x: -10.35185, y: -7.033272}
+      - {x: -5.3669844, y: -7.3186684}
+      - {x: -9.237413, y: -6.6786175}
+      - {x: -9.756798, y: -4.7006874}
+      - {x: -9.915659, y: -2.2071838}
+      - {x: -6.487148, y: 1.0640316}
   m_UseDelaunayMesh: 0
 --- !u!1 &1213234989
 GameObject:
@@ -37331,7 +37335,7 @@ Transform:
   m_GameObject: {fileID: 1294457297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.43, y: 2.2, z: 0}
+  m_LocalPosition: {x: -11.2, y: -0.87, z: 0}
   m_LocalScale: {x: 0.32, y: 0.32, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41458,8 +41462,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -8.3516865, y: -1.0629063}
-      - {x: -7.817011, y: -4.8275366}
+    - - {x: -8.980561, y: -0.6087189}
+      - {x: -9.179573, y: -4.687785}
       - {x: -5.835657, y: -4.489731}
       - {x: -6.253578, y: -0.69754195}
       - {x: -7.4001627, y: -0.8714342}
@@ -42288,7 +42292,7 @@ Transform:
   m_GameObject: {fileID: 1450710632}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -69.85, y: -19.9, z: -0.112804785}
+  m_LocalPosition: {x: -79.8, y: -22.6, z: -0.112804785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44268,7 +44272,7 @@ MonoBehaviour:
   - facePrefab: {fileID: 1786020399898891478, guid: 62aaac7c446db8b4f8562b52c26c9540, type: 3}
     dialogueNode: Gianluca1Soccer
   - facePrefab: {fileID: 7046932481425626341, guid: 39c134e105d11ba45a0a41c961c5dee4, type: 3}
-    dialogueNode: Gianluca1Spider
+    dialogueNode: Gianluca1Bugs
   - facePrefab: {fileID: 1786020399898891478, guid: 027ee2aba0e3b994ebab0040e36f69b8, type: 3}
     dialogueNode: Gianluca1Explosion
   - facePrefab: {fileID: 5965758887917730016, guid: c26bf58678b614babb3338ddfa82781d, type: 3}
@@ -44276,19 +44280,19 @@ MonoBehaviour:
   - facePrefab: {fileID: 5965758887917730016, guid: 7aebf2c9febc64e83ab6a6bec37bb76b, type: 3}
     dialogueNode: Gianluca1Sunflower
   - facePrefab: {fileID: 1786020399898891478, guid: 63215cbf10d144417b9a8ffd82c1454c, type: 3}
-    dialogueNode: Gianluca1Skull
+    dialogueNode: Gianluca1GhostorSkull
   - facePrefab: {fileID: 5965758887917730016, guid: 6b0f9cbbc02bc4d5ea30fcd1050857bc, type: 3}
     dialogueNode: Gianluca1Bunnydeer
   - facePrefab: {fileID: 1786020399898891478, guid: 2a7e7f19f3dcd43c0a582f3061f0b561, type: 3}
-    dialogueNode: Gianluca1Larva
+    dialogueNode: Gianluca1Bugs
   - facePrefab: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
     dialogueNode: Gianluca1Gianluca
   - facePrefab: {fileID: 1786020399898891478, guid: 84263dccce561e24fb2d7e5b595f6db1, type: 3}
     dialogueNode: Gianluca1Stickyhand
   - facePrefab: {fileID: 1786020399898891478, guid: ff35c35c27a6a824ab87f039d271645d, type: 3}
-    dialogueNode: Gianluca1Ghost
+    dialogueNode: Gianluca1GhostorSkull
   - facePrefab: {fileID: 1786020399898891478, guid: 2dc30257180f6454ab264280f73373ec, type: 3}
-    dialogueNode: Gianluca1Beetle
+    dialogueNode: Gianluca1Bugs
   defaultNode: Gianluca1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -47707,7 +47711,7 @@ MonoBehaviour:
   - facePrefab: {fileID: 1786020399898891478, guid: 62aaac7c446db8b4f8562b52c26c9540, type: 3}
     dialogueNode: Margarette1Soccer
   - facePrefab: {fileID: 7046932481425626341, guid: 39c134e105d11ba45a0a41c961c5dee4, type: 3}
-    dialogueNode: Margarette1Spider
+    dialogueNode: Margarette1SpiderorCaterpillar
   - facePrefab: {fileID: 1786020399898891478, guid: 027ee2aba0e3b994ebab0040e36f69b8, type: 3}
     dialogueNode: Margarette1Explosion
   - facePrefab: {fileID: 5965758887917730016, guid: c26bf58678b614babb3338ddfa82781d, type: 3}
@@ -47719,7 +47723,7 @@ MonoBehaviour:
   - facePrefab: {fileID: 5965758887917730016, guid: 6b0f9cbbc02bc4d5ea30fcd1050857bc, type: 3}
     dialogueNode: Margarette1Bunnydeer
   - facePrefab: {fileID: 1786020399898891478, guid: 2a7e7f19f3dcd43c0a582f3061f0b561, type: 3}
-    dialogueNode: Margarette1Larva
+    dialogueNode: Margarette1SpiderorCaterpillar
   - facePrefab: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
     dialogueNode: Margarette1Gianluca
   - facePrefab: {fileID: 1786020399898891478, guid: 84263dccce561e24fb2d7e5b595f6db1, type: 3}
@@ -47727,7 +47731,7 @@ MonoBehaviour:
   - facePrefab: {fileID: 1786020399898891478, guid: ff35c35c27a6a824ab87f039d271645d, type: 3}
     dialogueNode: Margarette1Ghost
   - facePrefab: {fileID: 1786020399898891478, guid: 2dc30257180f6454ab264280f73373ec, type: 3}
-    dialogueNode: Margarette1Beetle
+    dialogueNode: Margarette1SpiderorCaterpillar
   defaultNode: Margarette1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -48788,12 +48792,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.3979664, y: 7.481514}
-      - {x: 0.38337225, y: 7.235342}
-      - {x: 1.213377, y: 6.489538}
-      - {x: 1.6362616, y: 4.5287}
-      - {x: 1.2867676, y: 2.6859174}
-      - {x: 2.4125814, y: 3.1049633}
+    - - {x: 3.179779, y: 7.0622635}
+      - {x: -1.5032587, y: 10.170092}
+      - {x: 2.610878, y: 6.7690372}
+      - {x: 3.138577, y: 3.2360134}
+      - {x: -0.94923437, y: 0.834229}
+      - {x: 3.9148932, y: 2.371275}
   m_UseDelaunayMesh: 0
 --- !u!1 &1637075152
 GameObject:
@@ -49555,7 +49559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.6
+      value: -10.6
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -51963,11 +51967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.01
+      value: -39.55
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.1
+      value: -22.7
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52373,7 +52377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6649598363197231236, guid: 758bb673def638c4aabf820201d9b258, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.34
+      value: -60.7
       objectReference: {fileID: 0}
     - target: {fileID: 6649598363197231236, guid: 758bb673def638c4aabf820201d9b258, type: 3}
       propertyPath: m_LocalPosition.y
@@ -53204,7 +53208,7 @@ Transform:
   m_GameObject: {fileID: 1794849984}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.6, y: -0.9, z: -0.11169441}
+  m_LocalPosition: {x: -37, y: -2, z: -0.11169441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60638,7 +60642,7 @@ Transform:
   m_GameObject: {fileID: 2040870511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 1.9, z: 0}
+  m_LocalPosition: {x: -11.2, y: -0.87, z: 0}
   m_LocalScale: {x: 0.32, y: 0.32, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63498,7 +63502,7 @@ MonoBehaviour:
   - facePrefab: {fileID: 1786020399898891478, guid: 62aaac7c446db8b4f8562b52c26c9540, type: 3}
     dialogueNode: Ryans1Soccer
   - facePrefab: {fileID: 7046932481425626341, guid: 39c134e105d11ba45a0a41c961c5dee4, type: 3}
-    dialogueNode: Ryans1Spider
+    dialogueNode: Ryans1SpiderorCaterpillar
   - facePrefab: {fileID: 1786020399898891478, guid: 027ee2aba0e3b994ebab0040e36f69b8, type: 3}
     dialogueNode: Ryans1Explosion
   - facePrefab: {fileID: 5965758887917730016, guid: c26bf58678b614babb3338ddfa82781d, type: 3}
@@ -63508,19 +63512,19 @@ MonoBehaviour:
   - facePrefab: {fileID: 5965758887917730016, guid: c26bf58678b614babb3338ddfa82781d, type: 3}
     dialogueNode: Ryans1Cockroach
   - facePrefab: {fileID: 1786020399898891478, guid: 63215cbf10d144417b9a8ffd82c1454c, type: 3}
-    dialogueNode: Ryans1Skull
+    dialogueNode: Ryans1SkullorGhost
   - facePrefab: {fileID: 5965758887917730016, guid: 6b0f9cbbc02bc4d5ea30fcd1050857bc, type: 3}
     dialogueNode: Ryans1Bunnydeer
   - facePrefab: {fileID: 1786020399898891478, guid: 2a7e7f19f3dcd43c0a582f3061f0b561, type: 3}
-    dialogueNode: Ryans1Larva
+    dialogueNode: Ryans1SpiderorCaterpillar
   - facePrefab: {fileID: 7046932481425626341, guid: 5295db223a58f514b8159078fd00547f, type: 3}
     dialogueNode: Ryans1Gianluca
   - facePrefab: {fileID: 1786020399898891478, guid: 84263dccce561e24fb2d7e5b595f6db1, type: 3}
     dialogueNode: Ryans1Stickyhand
   - facePrefab: {fileID: 1786020399898891478, guid: ff35c35c27a6a824ab87f039d271645d, type: 3}
-    dialogueNode: Ryans1Ghost
+    dialogueNode: Ryans1SkullorGhost
   - facePrefab: {fileID: 1786020399898891478, guid: 2dc30257180f6454ab264280f73373ec, type: 3}
-    dialogueNode: Ryans1Beetle
+    dialogueNode: Ryans1SpiderorCaterpillar
   defaultNode: Ryans1
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -63685,6 +63689,10 @@ PrefabInstance:
     - target: {fileID: 1741926022949561148, guid: 659077abc8f94104aaf07e27b468900d, type: 3}
       propertyPath: m_Name
       value: Ryan 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754946477026553213, guid: 659077abc8f94104aaf07e27b468900d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3754946477026553213, guid: 659077abc8f94104aaf07e27b468900d, type: 3}
       propertyPath: dialogueNode
