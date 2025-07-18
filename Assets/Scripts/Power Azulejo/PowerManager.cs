@@ -33,7 +33,17 @@ public class PowerManager : MonoBehaviour{
     public GameObject selectionUI;
     public PowerInventory powerInventory;
 
+    [Header("Intro References")]
+    public GameObject introUI;
+
+    [Header("Game References")]
+    public GameObject playerHUD;
+
+    [Header("Ending References")]
+    public GameObject endUI;
+
     private PowerStage currentStage = PowerStage.None;
+    private bool playerWon = false;
 
     void Awake(){
         Instance = this;
@@ -120,32 +130,44 @@ public class PowerManager : MonoBehaviour{
 
     // Intro
     private void EnterIntroStage(){
-
+        introUI.SetActive(true);
+        introUI.GetComponent<PowerIntro>().Initialize(playerInventory, enemyInventory);
     }
 
     private void ExitIntroStage(){
-
+        introUI.SetActive(false);
     }
 
     // Game
     private void EnterGameStage(){
         BuildTiles();
+        playerHUD.SetActive(true);
         PowerCameraManager.Instance.SetCameraState(true);
         game.StartGame();
 
     }
 
     private void ExitGameStage(){
+        playerHUD.SetActive(false);
+        PowerCameraManager.Instance.SetCameraState(false);
+        
+        foreach(PowerTile tile in playerTiles){
+            tile.gameObject.SetActive(false);
+        }
 
+        foreach(PowerTile tile in enemyTiles){
+            tile.gameObject.SetActive(false);
+        }
     }
 
     // End
     private void EnterEndStage(){
-
+        endUI.SetActive(true);
+        endUI.GetComponent<PowerEnd>().Initialize(playerWon);
     }
 
     private void ExitEndStage(){
-
+        endUI.SetActive(false);
     }
 
 
@@ -156,6 +178,10 @@ public class PowerManager : MonoBehaviour{
 
     public void TriggerSelectionEnd(List<Tile> tileset){
         playerInventory = tileset;
+        ChangeState(PowerStage.Intro);
+    }
+
+    public void TriggerIntroEnd(){
         ChangeState(PowerStage.Game);
     }
 
@@ -171,8 +197,14 @@ public class PowerManager : MonoBehaviour{
         }
     }
 
-    public void TriggerEnding(bool playerWon){
-        
+    public void TriggerGameEnd(bool won){
+        playerWon = won;
+        ChangeState(PowerStage.End);    
+    }
+
+    public void TriggerEndEnd(){
+        // Return to last scene
+        Debug.Log("aaaaa");
     }
 
     // ========= GETTERS AND SETTERS =========

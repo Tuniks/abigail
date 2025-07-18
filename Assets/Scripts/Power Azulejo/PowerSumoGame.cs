@@ -112,11 +112,18 @@ public class PowerSumoGame : MonoBehaviour{
     private void CheckForEndGame(){
         if(playerCurrentScore >= targetScore){
             isGameOn = false;
-            PowerManager.Instance.TriggerEnding(true);
+            PowerManager.Instance.TriggerGameEnd(true);
         } else if(enemyCurrentScore >= targetScore){
             isGameOn = false;
-            PowerManager.Instance.TriggerEnding(false);
+            PowerManager.Instance.TriggerGameEnd(false);
         } 
+    }
+
+    // ======= HUD =======
+    public void PassTurn(){
+        if(!isGameOn || !isPlayerTurn) return;
+    
+        EndPlayerTurn();
     }
 
     // ======= GETTERS AND SETTERS ========
