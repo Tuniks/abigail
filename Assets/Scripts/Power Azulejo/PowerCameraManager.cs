@@ -7,7 +7,7 @@ public class PowerCameraManager : MonoBehaviour{
 
     [Header("Camera")]
     public Camera cam;
-    private bool enableCamControl = true;
+    public bool enableCamControl = true;
 
     // Zoom
     public float camZoomSpeed = 1f;
@@ -52,6 +52,10 @@ public class PowerCameraManager : MonoBehaviour{
 
         Vector2 moveDiff = dragOrigin - (cam.ScreenToWorldPoint(Input.mousePosition) - cam.transform.position);
         cam.transform.position = new Vector3 (moveDiff.x, moveDiff.y, cam.transform.position.z);
+    }
+
+    public void SetCameraState(bool state){
+        enableCamControl = state;
     }
 
 }

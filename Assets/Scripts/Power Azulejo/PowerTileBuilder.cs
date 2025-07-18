@@ -8,6 +8,8 @@ public class PowerTileBuilder : MonoBehaviour{
     public void BuildTile(Tile origin, PowerTile power, bool isPlayer){
         if(origin == null || power == null) return;
 
+        power.gameObject.SetActive(true);
+
         // Creating visuals for tile
         GameObject tileCopy = Instantiate(origin.gameObject, Vector3.zero, Quaternion.identity);
         tileCopy.transform.SetParent(power.transform, false);

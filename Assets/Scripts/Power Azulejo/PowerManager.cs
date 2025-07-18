@@ -20,7 +20,7 @@ public class PowerManager : MonoBehaviour{
     public bool showTutorial = true;
 
     [Header("Game Data")]
-    public List<Tile> playerInventory;
+    private List<Tile> playerInventory;
     public PowerTile[] playerTiles;
 
     public List<Tile> enemyInventory;
@@ -28,6 +28,10 @@ public class PowerManager : MonoBehaviour{
 
     [Header("Tutorial References")]
     public GameObject tutorialUI;
+
+    [Header("Selection Manager")]
+    public GameObject selectionUI;
+    public PowerInventory powerInventory;
 
     private PowerStage currentStage = PowerStage.None;
 
@@ -40,7 +44,7 @@ public class PowerManager : MonoBehaviour{
 
         if(showTutorial){
             ChangeState(PowerStage.Tutorial);
-        } else ChangeState(PowerStage.Game);
+        } else ChangeState(PowerStage.Selection);
     }
 
     // ===== Managing States ======= 
@@ -106,11 +110,12 @@ public class PowerManager : MonoBehaviour{
 
     // Selection
     private void EnterSelectionStage(){
-
+        selectionUI.SetActive(true);
+        powerInventory.Initialize();
     }
 
     private void ExitSelectionStage(){
-
+        selectionUI.SetActive(false);
     }
 
     // Intro
@@ -125,6 +130,7 @@ public class PowerManager : MonoBehaviour{
     // Game
     private void EnterGameStage(){
         BuildTiles();
+        PowerCameraManager.Instance.SetCameraState(true);
         game.StartGame();
 
     }
@@ -145,9 +151,13 @@ public class PowerManager : MonoBehaviour{
 
     // ========= AUX ========
     public void TriggerTutorialEnd(){
-        ChangeState(PowerStage.Game);
+        ChangeState(PowerStage.Selection);
     }
 
+    public void TriggerSelectionEnd(List<Tile> tileset){
+        playerInventory = tileset;
+        ChangeState(PowerStage.Game);
+    }
 
     private void BuildTiles(){
         // Building player tiles
@@ -176,6 +186,6 @@ public class PowerManager : MonoBehaviour{
 
     public PowerTile[] GetEnemyTiles(){
         return enemyTiles;
-    }   
+    }
 
 }

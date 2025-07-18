@@ -8,17 +8,23 @@ public class PowerInventory : MonoBehaviour{
     [Header("UI References")]
     public RectTransform bagRect;
     public Transform heldItemParent;
+    public GameObject nextButton;
     
     [Header("Prefabs")]
     public GameObject itemElementPrefab;
     
     [Header("Tile Placement")]
+    public float bagTileScale = 93f;
     public float bagOffsetX = 5f;
     public float bagOffsetY = 5f;
     public float maxRotation = 20f;
     private int orderCount = 0;
-
-    // Power Azulejo slot
+    
+    [Header("Slots")]
+    public PowerHandSlot[] powerHandSlots;
+    public Transform slotPosition;
+    public float slotScale = 20;
+    private PowerHandSlot currentSlot;
     
 
     public void Initialize(){
@@ -33,16 +39,16 @@ public class PowerInventory : MonoBehaviour{
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
             element.transform.SetParent(bagRect);
-            element.transform.localScale = new Vector3(93, 93, 93);
+            element.transform.localScale = new Vector3(bagTileScale, bagTileScale, bagTileScale);
             PlaceElement(element);
-            element.GetComponent<ItemElement>().UpdateSpriteOrder(orderCount*4);
+            element.GetComponent<PowerItemElement>().UpdateSpriteOrder(orderCount*4);
             orderCount++;
         }
     }
 
     private GameObject CreateItemElementFromTile(GameObject tile){
         GameObject element = Instantiate(itemElementPrefab);
-        ItemElement itemElement = element.GetComponent<ItemElement>();
+        PowerItemElement itemElement = element.GetComponent<PowerItemElement>();
         itemElement.SetTile(tile);
         return element;
     }
@@ -68,7 +74,7 @@ public class PowerInventory : MonoBehaviour{
         return heldItemParent;
     }
 
-    public void DropItemElement(ItemElement element){
+    public void DropItemElement(PowerItemElement element){
         // Change to random rotation for extra sauce
         float rot = Random.Range(-maxRotation, maxRotation);
         element.transform.rotation = Quaternion.Euler(0,0,rot);
@@ -76,9 +82,10 @@ public class PowerInventory : MonoBehaviour{
         element.UpdateSpriteOrder(orderCount*4);
         
         // If hovering power drop spot, drop it
-        if(convoSlot != null ){
-            currentConvo.OnTileSelected(element.GetTile(), convoSlot);
+        if(currentSlot != null ){
+            PlaceOnSlot(element);
             SetCurrentSlot(null);
+            CheckNextButtonStatus();
             return;
         }
 
@@ -87,8 +94,84 @@ public class PowerInventory : MonoBehaviour{
 
         // If not hovering bag, return to previous place
         if(!IsInsideBag(element)){
-            element.ReturnToPreviousPosition();
-            return;
+            ReturnElementToBag(element);
         }
+
+        CheckNextButtonStatus();
+    }
+
+    private void PlaceOnSlot(PowerItemElement element){
+        int i = System.Array.IndexOf(powerHandSlots, currentSlot);
+        if(i == -1) return;
+
+        // Check if tile is empty
+        PowerItemElement oldElement = currentSlot.GetComponentInChildren<PowerItemElement>();
+
+        // If not empty, return tile there to bag
+        if(oldElement != null){
+            ReturnElementToBag(oldElement);
+        }
+
+        // Place new tile
+        PositionTile(currentSlot, element);
+    }
+
+    private void PositionTile(PowerHandSlot slot, PowerItemElement item){
+        item.transform.SetParent(slot.transform);
+        item.transform.position = slot.transform.position;
+        item.transform.rotation = Quaternion.identity;
+        item.transform.localScale = new  Vector3(slotScale, slotScale, slotScale);
+    }
+
+    private void ReturnElementToBag(PowerItemElement element){
+        element.transform.SetParent(bagRect);
+        element.transform.localScale = new Vector3(bagTileScale, bagTileScale, bagTileScale);
+        PlaceElement(element.gameObject);
+    }
+
+    private bool IsInsideBag(PowerItemElement element){
+        float x = element.GetComponent<RectTransform>().localPosition.x;
+        float y = element.GetComponent<RectTransform>().localPosition.y;
+        
+        if(x < bagRect.rect.xMin + bagOffsetX || x > bagRect.rect.xMax - bagOffsetX) return false;
+        if(y < bagRect.rect.yMin + bagOffsetY || y > bagRect.rect.yMax - bagOffsetY) return false;
+
+        return true;
+    }
+
+    public Vector3 GetSlotPosition(){
+        return slotPosition.position;
+    }
+
+    public float GetSlotScale(){
+        return slotScale;
+    }
+
+    // === Handling slot hovering ===
+    public void SetCurrentSlot(PowerHandSlot slot){
+        currentSlot = slot;
+    }
+
+    // === Next Button ===
+    private void CheckNextButtonStatus(){
+        List<Tile> tiles = new List<Tile>();
+        foreach(PowerHandSlot slot in powerHandSlots){
+            Tile tile = slot.GetComponentInChildren<Tile>();
+            if(tile != null) tiles.Add(tile);
+        }
+
+        if (tiles.Count == powerHandSlots.Length){
+            nextButton.SetActive(true);
+        } else nextButton.SetActive(false);
+    }
+
+    public void OnNextButtonClicked(){
+        List<Tile> tiles = new List<Tile>();
+        foreach(PowerHandSlot slot in powerHandSlots){
+            Tile tile = slot.GetComponentInChildren<Tile>();
+            if(tile != null) tiles.Add(tile);
+        }
+
+        PowerManager.Instance.TriggerSelectionEnd(tiles);
     }
 }
