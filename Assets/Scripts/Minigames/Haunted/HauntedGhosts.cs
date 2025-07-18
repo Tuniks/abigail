@@ -12,6 +12,9 @@ public class HauntedGhosts : MonoBehaviour{
     private GameObject current = null;
     
     public AudioClip ghostHitSound;
+    
+    public Tile[] GhostTile;
+    public bool tilegiven = false;
 
     void Start(){
         currentGhosts = new List<GameObject>(totalGhosts);
@@ -32,6 +35,11 @@ public class HauntedGhosts : MonoBehaviour{
     }
 
     public void GhostHit(GameObject ghost){
+        if (tilegiven == false)
+        {
+            PlayerInventory.Instance.AddTilesToCollection(GhostTile);
+            tilegiven = true;
+        }
         ghost.SetActive(false);
         currentGhosts.Remove(ghost);
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(ghostHitSound);
