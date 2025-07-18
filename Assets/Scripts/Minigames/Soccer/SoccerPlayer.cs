@@ -29,6 +29,18 @@ public class SoccerPlayer : MonoBehaviour{
     public AudioClip resetSound;
     public AudioClip launchBallSound;
     public AudioClip goalSound;
+    
+    [Header("Tiles")]
+    public Tile[] stickyhandTile;
+
+    public bool Tilegiven = false;
+    
+    [Header("Automatic Reset")]
+    private bool isInGoalBox = false;
+    private float goalBoxTimer = 0f;
+    public float stillVelocityThreshold = 0.5f;
+    public float waitTime = 3f;
+    
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -56,6 +68,26 @@ public class SoccerPlayer : MonoBehaviour{
 
         if(Input.GetMouseButtonUp(0) && !hasLaunched){
             Launch();
+        }
+        
+        if(isInGoalBox)
+        {
+            float currentSpeed = rb.velocity.magnitude;
+
+            if (currentSpeed <= stillVelocityThreshold)
+            {
+                goalBoxTimer += Time.deltaTime;
+
+                if (goalBoxTimer >= waitTime)
+                {
+                    ResetTile(false);
+                    isInGoalBox = false; 
+                }
+            }
+            else
+            {
+                goalBoxTimer = 0f;
+            }
         }
     }
 
@@ -101,13 +133,42 @@ public class SoccerPlayer : MonoBehaviour{
 
         hasLaunched = false;
     }
-
-    private void OnTriggerEnter2D(Collider2D col){
-        if(col.gameObject.CompareTag("Target")){
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Target"))
+        {
+            if (!Tilegiven)
+            {
+                PlayerInventory.Instance.AddTilesToCollection(stickyhandTile);
+                Tilegiven = true;
+            }
             PlayerInteractor.instance.GetAudioSource().PlayOneShot(goalSound);
             ResetTile(true);
         }
+
+        if (col.gameObject.CompareTag("OutofBounds"))
+        {
+            ResetTile(false);
+        }
+
+        if (col.gameObject.CompareTag("goalbox"))
+        {
+            isInGoalBox = true;
+            goalBoxTimer = 0f;
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("goalbox"))
+        {
+            isInGoalBox = false;
+            goalBoxTimer = 0f;
+        }
+    }
+
+    
 
     public void ResetGame(){
         rb = GetComponent<Rigidbody2D>();
