@@ -3,6 +3,7 @@ tags:
 ---
 <<TriggerChange SunflowerInteractionYarn>>
 Mom: You found a new tile! Come show it to me baby. 
+<<UpdateMomDaniNode SceneController MomDani3>>
 ===
 title: Chest
 tags:
@@ -65,8 +66,8 @@ Mom: They all said you were too young to read Infinite Jest but we showed them!
 Mom: Let’s go to Argil and pick out a book to read together, we can make a whole day of it.
 Abigail: Mom, I really need to get back to the city.
 Mom: You’re here and you’re planning to leave already? I haven’t seen your face in over a year.
-Mom: Forget it Abigail, just let me be.
-Abigail: The least I can do is help tidy a little. I should go fix that vase.
+Mom: You know what, nevermind. 
+Mom: Can you at least help me tidy a little bit before you go? I knocked over that purple vase earlier. 
 <<UpdateMomDaniNode SceneController MomDani2>>
 <<TurnOnSunflower SceneController>>
 //<<jump MomDani2>>
@@ -79,8 +80,8 @@ Abigail: This tile reminds me of that peace love and kindness incense you’re a
 Mom: Oh I’m out right now! Let’s go to Argil and buy some now, we can make a whole day of it.
 Abigail: Mom, I really need to get back to the city.
 Mom: You’re here and you’re planning to leave already? I haven’t seen your face in over a year.
-Mom: Forget it Abigail, just let me be.
-Abigail: The least I can do is help tidy a little. I should go fix that vase.
+Mom: You know what, nevermind. 
+Mom: Can you at least help me tidy a little bit before you go? I knocked over that purple vase earlier. 
 <<UpdateMomDaniNode SceneController MomDani2>>
 <<TurnOnSunflower SceneController>>
 //<<jump MomDani2>>
@@ -94,8 +95,8 @@ Mom: Tanya! She always knew when a natural disaster was going to happen.
 Mom: I swear I saw her in the woods last week, let’s go find her!
 Abigail: Mom, I really need to get back to the city.
 Mom: You’re here and you’re planning to leave already? I haven’t seen your face in over a year.
-Mom: Forget it Abigail, just let me be.
-Abigail: The least I can do is help tidy a little. I should go fix that vase. 
+Mom: You know what, nevermind. 
+Mom: Can you at least help me tidy a little bit before you go? I knocked over that purple vase earlier. 
 <<UpdateMomDaniNode SceneController MomDani2>>
 <<TurnOnSunflower SceneController>>
 //<<jump MomDani2>>
@@ -117,7 +118,12 @@ Abigail: You guys are really going to make me work for this huh?
 title: MomDani2
 tags:
 ---
-<<if visited("MomDani2") is false>>
+Mom: Can you go fix that vase with the sunflower for me baby?
+===
+title: MomDani3
+tags:
+---
+<<if visited("MomDani3") is false>>
 Mom: You don’t have to keep playing with me baby.
 Abigail: I want to mom.
 <<else>>
@@ -174,16 +180,6 @@ Mom: We had a good couple of weeks there!
 Mom: Turns out you had to do more than stock astrology based literature and give away free mushroom tea to make it in the business world.
 <<UpdateMomDaniNode SceneController MomDani3>>
 <<jump MomDani3>>
-===
-title: MomDani3
-tags:
----
-<<if visited("MomDani3") is false>>
-Mom: Hehe, that was good! Let me do the last one!
-<<else>>
-Mom: Ok, let's see if you got it this time!
-<<endif>>
-<<StartAzulejoConversation AzulejoConvo3>>
 ===
 title: MomDani3-0
 tags:

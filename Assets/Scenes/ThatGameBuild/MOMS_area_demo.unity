@@ -1909,7 +1909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1955,10 +1955,14 @@ PrefabInstance:
       propertyPath: destination
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5557750503317744848, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 700120292}
   m_SourcePrefab: {fileID: 100100000, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
 --- !u!4 &319273192 stripped
 Transform:
@@ -2062,10 +2066,11 @@ PolygonCollider2D:
       - {x: 2.9185922, y: -3.0135765}
       - {x: 4.003459, y: -3.033528}
       - {x: 4.5174923, y: -2.9277997}
-      - {x: 4.656108, y: -2.2994478}
-      - {x: 4.7459927, y: -1.9316471}
-      - {x: 5.386095, y: -1.7357092}
-      - {x: 6.2037907, y: -1.355921}
+      - {x: 4.367758, y: -2.34064}
+      - {x: 4.5400286, y: -1.4785259}
+      - {x: 5.344903, y: -1.4061668}
+      - {x: 6.142002, y: -1.1293614}
+      - {x: 6.8187504, y: -0.9820633}
       - {x: 7.3242545, y: -1.2721773}
       - {x: 7.4505434, y: 1.0489588}
   m_UseDelaunayMesh: 0
@@ -2970,6 +2975,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &700120289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+  m_PrefabInstance: {fileID: 319273191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &700120292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700120289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6acee369c937b6f4e8e6578d685ca627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: 6
+  isBlocked: 0
+  blockedDialogueNode: BlockedDoor
 --- !u!1001 &726674641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6490,7 +6515,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -1.8198566, y: 5.9796076}
       - {x: -2.04284, y: 3.9549608}
-      - {x: -1.9304771, y: 2.3524504}
+      - {x: -2.5901046, y: 3.1536434}
+      - {x: -2.7543335, y: 1.3638247}
+      - {x: -1.8097391, y: 1.0309358}
       - {x: -1.7709894, y: -0.3309326}
       - {x: -1.1077437, y: -3.408812}
       - {x: -0.49212968, y: -1.3489745}
