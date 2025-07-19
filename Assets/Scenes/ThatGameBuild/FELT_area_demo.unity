@@ -221,7 +221,8 @@ PolygonCollider2D:
       - {x: -8.224808, y: 42.110207}
       - {x: -9.481251, y: 39.722977}
       - {x: -11.555462, y: 31.331974}
-      - {x: -8.666199, y: 31.252525}
+      - {x: -14.857033, y: 21.11238}
+      - {x: -11.440887, y: 20.486752}
       - {x: -7.6673584, y: 34.231667}
       - {x: 0.67404556, y: 34.727493}
       - {x: 1.5872803, y: 37.018955}
@@ -235,8 +236,8 @@ PolygonCollider2D:
       - {x: 27.530613, y: 37.385735}
       - {x: 26.4544, y: 48.078156}
       - {x: 31.958918, y: 48.093613}
-      - {x: 31.820038, y: 51.62518}
-      - {x: 35.595955, y: 51.24392}
+      - {x: 33.151886, y: 50.40432}
+      - {x: 34.708057, y: 50.13405}
       - {x: 35.192066, y: 48.14308}
       - {x: 34.329865, y: 37.786034}
       - {x: 41.293995, y: 35.703487}
@@ -28176,7 +28177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31708,6 +31709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollagePortalBlocked
       objectReference: {fileID: 0}
+    - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.5
@@ -33910,6 +33915,7 @@ MonoBehaviour:
   OzPowerAzulejoScene: PWR_oz
   OzPostPowerAzulejoDialogueNode: Chase1-Demo
   HouseCollider: {fileID: 1776594675}
+  destination: 8
 --- !u!114 &1181349035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34137,6 +34143,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClayPortalBlocked
       objectReference: {fileID: 0}
+    - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.2
@@ -34194,6 +34208,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2081176150}
     - targetCorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2081176152}
@@ -49555,7 +49572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52254,6 +52271,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2289678041244206996, guid: a7238fe71848d6944a50dc8c40a550da, type: 3}
+      propertyPath: areaScenes.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289678041244206996, guid: a7238fe71848d6944a50dc8c40a550da, type: 3}
+      propertyPath: areaScenes.Array.data[6].area
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2289678041244206996, guid: a7238fe71848d6944a50dc8c40a550da, type: 3}
+      propertyPath: areaScenes.Array.data[6].name
+      value: DEMOEND
+      objectReference: {fileID: 0}
     - target: {fileID: 4426824689498255560, guid: a7238fe71848d6944a50dc8c40a550da, type: 3}
       propertyPath: m_Name
       value: WorldState
@@ -61783,6 +61812,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4675187153401232755, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
   m_PrefabInstance: {fileID: 1186641597}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2081176150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081176146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6726fcd1d71865a40912087db6e5dcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueNode: BlockedDoor1
 --- !u!114 &2081176152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61795,7 +61837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acee369c937b6f4e8e6578d685ca627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: 5
+  destination: 4
   isBlocked: 1
   blockedDialogueNode: BlockedDoor1
 --- !u!1 &2081748724
