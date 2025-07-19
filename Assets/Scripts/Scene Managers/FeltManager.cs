@@ -35,6 +35,7 @@ public class FeltManager : AreaManager{
     public string OzPostPowerAzulejoDialogueNode = "";
 
     public GameObject HouseCollider;
+    public Areas destination;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -136,5 +137,10 @@ public class FeltManager : AreaManager{
     public void StartOzPowerAzulejo(){
         WorldState.Instance.SetLastOpponent("oz");
         SceneController.Instance.Roundtrip(OzPowerAzulejoScene);
+    }
+    
+    [YarnCommand]
+    public void TraveltoDemoEnd(){
+        SceneController.Instance.Travel(destination);
     }
 }
