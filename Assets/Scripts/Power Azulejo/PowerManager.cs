@@ -21,7 +21,7 @@ public class PowerManager : MonoBehaviour{
     public bool showTutorial = true;
 
     [Header("Game Data")]
-    private List<Tile> playerInventory;
+    public List<Tile> playerInventory;
     public PowerTile[] playerTiles;
 
     public List<Tile> enemyInventory;
@@ -56,7 +56,7 @@ public class PowerManager : MonoBehaviour{
 
         if(showTutorial){
             ChangeState(PowerStage.Tutorial);
-        } else ChangeState(PowerStage.Selection);
+        } else ChangeState(PowerStage.Game);
     }
 
     // ===== Managing States ======= 

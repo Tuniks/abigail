@@ -14,6 +14,9 @@ public class PowerSumoGame : MonoBehaviour{
     public float timeBetweenActions = 1f;
     public float timeBetweenTurns = 1f;
 
+    [Header("Tile Data")]
+    public float tileSide = 0;
+
     // State
     private bool isGameOn = false;
     private bool isPlayerTurn = false;
@@ -36,6 +39,7 @@ public class PowerSumoGame : MonoBehaviour{
         StartPlayerTurn();
     }
 
+    // ======== GAME STATE ==========
     private void StartPlayerTurn(){
         isPlayerTurn = true;
         playerCurrentStamina = playerMaxStamina;
@@ -67,32 +71,7 @@ public class PowerSumoGame : MonoBehaviour{
         isPlayerTurn = state;
     }
 
-    public bool CanPlayerMove(GameObject tile, int cost = 1){
-        if(!isGameOn || !isPlayerTurn) return false;
-
-        if(playerCurrentStamina - cost < 0) return false;
-        if(!canMultiMove && playerMovedList.Contains(tile)) return false;
-
-        return true;
-    }
-
-    public void MovePlayer(GameObject tile, int cost = 1){
-        if(!CanPlayerMove(tile, cost)) return;
-
-        // Temporarily stops player from acting
-        isPlayerTurn = false;
-
-        // Subtract stamina, mark tile as moved
-        playerCurrentStamina -= cost;
-        playerMovedList.Add(tile);
-
-        // Check if turn has ended, if not allow player to move after timer
-        if(CheckForEndTurn()){
-            EndPlayerTurn();
-        } else StartCoroutine(PlayerTurnTimer(true, timeBetweenActions));
-    }
-
-    private bool CheckForEndTurn(){
+        private bool CheckForEndTurn(){
         if(playerCurrentStamina <= 0) return true;
         return false;
     }
@@ -118,6 +97,59 @@ public class PowerSumoGame : MonoBehaviour{
             PowerManager.Instance.TriggerGameEnd(false);
         } 
     }
+
+    // ========== MOVEMENT ===========
+    public bool CanPlayerMove(GameObject tile, int cost = 1){
+        if(!isGameOn || !isPlayerTurn) return false;
+
+        if(playerCurrentStamina - cost < 0) return false;
+        if(!canMultiMove && playerMovedList.Contains(tile)) return false;
+
+        return true;
+    }
+
+    public void MovePlayer(GameObject tile, int cost = 1){
+        if(!CanPlayerMove(tile, cost)) return;
+
+        // Temporarily stops player from acting
+        isPlayerTurn = false;
+
+        // Subtract stamina, mark tile as moved
+        playerCurrentStamina -= cost;
+        playerMovedList.Add(tile);
+
+        // Check if turn has ended, if not allow player to move after timer
+        if(CheckForEndTurn()){
+            EndPlayerTurn();
+        } else StartCoroutine(PlayerTurnTimer(true, timeBetweenActions));
+    }
+
+    // ======= POWERS ========
+    public bool CanPlayerExecutePower(GameObject tile, int cost){
+        if(!isGameOn || !isPlayerTurn) return false;
+
+        if(playerCurrentStamina - cost < 0) return false;
+        if(!canMultiMove && playerMovedList.Contains(tile)) return false;
+
+        return true;
+    }
+
+    public void ExecutePull(GameObject tile, int cost, float radius, float forcePct){
+        if(!CanPlayerExecutePower(tile, cost)) return;
+
+        // Iterate through enemy tiles to see who's affected by the pull
+        foreach(PowerTile enemy in PowerManager.Instance.GetEnemyTiles()){
+            if(enemy == null) continue;
+
+            float dist = Vector3.Distance(tile.transform.position, enemy.gameObject.transform.position);
+            
+            // If tile is inside of radius (plus a lil bit)
+            if(dist < (radius + tileSide/2)){
+                Vector3 dir = tile.transform.position - enemy.gameObject.transform.position;
+                enemy.LaunchTile(dir, forcePct);
+            }
+        }
+    } 
 
     // ======= HUD =======
     public void PassTurn(){

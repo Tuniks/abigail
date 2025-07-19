@@ -7,6 +7,7 @@ public class PowerTilePhysics : MonoBehaviour{
     // Tile References
     private Rigidbody2D rb;
     private PowerTile powerTile;
+    private PowerPowers powerPowers;
 
     // Game References
     private PowerCameraManager pmm;
@@ -25,6 +26,7 @@ public class PowerTilePhysics : MonoBehaviour{
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         powerTile = GetComponent<PowerTile>();
+        powerPowers = GetComponent<PowerPowers>();
         pmm = PowerCameraManager.Instance;
         game = PowerManager.Instance.GetPowerSumoGame();
     }
@@ -34,19 +36,66 @@ public class PowerTilePhysics : MonoBehaviour{
             UpdatePointer();
             
             if(Input.GetMouseButtonUp(0)){
-                LaunchPlayer();
+                if(CheckMinLaunchDistance()){
+                    LaunchPlayer();
+                } else StopPointing();
             }
         }
     }
 
+    // ==== PLAYER MOVEMENT ====
     private void OnMouseDown(){
         if(!powerTile.isPlayerTile) return;
         if(isAiming) return;
 
         if(!game.CanPlayerMove(this.gameObject)) return;
 
+        StartPointing();
+    }
+
+    private void LaunchPlayer(){
+        StopPointing();
+
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
+        newPos.z = 0;
+
+        Vector3 distVector = newPos-transform.position;
+
+        rb.AddForce(distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
+
+        game.MovePlayer(this.gameObject);
+    }
+
+    private bool CheckMinLaunchDistance(){
+        // Check if inside power ui area
+        if(powerPowers.IsInsideUI()) return false;
+
+        // Check distance from centre to mouse
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
+        newPos.z = 0;
+        float dist = Vector3.Distance(newPos, transform.position);
+        
+        if(dist <= minPointerLength) return false;
+
+        return true;
+    }
+
+    // ===== PROCEDURAL MOVEMENT =====
+    public void LaunchInDirection(Vector3 dir, float forcePercentage){
+        rb.AddForce(dir.normalized * forcePercentage * maxForce, ForceMode2D.Impulse);
+    }
+
+    // ===== POINTER BEHAVIOR =====
+    private void StartPointing(){
         pointer.gameObject.SetActive(true);
         isAiming = true;
+    }
+
+    private void StopPointing(){
+        pointer.gameObject.SetActive(false);
+        isAiming = false;
     }
 
     private void UpdatePointer(){
@@ -63,25 +112,15 @@ public class PowerTilePhysics : MonoBehaviour{
         pointer.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, distVector, Vector3.forward));
     }
 
-    private void LaunchPlayer(){
-        pointer.gameObject.SetActive(false);
-        isAiming = false;
 
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
-        newPos.z = 0;
-
-        Vector3 distVector = newPos-transform.position;
-
-        rb.AddForce(distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
-
-        game.MovePlayer(this.gameObject);
+    // ===== POWER =====
+    private void OnMouseUpAsButton(){
+        if(!powerTile.isPlayerTile) return;
+        StopPointing();
+        powerPowers.ToggleUI();
     }
 
-    public void LaunchInDirection(Vector3 dir, float forcePercentage){
-        rb.AddForce(dir.normalized * forcePercentage * maxForce, ForceMode2D.Impulse);
-    }
-
+    // ===== DEATH =====
     private void OnTriggerEnter2D(Collider2D col){
         if(col.CompareTag("PowerHole")){
             powerTile.Die();
