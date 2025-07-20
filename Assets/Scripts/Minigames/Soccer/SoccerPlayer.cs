@@ -138,7 +138,7 @@ public class SoccerPlayer : MonoBehaviour{
     {
         if (col.gameObject.CompareTag("Target"))
         {
-            if (!Tilegiven)
+            if (myScore == 2 && !Tilegiven)
             {
                 PlayerInventory.Instance.AddTilesToCollection(stickyhandTile);
                 Tilegiven = true;

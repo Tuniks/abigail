@@ -15,6 +15,8 @@ public class HauntedGhosts : MonoBehaviour{
     
     public Tile[] GhostTile;
     public bool tilegiven = false;
+    
+    private int ghostsRemovedCount = 0; 
 
     void Start(){
         currentGhosts = new List<GameObject>(totalGhosts);
@@ -34,15 +36,18 @@ public class HauntedGhosts : MonoBehaviour{
         currentSpawnTime = Random.Range(spawnTimeRange.x, spawnTimeRange.y);
     }
 
-    public void GhostHit(GameObject ghost){
-        if (tilegiven == false)
+    public void GhostHit(GameObject ghost)
+    {
+        ghost.SetActive(false);
+        currentGhosts.Remove(ghost);
+        ghostsRemovedCount++; 
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(ghostHitSound);
+        
+        if (!tilegiven && ghostsRemovedCount == 3)
         {
             PlayerInventory.Instance.AddTilesToCollection(GhostTile);
             tilegiven = true;
         }
-        ghost.SetActive(false);
-        currentGhosts.Remove(ghost);
-        PlayerInteractor.instance.GetAudioSource().PlayOneShot(ghostHitSound);
     }
 
     public void ResetMinigame(){
