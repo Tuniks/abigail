@@ -36,7 +36,7 @@ Chase: Ok, let's get back to the game!
 title: Chase0-Demo
 tags:
 ---
-<<if visited("Chase0") is false>>
+<<if visited("Chase0-Demo") is false>>
 <<HideIndicator ChaseIndicatorToggle>>
 Chase: Abigail! Wow you look the exact same.
 Abigail: Good to know my extensive face altering surgeries were all for naught.
@@ -60,7 +60,7 @@ Chase: Ok, let's get back to the game!
 title: Chase1-Demo
 tags:
 ---
-<<if visited("Chase0") is false>>
+<<if visited("Chase1-Demo") is false>>
 <<HideIndicator ChaseIndicatorToggle>>
 Oz: Well, that was…fun. I have to see a man about a dog.
 <<GoodbyebyeOz SceneController>>
@@ -68,7 +68,8 @@ Chase: So that was pretty pathetic!
 Abigail: Give me a break! I literally do not know how to play that game.
 Chase: Yeah, and whose fault is that? Yours for never visiting.
 Abigail: Chase, I was just trying to-
-Chase: Forget about us? Dani spends every day sulking around town, Gabe and I aren’t speaking, Kate keeps herself insanely busy so she doesn’t think about you, and no one comes to your mom’s book club meetings!
+Chase: Forget about us? Dani spends every day sulking around town, Gabe and I aren’t speaking.
+Chase: Kate keeps herself insanely busy so she doesn’t think about you, and no one comes to your mom’s book club meetings!
 Abigail: What did you say about Kate?
 Chase: God, Abigail you’re the exact same.
 Abigail: Chase I’m sorry, what can I do to make things better? 
@@ -321,7 +322,7 @@ Fellini: I’ve always known you would understand the darkness Abigail.
 Abigail: And I’ve always known you were a weird kid. 
 Fellini: Hey! 
 Abigail: Weird non-pejorative!
-Fellini: You wanna throw some rocks with us Abigail? 
+Albert: You wanna throw some rocks with us Abigail? 
 Abigail: Sure.
 <<StartHauntedMinigame SceneController>>
 ===
@@ -514,6 +515,22 @@ tags:
 Ryan 1: Ahhhhhhhh
 Ryan 2: You can't show him scary stuff like that lady!
 ===
+title: Ryans1Skull
+tags: 
+---
+Ryan 1: Ahhhhhhhh
+<<RyansThrowSkullTile SceneController>>
+<<wait  1>>
+Ryan 2: You can't show him scary stuff like that lady!
+===
+title: Ryans1Ghost
+tags: 
+---
+Ryan 1: Ahhhhhhhh
+<<RyansThrowGhostTile SceneController>>
+<<wait  1>>
+Ryan 2: You can't show him scary stuff like that lady!
+===
 title: Ryans1SkullorGhostFuture
 tags: 
 ---
@@ -522,9 +539,12 @@ Ryan 1: Ahhhhhhhh
 <<wait  1>>
 Ryan 2: You can't show him scary stuff like that lady!
 ===
-title: Ryans1
+title: Ryans1Fly
 tags: 
 ---
+Abigail: Oh... Is that why you two are friends? Same name?
+<<RyansThrowGhostTile SceneController>>
+<<wait  1>>
 Abigail: Oh... Is that why you two are friends? Same name?
 Ryan 1: We’re friends because we both like the color purple. 
 Ryan 2: And bugs!
@@ -692,9 +712,9 @@ Margarette: Sticky hand! How unpleasant!
 title: Margarette1Explosion
 tags: 
 ---
-Margarette: What a beauitful disaster! 
+Margarette: What a beautiful disaster! 
 Abigail: That's how things in the city have been feeling lately. 
-Margarette: Your mom did tell me a story about one of your romantic encounters. That must have been so embarassing!
+Margarette: Your mom did tell me a story about one of your romantic encounters. That must have been so embarrassing!
 Abigail: I'm going to assassinate my mother. 
 ===
 title: Margarette1Bunnydeer
@@ -702,16 +722,15 @@ tags:
 ---
 Margarette: Abigail...when you were in the forest...
 Margarette: Did you hear any whisperings about the debt I owe? 
-Abigail: I didn't hear any whisperings, just a butterly telling me it's gonna be sunny?
+Abigail: I didn't hear any whisperings, just a butterfly telling me it's gonna be sunny?
 Margarette: Wonderful. 
 ===
 title: Vendor0
 tags: 
 ---
 <<if visited("Vendor0") is false>>
-Abigail: Cool tiles! They look exactly like you. 
-Timothy: Yeah my dad calls them “perfect son” tiles.
-Timothy: Don’t I know you from somewhere? I think we went to summer camp together?
+Timothy: Don’t I know you from somewhere? 
+Abigail: I think we went to summer camp together?
 <<else>>
 Timothy: Where do we know each other from?
 <<endif>>
@@ -722,8 +741,8 @@ tags:
 ---
 Abigail: We went to soccer camp, and you were always the goalie.
 Timothy: The other kids couldn’t handle it, but I’ve always had nerves of steel.
-Abigail: I most clearly remember mouthfuls of dirt and desperately wanting to score a goal.
-Timothy: Well you can score a goal now, let’s play. 
+Abigail: I most clearly remember mouthfuls of dirt after getting fouled.
+Timothy: I've been itching to get back in the goal. Let's play! 
 <<StartSoccerMinigame SceneController>>
 ===
 title: Timothy1BunnyDeer
@@ -996,7 +1015,7 @@ Gianluca: Here take a tile so you can show your support for Gianluca’s!
 title: Gianluca1Stickyhand
 tags: 
 ---
-Gianluca: If I had a third hand I could make pizzas more efficently!
+Gianluca: If I had a third hand I could make pizzas more efficiently!
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
 <<GiveGianlucaTile SceneController>>
 ===
@@ -1045,8 +1064,8 @@ Gianluca: Here take a tile so you can show your support for Gianluca’s!
 title: Gianluca1Soccer
 tags: 
 ---
-Gianluca: What are you talking about abigail? Soccer ball pizza would never work!
-Gianluca: Unless...if I put a giant meatball inside it might just work!
+Gianluca: What are you talking about Abigail? Soccer ball pizza doesn't even make sense!
+Gianluca: Wait...if I put a giant meatball inside it might just work!
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
 <<GiveGianlucaTile SceneController>>
 ===
@@ -1077,7 +1096,7 @@ Tanya:<b>Do nOT foRGEt tO WeAR sunScREEN oN WeDnESDaY</b>
 title: SoccerGoal
 tags: 
 ---
-Abigail: Wow. Big moment. Never done that before.
+Abigail: Kiln Bay little league champ still got it!
 ===
 title: WeirdhouseOrangeInteraction
 tags: 
@@ -1109,6 +1128,8 @@ title: TanyaEnd
 Tanya:<b>tHe giRl AcrOss ThE brIdGe iS liGhT yOu cOUldN't hOLd.</b>
 Tanya:<b>thE FoOt iN thE skY sEEms tO LikE yOu.</b>
 Tanya:<b>loVe fOr tHiS pLacE LIke a bOUldEr sLaMMinG DowN.</b>
+Tanya:<b>whAt WiLl thEsE daYs iN KiLn bAy bE FiLLed wITh?</b>
 Tanya:<b>YOu haVe TaNYa'S eTeRNaL GraTItUde fOR pLaYinG tHiS dEMo.</b>
 Tanya:<b>FIn.</b>
+<<GoToStart SceneController>>
 ===

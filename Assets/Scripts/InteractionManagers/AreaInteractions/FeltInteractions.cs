@@ -8,6 +8,8 @@ public class FeltInteractions : AreaInteractions{
     [Header("Ryans Interaction")]
     public PlayableDirector ryanAnimator;
     public TilePickUp ryanFlyTile;
+    public TilePickUp ryanSkullTile;
+    public TilePickUp ryanGhostTile;
     
     [Header("Timothy Interaction")]
     public GameObject soccerUI;
@@ -29,6 +31,22 @@ public class FeltInteractions : AreaInteractions{
         Tile flyTile = PlayerInteractor.instance.GetLastTileUsed();
         PlayerInventory.Instance.RemoveTileFromCollection(flyTile);
         ryanFlyTile.SetTile(flyTile);
+        ryanAnimator.Play();
+    }
+    
+    [YarnCommand] 
+    public void RyansThrowSkullTile(){
+        Tile skullTile = PlayerInteractor.instance.GetLastTileUsed();
+        PlayerInventory.Instance.RemoveTileFromCollection(skullTile);
+        ryanSkullTile.SetTile(skullTile);
+        ryanAnimator.Play();
+    }
+    
+    [YarnCommand] 
+    public void RyansThrowGhostTile(){
+        Tile ghostTile = PlayerInteractor.instance.GetLastTileUsed();
+        PlayerInventory.Instance.RemoveTileFromCollection(ghostTile);
+        ryanGhostTile.SetTile(ghostTile);
         ryanAnimator.Play();
     }
 

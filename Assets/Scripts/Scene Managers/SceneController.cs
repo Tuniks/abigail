@@ -13,7 +13,8 @@ public enum Areas{
     Clay,
     Bedroom,
     Party, 
-    Demoend
+    Demoend,
+    Start
 }
 
 public class SceneController : MonoBehaviour{
