@@ -39,6 +39,8 @@ public class PowerManager : MonoBehaviour{
 
     [Header("Game References")]
     public GameObject playerHUD;
+    public GameObject pointer;
+    public GameObject targeter;
 
     [Header("Ending References")]
     public GameObject endUI;
@@ -219,6 +221,14 @@ public class PowerManager : MonoBehaviour{
 
     public PowerTile[] GetEnemyTiles(){
         return enemyTiles;
+    }
+
+    public GameObject GetPointer(){
+        return pointer;
+    }
+
+    public GameObject GetTargeter(){
+        return targeter;
     }
 
 }

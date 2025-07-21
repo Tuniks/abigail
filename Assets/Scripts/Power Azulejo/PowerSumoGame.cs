@@ -17,6 +17,9 @@ public class PowerSumoGame : MonoBehaviour{
     [Header("Tile Data")]
     public float tileSide = 0;
 
+    [Header("Power Data")]
+    public GameObject wallPrefab;
+
     // State
     private bool isGameOn = false;
     private bool isPlayerTurn = false;
@@ -71,9 +74,21 @@ public class PowerSumoGame : MonoBehaviour{
         isPlayerTurn = state;
     }
 
-        private bool CheckForEndTurn(){
+    private bool CheckForEndTurn(){
         if(playerCurrentStamina <= 0) return true;
-        return false;
+
+        // Check if there are any alive tiles that can move
+        PowerTile[] playerTiles = PowerManager.Instance.GetPlayerTiles();
+        bool movesLeft = false;
+        foreach(PowerTile player in playerTiles){
+            // check if tile is dead
+            if(player == null) continue;
+
+            // check if tile can move
+            if(!playerMovedList.Contains(player.gameObject)) movesLeft = true; 
+        }
+
+        return !movesLeft;
     }
 
     public void RegisterDeath(bool isPlayerTile, GameObject obj){
@@ -114,6 +129,10 @@ public class PowerSumoGame : MonoBehaviour{
         // Temporarily stops player from acting
         isPlayerTurn = false;
 
+        UseStamina(tile, cost);
+    }
+
+    private void UseStamina(GameObject tile, int cost){
         // Subtract stamina, mark tile as moved
         playerCurrentStamina -= cost;
         playerMovedList.Add(tile);
@@ -138,6 +157,26 @@ public class PowerSumoGame : MonoBehaviour{
         if(!CanPlayerExecutePower(tile, cost)) return;
 
         // Iterate through enemy tiles to see who's affected by the pull
+        foreach(PowerTile player in PowerManager.Instance.GetPlayerTiles()){
+            if(player == null) continue;
+            if(player.gameObject == tile) continue;
+
+            float dist = Vector3.Distance(tile.transform.position, player.gameObject.transform.position);
+            
+            // If tile is inside of radius (plus a lil bit)
+            if(dist < (radius + tileSide/2)){
+                Vector3 dir = tile.transform.position - player.gameObject.transform.position;
+                player.LaunchTile(dir, forcePct);
+            }
+        }
+
+        UseStamina(tile, cost);
+    }
+
+    public void ExecutePush(GameObject tile, int cost, float radius, float forcePct){
+        if(!CanPlayerExecutePower(tile, cost)) return;
+
+        // Iterate through enemy tiles to see who's affected by the pull
         foreach(PowerTile enemy in PowerManager.Instance.GetEnemyTiles()){
             if(enemy == null) continue;
 
@@ -149,7 +188,32 @@ public class PowerSumoGame : MonoBehaviour{
                 enemy.LaunchTile(dir, forcePct);
             }
         }
-    } 
+
+        UseStamina(tile, cost);
+    }
+
+    public void ExecuteTeleport(GameObject tile, int cost){
+        if(!CanPlayerExecutePower(tile, cost)) return;
+        
+        tile.GetComponent<PowerTilePhysics>().StartPowerTargeting(Teleport);
+    }
+
+    public void Teleport(GameObject tile, Vector3 pos){
+        tile.transform.position = pos;
+        UseStamina(tile, 2);
+    }
+
+    public void ExecuteWall(GameObject tile, int cost){
+        if(!CanPlayerExecutePower(tile, cost)) return;
+        
+        tile.GetComponent<PowerTilePhysics>().StartPowerTargeting(PlaceWall);
+    }
+
+    public void PlaceWall(GameObject tile, Vector3 pos){
+        Instantiate(wallPrefab, pos, Quaternion.identity);
+
+        UseStamina(tile, 2);
+    }
 
     // ======= HUD =======
     public void PassTurn(){

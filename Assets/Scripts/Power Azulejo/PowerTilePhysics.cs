@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
@@ -13,11 +14,16 @@ public class PowerTilePhysics : MonoBehaviour{
     private PowerCameraManager pmm;
     private PowerSumoGame game;
 
+    // Power Targeting
+    private GameObject targeter;
+    private bool isTargeting;
+    private Action<GameObject, Vector3> targetAction;
+
     [Header("Tile Attributes")]
     public float maxForce = 5f;
 
     [Header("Pointer")]
-    public Transform pointer;
+    private Transform pointer;
     public float maxPointerLength = 2f;
     public float minPointerLength = .25f;
 
@@ -29,9 +35,21 @@ public class PowerTilePhysics : MonoBehaviour{
         powerPowers = GetComponent<PowerPowers>();
         pmm = PowerCameraManager.Instance;
         game = PowerManager.Instance.GetPowerSumoGame();
+
+        pointer = PowerManager.Instance.GetPointer().transform;
+        targeter = PowerManager.Instance.GetTargeter();
     }
 
     void Update(){
+        if(isTargeting){
+            UpdateTarget();
+
+            if(Input.GetMouseButtonDown(0)){
+                StopPowerTargeting();
+            }
+            return;
+        }
+        
         if(isAiming){
             UpdatePointer();
             
@@ -118,6 +136,33 @@ public class PowerTilePhysics : MonoBehaviour{
         if(!powerTile.isPlayerTile) return;
         StopPointing();
         powerPowers.ToggleUI();
+    }
+
+    public void StartPowerTargeting(Action<GameObject, Vector3> power){
+        isTargeting = true;
+        targeter.SetActive(true);
+        targetAction = power;
+        powerPowers.ToggleUI();
+    }
+
+    private void StopPowerTargeting(){
+        isTargeting = false;
+        targeter.SetActive(false);
+
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
+        newPos.z = 0;
+
+        targetAction(gameObject, newPos);
+        targetAction = null;
+    }
+
+    private void UpdateTarget(){
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
+        newPos.z = 0;
+
+        targeter.transform.position = newPos;
     }
 
     // ===== DEATH =====

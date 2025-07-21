@@ -10,6 +10,7 @@ public enum PowerType{
 }
 
 public class PowerPowers : MonoBehaviour{
+    private PowerSumoGame game;
     public GameObject ui;
 
     public PowerType power = PowerType.Pull;
@@ -18,12 +19,8 @@ public class PowerPowers : MonoBehaviour{
 
     private bool isInsideUI = false;
 
-    public void Initialize(Tile tile){
-
-    }
-
-    void Update(){
-        
+    private void Start(){
+        game = PowerManager.Instance.GetPowerSumoGame();
     }
 
     // ======= GENERAL POWER BEHAVIOR ======
@@ -46,22 +43,22 @@ public class PowerPowers : MonoBehaviour{
 
     // == PULL ==
     private void ExecutePull(){
-
+        game.ExecutePull(gameObject, 2, 100f, .7f);
     }
 
     // == PUSH ==
     private void ExecutePush(){
-        
+        game.ExecutePush(gameObject, 2, 100f, .5f);
     }
 
     // == TELEPORT ==
-    private void ExecuteTeleport(){
-        
+    private void ExecuteTeleport(){   
+        game.ExecuteTeleport(gameObject, 2);
     }
 
     // == WALL ==
     private void ExecuteWall(){
-        
+        game.ExecuteWall(gameObject, 2);
     }
 
     // ======== UI ========
