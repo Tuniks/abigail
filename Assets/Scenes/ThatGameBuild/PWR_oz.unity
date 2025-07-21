@@ -1083,6 +1083,10 @@ PrefabInstance:
       propertyPath: pointer
       value: 
       objectReference: {fileID: 583195719}
+    - target: {fileID: 1441714385266333606, guid: 2f0b217ba4da8c44caa32f4e6d21d232, type: 3}
+      propertyPath: power
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2803709583986135342, guid: 2f0b217ba4da8c44caa32f4e6d21d232, type: 3}
       propertyPath: parent
       value: 
@@ -6094,6 +6098,7 @@ GameObject:
   - component: {fileID: 1412120325}
   - component: {fileID: 1412120326}
   - component: {fileID: 1412120327}
+  - component: {fileID: 1412120328}
   m_Layer: 0
   m_Name: Power Azulejo Manager
   m_TagString: Untagged
@@ -6221,6 +6226,26 @@ MonoBehaviour:
   camZoomSpeed: 200
   zoomRange: {x: 5, y: 20}
   camMoveSpeed: 4
+--- !u!114 &1412120328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412120321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebc26ad9ed850c4eb3e93919cc23fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullIcon: {fileID: 21300000, guid: 15896fddc672644c39e5091878d0e262, type: 3}
+  pullAnim: {fileID: 21300000, guid: 6569f473bafec4b57bc3b94d4b7be80f, type: 3}
+  pushIcon: {fileID: 21300000, guid: b5ddbabab144346c186efa01a4142d5e, type: 3}
+  pushAnim: {fileID: 21300000, guid: b6bda8eb083434eccb929ca85b22ef9b, type: 3}
+  teleportIcon: {fileID: 21300000, guid: 95c85ac37c9a8408a898ed6933af3fc9, type: 3}
+  teleportAnim: {fileID: 0}
+  wallIcon: {fileID: 21300000, guid: 31e46c6dab18e41efbb34c92146c541a, type: 3}
+  wallAnim: {fileID: 0}
 --- !u!1 &1441418326
 GameObject:
   m_ObjectHideFlags: 0
@@ -9868,7 +9893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7835884306065227833, guid: 2f0b217ba4da8c44caa32f4e6d21d232, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8308637446682198848, guid: 2f0b217ba4da8c44caa32f4e6d21d232, type: 3}
       propertyPath: m_LocalScale.x
