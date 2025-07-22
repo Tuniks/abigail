@@ -212,7 +212,7 @@ public class PowerSumoGame : MonoBehaviour{
             
             // If tile is inside of radius (plus a lil bit)
             if(dist < (radius + tileSide/2)){
-                Vector3 dir = tile.transform.position - enemy.gameObject.transform.position;
+                Vector3 dir =  enemy.gameObject.transform.position - tile.transform.position;
                 enemy.LaunchTile(dir, forcePct);
             }
         }

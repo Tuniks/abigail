@@ -203,7 +203,12 @@ public class PowerManager : MonoBehaviour{
 
     public void TriggerGameEnd(bool won){
         playerWon = won;
-        ChangeState(PowerStage.End);    
+        StartCoroutine(InitiateEndState());   
+    }
+
+    private IEnumerator InitiateEndState(){
+        yield return new WaitForSeconds(2f);
+        ChangeState(PowerStage.End);
     }
 
     public void TriggerEndEnd(){

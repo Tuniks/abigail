@@ -89,11 +89,14 @@ public class PowerEnemyAI : MonoBehaviour{
         }
 
         // If there are, execute move
-        ExecuteMove(currentTile, currentTarget);
+        StartCoroutine(ExecuteMove(currentTile, currentTarget));
     }
 
-    private void ExecuteMove(PowerTile currentTile, PowerTile targetTile){
+    private IEnumerator ExecuteMove(PowerTile currentTile, PowerTile targetTile){
         // Change camera to follow current tile
+        PowerCinemachine.Instance.SetTarget(currentTile.transform);
+
+        yield return new WaitForSeconds(timeBetweenActions);
 
         // Calculate direction taking error into account
         Vector3 dir = targetTile.transform.position - currentTile.transform.position;
@@ -101,7 +104,7 @@ public class PowerEnemyAI : MonoBehaviour{
         dir += new Vector3(Random.Range(-aimError, aimError), Random.Range(-aimError, aimError), 0);
 
         // Calculate power (TO DO ACTUALLY DO SMTH INTERESTING)
-        float pct = 1 - Random.Range(0, powerError);
+        float pct = 1 - Random.Range(-powerError/2, powerError);
 
         // Mark tile and decrease stamina
         currentMoved.Add(currentTile.gameObject);
