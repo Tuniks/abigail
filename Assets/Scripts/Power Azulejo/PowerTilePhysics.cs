@@ -118,11 +118,14 @@ public class PowerTilePhysics : MonoBehaviour{
     // ===== POINTER BEHAVIOR =====
     private void StartPointing(){
         pointer.gameObject.SetActive(true);
+        PowerCinemachine.Instance.SetTarget(transform);
+        PowerCinemachine.Instance.StartPointingCamShake();
         isAiming = true;
     }
 
     private void StopPointing(){
         pointer.gameObject.SetActive(false);
+        PowerCinemachine.Instance.StopPointingCamShake();
         isAiming = false;
     }
 
@@ -200,7 +203,7 @@ public class PowerTilePhysics : MonoBehaviour{
         Time.timeScale = 1;
         AudioClip ac = isFriend ? hitFriendClip : hitEnemyClip;
         audioSource.PlayOneShot(ac);
-        //Treme a tela
+        PowerCinemachine.Instance.HitCamShake();
     }
 
 }
