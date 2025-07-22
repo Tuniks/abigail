@@ -43,11 +43,14 @@ public class PlayerUIManager : MonoBehaviour{
     private AzulejoPhenomenon currentPhenomenon;
     private PhenomenonSlot phenomenonSlot = null;
     private TileComponent phenomenonTarget = null;
+    public GameObject InventoryIcon;
 
     [Header("Bullshit ass dumb ass sounds")]
+    public AudioSource audioSource;
     public AudioClip bagOpenSound;
     public AudioClip bagCloseSound;
     public AudioClip newTileNotificationSound;
+    //public AudioClip PhenomenonPossibleSound;
 
     void Start(){
         instance = this;
@@ -257,6 +260,9 @@ public class PlayerUIManager : MonoBehaviour{
     private void AnimateBagIcon(bool _status){
         if(_status){
             bagIconAnimation.Play();
+            //PlayerInteractor.instance.GetAudioSource().PlayOneShot(PhenomenonPossibleSound);
+            audioSource.loop = true;
+            audioSource.Play(); 
 
             if(inventoryScreen.activeSelf == true){
                 foreach(Transform child in bagRect){
@@ -268,6 +274,8 @@ public class PlayerUIManager : MonoBehaviour{
             }
         } else {
             bagIconAnimation.Stop();
+            audioSource.Stop();
+            InventoryIcon.transform.localRotation = Quaternion.identity; 
 
             phenomenonUI.HideUI();
 
