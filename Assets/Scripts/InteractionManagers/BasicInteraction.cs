@@ -31,9 +31,9 @@ public class BasicInteraction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && !CurtainInteractionHappened && distance <= interactionRadius) //if the player pressess E, the curtain interaction hasn't happened and the distance is within the interactino radisu then set after interaction sprite and chnage the bool
             {
                 AfterInteraction.SetActive(true);
+                audioSource.PlayOneShot(Sound, 0.7F);
                 BeforeInteraction.SetActive(false);
                 CurtainInteractionHappened = true;
-                audioSource.PlayOneShot(Sound, 0.7F);
                 
                 if (tile != null && tile.Length > 0)
                 {
