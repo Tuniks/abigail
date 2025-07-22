@@ -15,43 +15,54 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private float minScrambleFrequency = 1f;
     [SerializeField] private float maxScrambleFrequency = 20f;
 
+    [Header("Reveal Bounce Settings")]
+    [SerializeField] private float revealBounceUp = 1.1f;
+    [SerializeField] private float revealBounceDown = 0.9f;
+    [SerializeField] private float revealBounceDuration = 0.1f;
+
     [Header("End-Sequence Settings")]
-    [Tooltip("How many snaps until we trigger the end sequence.")]
+    [Tooltip("How many tiles must snap before the end sequence starts.")]
     [SerializeField] private int requiredCollisions = 3;
-    [Tooltip("All draggable tiles (will fade these).")]
+    [Tooltip("All draggable tiles (to fade at the end).")]
     [SerializeField] private List<GameObject> validColliders;
-    [Tooltip("Full-screen CanvasGroup for scene fade.")]
+    [Tooltip("Full-screen CanvasGroup for final fade.")]
     [SerializeField] private CanvasGroup screenFader;
-    [Tooltip("Name of the scene to load after fade.")]
-    [SerializeField] private string nextSceneName;
+    [Tooltip("Scene to load after fade.")]
+    [SerializeField] private string nextSceneName = "";
 
     [Header("Fade Durations")]
-    [SerializeField] private float tileFadeTime = 0.5f;
+    [SerializeField] private float tileFadeTime  = 0.5f;
     [SerializeField] private float targetFadeTime = 0.5f;
-    [SerializeField] private float textFadeTime = 0.5f;
-    [SerializeField] private float sceneFadeTime = 1f;
+    [SerializeField] private float textFadeTime   = 0.5f;
+    [SerializeField] private float sceneFadeTime  = 1f;
 
-    private int collisionCount = 0;
-    private int currentIndex = 0;
+    [Header("Swap Objects")]
+    [Tooltip("Active when NO tile is placed.")]
+    [SerializeField] private GameObject objectWhenNone;
+    [Tooltip("Active when ≥1 tile is placed.")]
+    [SerializeField] private GameObject objectWhenPlaced;
+
+    // ---- Internal ----
+    private int   collisionCount   = 0;
+    private int   currentIndex     = 0;
+    private int   placedTileCount  = 0;
     private string originalText;
-    private bool isScrambling = false;
-    private float scrambleTimer = 0f;
+    private bool  isScrambling     = false;
+    private float scrambleTimer    = 0f;
     private float currentIntensity = 0f;
 
     void Start()
     {
-        if (dialogueText != null)
-            originalText = dialogueText.text;
-
-        if (screenFader != null)
-            screenFader.alpha = 0f;
+        if (dialogueText != null) originalText = dialogueText.text;
+        if (screenFader  != null) screenFader.alpha = 0f;
+        SetSwapObjectsActive(noTile: true);
     }
 
     void Update()
     {
         if (!isScrambling) return;
 
-        float freq = Mathf.Lerp(minScrambleFrequency, maxScrambleFrequency, currentIntensity);
+        float freq     = Mathf.Lerp(minScrambleFrequency, maxScrambleFrequency, currentIntensity);
         float interval = 1f / freq;
 
         scrambleTimer += Time.deltaTime;
@@ -62,6 +73,7 @@ public class IntroManager : MonoBehaviour
         }
     }
 
+    // Called every frame by the tile while dragging
     public void SetScrambleIntensity(float intensity)
     {
         intensity = Mathf.Clamp01(intensity);
@@ -70,8 +82,8 @@ public class IntroManager : MonoBehaviour
         {
             if (!isScrambling)
             {
-                isScrambling = true;
-                originalText = dialogueText.text;
+                isScrambling  = true;
+                originalText  = dialogueText.text;
                 scrambleTimer = 0f;
             }
             currentIntensity = intensity;
@@ -83,30 +95,120 @@ public class IntroManager : MonoBehaviour
         }
     }
 
+    // Called right after snap. totalRevealTime usually == tile's fadeDuration
     public void RevealText(float totalRevealTime)
     {
-        if (textSequence != null && textSequence.Count > 0)
-        {
-            dialogueText.text = textSequence[currentIndex];
-            originalText = dialogueText.text;
-            currentIndex = Mathf.Min(currentIndex + 1, textSequence.Count - 1);
-        }
+        if (textSequence == null || textSequence.Count == 0) return;
+
+        StopAllCoroutines();
+        isScrambling  = false;
+        scrambleTimer = 0f;
+
+        string full = textSequence[currentIndex];
+        StartCoroutine(WaveReveal(full, totalRevealTime));
+
+        if (currentIndex < textSequence.Count - 1) currentIndex++;
 
         collisionCount++;
         if (collisionCount >= requiredCollisions)
             StartCoroutine(EndSequence());
     }
 
+    // Tile bookkeeping
+    public void TilePlaced()
+    {
+        placedTileCount++;
+        SetSwapObjectsActive(noTile: false);
+    }
+
+    public void TileRemoved()
+    {
+        placedTileCount = Mathf.Max(0, placedTileCount - 1);
+        if (placedTileCount == 0)
+            SetSwapObjectsActive(noTile: true);
+    }
+
+    private void SetSwapObjectsActive(bool noTile)
+    {
+        if (objectWhenNone   != null) objectWhenNone.SetActive(noTile);
+        if (objectWhenPlaced != null) objectWhenPlaced.SetActive(!noTile);
+    }
+
+    // -------- Coroutines --------
+
+    private IEnumerator WaveReveal(string fullText, float totalTime)
+    {
+        int len = fullText.Length;
+        float perCharDelay = totalTime / Mathf.Max(1, len);
+
+        for (int i = 0; i <= len; i++)
+        {
+            char[] chars = new char[len];
+            for (int j = 0; j < len; j++)
+            {
+                if (j < i)
+                {
+                    chars[j] = fullText[j];
+                }
+                else if (char.IsWhiteSpace(fullText[j]))
+                {
+                    chars[j] = ' ';
+                }
+                else
+                {
+                    char orig = fullText[j];
+                    chars[j] = char.IsUpper(orig)
+                        ? (char)('A' + Random.Range(0, 26))
+                        : (char)('a' + Random.Range(0, 26));
+                }
+            }
+            dialogueText.text = new string(chars);
+            yield return new WaitForSeconds(perCharDelay);
+        }
+
+        dialogueText.text = fullText;
+        originalText      = fullText;
+        yield return StartCoroutine(TextBounce());
+    }
+
+    private IEnumerator TextBounce()
+    {
+        Transform rt = dialogueText.transform;
+        Vector3 orig = rt.localScale;
+        Vector3 up   = orig * revealBounceUp;
+        Vector3 down = orig * revealBounceDown;
+
+        for (float t = 0; t < revealBounceDuration; t += Time.deltaTime)
+        {
+            rt.localScale = Vector3.Lerp(orig, up, t / revealBounceDuration);
+            yield return null;
+        }
+        rt.localScale = up;
+
+        for (float t = 0; t < revealBounceDuration; t += Time.deltaTime)
+        {
+            rt.localScale = Vector3.Lerp(up, down, t / revealBounceDuration);
+            yield return null;
+        }
+        rt.localScale = down;
+
+        for (float t = 0; t < revealBounceDuration; t += Time.deltaTime)
+        {
+            rt.localScale = Vector3.Lerp(down, orig, t / revealBounceDuration);
+            yield return null;
+        }
+        rt.localScale = orig;
+    }
+
     private IEnumerator EndSequence()
     {
-        // 1) Fade out all remaining tiles
+        // 1) Fade out remaining tiles
         List<SpriteRenderer> tileRenderers = new List<SpriteRenderer>();
         foreach (GameObject go in validColliders)
         {
             if (go == null) continue;
             SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
-            if (sr != null)
-                tileRenderers.Add(sr);
+            if (sr != null) tileRenderers.Add(sr);
         }
 
         float t = 0f;
@@ -114,12 +216,16 @@ public class IntroManager : MonoBehaviour
         {
             t += Time.deltaTime;
             float alpha = 1f - (t / tileFadeTime);
-            foreach (var renderer in tileRenderers)
-                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, alpha);
+            foreach (var r in tileRenderers)
+            {
+                if (r == null) continue;
+                Color c = r.color;
+                r.color = new Color(c.r, c.g, c.b, alpha);
+            }
             yield return null;
         }
 
-        // 2) Fade out this target GameObject
+        // 2) Fade out this target sprite (if present)
         SpriteRenderer targetSR = GetComponent<SpriteRenderer>();
         if (targetSR != null)
         {
@@ -134,7 +240,7 @@ public class IntroManager : MonoBehaviour
             }
         }
 
-        // 3) Fade out the TMP text
+        // 3) Fade out text
         if (dialogueText != null)
         {
             t = 0f;
@@ -148,7 +254,7 @@ public class IntroManager : MonoBehaviour
             }
         }
 
-        // 4) Fade full screen then load next scene
+        // 4) Fade screen & load scene
         if (screenFader != null)
         {
             t = 0f;
@@ -164,6 +270,7 @@ public class IntroManager : MonoBehaviour
             SceneManager.LoadScene(nextSceneName);
     }
 
+    // -------- Helpers --------
     private string ScrambleText(string text, float amount)
     {
         char[] chars = text.ToCharArray();
@@ -176,13 +283,11 @@ public class IntroManager : MonoBehaviour
             if (!char.IsWhiteSpace(chars[idx]))
             {
                 char orig = chars[idx];
-                if (char.IsUpper(orig))
-                    chars[idx] = (char)('A' + Random.Range(0, 26));
-                else
-                    chars[idx] = (char)('a' + Random.Range(0, 26));
+                chars[idx] = char.IsUpper(orig)
+                    ? (char)('A' + Random.Range(0, 26))
+                    : (char)('a' + Random.Range(0, 26));
             }
         }
-
         return new string(chars);
     }
 }
