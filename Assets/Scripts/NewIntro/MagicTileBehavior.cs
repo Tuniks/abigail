@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class MagicTileBehavior : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioSource sfxSource;   // Optional. If null, we’ll grab one on Awake.
+    [SerializeField] private AudioClip clickSfx;       // Played on mouse down
+    [SerializeField] private AudioClip placeSfx;       // Played when snapped/placed
+
     [Header("Disorder Settings")]
     [Tooltip("Max random rotation angle for a disheveled vibe.")]
     [SerializeField] private float maxDisorderAngle = 10f;
@@ -69,6 +74,9 @@ public class MagicTileBehavior : MonoBehaviour
         if (primarySprite == null && spriteRenderer != null)
             primarySprite = spriteRenderer.sprite;
 
+        if (sfxSource == null)
+            sfxSource = GetComponent<AudioSource>();
+
         // Apply an initial random rotation
         float initialAngle = Random.Range(-maxDisorderAngle, maxDisorderAngle);
         transform.rotation = Quaternion.Euler(0f, 0f, initialAngle);
@@ -77,6 +85,9 @@ public class MagicTileBehavior : MonoBehaviour
     void OnMouseDown()
     {
         dragging = true;
+
+        // --- CLICK SFX ---
+        PlaySfx(clickSfx);
 
         // Reset timers & state
         jitterTimer = spriteTimer = 0f;
@@ -140,6 +151,9 @@ public class MagicTileBehavior : MonoBehaviour
             {
                 transform.position = shakeTarget.position;
                 dragging = false;
+
+                // --- PLACE SFX ---
+                PlaySfx(placeSfx);
 
                 // Reset jitter & mass rotation
                 currentJitter = Vector2.zero;
@@ -213,6 +227,20 @@ public class MagicTileBehavior : MonoBehaviour
             spriteRenderer.sprite = primarySprite;
 
         introMgr?.SetScrambleIntensity(0f);
+    }
+
+    private void PlaySfx(AudioClip clip)
+    {
+        if (clip == null) return;
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+        else
+        {
+            // Fallback: play at position (creates a temp AudioSource)
+            AudioSource.PlayClipAtPoint(clip, transform.position);
+        }
     }
 
     private IEnumerator DoBounce()

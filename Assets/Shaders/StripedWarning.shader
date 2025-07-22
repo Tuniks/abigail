@@ -1,4 +1,4 @@
-Shader "Custom/StripedWarning"
+Shader "Custom/StripedWarningAlpha"
 {
     Properties
     {
@@ -9,7 +9,7 @@ Shader "Custom/StripedWarning"
         _Scale     ("Stripe Density",   Float)       = 10
         _Thickness ("Stripe Thickness", Range(0,1))  = 0.5
 
-        [PerRendererData]_MainTex ("Sprite Texture", 2D) = "white" {}
+        [PerRendererData]_MainTex ("Sprite Texture (Alpha Mask)", 2D) = "white" {}
     }
     SubShader
     {
@@ -26,7 +26,7 @@ Shader "Custom/StripedWarning"
         Pass
         {
             CGPROGRAM
-            #pragma vertex vert
+            #pragma vertex   vert
             #pragma fragment frag
             #include "UnityCG.cginc"
 
@@ -65,7 +65,14 @@ Shader "Custom/StripedWarning"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // rotate UV around center by _Angle
+                // Sample alpha from sprite
+                fixed4 baseSample = tex2D(_MainTex, i.uv);
+                float  maskA      = baseSample.a * i.col.a; // sprite + vertex tint alpha
+
+                // Kill fully transparent pixels early to avoid fringes
+                clip(maskA - 0.001);
+
+                // Rotate UV
                 float rad = radians(_Angle);
                 float s = sin(rad), c = cos(rad);
                 float2 uvc = i.uv - 0.5;
@@ -74,18 +81,19 @@ Shader "Custom/StripedWarning"
                 uvr.y = uvc.x * s + uvc.y * c;
                 uvr += 0.5;
 
-                // slide stripes
+                // Slide stripes
                 uvr.x += _Time.y * _Speed;
 
-                // stripe pattern
+                // Stripe pattern
                 float f = frac(uvr.x * _Scale);
-                // pick color based on thickness cutoff
                 float m = step(f, _Thickness);
                 fixed4 stripeCol = lerp(_Color2, _Color1, m);
 
-                // apply sprite vertex tint & alpha
+                // Apply vertex tint color (RGB only—alpha already handled)
                 stripeCol.rgb *= i.col.rgb;
-                stripeCol.a   *= i.col.a;
+
+                // Final alpha = maskA (to respect sprite shape)
+                stripeCol.a = maskA;
 
                 return stripeCol;
             }
