@@ -2,8 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerPowersVisualManager : MonoBehaviour{
-    public static PowerPowersVisualManager Instance;
+public class PowerAudioVisualManager : MonoBehaviour{
+    public static PowerAudioVisualManager Instance;
+
+    [Header("Colors")]
+    public Color playerActiveColor;
+    public Color playerInactiveColor;
+    public Color enemyActiveColor;
+    public Color enemyInactiveColor;
+
+    [Header("Sounds")]
+    public AudioClip hitFriend;
+    public AudioClip hitEnemy;
     
     [Header("Pull")]
     public Sprite pullIcon;
@@ -23,6 +33,26 @@ public class PowerPowersVisualManager : MonoBehaviour{
 
     private void Awake(){
         Instance = this;
+    }
+
+    public Color GetActiveColor(bool isPlayerTile){
+        if(isPlayerTile) return playerActiveColor;
+
+        return enemyActiveColor;
+    }
+
+    public Color GetInactiveColor(bool isPlayerTile){
+        if(isPlayerTile) return playerInactiveColor;
+
+        return enemyInactiveColor;
+    }
+
+    public AudioClip GetHitFriendClip(){
+        return hitFriend;
+    }
+
+    public AudioClip GetHitEnemyClip(){
+        return hitEnemy;
     }
 
     public Sprite GetPowerIcon(PowerType power){

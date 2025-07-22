@@ -28,15 +28,21 @@ public class PowerSumoGame : MonoBehaviour{
     // Player Data
     private int playerCurrentScore = 0;
     private int playerCurrentStamina = 0;
+    private PowerTile[] playerTiles;
     private List<GameObject> playerMovedList = new List<GameObject>();
 
     // Enemy Data
     private int enemyCurrentScore = 0;
     private int enemyCurrentStamina = 0;
+    private PowerTile[] enemyTiles;
     private List<GameObject> enemyMovedList = new List<GameObject>();
 
     public void StartGame(){
         isGameOn = true;
+        
+        playerTiles = PowerManager.Instance.GetPlayerTiles();
+        enemyTiles = PowerManager.Instance.GetEnemyTiles();
+        
         enemyAI = GetComponent<PowerEnemyAI>();
         enemyAI.InitializeEnemyAI();
         StartPlayerTurn();
@@ -50,22 +56,44 @@ public class PowerSumoGame : MonoBehaviour{
         playerMovedList = new List<GameObject>();
         enemyMovedList = new List<GameObject>();
 
+        foreach(PowerTile tile in playerTiles){
+            if(tile == null) continue;
+            tile.SetCanMove(true);
+        }
+
         StartCoroutine(PlayerTurnTimer(true, timeBetweenTurns));
     }
 
     private void EndPlayerTurn(){
         isPlayerTurn = false;
+
+        foreach(PowerTile tile in playerTiles){
+            if(tile == null) continue;
+            tile.SetCanMove(false);
+        }
         
         StartCoroutine(StartEnemyTurn());
     }
     
     private IEnumerator StartEnemyTurn(){
+        foreach(PowerTile tile in enemyTiles){
+            if(tile == null) continue;
+            tile.SetCanMove(true);
+        }
+        
         yield return new WaitForSeconds(timeBetweenTurns);
+
         enemyAI.StartEnemyTurn(enemyCurrentStamina, enemyMovedList);
     }
 
     public void EndEnemyTurn(){
         CheckForEndGame();
+
+        foreach(PowerTile tile in enemyTiles){
+            if(tile == null) continue;
+            tile.SetCanMove(false);
+        }
+
         StartPlayerTurn();
     }
 
@@ -78,7 +106,6 @@ public class PowerSumoGame : MonoBehaviour{
         if(playerCurrentStamina <= 0) return true;
 
         // Check if there are any alive tiles that can move
-        PowerTile[] playerTiles = PowerManager.Instance.GetPlayerTiles();
         bool movesLeft = false;
         foreach(PowerTile player in playerTiles){
             // check if tile is dead
@@ -136,6 +163,7 @@ public class PowerSumoGame : MonoBehaviour{
         // Subtract stamina, mark tile as moved
         playerCurrentStamina -= cost;
         playerMovedList.Add(tile);
+        tile.GetComponent<PowerTile>().SetCanMove(false);
 
         // Check if turn has ended, if not allow player to move after timer
         if(CheckForEndTurn()){
@@ -157,7 +185,7 @@ public class PowerSumoGame : MonoBehaviour{
         if(!CanPlayerExecutePower(tile, cost)) return;
 
         // Iterate through enemy tiles to see who's affected by the pull
-        foreach(PowerTile player in PowerManager.Instance.GetPlayerTiles()){
+        foreach(PowerTile player in playerTiles){
             if(player == null) continue;
             if(player.gameObject == tile) continue;
 
@@ -177,7 +205,7 @@ public class PowerSumoGame : MonoBehaviour{
         if(!CanPlayerExecutePower(tile, cost)) return;
 
         // Iterate through enemy tiles to see who's affected by the pull
-        foreach(PowerTile enemy in PowerManager.Instance.GetEnemyTiles()){
+        foreach(PowerTile enemy in enemyTiles){
             if(enemy == null) continue;
 
             float dist = Vector3.Distance(tile.transform.position, enemy.gameObject.transform.position);

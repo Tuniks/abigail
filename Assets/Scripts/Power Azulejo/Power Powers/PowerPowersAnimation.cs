@@ -8,7 +8,6 @@ public class PowerPowersAnimation : MonoBehaviour{
     public float endScale = 5f;
     
     public float duration = 1f;
-    public float step = 0.05f;
     
     public void SetSprite(Sprite spr){
         if(spr == null) return;
@@ -23,14 +22,13 @@ public class PowerPowersAnimation : MonoBehaviour{
 
     private IEnumerator Animate(){
         float lerp = 0;
-        float interval = duration * step;
         float scale;
 
-        while(lerp <= 1){
-            scale = Mathf.Lerp(startScale, endScale, lerp);
+        while((lerp/duration) <= 1){
+            scale = Mathf.Lerp(startScale, endScale, lerp/duration);
             transform.localScale = new Vector3(scale, scale, scale);
-            lerp += step;
-            yield return new WaitForSeconds(interval);
+            lerp += Time.deltaTime;
+            yield return null;
         }
 
         EndAnimation();

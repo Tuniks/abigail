@@ -27,6 +27,12 @@ public class PowerTilePhysics : MonoBehaviour{
     public float maxPointerLength = 2f;
     public float minPointerLength = .25f;
 
+    [Header("Juice")]
+    private float freezeFrameDuration = 0.025f;
+    private AudioSource audioSource;
+    private AudioClip hitFriendClip;
+    private AudioClip hitEnemyClip;
+
     private bool isAiming = false;
 
     void Start(){
@@ -35,6 +41,10 @@ public class PowerTilePhysics : MonoBehaviour{
         powerPowers = GetComponent<PowerPowers>();
         pmm = PowerCameraManager.Instance;
         game = PowerManager.Instance.GetPowerSumoGame();
+
+        audioSource = GetComponent<AudioSource>();
+        hitFriendClip = PowerAudioVisualManager.Instance.GetHitFriendClip();
+        hitEnemyClip = PowerAudioVisualManager.Instance.GetHitEnemyClip();
 
         pointer = PowerManager.Instance.GetPointer().transform;
         targeter = PowerManager.Instance.GetTargeter();
@@ -170,6 +180,27 @@ public class PowerTilePhysics : MonoBehaviour{
         if(col.CompareTag("PowerHole")){
             powerTile.Die();
         }
+    }
+
+    // ===== ON COLLISION ======
+    private void OnCollisionEnter2D(Collision2D collision){
+        PowerTile other = collision.gameObject.GetComponent<PowerTile>();
+        if(other == null) return;
+        // To avoid doing everything twice, do only on the one w higher ID lol
+        if(gameObject.GetInstanceID() < other.gameObject.GetInstanceID()) return;
+
+        bool isFriend = other.isPlayerTile == powerTile.isPlayerTile;
+
+        StartCoroutine(TriggerCollision(isFriend));
+    }
+
+    private IEnumerator TriggerCollision(bool isFriend){
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(freezeFrameDuration);
+        Time.timeScale = 1;
+        AudioClip ac = isFriend ? hitFriendClip : hitEnemyClip;
+        audioSource.PlayOneShot(ac);
+        //Treme a tela
     }
 
 }

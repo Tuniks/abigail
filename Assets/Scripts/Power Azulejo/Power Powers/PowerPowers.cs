@@ -34,10 +34,10 @@ public class PowerPowers : MonoBehaviour{
     public void ExecutePower(){
         switch(power){
             case PowerType.Pull:
-                ExecutePull();
+                StartCoroutine(ExecutePull());
                 break;
             case PowerType.Push:
-                ExecutePush();
+                StartCoroutine(ExecutePush());
                 break;
             case PowerType.Teleport:
                 ExecuteTeleport();
@@ -49,12 +49,16 @@ public class PowerPowers : MonoBehaviour{
     }
 
     // == PULL ==
-    private void ExecutePull(){
+    private IEnumerator ExecutePull(){
+        Animate();
+        yield return new WaitForSeconds(0.5f);
         game.ExecutePull(gameObject, powerCost, 100f, .7f);
     }
 
     // == PUSH ==
-    private void ExecutePush(){
+    private IEnumerator ExecutePush(){
+        Animate();
+        yield return new WaitForSeconds(0.5f);
         game.ExecutePush(gameObject, powerCost, 100f, .5f);
     }
 
@@ -70,8 +74,8 @@ public class PowerPowers : MonoBehaviour{
 
     // ======== UI ========
     private void InitializeUI(){
-        icon.sprite = PowerPowersVisualManager.Instance.GetPowerIcon(power);
-        anim.SetSprite(PowerPowersVisualManager.Instance.GetPowerAnim(power));
+        icon.sprite = PowerAudioVisualManager.Instance.GetPowerIcon(power);
+        anim.SetSprite(PowerAudioVisualManager.Instance.GetPowerAnim(power));
     }
     
     public void ToggleUI(){
