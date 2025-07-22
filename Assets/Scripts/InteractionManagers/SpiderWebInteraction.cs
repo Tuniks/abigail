@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class SpiderWebInteraction : MonoBehaviour
 {
@@ -10,12 +11,22 @@ public class SpiderWebInteraction : MonoBehaviour
     public AudioClip Sound;
     public AudioSource audioSource;
     
+    public string nodeName; // Name of the Yarn node to play
+    private DialogueRunner dialogueRunner;
+    
     [Header("Interaction Tiles")] 
     public Tile[] tile = null;
     
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        // Find the DialogueRunner in the scene
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+
+        if (dialogueRunner == null)
+        {
+            Debug.LogError("No DialogueRunner found in the scene!");
+        }
     }
     
 
@@ -34,6 +45,12 @@ public class SpiderWebInteraction : MonoBehaviour
                 BeforeInteraction.SetActive(false);
                 CurtainInteractionHappened = true;
                 audioSource.PlayOneShot(Sound, 0.7F);
+                
+                if (dialogueRunner != null && !dialogueRunner.IsDialogueRunning)
+                {
+                    dialogueRunner.Stop();
+                    dialogueRunner.StartDialogue(nodeName);
+                }
                 
                 if (tile != null && tile.Length > 0)
                 {

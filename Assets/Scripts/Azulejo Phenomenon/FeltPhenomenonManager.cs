@@ -13,7 +13,8 @@ public class FeltPhenomenonManager : MonoBehaviour{
     public float cockroachDelay = 1f;
     public AudioClip cockroachTriggerSound;
 
-    [Header("Sunflower")]
+    [Header("Sunflower")] 
+    public GameObject sunflowerInteractionDirt;
     public GameObject sunflowerInteraction;
     public AudioClip sunflowerTriggerSound;
 
@@ -41,6 +42,7 @@ public class FeltPhenomenonManager : MonoBehaviour{
     // Sunflower Phenomenon
     public void ExecuteSunflowerPhenomenon(){
         sunflowerInteraction.SetActive(true);
+        sunflowerInteractionDirt.SetActive(false);
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(sunflowerTriggerSound);
     }
 
