@@ -8,7 +8,7 @@ public class PowerTile : MonoBehaviour{
     public bool isPlayerTile = false;
 
     // Death stuff
-    private float deathDuration = .5f;
+    private float deathDuration = .3f;
     private float deathTargetScale = 0;
 
     // Outline stuff
@@ -26,7 +26,8 @@ public class PowerTile : MonoBehaviour{
 
     public void Die(){
         PowerManager.Instance.GetPowerSumoGame().RegisterDeath(isPlayerTile, this.gameObject);
-        GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity * 0.1f;
+        GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity * 0.2f;
+        PowerCinemachine.Instance.DeathCamShake();
         StartCoroutine(DeathAnimation()); 
     }
 
