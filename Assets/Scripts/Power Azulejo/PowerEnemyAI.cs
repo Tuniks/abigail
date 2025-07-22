@@ -106,6 +106,7 @@ public class PowerEnemyAI : MonoBehaviour{
         // Mark tile and decrease stamina
         currentMoved.Add(currentTile.gameObject);
         currentStamina--;
+        currentTile.SetCanMove(false);
         
         // Launch
         currentTile.LaunchTile(dir, pct);

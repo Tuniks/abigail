@@ -21,7 +21,7 @@ public class PowerManager : MonoBehaviour{
     public bool showTutorial = true;
 
     [Header("Game Data")]
-    private List<Tile> playerInventory;
+    public List<Tile> playerInventory;
     public PowerTile[] playerTiles;
 
     public List<Tile> enemyInventory;
@@ -39,6 +39,8 @@ public class PowerManager : MonoBehaviour{
 
     [Header("Game References")]
     public GameObject playerHUD;
+    public GameObject pointer;
+    public GameObject targeter;
 
     [Header("Ending References")]
     public GameObject endUI;
@@ -56,7 +58,7 @@ public class PowerManager : MonoBehaviour{
 
         if(showTutorial){
             ChangeState(PowerStage.Tutorial);
-        } else ChangeState(PowerStage.Selection);
+        } else ChangeState(PowerStage.Game);
     }
 
     // ===== Managing States ======= 
@@ -219,6 +221,14 @@ public class PowerManager : MonoBehaviour{
 
     public PowerTile[] GetEnemyTiles(){
         return enemyTiles;
+    }
+
+    public GameObject GetPointer(){
+        return pointer;
+    }
+
+    public GameObject GetTargeter(){
+        return targeter;
     }
 
 }
