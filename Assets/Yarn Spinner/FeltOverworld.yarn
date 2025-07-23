@@ -43,7 +43,7 @@ Abigail: Good to know my extensive face altering surgeries were all for naught.
 Oz: M’lady! You must be the star of the good old days!
 Abigail: If that's what you'd like to call throwing rocks in the woods and failing miserably at talking to girls…
 Chase: Dude I think Sarah’s working today.
-Abigail: Whose Sarah?
+Abigail: Who's Sarah?
 Oz: She’s just this chick I met at the Power Azulejo tournament a few weeks ago…it’s kind of a long story.
 Abigail: Power Azulejo? Do you have to plug something in?
 Chase: Dude you’ve been gone a long time, it's the kind of Azulejo everyone is playing these days. Oz is actually a Power Azulejo champ.
@@ -53,14 +53,12 @@ Oz: Let’s give you a warm welcome back to Kiln Bay.
 <<HideIndicator ChaseIndicatorToggle>>
 Chase: Ok, let's get back to the game!
 <<endif>>
-<<ShowIndicator ChaseIndicatorToggle>>
 <<StartOzPowerAzulejo SceneController>>
 //<<StartAzulejoConversation AzulejoConvoChase1>>
 ===
 title: Chase1-Demo
 tags:
 ---
-<<if visited("Chase1-Demo") is false>>
 <<HideIndicator ChaseIndicatorToggle>>
 Oz: Well, that was…fun. I have to see a man about a dog.
 <<GoodbyebyeOz SceneController>>
@@ -75,12 +73,6 @@ Chase: God, Abigail you’re the exact same.
 Abigail: Chase I’m sorry, what can I do to make things better? 
 Chase: If you wanna go check on Dani they’re in Wharf through the warehouse path, and Kate’s across the bridge in Argil.
 <<TraveltoDemoEnd SceneController>>
-<<else>>
-<<HideIndicator ChaseIndicatorToggle>>
-Chase: Follow the warehouse path to see Dani, and Kate’s across the bridge.
-Chase: I’d like to be alone right now, I’ll see you later Abigail.
-<<endif>>
-<<ShowIndicator ChaseIndicatorToggle>>
 ===
 title: Chase0-0
 tags:
