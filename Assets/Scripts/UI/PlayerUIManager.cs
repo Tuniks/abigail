@@ -158,6 +158,7 @@ public class PlayerUIManager : MonoBehaviour{
         GameObject element = Instantiate(itemElementPrefab);
         ItemElement itemElement = element.GetComponent<ItemElement>();
         itemElement.SetTile(tile);
+        itemElement.SetIsVisited(WorldState.Instance.WasTileVisited(tile));
         if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget) && !currentConvo) itemElement.SetTwitching(true);
 
         return element;
@@ -206,6 +207,13 @@ public class PlayerUIManager : MonoBehaviour{
             ShowPhenomenonInput();
             return;
         } else phenomenonUI.HideUI();
+
+
+        if(currentConvo == null){
+            ItemElement element = tile.GetComponentInParent<ItemElement>();
+            WorldState.Instance.VisitTile(element.GetOGTile());
+            element.SetIsVisited(true);
+        }
 
         tileDetailsScreen.GetComponent<TileDetailsUI>().SetTile(tile);
         tileDetailsScreen.SetActive(true);

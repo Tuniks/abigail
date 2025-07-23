@@ -7,6 +7,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private PlayerUIManager ui;
     private CanvasGroup cg;
 
+    private GameObject ogTile;
+
     private Vector3 previousPos;
     private Dictionary<SpriteRenderer, int> originalSpriteOrder = null;
 
@@ -21,6 +23,9 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public Vector2 twitchTimeLimits = new Vector2(0, 1);
     private bool isTwitching = false;
     private float currentTwitchTimer = 0;
+
+    // New tile decor
+    public GameObject newTileDecor;
     
 
     void Start(){
@@ -90,6 +95,8 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
     public void SetTile(GameObject tile){
         if(tile == null) return;
+
+        ogTile = tile;
         
         GameObject tileCopy = Instantiate(tile, Vector3.zero, Quaternion.identity);
         tileCopy.transform.SetParent(transform, false);
@@ -146,5 +153,14 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         }
         
         isTwitching = _status;
+    }
+
+    // Visited
+    public GameObject GetOGTile(){
+        return ogTile;
+    }
+
+    public void SetIsVisited(bool _status){
+        newTileDecor.SetActive(!_status);
     }
 }
