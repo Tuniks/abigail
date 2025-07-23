@@ -712,6 +712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900959012}
   - component: {fileID: 900959011}
+  - component: {fileID: 900959013}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -764,6 +765,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &900959013
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900959010}
+  m_Enabled: 1
 --- !u!1001 &1090153533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1042,7 +1051,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
