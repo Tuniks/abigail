@@ -15742,6 +15742,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &431166806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 431166807}
+  m_Layer: 0
+  m_Name: antoniodontgetmad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &431166807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431166806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.296873, y: -4.610152, z: -0.46162927}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1091441798}
+  - {fileID: 820751530}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &431598286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4566553852973404334, guid: 4ca76e64534d5154a8b7c2c5fa1f0b8d, type: 3}
@@ -30864,6 +30897,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 973809582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &820751529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820751530}
+  m_Layer: 0
+  m_Name: so now im making empty gameobjects to put there
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &820751530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820751529}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 431166807}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &820770133
 GameObject:
   m_ObjectHideFlags: 0
@@ -38292,6 +38356,37 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1091441797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091441798}
+  m_Layer: 0
+  m_Name: I think i broke things by deleting things
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1091441798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091441797}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 431166807}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1092323492
 GameObject:
   m_ObjectHideFlags: 0
@@ -40687,15 +40782,15 @@ MonoBehaviour:
   dialogueRunner: {fileID: 1304779543}
   chase: {fileID: 320675073}
   oz: {fileID: 8069734510838217001}
-  linda: {fileID: 0}
-  HOA: {fileID: 0}
-  doorColBlocked: {fileID: 0}
-  doorColUnblocked: {fileID: 0}
-  doorClayBlocked: {fileID: 0}
-  doorClayUnblocked: {fileID: 0}
+  linda: {fileID: 431166806}
+  HOA: {fileID: 1091441797}
+  doorColBlocked: {fileID: 820751529}
+  doorColUnblocked: {fileID: 431166806}
+  doorClayBlocked: {fileID: 1091441797}
+  doorClayUnblocked: {fileID: 820751529}
   doorMoms: {fileID: 1765335623}
-  doorParty: {fileID: 0}
-  doorPartyBlocked: {fileID: 0}
+  doorParty: {fileID: 431166806}
+  doorPartyBlocked: {fileID: 1091441797}
   gianlucasTile:
   - {fileID: 1946822097}
   bunnydeerTile:
@@ -72806,3 +72901,4 @@ SceneRoots:
   - {fileID: 1077846098}
   - {fileID: 757858447}
   - {fileID: 1436667294}
+  - {fileID: 431166807}
