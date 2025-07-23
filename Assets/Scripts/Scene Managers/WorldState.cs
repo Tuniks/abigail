@@ -32,6 +32,8 @@ public class WorldState : MonoBehaviour{
 
     private Dictionary<string, string> npcConversationState = new Dictionary<string, string>();
 
+    private List<GameObject> visitedTiles = new List<GameObject>(); 
+
     // POWER AZULEJO STUFF
     private string lastOpponent = "";
     private bool wonLastMatch = false;
@@ -67,6 +69,17 @@ public class WorldState : MonoBehaviour{
         }
 
         return "";
+    }
+
+    // ===== TILE MANAGEMENT ====
+    public bool WasTileVisited(GameObject tile){
+        if(visitedTiles.Contains(tile)) return true;
+
+        return false;
+    }
+
+    public void VisitTile(GameObject tile){
+        if(!visitedTiles.Contains(tile)) visitedTiles.Add(tile);
     }
 
     // ===== GETTERS ====
