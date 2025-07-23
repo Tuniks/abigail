@@ -376,7 +376,7 @@ MonoBehaviour:
   audioSource: {fileID: 293717444}
   tile: []
   player: {fileID: 1443111404}
-  interactionRadius: 2
+  interactionRadius: 3
 --- !u!82 &293717444
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3335,14 +3335,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -5.2896905, y: 7.8644867}
-      - {x: -5.3927917, y: 4.871881}
-      - {x: -5.379252, y: 4.128646}
-      - {x: -5.4331627, y: 3.660501}
-      - {x: -4.878786, y: 3.5256867}
-      - {x: -3.8098445, y: 2.9656787}
-      - {x: -2.6144714, y: 2.5018413}
-      - {x: -1.799171, y: 2.5828457}
-      - {x: -0.098660946, y: 6.701543}
+      - {x: -6.0454464, y: 6.65998}
+      - {x: -6.5471435, y: 5.7103686}
+      - {x: -6.875838, y: 4.416892}
+      - {x: -7.111475, y: 2.700165}
+      - {x: -6.798202, y: 0.8333497}
+      - {x: -3.713615, y: -0.24928403}
+      - {x: 1.1205554, y: -1.3714614}
+      - {x: 0.073093414, y: 5.9450293}
       - {x: -0.6237316, y: 6.7293324}
   m_UseDelaunayMesh: 0
 --- !u!1 &1625708805
@@ -4233,7 +4233,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2001185413}
   - component: {fileID: 2001185412}
-  - component: {fileID: 2001185411}
   - component: {fileID: 2001185414}
   m_Layer: 0
   m_Name: Main Camera
@@ -4242,14 +4241,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2001185411
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001185410}
-  m_Enabled: 1
 --- !u!20 &2001185412
 Camera:
   m_ObjectHideFlags: 0

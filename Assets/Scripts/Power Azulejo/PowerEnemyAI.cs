@@ -98,21 +98,23 @@ public class PowerEnemyAI : MonoBehaviour{
 
         yield return new WaitForSeconds(timeBetweenActions);
 
-        // Calculate direction taking error into account
-        Vector3 dir = targetTile.transform.position - currentTile.transform.position;
-        dir = dir.normalized;
-        dir += new Vector3(Random.Range(-aimError, aimError), Random.Range(-aimError, aimError), 0);
+        if(currentTile != null || targetTile != null){
+            // Calculate direction taking error into account
+            Vector3 dir = targetTile.transform.position - currentTile.transform.position;
+            dir = dir.normalized;
+            dir += new Vector3(Random.Range(-aimError, aimError), Random.Range(-aimError, aimError), 0);
 
-        // Calculate power (TO DO ACTUALLY DO SMTH INTERESTING)
-        float pct = 1 - Random.Range(-powerError/2, powerError);
+            // Calculate power (TO DO ACTUALLY DO SMTH INTERESTING)
+            float pct = 1 - Random.Range(-powerError/2, powerError);
 
-        // Mark tile and decrease stamina
-        currentMoved.Add(currentTile.gameObject);
-        currentStamina--;
-        currentTile.SetCanMove(false);
-        
-        // Launch
-        currentTile.LaunchTile(dir, pct);
+            // Mark tile and decrease stamina
+            currentMoved.Add(currentTile.gameObject);
+            currentStamina--;
+            currentTile.SetCanMove(false);
+            
+            // Launch
+            currentTile.LaunchTile(dir, pct);
+        }
 
         StartCoroutine(CallNextStep());
     }

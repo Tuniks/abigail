@@ -163,6 +163,10 @@ public class PlayerUIManager : MonoBehaviour{
             itemElement.SetIsVisited(true);
             itemElement.SetTwitching(true);
         }
+        
+        if(currentConvo != null){
+            itemElement.SetIsVisited(true);
+        }
 
         return element;
     }

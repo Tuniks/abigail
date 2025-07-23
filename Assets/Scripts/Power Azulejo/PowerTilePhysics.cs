@@ -88,7 +88,13 @@ public class PowerTilePhysics : MonoBehaviour{
         Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
         newPos.z = 0;
 
+        // Capping max velocity
         Vector3 distVector = newPos-transform.position;
+        if(distVector.magnitude > maxPointerLength){
+            newPos = (distVector.normalized * maxPointerLength)+transform.position;
+        }
+
+        distVector = newPos-transform.position;
 
         rb.AddForce(distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
 
