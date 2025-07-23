@@ -9,6 +9,7 @@ public class ToggleObjectsWithFade : MonoBehaviour
     public List<GameObject> uiToEnable;
     public float fadeDuration = 1.0f;
     private bool isToggled = false;
+    public GameObject PowerAzulejoSceneStarter;
 
     void Update()
     {
@@ -16,6 +17,11 @@ public class ToggleObjectsWithFade : MonoBehaviour
         {
             isToggled = !isToggled;
             StartCoroutine(CrossfadeObjects(isToggled));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            PowerAzulejoSceneStarter.SetActive(true);
         }
     }
 
