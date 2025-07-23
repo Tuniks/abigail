@@ -11,6 +11,10 @@ public class PowerAudioVisualManager : MonoBehaviour{
     public Color enemyActiveColor;
     public Color enemyInactiveColor;
 
+    [Header("Music")]
+    public AudioClip introMusic;
+    public AudioClip gameMusic;
+
     [Header("Sounds")]
     public AudioClip hitFriend;
     public AudioClip hitEnemy;

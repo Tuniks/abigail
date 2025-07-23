@@ -115,7 +115,8 @@ public class PowerManager : MonoBehaviour{
     private void EnterTutorialStage(){
         tutorialUI.SetActive(true);
         tutorialUI.GetComponent<PowerSumoTutorial>().Initialize();
-
+        GetComponent<AudioSource>().clip = PowerAudioVisualManager.Instance.introMusic;
+        GetComponent<AudioSource>().Play();
     }
 
     private void ExitTutorialStage(){
@@ -148,7 +149,9 @@ public class PowerManager : MonoBehaviour{
         playerHUD.SetActive(true);
         PowerCameraManager.Instance.SetCameraState(true);
         game.StartGame();
-
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().clip = PowerAudioVisualManager.Instance.gameMusic;
+        GetComponent<AudioSource>().Play();
     }
 
     private void ExitGameStage(){

@@ -63,7 +63,9 @@ public class PowerTile : MonoBehaviour{
         canMove = _state;
         if(canMove){
             StartCoroutine(LerpColor(activeColor));
-        } else StartCoroutine(LerpColor(inactiveColor));
+        } else {
+            StartCoroutine(LerpColor(inactiveColor));
+        }
     }
 
     private IEnumerator LerpColor(Color target){
