@@ -107,7 +107,7 @@ public class PlayerUIManager : MonoBehaviour{
         float rot = Random.Range(-maxRotation, maxRotation);
         element.transform.rotation = Quaternion.Euler(0,0,rot);
         orderCount++;
-        element.UpdateSpriteOrder(orderCount*4);
+        element.UpdateSpriteOrder(orderCount*7);
         
         // If hovering convo drop spot, drop it
         if(convoSlot != null && currentConvo != null && currentConvo.IsActive()){
@@ -159,7 +159,10 @@ public class PlayerUIManager : MonoBehaviour{
         ItemElement itemElement = element.GetComponent<ItemElement>();
         itemElement.SetTile(tile);
         itemElement.SetIsVisited(WorldState.Instance.WasTileVisited(tile));
-        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget) && !currentConvo) itemElement.SetTwitching(true);
+        if(phenomenonTarget && itemElement.HasTileWithFace(phenomenonTarget) && !currentConvo) {
+            itemElement.SetIsVisited(true);
+            itemElement.SetTwitching(true);
+        }
 
         return element;
     }

@@ -39,7 +39,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
             currentTwitchTimer -= Time.deltaTime;
             if(currentTwitchTimer < 0){
                 currentTwitchTimer = Random.Range(twitchTimeLimits.x, twitchTimeLimits.y);
-                Transform tile = transform.GetChild(0);
+                Transform tile = transform.GetChild(1);
                 tile.localPosition = new Vector3(
                     Random.Range(-twitchRange, twitchRange),
                     Random.Range(-twitchRange, twitchRange),
