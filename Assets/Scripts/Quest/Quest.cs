@@ -13,14 +13,14 @@ public class Quest {
 
     private QuestStep[] steps;
 
-    // Constructor
-    Quest(string _title, string _description, QuestCondition _visibilityCondition, QuestStep[] _steps){
+    // === Constructor ===
+    public Quest(string _title, string _description, QuestCondition _visibilityCondition, QuestStep[] _steps){
         this.title = _title;
         this.description = _description;
         this.visibilityCondition = _visibilityCondition;
         this.steps = _steps;
-        isVisible = false;
-        isCompleted = false;
+        this.isVisible = false;
+        this.isCompleted = false;
     }
 
     // Getters and Setters
