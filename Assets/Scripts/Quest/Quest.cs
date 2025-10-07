@@ -9,15 +9,12 @@ public class Quest {
     private bool isVisible;
     private bool isCompleted;
 
-    private QuestCondition visibilityCondition;
-
     private QuestStep[] steps;
 
     // === Constructor ===
-    public Quest(string _title, string _description, QuestCondition _visibilityCondition, QuestStep[] _steps){
+    public Quest(string _title, string _description, QuestStep[] _steps){
         this.title = _title;
         this.description = _description;
-        this.visibilityCondition = _visibilityCondition;
         this.steps = _steps;
         this.isVisible = false;
         this.isCompleted = false;
