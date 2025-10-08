@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class PlayerUIManager : MonoBehaviour{
     public static PlayerUIManager instance;
     private Inventory playerInventory;
+    private MenuManager menuManager;
 
     [Header("Inventory")]
     public GameObject inventoryScreen;
@@ -45,7 +46,7 @@ public class PlayerUIManager : MonoBehaviour{
     private TileComponent phenomenonTarget = null;
     public GameObject InventoryIcon;
 
-    [Header("Bullshit ass dumb ass sounds")]
+    [Header("Sounds")]
     public AudioSource audioSource;
     public AudioClip bagOpenSound;
     public AudioClip bagCloseSound;
@@ -56,6 +57,7 @@ public class PlayerUIManager : MonoBehaviour{
         instance = this;
         playerInventory = PlayerInventory.Instance;
         SetInventoryUI();
+        menuManager = GetComponent<MenuManager>();
     }
 
     void Update(){
@@ -66,6 +68,10 @@ public class PlayerUIManager : MonoBehaviour{
                 } else ShowInventory(true);
             } else if(currentConvo != null){
                 currentConvo.QuitConvo();
+            }
+        } else if (Input.GetKeyDown(KeyCode.Escape)){
+            if(!IsPlayerBusy()){
+                menuManager.ToggleMenu();
             }
         }
     }
