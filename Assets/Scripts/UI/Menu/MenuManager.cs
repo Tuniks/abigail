@@ -48,7 +48,12 @@ public class MenuManager : MonoBehaviour{
             currentTab = 0;
         }
 
+        // Activating new tab
+        MenuTab tab = menuPages[currentTab].GetComponent<MenuTab>();
+        if(tab != null) tab.ShowTab();
         menuPages[currentTab].SetActive(true);
+
+        // Deactivating old one
         menuPages[prev].SetActive(false);
     }
 }
