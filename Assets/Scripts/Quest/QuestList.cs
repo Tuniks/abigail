@@ -9,18 +9,14 @@ public class QuestList{
             "Mikhail needs my help with his divorce", 
             new QuestStep[2]{
                 new QuestStep(
-                    "01",
+                    1,
                     new QuestCondition(ConditionType.HasTile, "sunflower"),
-                    new QuestCondition(ConditionType.HasTile, "cockroach"),
-                    "Bugs... she always loved the ugliest of us",
-                    "Was I to her what she was to me?"
+                    new QuestCondition(ConditionType.HasTile, "cockroach")
                 ),
                 new QuestStep(
-                    "02",
+                    2,
                     new QuestCondition(ConditionType.HasTile, "cockroach"),
-                    new QuestCondition(ConditionType.Trigger, "sunflower-planted"),
-                    "Always looking for a spot in the sun",
-                    "I wasn't"
+                    new QuestCondition(ConditionType.Trigger, "sunflower-planted")
                 )
             }
         ),
@@ -29,11 +25,9 @@ public class QuestList{
             "The mystery of my grandma's bullet necklace",
             new QuestStep[1]{
                 new QuestStep(
-                    "01",
+                    1,
                     new QuestCondition(ConditionType.HasTile, "pizza"),
-                    new QuestCondition(ConditionType.ShowTileTo, "pizza", "margarette"),
-                    "Tomato sauce red, thicker but just as sweet as...",
-                    "Of course Margarette would know"
+                    new QuestCondition(ConditionType.ShowTileTo, "pizza", "margarette")
                 )
             }
         ),
