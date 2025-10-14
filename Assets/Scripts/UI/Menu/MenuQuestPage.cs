@@ -10,4 +10,12 @@ public class MenuQuestPage : MonoBehaviour{
     }
     
     public QuestStepReference[] stepList;
+
+    public void Hide(){
+        gameObject.SetActive(false);
+    }
+
+    public void Show(){
+        gameObject.SetActive(true);
+    }
 }

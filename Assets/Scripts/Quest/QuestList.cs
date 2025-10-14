@@ -6,7 +6,6 @@ public class QuestList{
     public Quest[] quests = new Quest[2]{
         new Quest(
             "How to Kill One Million Tears",
-            // "Mikhail needs my help with his divorce",
             new QuestCondition[1]{
                 new QuestCondition(ConditionType.HasTile, "sunflower")
             },
@@ -25,7 +24,6 @@ public class QuestList{
         ),
         new Quest(
             "The Bullet",
-            // "The mystery of my grandma's bullet necklace",
             new QuestCondition[1]{
                 new QuestCondition(ConditionType.HasTile, "pizza")
             },

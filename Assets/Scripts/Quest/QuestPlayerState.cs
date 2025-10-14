@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestPlayerState : MonoBehaviour{
     public static QuestPlayerState Instance = null;
     
-    private List<Quest> quests = new List<Quest>();
+    private List<Quest> quests = null;
 
     private List<QuestCondition> currentConditions;
 

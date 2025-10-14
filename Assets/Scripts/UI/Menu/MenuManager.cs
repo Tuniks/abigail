@@ -9,6 +9,15 @@ public class MenuManager : MonoBehaviour{
 
     private int currentTab = 0;
 
+    void Start(){
+        foreach(GameObject page in menuPages){
+            MenuTab tab = page.GetComponent<MenuTab>();
+            if(tab != null){
+                tab.Initialize();
+            }
+        }
+    }
+
     void Update(){
         if(Input.GetKeyDown("q") && menuScreen.activeSelf){
             ChangeMenuTab(-1);
@@ -27,6 +36,7 @@ public class MenuManager : MonoBehaviour{
         // Pause Game
         Time.timeScale = 0;
 
+        ShowTab(currentTab);
         menuScreen.SetActive(true);
     }
 
@@ -49,11 +59,19 @@ public class MenuManager : MonoBehaviour{
         }
 
         // Activating new tab
-        MenuTab tab = menuPages[currentTab].GetComponent<MenuTab>();
-        if(tab != null) tab.ShowTab();
-        menuPages[currentTab].SetActive(true);
+        ShowTab(currentTab);
 
         // Deactivating old one
-        menuPages[prev].SetActive(false);
+        HideTab(prev);
+    }
+
+    private void ShowTab(int _tab){
+        MenuTab tab = menuPages[_tab].GetComponent<MenuTab>();
+        if(tab != null) tab.ShowTab();
+        menuPages[_tab].SetActive(true);
+    }
+
+    private void HideTab(int _tab){
+        menuPages[_tab].SetActive(false);
     }
 }

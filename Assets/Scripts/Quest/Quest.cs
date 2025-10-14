@@ -21,7 +21,7 @@ public class Quest {
         this.title = _title;
         this.requirements = _req;
         this.steps = _steps;
-        this.status = QuestStatus.Hidden;
+        this.status = QuestStatus.Active;
     }
 
     // Getters and Setters
