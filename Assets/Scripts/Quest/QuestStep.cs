@@ -6,17 +6,17 @@ public class QuestStep{
     public int id;
 
     // Conditions
-    private QuestCondition visibleCondition;
-    private QuestCondition completeCondition;
+    private QuestCondition[] visibleCondition;
+    private QuestCondition[] completeCondition;
 
     private QuestStatus status;
 
     // === Constructor ===
-    public QuestStep(int _id, QuestCondition _vcon, QuestCondition _ccon){
+    public QuestStep(int _id, QuestCondition[] _vcon, QuestCondition[] _ccon, QuestStatus _status = QuestStatus.Active){
         this.id = _id;
         this.visibleCondition = _vcon;
         this.completeCondition = _ccon;
-        this.status = QuestStatus.Hidden;
+        this.status = _status;
     }
 
 }

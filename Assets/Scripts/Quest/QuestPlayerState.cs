@@ -7,6 +7,7 @@ public class QuestPlayerState : MonoBehaviour{
     
     private List<Quest> quests = null;
 
+    // Quest And Steps Conditions
     private List<QuestCondition> currentConditions;
 
     void Awake(){

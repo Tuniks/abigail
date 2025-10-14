@@ -17,11 +17,11 @@ public class Quest {
     private QuestStep[] steps;
 
     // === Constructor ===
-    public Quest(string _title, QuestCondition[] _req, QuestStep[] _steps){
+    public Quest(string _title, QuestCondition[] _req, QuestStep[] _steps, QuestStatus _status = QuestStatus.Active){
         this.title = _title;
         this.requirements = _req;
         this.steps = _steps;
-        this.status = QuestStatus.Active;
+        this.status = _status;
     }
 
     // Getters and Setters
