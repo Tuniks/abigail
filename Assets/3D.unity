@@ -537,13 +537,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 0
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -650,27 +650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341b3e98bb3323748a15c8d52ba5435b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
-  center: 0.5
-  focusSize: 0.08
-  falloff: 0.12
-  blurSize: 3
-  iterations: 2
-  downsample: 1
-  gammaCorrect: 1
-  cam: {fileID: 0}
-  blurMat: {fileID: 0}
-  compMat: {fileID: 0}
-  lastW: 0
-  lastH: 0
-  lastDS: 0
-  lastIter: 0
-  lastBlur: 0
-  lastAngle: 0
-  lastCenter: 0
-  lastFocus: 0
-  lastFalloff: 0
-  lastGamma: 0
 --- !u!1 &741083772
 GameObject:
   m_ObjectHideFlags: 0
