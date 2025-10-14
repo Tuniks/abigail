@@ -5,9 +5,7 @@ using UnityEngine;
 public class QuestPlayerState : MonoBehaviour{
     public static QuestPlayerState Instance = null;
     
-    private List<Quest> activeQuests;
-    private List<Quest> inactiveQuests;
-    private List<Quest> completedQuests;
+    private List<Quest> quests = new List<Quest>();
 
     private List<QuestCondition> currentConditions;
 
@@ -22,30 +20,40 @@ public class QuestPlayerState : MonoBehaviour{
     }
 
     private void Initialize(){
-        if(activeQuests != null || inactiveQuests != null || completedQuests != null) return;
+        if(quests != null) return;
 
-        activeQuests = new List<Quest>();
-        inactiveQuests = new List<Quest>();
-        completedQuests = new List<Quest>();
+        quests = new List<Quest>();
 
         QuestList questList = new QuestList();
 
         foreach(Quest q in questList.quests){
-            activeQuests.Add(q);
+            quests.Add(q);
         }
     }
 
-    // ======== GETTERS AND SETTERS ===============
+    // ======== GETTERS AND SETTERS =============
+
+    public List<Quest> GetAllQuests(){
+        return quests;
+    }
 
     public List<Quest> GetActiveQuests(){
+        List<Quest> activeQuests = new List<Quest>();
+
+        foreach(Quest q in quests){
+            if(q.IsActive()) activeQuests.Add(q);
+        }
+        
         return activeQuests;
     }
 
-    public List<Quest> GetInactiveQuests(){
-        return inactiveQuests;
-    }
-
     public List<Quest> GetCompletedQuests(){
+        List<Quest> completedQuests = new List<Quest>();
+
+        foreach(Quest q in quests){
+            if(q.IsCompleted()) completedQuests.Add(q);
+        }
+        
         return completedQuests;
     }
 }

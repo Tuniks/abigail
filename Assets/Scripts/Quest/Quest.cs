@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum QuestStatus{
+    Hidden,
+    Active,
+    Complete
+}
+
 public class Quest {
     private string title;
-    private string description;
     
-    private bool isVisible;
-    private bool isCompleted;
+    private QuestStatus status;
 
+    private QuestCondition[] requirements;
     private QuestStep[] steps;
 
     // === Constructor ===
-    public Quest(string _title, string _description, QuestStep[] _steps){
+    public Quest(string _title, QuestCondition[] _req, QuestStep[] _steps){
         this.title = _title;
-        this.description = _description;
+        this.requirements = _req;
         this.steps = _steps;
-        this.isVisible = false;
-        this.isCompleted = false;
+        this.status = QuestStatus.Hidden;
     }
 
     // Getters and Setters
@@ -25,9 +29,12 @@ public class Quest {
         return title;
     }
 
-    public string GetDescription(){
-        return description;
+    public bool IsCompleted(){
+        return status == QuestStatus.Complete;
     }
 
+    public bool IsActive(){
+        return status == QuestStatus.Active;
+    }
 
 }

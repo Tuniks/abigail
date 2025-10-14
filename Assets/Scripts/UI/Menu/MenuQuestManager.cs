@@ -10,7 +10,7 @@ public class MenuQuestManager : MenuTab{
         // Populate list
     }
 
-    public void OnClickListElement(MenuQuestItem item){
+    public void OnClickListElement(string questName){
 
     }
 }

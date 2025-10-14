@@ -9,16 +9,14 @@ public class QuestStep{
     private QuestCondition visibleCondition;
     private QuestCondition completeCondition;
 
-    private bool isVisible;
-    private bool isCompleted;
+    private QuestStatus status;
 
     // === Constructor ===
     public QuestStep(int _id, QuestCondition _vcon, QuestCondition _ccon){
         this.id = _id;
         this.visibleCondition = _vcon;
         this.completeCondition = _ccon;
-        this.isVisible = false;
-        this.isCompleted = false;
+        this.status = QuestStatus.Hidden;
     }
 
 }
