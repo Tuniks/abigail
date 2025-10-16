@@ -24,6 +24,11 @@ public class NPC : MonoBehaviour{
         UpdateStorage();
     }
 
+    // ITS THE NAME FROM THE BUBBLE ANCHOR
+    public string GetCharacterName(){
+        return characterName;
+    }
+
     // ==== STATE CONTROL ====
     private void InitializeState(){
         string currentScene = SceneManager.GetActiveScene().name;
