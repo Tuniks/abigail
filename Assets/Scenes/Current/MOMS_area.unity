@@ -1311,17 +1311,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7746848998911024562, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
   m_PrefabInstance: {fileID: 237650896}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &237650898 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
-  m_PrefabInstance: {fileID: 237650896}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &248088453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4190143672314123212, guid: 1a9e3c8ca7f72fa49ab7d8f00e30f84b, type: 3}
@@ -2345,12 +2334,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convoUI: {fileID: 726674644}
   faceDialoguePairs:
-  - facePrefab: {fileID: 5965758887917730016, guid: 92b091061272a46a98aea6ca57f88839, type: 3}
-    dialogueNode: MomDani1-1
-  - facePrefab: {fileID: 5965758887917730016, guid: 243c304e0c6bf4de2919b2a3173ab85a, type: 3}
-    dialogueNode: MomDani1-3
+  - facePrefab: {fileID: 1786020399898891478, guid: d1ea065980d8d32488866add20a4cf3d, type: 3}
+    dialogueNode: Mom2Tuca
+  - facePrefab: {fileID: 5965758887917730016, guid: 7aebf2c9febc64e83ab6a6bec37bb76b, type: 3}
+    dialogueNode: Mom2Sunflower
   - facePrefab: {fileID: 1786020399898891478, guid: c09f969cd9d2c4c04b99a80b195711a7, type: 3}
-    dialogueNode: MomDani1-4
+    dialogueNode: Mom2Butterfly
   defaultNode: MomDani1-0
   endConvoDelay: 1
   TilePlacedInHand: {fileID: 8300000, guid: dd88e5d63f4e74ba888eac22c01935d8, type: 3}
@@ -2833,17 +2822,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &566847025 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 553045761282813282, guid: 85d5a49c83c3a0045bd2904f338739f7, type: 3}
-  m_PrefabInstance: {fileID: 409861672}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d91dbda4d1819841ab942cfb6ca10af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &609624893
@@ -5307,6 +5285,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1281258370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 261125447052602827, guid: 9eda356ac0d084242b364263e92e641e, type: 3}
+  m_PrefabInstance: {fileID: 1943680598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331502145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6100,7 +6083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5876414281527260128, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: dialogueNode
-      value: Tuca
+      value: Tuca1
       objectReference: {fileID: 0}
     - target: {fileID: 6026025847067181416, guid: c6d624fbb34f53d418d31cb9b59f263d, type: 3}
       propertyPath: m_Sprite
@@ -7788,6 +7771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toucan Phenomenon
       objectReference: {fileID: 0}
+    - target: {fileID: 261125447052602827, guid: 9eda356ac0d084242b364263e92e641e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1741201234876495139, guid: 9eda356ac0d084242b364263e92e641e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9029,12 +9016,12 @@ MonoBehaviour:
   doorBlocked: {fileID: 1693156750}
   doorUnblocked: {fileID: 248088453}
   tilesInChest:
-  - {fileID: 566847025}
   - {fileID: 2102701981}
-  - {fileID: 237650898}
+  - {fileID: 2145902601}
   toucanTile: {fileID: 2145902601}
   SunflowerInteraction: {fileID: 1729640759}
   EmptySunflower: {fileID: 1445188457}
+  Tuca: {fileID: 1281258370}
 --- !u!114 &395991195017556371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9049,6 +9036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toucanNPC: {fileID: 1516668119}
   toucanTriggerSound: {fileID: 0}
+  dialogueRunner: {fileID: 534169505}
 --- !u!114 &395991195017556374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9205,7 +9193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 706820832119261592, guid: abb951662cb2c3e41b635d998364ad5b, type: 3}
       propertyPath: dialogueNode
-      value: MomDani0
+      value: Mom0
       objectReference: {fileID: 0}
     - target: {fileID: 2738063630518962137, guid: abb951662cb2c3e41b635d998364ad5b, type: 3}
       propertyPath: m_Name

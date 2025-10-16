@@ -2,8 +2,19 @@
 tags:
 ---
 <<TriggerChange SunflowerInteractionYarn>>
-Mom: You found a new tile! Come show it to me! 
-<<UpdateMomDaniNode SceneController MomDani3>>
+Mom: Thank you for fixing that baby. 
+<<if visited("Tuca") is true>>
+Abigail: I’m sorry I can't stay for long. I wasn’t planning to visit, I just woke up here.
+Mom: It’s a sign! We missed you so much the universe brought you back.
+Abigail: I don’t know mom, my life is in the city now. There’s so much I need to do there.
+Mom: Baby if it’s too overwhelming for you there is no shame in admitting you want to come home.
+Abigail: That’s not what’s happening. I think I need to go get some air.
+Mom: You should swing by the Neptune Diner and see Chase, I’m worried about that boy.
+<<CanLeave SceneController>>
+<<PostAzulejoDone SceneController>>
+<<UpdateMomDaniNode SceneController MomEnd>>
+<<else>>
+<<endif>>
 ===
 title: Chest
 tags:
@@ -21,17 +32,17 @@ Abigail: I'm aware, I used to live here!
 <<TriggerChange ChestInteractionClose>>
 <<ShowIndicator MomsHouseIndicatorManager>>
 <<ChestIntroDone SceneController>>
-<<UpdateMomDaniNode SceneController MomDani1>>
+<<UpdateMomDaniNode SceneController Mom1>>
 <<else>>
 <<TriggerChange ChestInteraction>>
 Chest: <b> LONG STORY SHORT: JUST PRESS TAB, ABIGAIL. <b>
 <<TriggerChange ChestInteractionClose>>
 <<endif>>
 ===
-title: MomDani0
+title: Mom0
 tags:
 ---
-<<if visited("MomDani0") is false>>
+<<if visited("Mom0") is false>>
 Mom: Abigail! What are you doing here? I thought you were doing really well in the big city! 
 Mom: Was it all just too hard? 
 Abigail: No mom, and please don’t sound so excited about that possibility. 
@@ -43,168 +54,65 @@ Mom: Let’s just play some Azulejo! Go get the tiles from the chest baby.
 Mom: Go on, Abigail, get the tiles from the chest! 
 <<endif>>
 ===
-title: MomDani1
+title: Mom1
 tags:
 ---
-<<if visited("MomDani1") is false>>
+<<if visited("Mom1") is false>>
 <<HideIndicator MomsHouseIndicatorManager>>
 Mom: Perfect! Those are some of my favorites!
 <<else>>
-Mom: Let's get to the game!
+Mom: We don't have to keep playing Abigail. 
+Abigail: I want to. 
 <<endif>>
 <<StartAzulejoConversation AzulejoConvo1>>
 ===
-title: MomDani1-0
+title: Mom2Butterfly
 tags:
 ---
-Mom: I don't know about this one, baby. Maybe try again?
-===
-title: MomDani1-1
-tags:
----
-Abigail: This tile reminds me of our little book club.
-Mom: They all said you were too young to read Infinite Jest but we showed them!
-Mom: Let’s go to Argil and pick out a book to read together, we can make a whole day of it.
+Abigail: This tile looks so much like Tanya!
+Mom: That butterfly has always been able to predict the future.
+Abigail: Yeah I remember when she predicted the exact date and time I was going to get my first period.
+<<if visited("Mom2Tuca") is false and visited("Mom2Butterfly") is false>>
+Mom: Let's go to the woods and get her to tell us when you’re going to meet the woman of your dreams and give me some grandbabies!
 Abigail: Mom, I really need to get back to the city.
 Mom: You’re here and you’re planning to leave already? I haven’t seen your face in over a year.
-Mom: You know what, nevermind. 
-Mom: Can you at least help me tidy a little bit before you go? I knocked over that purple vase earlier. 
-<<UpdateMomDaniNode SceneController MomDani2>>
+Mom: You know what, nevermind.
+Abigail: I should do something to cheer up my mom...
 <<TurnOnSunflower SceneController>>
-//<<jump MomDani2>>
-===
-title: MomDani1-3
-tags:
----
-//If flowerpower
-Abigail: This tile reminds me of that peace love and kindness incense you’re always burning.
-Mom: Oh I’m out right now! Let’s go to Argil and buy some now, we can make a whole day of it.
-Abigail: Mom, I really need to get back to the city.
-Mom: You’re here and you’re planning to leave already? I haven’t seen your face in over a year.
-Mom: You know what, nevermind. 
-Mom: Can you at least help me tidy a little bit before you go? I knocked over that purple vase earlier. 
-<<UpdateMomDaniNode SceneController MomDani2>>
-<<TurnOnSunflower SceneController>>
-//<<jump MomDani2>>
-===
-title: MomDani1-4
-tags:
----
-//If butterfly
-Abigail: This tile reminds me of your pet butterfly.
-Mom: Tanya! She always knew when a natural disaster was going to happen.
-Mom: I swear I saw her in the woods last week, let’s go find her!
-Abigail: Mom, I really need to get back to the city.
-Mom: You’re here and you’re planning to leave already? I haven’t seen your face in over a year.
-Mom: You know what, nevermind. 
-Mom: Can you at least help me tidy a little bit before you go? I knocked over that purple vase earlier. 
-<<UpdateMomDaniNode SceneController MomDani2>>
-<<TurnOnSunflower SceneController>>
-//<<jump MomDani2>>
-===
-title: MomDani1-5
-tags:
----
-Mom: Sunflowers are more of an end of summer thing baby. 
-Dani: They make me think of your mom too Abbs but we're talking lemonade here. 
-Abigail: You guys are really going to make me work for this huh?
-===
-title: MomDani2-5
-tags:
----
-Dani: We're talking past Abbs not present!
-Mom: I contain multitudes. 
-Abigail: You guys are really going to make me work for this huh?
-===
-title: MomDani2
-tags:
----
-Mom: Can you go fix that vase with the sunflower for me?
-===
-title: MomDani3
-tags:
----
-<<if visited("MomDani3") is false>>
-Mom: You don’t have to keep playing with me baby.
-Abigail: I want to mom.
 <<else>>
-Mom: Let's try again.
 <<endif>>
-<<StartAzulejoConversation AzulejoConvo2>>
 ===
-title: MomDani2-0
+title: Mom2Tuca
 tags:
 ---
-Mom: This is one of mine, show me the new one you just got. 
+<<if visited("Tuca") is true>>
+Mom: Isabelle will get antonio to write a joke in portuguese here. 
+Tuca: Yes Antonio is going to do that. 
+<<else>>
+Mom: Oh it's Tuca! I miss that toucan, it’s been a while since he stopped by.
+Abigail: I don’t miss the two of you squawking away every morning, and I could never understand him.
+Mom: That’s because he only speaks Portuguese, like most toucans.
+<<if visited("Mom2Tuca") is false and visited("Mom2Butterfly") is false>>
+Mom: On those mornings, with you getting ready for school and Tuca sitting in the window, this house felt so full.
+Mom: Now it’s…it’s just me.
+Abigail: I should do something to cheer up my mom...
+//<<UpdateMomDaniNode SceneController Mom2>>
+<<TurnOnSunflower SceneController>>
+<<else>>
+<<endif>>
+<<endif>>
 ===
-title: MomDani2-1
+title: Mom2Sunflower
 tags:
 ---
-Dani: Nothing beats the time she chained herself to that tree for a week in protest of that parking lot they were trying to build!
-Abigail: That's a good one, but has my mom told you about the time she moved to a hippie cult in the woods?
-Abigail: She stayed there for half a year, until they tried to convince her to kill the president!
-Dani: What?!
-Mom: Hehehe.
-Mom: He was a monster, but I wasn't about to spend the rest of my life in prison!
-<<UpdateMomDaniNode SceneController MomDani3>>
-<<jump MomDani3>>
+Abigail: You’ve always felt like a sunflower to me mom. Joyful, positive, enthralling like the sun!
+Mom: Oh Abigail, you've become such a thoughtful and beautiful young woman. 
+Abigail: Okay that's enough. I didn't mean to start a whole compliment circle. 
 ===
-title: MomDani2-2
+title: Mom4
 tags:
 ---
-Dani: Nothing beats the time she chained herself to that tree for a week in protest of that parking lot they were trying to build!
-Abigail: I love that one, but has my Mom told you about her pet butterfly?
-Abigail: She swears to this day they could communicate telepathically with each other.
-Abigail: The butterfly was apparently able to predict natural disasters.
-Dani: What?!
-Mom: Her name was Tanya and she lived for 23 years!
-<<UpdateMomDaniNode SceneController MomDani3>>
-<<jump MomDani3>>
-===
-title: MomDani2-3
-tags:
----
-//If tea
-Dani: Nothing beats the time she chained herself to that tree for a week in protest of that parking lot they were trying to build!
-Abigail: I love that one, but has my Mom told you about her mushroom tea experiences?
-Mom: I saw God for a brief moment. And she was beautiful. 
-<<UpdateMomDaniNode SceneController MomDani3>>
-<<jump MomDani3>>
-===
-title: MomDani2-4
-tags:
----
-//If bookmark
-Dani: Nothing beats the time she chained herself to that tree for a week in protest of that parking lot they were trying to build!
-Abigail: I love that one, but has my Mom told you about her misadventures starting an independent bookstore?
-Mom: We had a good couple of weeks there! 
-Mom: Turns out you had to do more than stock astrology based literature and give away free mushroom tea to make it in the business world.
-<<UpdateMomDaniNode SceneController MomDani3>>
-<<jump MomDani3>>
-===
-title: MomDani3-0
-tags:
----
-Mom: I don't think so baby. 
-Abigail: You're right...you're more like bright strong flower...
-Dani: Have you looked around the house Abbs?
-===
-title: MomDani3-1
-tags:
----
-Abigail: I never really understood the cassiopeia stuff.
-Mom: A queen punished by the gods and banished to the stars for having a beautiful daughter? That's my life!
-Abigail: Hahah, mom!
-Abigail: For me you were always more of a sunflower.
-Abigail: Positive, joyful. Enthralling like the sun!
-Mom: Abigail... that's beautiful.
-<<UpdateMomDaniNode SceneController MomDani4>>
-<<jump MomDani4>>
-===
-title: MomDani4
-tags:
----
-<<if visited("MomDani4") is false>>
+<<if visited("Mom4") is false>>
 <<UpdateMomDaniNode SceneController MomDani4>>
 Abigail: You’ve always felt like a sunflower to me mom. Joyful, positive, enthralling like the sun!
 Mom: Abigail…that’s beautiful.
@@ -223,14 +131,26 @@ Mom: But I'll stop and get you some conditioner today.
 ===
 title: Tuca
 ---
-<<if visited("Tuca") is false>>
 Tuca: bom dia familia
 Mom: Oh, hello, Tuca!
 Tuca: oi tia
-Mom: That's Tuca, Abigail. He only speaks Portuguese, like most toucans.
+<<if visited("Sunflower") is true>>
+Abigail: I’m sorry I can't stay for long. I wasn’t planning to visit, I just woke up here.
+Mom: It’s a sign! We missed you so much the universe brought you back.
+Abigail: I don’t know mom, my life is in the city now. There’s so much I need to do there.
+Mom: Baby if it’s too overwhelming for you there is no shame in admitting you want to come home.
+Abigail: That’s not what’s happening. I think I need to go get some air.
+Mom: You should swing by the Neptune Diner and see Chase, I’m worried about that boy.
+<<CanLeave SceneController>>
+<<PostAzulejoDone SceneController>>
+<<UpdateMomDaniNode SceneController MomEnd>>
 <<else>>
-Tuca: cade o rango tia?
 <<endif>>
+===
+title: Tuca1
+tags:
+---
+Tuca: cade o rango tia?
 ===
 title: BlockedDoorMom
 tags:
@@ -242,4 +162,10 @@ tags:
 ---
 Mom: I missed you Abigail. 
 <<Travel SceneController>>
+===
+title: MomEnd
+tags:
+---
+Mom: Your hair looks awful! I guess it's fine since you're just going to see Chase at the Neptune Diner.
+Mom: But I'll stop and get you some conditioner today.
 ===

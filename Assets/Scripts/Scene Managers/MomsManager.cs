@@ -20,6 +20,7 @@ public class MomsManager : AreaManager{
     public Tile toucanTile;
     public GameObject SunflowerInteraction;
     public GameObject EmptySunflower;
+    public GameObject Tuca;
 
     public override void UpdateSceneState(int state){        
         switch(state){
@@ -64,6 +65,7 @@ public class MomsManager : AreaManager{
     public void TurnOnSunflower(){
         SunflowerInteraction.SetActive(true);
         EmptySunflower.SetActive(false);
+        Tuca.SetActive(true);
     }
     
 }
