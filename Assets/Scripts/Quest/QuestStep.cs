@@ -20,7 +20,7 @@ public class QuestStep {
     private QuestStatus status;
 
     // === Constructor ===
-    public QuestStep(int _id, QuestCondition[] _vcon, QuestCondition[] _ccon, QuestStatus _status = QuestStatus.Hidden, bool _inactive = true, int _vt = 0, int _ct = 0){
+    public QuestStep(int _id, QuestCondition[] _vcon, QuestCondition[] _ccon, bool _inactive = true, int _vt = 0, int _ct = 0, QuestStatus _status = QuestStatus.Hidden){
         this.id = _id;
         this.visibleCondition = _vcon;
         this.completeCondition = _ccon;
