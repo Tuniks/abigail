@@ -26,6 +26,8 @@ public class Inventory : MonoBehaviour{
             if(tile.gameObject.CompareTag("Tile")){
                 tile.transform.SetParent(tileCollectionParent);
                 tileCollection.Add(tile.gameObject);
+            
+                PlayerInteractionData.Instance.RegisterTileAcquisition(tile.GetName());
             }
         }
         

@@ -76,6 +76,7 @@ public class PlayerInteractor : MonoBehaviour{
                 string node = npc.GetCurrentNode();
                 if(node != null){
                     StartConversation(node);
+                    PlayerInteractionData.Instance.RegisterNPCTalk(npc.GetCharacterName());
                     return;
                 }
             } else if(shop != null){

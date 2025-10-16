@@ -63,6 +63,9 @@ public class AzulejoConvo : BaseConvo{
         foreach(FaceDialoguePair pair in faceDialoguePairs){
             TileComponent face = pair.facePrefab.GetComponent<TileComponent>();
             if(face.title == selectedFace){
+                NPC npc = GetComponent<NPC>();
+                if(npc != null) PlayerInteractionData.Instance.RegisterNPCTileInteraction(selectedFace, npc.GetCharacterName());
+                
                 StartCoroutine(EndConvo(pair.dialogueNode));
                 return;
             }
