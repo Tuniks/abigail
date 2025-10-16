@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestList{
-    public Quest[] quests = new Quest[3]{
+    public Quest[] quests = new Quest[2]{
         // QUEST 1
         new Quest(
             "How to Kill One Million Tears",
@@ -53,31 +53,7 @@ public class QuestList{
                     new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Cockroach", "Gianluca")}
                 )
             }
-        ),
-        // QUEST 3
-        new Quest(
-            "Banana",
-            new QuestCondition[1]{
-                new QuestCondition(ConditionType.HasTile, "Gianluca's Pizzeria"),
-            },
-            new QuestStep[3]{
-                new QuestStep(
-                    1,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.HasTile, "Gianluca's Pizzeria")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Gianluca's Pizzeria", "Margarette")}
-                ),
-                new QuestStep(
-                    2,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Gianluca's Pizzeria", "Margarette")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Gianluca")}
-                ),
-                new QuestStep(
-                    3,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Gianluca")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Cockroach", "Gianluca")}
-                )
-            }
-        ),
+        )
     };
 
     public QuestList(){}
