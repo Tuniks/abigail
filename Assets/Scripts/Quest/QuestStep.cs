@@ -20,7 +20,7 @@ public class QuestStep {
     private QuestStatus status;
 
     // === Constructor ===
-    public QuestStep(int _id, QuestCondition[] _vcon, QuestCondition[] _ccon, QuestStatus _status = QuestStatus.Active, bool _inactive = true, int _vt = 0, int _ct = 0){
+    public QuestStep(int _id, QuestCondition[] _vcon, QuestCondition[] _ccon, QuestStatus _status = QuestStatus.Hidden, bool _inactive = true, int _vt = 0, int _ct = 0){
         this.id = _id;
         this.visibleCondition = _vcon;
         this.completeCondition = _ccon;
@@ -66,7 +66,7 @@ public class QuestStep {
             } else if(_cc.IsCompleted()) completeCount++; 
         }
 
-        if(completeCount == completeTarget) SetStepActive();
+        if(completeCount == completeTarget) SetStepComplete();
 
         return wasConditionSuccesfullyCompleted;
     }

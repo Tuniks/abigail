@@ -36,18 +36,22 @@ public class MenuQuestManager : MenuTab{
             }            
         }
 
+        // Show current open page, if any
+        if (currentPage != ""){
+            OnClickListElement(currentPage);
+        }
+
     }
 
     public void OnClickListElement(string questName){
-        if(questElementReferences.ContainsKey(currentPage)){
-            MenuQuestElement prevElement = questElementReferences[currentPage];
-            prevElement.page.Hide();
+        if(currentPage != "" && questName != currentPage){
+            if(questElementReferences.ContainsKey(currentPage)){
+                MenuQuestElement prevElement = questElementReferences[currentPage];
+                prevElement.page.Hide();
+            }
         }
-
-        Debug.Log(questName);
-
+        
         if(questElementReferences.ContainsKey(questName)){
-            Debug.Log("Achou");
             Quest questData = QuestPlayerState.Instance.GetQuestFromName(questName);
 
             MenuQuestElement newElement = questElementReferences[questName];

@@ -32,6 +32,11 @@ public class QuestPlayerState : MonoBehaviour{
         if(quests != null) return;
 
         quests = new List<Quest>();
+        currentHasTileConditions = new List<ConditionPair>();
+        currentShowTileToConditions = new List<ConditionPair>();
+        currentTalkToConditions = new List<ConditionPair>();
+        currentTriggerConditions = new List<ConditionPair>();
+        
 
         QuestList questList = new QuestList();
         foreach(Quest q in questList.quests){
@@ -92,7 +97,7 @@ public class QuestPlayerState : MonoBehaviour{
 
     public Quest GetQuestFromName(string _title){
         foreach(Quest q in quests){
-            if(name == q.GetTitle()) return q;
+            if(_title == q.GetTitle()) return q;
         }
 
         return null;
