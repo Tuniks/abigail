@@ -102,8 +102,31 @@ public class PlayerInteractor : MonoBehaviour{
         dialogueRunner.StartDialogue(node);
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
+    private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+            Debug.Log("CollisionDetected");
+            interactables.Add(other.gameObject);
+        } else if (other.gameObject.CompareTag("Phenomenon")){
+            SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
+            audioSource.clip = phenomenonNearbySoundLoop;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+    }
+
+    private void OnTriggerExit(Collider other){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+            if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
+        } else if (other.gameObject.CompareTag("Phenomenon")){
+            SetCurrentPhenomenon(null);
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
+    }
+
+        private void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+            Debug.Log("CollisionDetected");
             interactables.Add(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
