@@ -112,4 +112,8 @@ public class Quest {
 
         return conditions;
     }
+
+    public QuestStep[] GetSteps(){
+        return steps;
+    }
 }

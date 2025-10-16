@@ -48,8 +48,10 @@ public class MenuQuestManager : MenuTab{
 
         if(questElementReferences.ContainsKey(questName)){
             Debug.Log("Achou");
+            Quest questData = QuestPlayerState.Instance.GetQuestFromName(questName);
+
             MenuQuestElement newElement = questElementReferences[questName];
-            newElement.page.Show();
+            newElement.page.Show(questData);
         }
         
         currentPage = questName;

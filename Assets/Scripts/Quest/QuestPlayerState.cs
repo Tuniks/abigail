@@ -90,6 +90,14 @@ public class QuestPlayerState : MonoBehaviour{
         return completedQuests;
     }
 
+    public Quest GetQuestFromName(string _title){
+        foreach(Quest q in quests){
+            if(name == q.GetTitle()) return q;
+        }
+
+        return null;
+    }
+
     public List<ConditionPair> GetHasTileConditions(){
         return currentHasTileConditions;
     }
