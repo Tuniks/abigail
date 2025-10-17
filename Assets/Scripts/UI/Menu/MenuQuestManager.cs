@@ -20,6 +20,7 @@ public class MenuQuestManager : MenuTab{
         questElementReferences = new Dictionary<string, MenuQuestElement>();
         
         foreach(MenuQuestElement quest in questElements){
+            Debug.Log("a");
             questElementReferences.Add(quest.item.title, quest);   
         }
     }
