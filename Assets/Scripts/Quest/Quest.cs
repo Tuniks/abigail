@@ -20,7 +20,7 @@ public class Quest {
     private int requirementTarget = 1;
 
     // === Constructor ===
-    public Quest(string _title, QuestCondition[] _req, QuestStep[] _steps, QuestStatus _status = QuestStatus.Active, int _rt = 0){
+    public Quest(string _title, QuestCondition[] _req, QuestStep[] _steps, int _rt = 0, QuestStatus _status = QuestStatus.Active){
         this.title = _title;
         this.requirements = _req;
         this.steps = _steps;

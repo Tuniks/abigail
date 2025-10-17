@@ -59,7 +59,6 @@ public class QuestList{
             "The HOA is Watching You",
             new QuestCondition[1]{
                 new QuestCondition(ConditionType.TalkTo, "Margarette"),
-
             },
             new QuestStep[1]{
                 new QuestStep(
@@ -69,7 +68,7 @@ public class QuestList{
                 )
             }
         ),
-           // QUEST 4
+        // QUEST 4
         new Quest(
             "Tanya's Wisdom",
             new QuestCondition[1]{
@@ -85,20 +84,17 @@ public class QuestList{
                    new QuestCondition[1] { new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Margarette") },
                    new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Spider")}        
                 ),
-
-                 new QuestStep(
+                new QuestStep(
                     2,
                     new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Spider")},
                     new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Gianluca's Pizzeria", "Spider")}                  
                 ),
-
-                 new QuestStep(
+                new QuestStep(
                     3,
                     new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Gianluca's Pizzeria", "Spider")},
                     new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Tanya")}                  
                 )
             },
-            QuestStatus.Active,
             1
         ),
          // QUEST 5
@@ -203,10 +199,6 @@ public class QuestList{
                 )
             }
         )
-
-
-
-
     };
 
     public QuestList(){}
