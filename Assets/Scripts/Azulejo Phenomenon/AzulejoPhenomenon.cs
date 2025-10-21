@@ -7,8 +7,10 @@ using UnityEngine.Events;
 public class AzulejoPhenomenon : MonoBehaviour{
     public GameObject face;
     public UnityEvent callback;
+    public string phenomenonTriggerName;
 
     public void TriggerPhenomenon(){
+        PlayerInteractionData.Instance.RegisterTrigger(phenomenonTriggerName);
         callback.Invoke();
     }
 

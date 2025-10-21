@@ -105,7 +105,6 @@ public class PlayerInteractor : MonoBehaviour{
 
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
-            Debug.Log("CollisionDetected");
             interactables.Add(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
@@ -127,7 +126,6 @@ public class PlayerInteractor : MonoBehaviour{
 
         private void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
-            Debug.Log("CollisionDetected");
             interactables.Add(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());

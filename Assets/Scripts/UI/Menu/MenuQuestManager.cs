@@ -54,8 +54,6 @@ public class MenuQuestManager : MenuTab{
         if(questElementReferences.ContainsKey(questName)){
             Quest questData = QuestPlayerState.Instance.GetQuestFromName(questName);
 
-            Debug.Log(questName);
-
             MenuQuestElement newElement = questElementReferences[questName];
             newElement.page.Show(questData);
         }

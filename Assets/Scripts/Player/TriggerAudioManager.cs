@@ -62,14 +62,15 @@ public class TriggerAudioManager2D : MonoBehaviour
         relay.Exited  += HandleExit;
     }
 
-    private void OnDisable()
-    {
-        var relay = watchedObject.GetComponent<TriggerRelay2D>();
-        if (relay)
-        {
-            relay.Entered -= HandleEnter;
-            relay.Exited  -= HandleExit;
+    private void OnDisable(){
+        if(watchedObject != null){
+            var relay = watchedObject.GetComponent<TriggerRelay2D>();
+            if (relay){
+                relay.Entered -= HandleEnter;
+                relay.Exited  -= HandleExit;
+            }
         }
+        
     }
 
     private void HandleEnter(Collider2D trigger)
