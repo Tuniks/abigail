@@ -75,17 +75,16 @@ public class PowerCinemachine : MonoBehaviour{
         targetZoom = Mathf.Clamp(targetZoom+deltazoom, zoomRange.x, zoomRange.y);
 
         // Move
-        if(Input.GetMouseButtonDown(1)){
-            cameraTarget.position = cam.transform.position;
-            isDragging = true;
-            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
-            SetTarget(cameraTarget);
-        }
+        // if(IsMouseOutOfBounds()){
+        //     cameraTarget.position = cam.transform.position;
+        //     isDragging = true;
+        //     dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+        //     SetTarget(cameraTarget);
+        // } else{
+        //     isDragging = false;
+        // }
 
-        if(Input.GetMouseButtonUp(1)){
-            isDragging = false;
-        }
-
+            
     }
 
     void LateUpdate(){
@@ -103,6 +102,7 @@ public class PowerCinemachine : MonoBehaviour{
         cameraTarget.position = new Vector3 (moveDiff.x, moveDiff.y, cam.transform.position.z);
     }
 
+    // ========== CAM MOVEMENT ===========
     public void SetTarget(Transform _t){
         if(_t.gameObject == cameraTarget.gameObject){
             SetComposerVariables(deadZoneWidthDrag, deadZoneHeightDrag, dampingXDrag, dampingYDrag);
@@ -119,6 +119,11 @@ public class PowerCinemachine : MonoBehaviour{
         comp.m_YDamping = y;
     }
 
+    // private bool IsMouseOutOfBounds(){
+        
+    // }
+
+    // ========== CAM SHAKE ============
     public void HitCamShake(){
         lastShakeId++;
         StartCoroutine(Shake(hitNoiseDuration, hitNoiseAmp, hitNoiseFreq, lastShakeId));
