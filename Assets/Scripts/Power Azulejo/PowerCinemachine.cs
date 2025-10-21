@@ -23,8 +23,8 @@ public class PowerCinemachine : MonoBehaviour{
     [Header("Movement")]
     public Transform cameraTarget;
     public float camMoveSpeed = 4f;
-    private bool isDragging = false;
-    private Vector3 dragOrigin = Vector3.zero;
+    public Vector2 cameraLimitX = new Vector2(0, 0);
+    public Vector2 cameraLimitY = new Vector2(0, 0);
 
     [Header("Drag Movement Variables")]
     public float deadZoneWidthDrag = 0;
@@ -97,9 +97,16 @@ public class PowerCinemachine : MonoBehaviour{
         }
 
         // Moovin
-        if(!isDragging) return;
-        Vector2 moveDiff = dragOrigin - (cam.ScreenToWorldPoint(Input.mousePosition) - cam.transform.position);
-        cameraTarget.position = new Vector3 (moveDiff.x, moveDiff.y, cam.transform.position.z);
+        // if(!isDragging) return;
+        // Vector2 moveDiff = dragOrigin - (cam.ScreenToWorldPoint(Input.mousePosition) - cam.transform.position);
+        // cameraTarget.position = new Vector3 (moveDiff.x, moveDiff.y, cam.transform.position.z);
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 newCamTargetPos = new Vector3(
+            Mathf.Clamp(mousePos.x, cameraLimitX.x, cameraLimitX.y),
+            Mathf.Clamp(mousePos.y, cameraLimitY.x, cameraLimitY.y),
+            mousePos.z
+        );
+        cameraTarget.position = newCamTargetPos;
     }
 
     // ========== CAM MOVEMENT ===========
