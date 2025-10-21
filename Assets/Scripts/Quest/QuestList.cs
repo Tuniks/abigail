@@ -3,58 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestList{
-    public Quest[] quests = new Quest[8]{
+    public Quest[] quests = new Quest[]{
         // QUEST 1
-        new Quest(
-            "How to Kill One Million Tears",
-            new QuestCondition[1]{
-                new QuestCondition(ConditionType.HasTile, "Sunflower")
-            },
-            new QuestStep[2]{
-                new QuestStep(
-                    1,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.HasTile, "Sunflower")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.HasTile, "Cockroach")}                    
-                ),
-                new QuestStep(
-                    2,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.HasTile, "Cockroach")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "sunflower-planted")}
-                )
-            }
-        ),
-        // QUEST 2
-        new Quest(
-            "The Bullet",
-            new QuestCondition[1]{
-                new QuestCondition(ConditionType.HasTile, "Gianluca's Pizzeria")
-            },
-            new QuestStep[3]{
-                new QuestStep(
-                    1,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.HasTile, "Gianluca's Pizzeria")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Gianluca's Pizzeria", "Margarette")}
-                ),
-                new QuestStep(
-                    2,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Gianluca's Pizzeria", "Margarette")},
-                    new QuestCondition[3] {
-                        new QuestCondition(ConditionType.TalkTo, "Gianluca"),
-                        new QuestCondition(ConditionType.TalkTo, "Margarette"),
-                        new QuestCondition(ConditionType.TalkTo, "Timothy")
-                    },
-                    true,
-                    1,
-                    1
-                ),
-                new QuestStep(
-                    3,
-                    new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Gianluca")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.ShowTileTo, "Cockroach", "Gianluca")}
-                )
-            }
-        ),
-        // QUEST 3
         new Quest(
             "The HOA is Watching You",
             new QuestCondition[1]{
@@ -64,19 +14,19 @@ public class QuestList{
                 new QuestStep(
                     1,
                     new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Margarette")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "sunflower-planted")}                  
+                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "sunflower-planted-phenomenon")}                  
                 )
             }
         ),
-        // QUEST 4
+        // QUEST 2
         new Quest(
             "Tanya's Wisdom",
-            new QuestCondition[1]{
+            new QuestCondition[5]{
                 new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Margarette"),
-                /*new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Ryan 1"),
+                new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Ryan 1"),
                 new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Fellini"),
                 new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Gianluca"),
-                new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Timothy")*/
+                new QuestCondition(ConditionType.ShowTileTo, "Butterfly", "Timothy")
             },
             new QuestStep[3]{
                 new QuestStep(
@@ -97,7 +47,7 @@ public class QuestList{
             },
             1
         ),
-         // QUEST 5
+         // QUEST 3
         new Quest(
             "Gianluca's Prank War",
             new QuestCondition[1]{
@@ -108,12 +58,12 @@ public class QuestList{
                 new QuestStep(
                     1,
                     new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Gianluca")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "pizza-plated")}                  
+                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "pizza-plopped-phenomenon")}                  
                 ),
                 new QuestStep(
                     2,
                     new QuestCondition[1] {new QuestCondition(ConditionType.TalkTo, "Gianluca")},
-                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "cockroach-released")}
+                    new QuestCondition[1] {new QuestCondition(ConditionType.Trigger, "cockroach-sewer-phenomenon")}
                 ),
                 new QuestStep(
                     3,
@@ -123,7 +73,7 @@ public class QuestList{
             }
         ),
 
-        // QUEST 6
+        // QUEST 4
         new Quest(
             "Champions of Nostalgia",
             new QuestCondition[1]{
@@ -159,7 +109,7 @@ public class QuestList{
             }
         ),
 
-         // QUEST 7
+         // QUEST 5
         new Quest(
             "The New Best Friend of My Old Best Friend is My Enemy",
             new QuestCondition[1]{
@@ -179,7 +129,7 @@ public class QuestList{
                 )
             }
         ),
-        // QUEST 8
+        // QUEST 6
         new Quest(
             "Brighten the House That Made You",
             new QuestCondition[1]{
