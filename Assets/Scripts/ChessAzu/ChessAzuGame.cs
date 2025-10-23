@@ -19,9 +19,6 @@ public class ChessAzuGame : MonoBehaviour
     [Header("Enemy Automation")]
     public bool enemyAutoPlay = true;
 
-    [Header("Juice / Audio")]
-    public AudioClip captureSfx;
-    public AudioSource sfxSource; // optional; if null, uses PlayClipAtPoint
 
 
     // Occupancy: grid cell -> piece
@@ -101,46 +98,20 @@ public class ChessAzuGame : MonoBehaviour
         if (chosen == null) return false;
 
         // Capture first (if any)
-        // Capture first (if any)
         if (chosen.Value.isCapture && chosen.Value.captured != null)
         {
             var cap = chosen.Value.captured;
-
-            // prevent the captured piece from acting again / being counted in occupancy
-            cap.enabled = false;
-
-            // play the pop animation (in place), then send to the appropriate bin
-            var juice = cap.GetComponent<AzuPieceJuice>();
-
-            System.Action mid = () =>
+            if (piece.isPlayerTile)
             {
-                // move to the correct bin at the "midpoint" of the pop (after overshoot)
-                if (piece.isPlayerTile)
-                {
-                    if (playerCaptureBin != null) playerCaptureBin.AddCaptured(cap);
-                    else cap.gameObject.SetActive(false);
-                }
-                else
-                {
-                    if (enemyCaptureBin != null) enemyCaptureBin.AddCaptured(cap);
-                    else cap.gameObject.SetActive(false);
-                }
-            };
-
-            if (juice != null)
-                juice.PlayCapturePop(captureSfx, sfxSource, onMidpoint: mid, onFinish: null);
+                if (playerCaptureBin != null) playerCaptureBin.AddCaptured(cap);
+                else cap.gameObject.SetActive(false);
+            }
             else
             {
-                // no juice component? still do the bin move and sfx
-                if (captureSfx != null)
-                {
-                    if (sfxSource != null) sfxSource.PlayOneShot(captureSfx);
-                    else AudioSource.PlayClipAtPoint(captureSfx, cap.transform.position);
-                }
-                mid();
+                if (enemyCaptureBin != null) enemyCaptureBin.AddCaptured(cap);
+                else cap.gameObject.SetActive(false);
             }
         }
-
 
         // Move the mover
         piece.TryMoveTo(targetCell.x, targetCell.y);
