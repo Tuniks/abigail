@@ -23,8 +23,10 @@ public class PowerTilePhysics : MonoBehaviour{
 
     [Header("Pointer")]
     private Transform pointer;
+    private Transform backArrow;
     public float maxPointerLength = 2f;
     public float minPointerLength = .25f;
+    public float backArrowArea = 1f;
 
     [Header("Juice")]
     private float freezeFrameDuration = 0.025f;
@@ -45,6 +47,7 @@ public class PowerTilePhysics : MonoBehaviour{
         hitEnemyClip = PowerAudioVisualManager.Instance.GetHitEnemyClip();
 
         pointer = PowerManager.Instance.GetPointer().transform;
+        backArrow = PowerManager.Instance.GetBackArrow().transform;
         targeter = PowerManager.Instance.GetTargeter();
     }
 
@@ -96,7 +99,7 @@ public class PowerTilePhysics : MonoBehaviour{
 
         distVector = newPos-transform.position;
 
-        rb.AddForce(distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
+        rb.AddForce(-distVector.normalized * ((distVector.magnitude/maxPointerLength) * maxForce), ForceMode2D.Impulse);
 
         game.MovePlayer(this.gameObject);
     }
@@ -124,12 +127,14 @@ public class PowerTilePhysics : MonoBehaviour{
     // ===== POINTER BEHAVIOR =====
     private void StartPointing(){
         pointer.gameObject.SetActive(true);
+        backArrow.gameObject.SetActive(true);
         PowerCinemachine.Instance.StartPointing(transform);
         isAiming = true;
     }
 
     private void StopPointing(){
         pointer.gameObject.SetActive(false);
+        backArrow.gameObject.SetActive(false);
         PowerCinemachine.Instance.StopPointing();
         isAiming = false;
     }
@@ -140,17 +145,29 @@ public class PowerTilePhysics : MonoBehaviour{
         newPos.z = 0;
 
         Vector3 distVector = newPos-transform.position;
+        Vector3 pointPos = transform.position - (newPos-transform.position);
         if(distVector.magnitude > maxPointerLength){
             newPos = (distVector.normalized * maxPointerLength)+transform.position;
+            pointPos = transform.position - ((newPos-transform.position).normalized * maxPointerLength);
         }
-
-        pointer.position = newPos;
-        pointer.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, distVector, Vector3.forward));
-
         distVector = newPos-transform.position;
+        float distMag = distVector.magnitude;
 
-        Debug.Log(distVector.magnitude/maxPointerLength);
-        PowerCinemachine.Instance.UpdatePointer(distVector.magnitude/maxPointerLength);
+        // Updating pointer position
+        pointer.position = pointPos;
+        pointer.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, transform.position-newPos, Vector3.forward));
+
+        // Updating arrow shape
+        backArrow.position = transform.position;
+        backArrow.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.down, distVector, Vector3.forward));
+        float width = Mathf.Clamp(backArrowArea/distMag, .2f, 1.5f);
+        backArrow.localScale = new Vector3(
+            width,
+            distMag,
+            1
+        );
+
+        PowerCinemachine.Instance.UpdatePointer(distMag/maxPointerLength);
     }
 
 

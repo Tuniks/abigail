@@ -47,7 +47,8 @@ public class PowerCinemachine : MonoBehaviour{
     private bool isPointing = false;
 
     [Header("Target Zoom Variables")]
-    public Vector2 zoomWhenTargettingRange = new Vector2(7, 12);
+    public Vector2 zoomWhenTargettingPlayerRange = new Vector2(7, 15);
+    public Vector2 zoomWhenTargettingEnemyRange = new Vector2(7, 15);
 
     [Header("Hit Noise Data")]
     public float hitNoiseDuration = 1f;
@@ -119,7 +120,7 @@ public class PowerCinemachine : MonoBehaviour{
     // ========== CAM MOVEMENT ===========
     public void TargetTile(Transform _t, bool skipZoom = false){
         if (!skipZoom){
-            targetZoom = zoomWhenTargettingRange.x;
+            targetZoom = zoomWhenTargettingPlayerRange.x;
         }
         
         mousePosBeforeTarget = new Vector2(Input.mousePosition.x/Screen.width, Input.mousePosition.y/Screen.height);
@@ -136,12 +137,27 @@ public class PowerCinemachine : MonoBehaviour{
     }
 
     public void UpdatePointer(float pct){
-        targetZoom = Mathf.Lerp(zoomWhenTargettingRange.x, zoomWhenTargettingRange.y, pct);
+        targetZoom = Mathf.Lerp(zoomWhenTargettingPlayerRange.x, zoomWhenTargettingPlayerRange.y, pct);
     }
 
     public void StopPointing(){
         StopPointingCamShake();
         isPointing = false;
+    }
+
+    public void StartTargetEnemy(Transform _t){
+        StartPointingCamShake();
+
+        targetZoom = zoomWhenTargettingEnemyRange.x;
+        mousePosBeforeTarget = new Vector2(Input.mousePosition.x/Screen.width, Input.mousePosition.y/Screen.height);
+        timeBeforeTarget = Time.time;
+        
+        SetTarget(_t);
+    }
+
+    public void ReleaseTargetEnemy(){
+        StopPointingCamShake();
+        targetZoom = zoomWhenTargettingEnemyRange.y;
     }
 
     private void SetTarget(Transform _t){
@@ -177,12 +193,12 @@ public class PowerCinemachine : MonoBehaviour{
         StartCoroutine(Shake(deathNoiseDuration, deathNoiseAmp, deathNoiseFreq, lastShakeId));
     }
 
-    public void StartPointingCamShake(){
+    private void StartPointingCamShake(){
         noise.m_AmplitudeGain = pointNoiseAmp;
         noise.m_FrequencyGain = pointNoiseFreq;
     }
 
-    public void StopPointingCamShake(){
+    private void StopPointingCamShake(){
         ResetNoise();
     }
 

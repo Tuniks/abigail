@@ -40,6 +40,7 @@ public class PowerManager : MonoBehaviour{
     [Header("Game References")]
     public GameObject playerHUD;
     public GameObject pointer;
+    public GameObject backArrow;
     public GameObject targeter;
 
     [Header("Ending References")]
@@ -233,6 +234,10 @@ public class PowerManager : MonoBehaviour{
 
     public GameObject GetPointer(){
         return pointer;
+    }
+
+    public GameObject GetBackArrow(){
+        return backArrow;
     }
 
     public GameObject GetTargeter(){
