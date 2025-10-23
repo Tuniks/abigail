@@ -9229,15 +9229,15 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 0.5
-  m_YDamping: 0.5
+  m_XDamping: 1
+  m_YDamping: 1
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.4
-  m_DeadZoneHeight: 0.4
+  m_DeadZoneWidth: 0.2
+  m_DeadZoneHeight: 0.2
   m_DeadZoneDepth: 4.42
   m_UnlimitedSoftZone: 1
   m_SoftZoneWidth: 2
@@ -11515,7 +11515,6 @@ GameObject:
   - component: {fileID: 1412120322}
   - component: {fileID: 1412120325}
   - component: {fileID: 1412120326}
-  - component: {fileID: 1412120327}
   - component: {fileID: 1412120328}
   - component: {fileID: 1412120329}
   m_Layer: 0
@@ -11628,23 +11627,6 @@ MonoBehaviour:
   targetTileError: 0.1
   aimError: 0.025
   powerError: 0.01
---- !u!114 &1412120327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412120321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bda1c7e2d222414d8efdb216975e17a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 2135723233}
-  enableCamControl: 1
-  camZoomSpeed: 200
-  zoomRange: {x: 5, y: 20}
-  camMoveSpeed: 10
 --- !u!114 &1412120328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16354,7 +16336,7 @@ MonoBehaviour:
   m_Follow: {fileID: 725893795}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 20
+    OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 50000
     Dutch: 0
@@ -16380,7 +16362,7 @@ Transform:
   m_GameObject: {fileID: 2073598052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000019073486, y: 0.0000009536743, z: -10}
+  m_LocalPosition: {x: -0.0000009536743, y: 0.00000047683716, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16401,21 +16383,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2135723233}
   enableCamControl: 1
-  camZoomSpeed: 300
   zoomRange: {x: 5, y: 20}
-  zoomStep: 0.05
+  zoomInputMultiplier: 12
+  zoomTime: 0.3
   cameraTarget: {fileID: 725893795}
   camMoveSpeed: 150
   cameraLimitX: {x: -25, y: 25}
   cameraLimitY: {x: -20, y: 20}
-  deadZoneWidthDrag: 0.4
-  deadZoneHeightDrag: 0.4
-  dampingXDrag: 2
-  dampingYDrag: 2
-  deadZoneWidthAuto: 0.35
-  deadZoneHeightAuto: 0.35
-  dampingXAuto: 1
-  dampingYAuto: 1
+  deadZoneDrag: {x: 0.4, y: 0.4}
+  dampingDrag: {x: 2, y: 2}
+  deadZoneTarget: {x: 0.2, y: 0.2}
+  dampingTarget: {x: 1, y: 1}
+  minTargetDuration: 0.5
+  maxTargetDuration: 5
+  minTargetDistance: 0.25
+  zoomWhenTargettingRange: {x: 7, y: 15}
   hitNoiseDuration: 0.2
   hitNoiseAmp: 1
   hitNoiseFreq: 2
@@ -16942,7 +16924,7 @@ Camera:
   far clip plane: 50000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16967,7 +16949,7 @@ Transform:
   m_GameObject: {fileID: 2135723231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000019073486, y: 0.0000009536743, z: -10}
+  m_LocalPosition: {x: -0.0000009536743, y: 0.00000047683716, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

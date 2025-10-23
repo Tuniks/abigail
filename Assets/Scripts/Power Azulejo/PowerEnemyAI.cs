@@ -94,7 +94,7 @@ public class PowerEnemyAI : MonoBehaviour{
 
     private IEnumerator ExecuteMove(PowerTile currentTile, PowerTile targetTile){
         // Change camera to follow current tile
-        PowerCinemachine.Instance.SetTarget(currentTile.transform);
+        PowerCinemachine.Instance.TargetTile(currentTile.transform);
 
         yield return new WaitForSeconds(timeBetweenActions);
 

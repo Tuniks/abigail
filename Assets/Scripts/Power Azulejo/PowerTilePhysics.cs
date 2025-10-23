@@ -11,7 +11,6 @@ public class PowerTilePhysics : MonoBehaviour{
     private PowerPowers powerPowers;
 
     // Game References
-    private PowerCameraManager pmm;
     private PowerSumoGame game;
 
     // Power Targeting
@@ -39,7 +38,6 @@ public class PowerTilePhysics : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
         powerTile = GetComponent<PowerTile>();
         powerPowers = GetComponent<PowerPowers>();
-        pmm = PowerCameraManager.Instance;
         game = PowerManager.Instance.GetPowerSumoGame();
 
         audioSource = GetComponent<AudioSource>();
@@ -84,6 +82,8 @@ public class PowerTilePhysics : MonoBehaviour{
     private void LaunchPlayer(){
         StopPointing();
 
+        PowerCinemachine.Instance.TargetTile(transform, true);
+        
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
         Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
         newPos.z = 0;
@@ -124,14 +124,13 @@ public class PowerTilePhysics : MonoBehaviour{
     // ===== POINTER BEHAVIOR =====
     private void StartPointing(){
         pointer.gameObject.SetActive(true);
-        PowerCinemachine.Instance.SetTarget(transform);
-        PowerCinemachine.Instance.StartPointingCamShake();
+        PowerCinemachine.Instance.StartPointing(transform);
         isAiming = true;
     }
 
     private void StopPointing(){
         pointer.gameObject.SetActive(false);
-        PowerCinemachine.Instance.StopPointingCamShake();
+        PowerCinemachine.Instance.StopPointing();
         isAiming = false;
     }
 
@@ -147,6 +146,11 @@ public class PowerTilePhysics : MonoBehaviour{
 
         pointer.position = newPos;
         pointer.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, distVector, Vector3.forward));
+
+        distVector = newPos-transform.position;
+
+        Debug.Log(distVector.magnitude/maxPointerLength);
+        PowerCinemachine.Instance.UpdatePointer(distVector.magnitude/maxPointerLength);
     }
 
 

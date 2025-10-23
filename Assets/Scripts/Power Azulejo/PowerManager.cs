@@ -147,7 +147,7 @@ public class PowerManager : MonoBehaviour{
     private void EnterGameStage(){
         BuildTiles();
         playerHUD.SetActive(true);
-        PowerCameraManager.Instance.SetCameraState(true);
+        PowerCinemachine.Instance.SetCameraControlState(true);
         game.StartGame();
         GetComponent<AudioSource>().Stop();
         GetComponent<AudioSource>().clip = PowerAudioVisualManager.Instance.gameMusic;
@@ -156,7 +156,7 @@ public class PowerManager : MonoBehaviour{
 
     private void ExitGameStage(){
         playerHUD.SetActive(false);
-        PowerCameraManager.Instance.SetCameraState(false);
+        PowerCinemachine.Instance.SetCameraControlState(false);
         
         foreach(PowerTile tile in playerTiles){
             if(tile != null) tile.gameObject.SetActive(false);

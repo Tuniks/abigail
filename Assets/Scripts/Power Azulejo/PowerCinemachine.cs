@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using NUnit.Framework;
 using UnityEngine;
 
 public class PowerCinemachine : MonoBehaviour{
@@ -15,9 +16,10 @@ public class PowerCinemachine : MonoBehaviour{
     public bool enableCamControl = true;
 
     [Header("Zoom")]
-    public float camZoomSpeed = 1f;
     public Vector2 zoomRange = new Vector2(5, 9f);
-    public float zoomStep = 0.01f;
+    public float zoomInputMultiplier = 4f;
+    public float zoomTime = 0.25f;
+    private float zoomVel = 0;
     private float targetZoom = 5;
 
     [Header("Movement")]
@@ -27,16 +29,25 @@ public class PowerCinemachine : MonoBehaviour{
     public Vector2 cameraLimitY = new Vector2(0, 0);
 
     [Header("Drag Movement Variables")]
-    public float deadZoneWidthDrag = 0;
-    public float deadZoneHeightDrag = 0;
-    public float dampingXDrag = 0.25f;
-    public float dampingYDrag = 0.25f;
+    // Movement for mouse controls
+    public Vector2 deadZoneDrag = new Vector2(.4f, .4f); // Width x Height
+    public Vector2 dampingDrag = new Vector2(2, 2);
 
-    [Header("Auto Movement Variables")]
-    public float deadZoneWidthAuto = .35f;
-    public float deadZoneHeightAuto = .35f;
-    public float dampingXAuto = 1f;
-    public float dampingYAuto = 1f;
+    [Header("Target Movement Variables")]
+    // Movement when targeting tiles automatically
+    public Vector2 deadZoneTarget = new Vector2(.2f, .2f); // Width x Height
+    public Vector2 dampingTarget = new Vector2(1, 1);
+    public float minTargetDuration = 1f;
+    public float maxTargetDuration = 5f;
+    public float minTargetDistance = .3f;
+
+    private Vector2 mousePosBeforeTarget = new Vector2(0, 0);
+    private float timeBeforeTarget = 0;
+    private GameObject currentTarget = null; 
+    private bool isPointing = false;
+
+    [Header("Target Zoom Variables")]
+    public Vector2 zoomWhenTargettingRange = new Vector2(7, 12);
 
     [Header("Hit Noise Data")]
     public float hitNoiseDuration = 1f;
@@ -65,26 +76,25 @@ public class PowerCinemachine : MonoBehaviour{
         noise = cvc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         targetZoom = cvc.m_Lens.OrthographicSize;
         SetTarget(cameraTarget);
+        isPointing = false;
     }
 
     void Update(){
         if(!enableCamControl) return;
 
         // Zooming
-        float deltazoom = -Input.mouseScrollDelta.y*Time.deltaTime*camZoomSpeed;
-        targetZoom = Mathf.Clamp(targetZoom+deltazoom, zoomRange.x, zoomRange.y);
-
-        // Move
-        // if(IsMouseOutOfBounds()){
-        //     cameraTarget.position = cam.transform.position;
-        //     isDragging = true;
-        //     dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
-        //     SetTarget(cameraTarget);
-        // } else{
-        //     isDragging = false;
-        // }
-
-            
+        targetZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomInputMultiplier;
+        targetZoom = Mathf.Clamp(targetZoom, zoomRange.x, zoomRange.y);
+        
+        // Checking if can regain control from auto target
+        if(currentTarget != cameraTarget.gameObject && !isPointing){
+            if(Time.time > timeBeforeTarget + minTargetDuration){
+                Vector2 currentPos = new Vector2(Input.mousePosition.x/Screen.width, Input.mousePosition.y/Screen.height);
+                if(Time.time > timeBeforeTarget + maxTargetDuration || Vector2.Distance(currentPos, mousePosBeforeTarget) > minTargetDistance){
+                    SetTarget(cameraTarget);
+                }
+            }
+        }
     }
 
     void LateUpdate(){
@@ -93,13 +103,10 @@ public class PowerCinemachine : MonoBehaviour{
         // Zoomin
         float currentZoom = cvc.m_Lens.OrthographicSize;
         if(currentZoom != targetZoom){
-            cvc.m_Lens.OrthographicSize = Mathf.MoveTowards(currentZoom, targetZoom, zoomStep);
+            cvc.m_Lens.OrthographicSize = Mathf.SmoothDamp(currentZoom, targetZoom, ref zoomVel, zoomTime);
         }
 
-        // Moovin
-        // if(!isDragging) return;
-        // Vector2 moveDiff = dragOrigin - (cam.ScreenToWorldPoint(Input.mousePosition) - cam.transform.position);
-        // cameraTarget.position = new Vector3 (moveDiff.x, moveDiff.y, cam.transform.position.z);
+        // Moving camera target with mouse position
         Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 newCamTargetPos = new Vector3(
             Mathf.Clamp(mousePos.x, cameraLimitX.x, cameraLimitX.y),
@@ -110,10 +117,38 @@ public class PowerCinemachine : MonoBehaviour{
     }
 
     // ========== CAM MOVEMENT ===========
-    public void SetTarget(Transform _t){
-        if(_t.gameObject == cameraTarget.gameObject){
-            SetComposerVariables(deadZoneWidthDrag, deadZoneHeightDrag, dampingXDrag, dampingYDrag);
-        } else SetComposerVariables(deadZoneWidthAuto, deadZoneHeightAuto, dampingXAuto, dampingYAuto);
+    public void TargetTile(Transform _t, bool skipZoom = false){
+        if (!skipZoom){
+            targetZoom = zoomWhenTargettingRange.x;
+        }
+        
+        mousePosBeforeTarget = new Vector2(Input.mousePosition.x/Screen.width, Input.mousePosition.y/Screen.height);
+        timeBeforeTarget = Time.time;
+        
+        SetTarget(_t);
+    }
+
+    public void StartPointing(Transform _t){
+        StartPointingCamShake();
+        TargetTile(_t);
+        isPointing = true;
+
+    }
+
+    public void UpdatePointer(float pct){
+        targetZoom = Mathf.Lerp(zoomWhenTargettingRange.x, zoomWhenTargettingRange.y, pct);
+    }
+
+    public void StopPointing(){
+        StopPointingCamShake();
+        isPointing = false;
+    }
+
+    private void SetTarget(Transform _t){
+        currentTarget = _t.gameObject;
+        if(currentTarget == cameraTarget.gameObject){
+            SetComposerVariables(deadZoneDrag.x, deadZoneDrag.y, dampingDrag.x, dampingDrag.y);
+        } else SetComposerVariables(deadZoneTarget.x, deadZoneTarget.y, dampingTarget.x, dampingTarget.y);
         
         cvc.Follow = _t;
         cvc.LookAt = _t;
@@ -126,9 +161,10 @@ public class PowerCinemachine : MonoBehaviour{
         comp.m_YDamping = y;
     }
 
-    // private bool IsMouseOutOfBounds(){
-        
-    // }
+    // ========== CAM CONTROLS =========
+    public void SetCameraControlState(bool state){
+        enableCamControl = state;
+    }
 
     // ========== CAM SHAKE ============
     public void HitCamShake(){
