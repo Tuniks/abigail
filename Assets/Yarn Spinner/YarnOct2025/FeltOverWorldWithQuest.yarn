@@ -1,0 +1,569 @@
+﻿//================Mainquest Chase + Oz=============================
+title: ChaseOz0
+tags:
+---
+<<if visited("ChaseOz0") is false>>
+Oz: Can I help you with anything m’lady?
+Abigail: Yeah…I’m looking for my buddy Chase.
+Oz: Ah, you must be the famed Abigail.
+Abigail: I don’t know about the famed part but I am definitely Abigail.
+Oz: I only tell the whereabouts of my best friend to those with superior Azulejo collections.
+Abigail: I got a couple of cool tiles…I think…
+<<else>>
+Oz: Let’s see the best from your collection Abigail!
+<<endif>>
+//Open Azulejo Convo for Showing Oz 3 cool tiles
+===
+title: ChaseOz1Failure
+tags:
+---
+Oz: I don’t think so Abigail, I have pretty eccentric taste in Azulejo tiles.
+Oz: I’m looking for a collection that feels weird, mythical, haunting, nostalgic, if you catch my drift?
+===
+title: ChaseOz1Success
+tags:
+---
+Oz: Whoa! These tiles rock!
+Oz: I can see why Chase is always talking about how much he misses playing Azulejo with you.
+Oz: We gotta play some Power Azulejo.
+Abigail: Power Azulejo? Do you need to plug it in?
+Oz: You’ve been gone a long time Abigail, it’s the kind everyone's playing these days.
+Oz: But don’t worry I’ll go easy on you.
+//Change node when coming back from power azulejo
+===
+title: ChaseOz2
+tags:
+---
+Chase: I see you just couldn’t stay away from the tiles Abigail.
+Abigail: I’ve been jonesing for a good game of Azulejo for months man.
+Chase: Sorry for being late Oz.
+Oz: It’s fine, Abigail was keeping me entertained.
+Oz: I’ll see you both later. I have to see a man about a dog.
+<<GoodbyebyeOz SceneController>>
+Chase: Wow you look the exact same.
+Abigail: Good to know my extensive face altering surgeries were all for naught.
+Chase: What about me? Do I look different, the same?
+Abigail: I’m not sure…
+Chase: You would know if it hadn't been five years since your last visit. 
+Abigail: Chase, I was just trying to-
+Chase: Forget about us? Dani spends every day sulking around town, Gabe and I aren’t speaking.
+Chase: Kate keeps herself insanely busy so she doesn’t think about you, and no one comes to your mom’s book club meetings!
+Abigail: What did you say about Kate?
+Chase: God, Abigail you’re the exact same.
+Abigail: Chase I’m sorry, what can I do to make things better?
+Chase: It’s fine. Just go talk to Kate, she’s across the bridge in Argil.
+===
+title: ChaseOz3
+tags:
+---
+Chase: Just go see Kate across the bridge. I know she's the only reason you came back anyway. 
+===
+//================Margarette=============================
+title: Margarette0
+tags:
+---
+<<if visited("Margarette0") is false>>
+Margarette: Abigail honey! I knew in my joints that you were here!
+Margarette: What’s the 411?
+<<else>>
+Margarette: Back for some more Azulejo?
+<<endif>>
+<<StartAzulejoConversation Margarette>>
+===
+title: Margarette1Gianluca
+tags: 
+---
+Margarette: That Gianluca, he’s let the rivalry take over his whole life. 
+Margarette: He stopped talking to me completely when he saw me eating brunch at Neptune Diner. 
+Margarette: Did you know Gianluca got a C on his latest health inspection?
+===
+title: Margarette1Cockroach
+tags:
+---
+Margarette: I heard there's a horde of cockroaches inside the sewer tunnels.
+Margarette: That was their solution to the plague of '88!
+===
+title: Margarette1Caterpillar
+tags:
+---
+Margarette: You should show this to the Ryans at the playground they'll get a big kick out of it. 
+===
+title: Margarette1Sunflower
+tags:
+---
+Margarette: Seeing a sunflower always makes me feel cheerful!
+Abigail: Me too, they're my mom's favorite flower. 
+===
+title: Margarette1Butterfly
+tags:
+---
+Margarette: This tile looks so much like Tanya.
+Margarette: Any time I need a glimpse of my future I wander up to the forest and look for her.
+Margarette: You look like you could use some of her wisdom. 
+===
+title: Margarette1Ghost
+tags:
+---
+Margarette: Me and the ghost that lives up at Shade Manor go way back...
+Margarette: That cad broke my heart.
+===
+title: Margarette1Soccer
+tags:
+---
+Margarette: That Timothy has always been a stellar goalie.
+Margarette: It's a real shame he stuck around here, he could have made it big!
+===
+title: Margarette1Skull
+tags:
+---
+Margarette: Oh you're just like those teens who hang out by Shade Manor!
+Margarette: They're always trying to show me things my poor old heart just cannot handle.
+===
+title: Margarette1Stickyhand
+tags:
+---
+Margarette: Now sweetie, what is that even supposed to be?
+Abigail: It's a sticky hand, it's like a toy.
+Margarette: Sticky hand! How unpleasant!
+===
+title: Margarette1Bunnydeer
+tags:
+---
+Margarette: Abigail...when you were in the forest...
+Margarette: Did you hear any whisperings about the debt I owe?
+Abigail: I didn't hear any whisperings, just a butterfly telling me it's gonna be sunny?
+Margarette: Wonderful.
+===
+title: Margarette1Toucan
+tags:
+---
+Margarette: TBD
+===
+title: MargarettePostChatChecks
+tags:
+---
+//<<if visited("MargarettePostChatChecks") is false and the HOA is Watching You is Incomplete>>
+Margarette: Ever since the president of the Home Owners Association heard me talking about Gianluca's C health inspection, she's been icing me out. 
+Margarette: I need to get back into her good graces and she's always complaning this block needs to feel "more lively"! Whatever that means!
+Margarette: I'm always here and I'm alive!
+//<<if visited("MargarettePostChatChecks") is false and the HOA is Watching You is Complete>>
+Margarette: By the way, the sunflower you planted is stunning sweetie.
+Margarette: Plus taking credit for it at the next home owners association meeting will make me the belle of the ball!
+//<<else>>
+===
+//================Gianluca=============================
+title: Gianluca0
+tags:
+---
+<<if visited("Gianluca0") is false>>
+Gianluca: If it isn’t my favorite customer!
+Abigail: You say that to everyone Gianluca.
+Gianluca: Well at this exact moment it feels true!
+//Open azueljo
+<<else>>
+Gianluca: You'll never guess my secret ingredient! 
+Gianluca: Well actually you might...
+//Open azulejo
+<<endif>>
+<<StartAzulejoConversation Gianluca>>
+===
+title: Gianluca1Gianlucas
+tags:
+---
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+Abigail: I just showed you that I already have this.
+Gianluca: You can have another!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Caterpillar
+tags:
+---
+Gianluca: That was one time!
+Gianluca: Will another tile help you forget about it?
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Butterfly
+tags:
+---
+Gianluca: You look like you could use a prediction from that butterfly in the forest.
+Gianluca: She told me that a great rain will flood The Neptune Diner.
+Gianluca: What? I'm not saying I want it to happen...
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Stickyhand
+tags:
+---
+Gianluca: I once held the world record for my collection of sticky hand toys. 
+Gianluca: But that was a past life. 
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Skull
+tags:
+---
+Gianluca: Someone did once ask me if I could make pizza crust with their grandma's ashes in it.
+Abigail: Did you do it?
+Gianluca: I did! And it was delicious if I do say so myself.
+Abigail: That's gotta be a health code violation.
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Bunnydeer
+tags:
+---
+Gianluca: Abigail, do not even joke about that.
+Gianluca: I do not even want to think about the horrors that would befall me if I butchered that creature.
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Cockroach
+tags:
+---
+Gianluca: If someone released the cockroaches from the sewer and they happened to find their way to the Neptune Diner...
+Gianluca: Maybe my C health inspection rating wouldn't seem so bad after all!
+Abigail: Seems like a fool proof plan to me. 
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Sunflower
+tags:
+---
+Gianluca: I'm allergic to sunflowers but sometimes I eat just a little bit because it gives me a headrush.
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Soccer
+tags:
+---
+Gianluca: What are you talking about Abigail? Soccer ball pizza doesn't even make sense!
+Gianluca: Wait...if I put a giant meatball inside it might just work!
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: Gianluca1Ghost
+tags:
+---
+Gianluca: For the life of me I cannot understand those hooligans who hang out by shade manor. 
+Gianluca: The supernatural presence radiating from that place shakes me to my core.
+Gianluca: Here take a tile so you can show your support for Gianluca’s!
+<<GiveGianlucaTile SceneController>>
+===
+title: PostChatChecksGianLuca
+tags:
+---
+//<<if visited("PostChatChecksGianLucas") is false and Gianlucas Prank War is Incomplete>>
+Gianluca: Listen Abigail, I’ve been strategizing on becoming victorious over The Neptune Diner.
+Gianluca: I need to up my advertising game, really get people to crave my pizza.
+Gianluca: Then I need to do some sabotage, create a little health code violation…
+Gianluca: And I'm not above getting the supernatural spirits involved!
+//<<if Gianlucas Prank War is Complete>>
+Gianluca: Oh and nice work on the sabotage!
+Gianluca: Thanks to you it's a matter of days until the Neptune admits defeat.
+//<<else>>
+===
+//================Timothy=============================
+title: Timothy0
+tags:
+---
+<<if visited("Timothy0") is false>>
+Timothy: Don’t I know you from somewhere?
+Abigail: I think we went to summer camp together?
+Timothy: I have this feeling that we were champions…
+<<else>>
+Timothy: Where do we know each other from?
+<<endif>>
+<<StartAzulejoConversation Timothy>>
+===
+title: Timothy1Soccer
+tags:
+---
+Abigail: We went to soccer camp, and you were always the goalie.
+Timothy: The other kids couldn’t handle it, but I’ve always had nerves of steel.
+Timothy: I've been itching to get back in the goal. Let's play!
+<<StartSoccerMinigame SceneController>>
+===
+title: Timothy1BunnyDeer
+tags:
+---
+Timothy: Cryptozoology camp!
+Abigail: I never went to that one but my mom was so into all that cryptid stuff.
+Timothy: My dad once implied that my mother is bigfoot.
+Abigail: Ok not that into it.
+===
+title: Timothy1Sunflower
+tags:
+---
+Timothy: AHCHOO!
+Timothy: I guess you don't remember I have severe pollen allergies.
+===
+title: Timothy1Skull
+tags:
+---
+Timothy: You must have me confused with someone else.
+Timothy: I never went to Mr. Miller's Mortician Day Camp.
+===
+title: Timothy1Ghost
+tags:
+---
+Timothy: What's a ghost's favorite soccer position? 
+Timothy: Ghoul keeper.
+===
+title: Timothy1Caterpillar
+tags:
+---
+Ryan 1: Hey hey watcha got there? 
+Timothy: None of your business Ryans!
+Ryan 2: I can sense that is a purple bug tile and we will see it soon if this world is just. 
+===
+title: Timothy1Gianluca
+tags:
+---
+Abigail: Gianluca's pizza camp was pretty fun until he got shut down.
+Timothy: Unfortunately it is illegal to have children pay to do labor for you.
+===
+title: Timothy1Butterfly
+tags:
+---
+Timothy: Everyone's always talking about how there's this butterfly in the forest who tells them when it's gonna rain and stuff.
+Timothy: But I've never seen her...
+===
+title: Timothy1Cockroach
+tags:
+---
+Timothy: La cuchracha is the only word I remember from Spanish camp.
+Abigail: Lo siento I never went to Spanish camp.
+===
+title: Timothy1Stickyhand
+tags:
+---
+Abigail: You were always really good at soccer. Did you ever play seriously?
+Timothy: Yeah, I actually got into this college with a really good soccer program. I didn't end up going though.
+Abigail: Why not?
+Timothy: I couldn't just leave my dad here, and these azulejo tiles don't sell themselves!
+===
+//================Ryans=============================
+title: Ryans0
+tags:
+---
+<<if visited("Ryans0") is false>>
+Abigail: Hey Ryan!
+Ryan 2: I don’t know you.
+Ryan 1: Hey neighbor lady.
+Abigail: Wait, are you both named Ryan?
+Ryan 2: Yeah, and if you plan on sticking around you better be ready for some Azulejo.
+<<else>>
+Ryan 2: You better have something cooler this time old lady!
+Abigail: Hey! I'm not old, I'm in my mid twenties!
+<<endif>>
+<<StartAzulejoConversation Ryan1>>
+===
+title: Ryans1Caterpillar
+tags:
+---
+<<if visited("Ryans1Caterpillar") is false>>
+Ryan 1: *whisper whisper whisper*
+Ryan 2: *whisper whisper*
+Ryan 1: Abigail we talked about it and decided that you're cool enough to play with our soccer ball. 
+//yarncommand to make the ball exist
+<<else>>
+Ryan 2: Every time I see a purple bug tile it makes me feel impossibly alive.
+<<endif>>
+===
+title: Ryans1Butterfly
+tags:
+---
+Ryan 2: Nice try, but we're purple bug kinda guys. This is more of a pink. 
+===
+title: Ryans1Cockroach
+tags:
+---
+Ryan 1: My dad told me that a cockroach can survive a nuclear bomb.
+Abigail: That is a really fun fact.
+Ryan 2: Don’t patronize him. And it isn’t fun. It’s horrific.
+===
+title: Ryans1SkullorGhost
+tags:
+---
+Ryan 1: Ahhhhhhhh
+Ryan 2: You can't show him scary stuff like that lady!.
+===
+title: Ryans1Sunflower
+tags:
+---
+Ryan 1: I eat those. 
+===
+title: Ryans1Gianluca
+tags:
+---
+Ryan 2: Yesterday Gianluca asked me if he could borrow a dollar. 
+===
+title: Ryans1Soccer
+tags:
+---
+Ryan 2: I wanna get my hair cut just like Antonio Andrade!
+Ryan 1: His mohawk is one of the coolest things ever.
+Ryan 2: My mom won't let me because she has decided to become evil!
+===
+title: Ryans1Bunnydeer
+tags:
+---
+Ryan 2: One time I asked my mom what Bunnydeer is and she said I'll tell you when you're older!
+Ryan 1: My mom told me and I wish I didn't know.
+===
+title: PostChatChecksRyans
+tags:
+---
+<<if visited("PostChatChecksRyans") is false>>
+Abigail: Any chance I could borrow your soccer ball?
+Ryan 1: We only let awesome people do things like that.
+Abigail: How do I become an awesome person? 
+Ryan 2: That's for us to know and you to figure out. 
+<<else>>
+<<endif>>
+===
+//================Ball Interaction=============================
+title: SoccerGoal
+tags: 
+---
+Abigail: Kiln Bay little league champ still got it!
+===
+//================Haunted House Teens=============================
+title: HauntedHouseTeens0
+tags: 
+---
+<<if visited("HauntedHouseTeens0") is false>>
+Abigail: Fellini! It’s nice to see you not wearing a diaper!
+Fellini: What do you see when you look at this house Abigail? 
+Abigail: Um…an old abandoned house? 
+Albert: I see a poem. No… A film!
+Fellini: I see a space dripping with meaning. With life! 
+<<else>>
+Fellini: Got anything new for us on the meaning of life?
+<<endif>>
+<<StartAzulejoConversation Fellini>>
+===
+title: HauntedHouseTeens1RatSkull
+tags: 
+---
+Fellini: I’ve always known you would understand the darkness Abigail. 
+Abigail: And I’ve always known you were a weird kid. 
+Fellini: Hey! 
+Abigail: Weird non-pejorative!
+Albert: You wanna throw some rocks with us Abigail? 
+Abigail: Sure.
+<<StartHauntedMinigame SceneController>>
+===
+title: HauntedHouseTeens1Sunflower
+tags: 
+---
+Fellini: Do you think if I cut off my ear like Van Gogh did then I’ll finally have my big break? 
+Albert: No man don’t do that I love your ear.
+===
+title: HauntedHouseTeens1BunnyDeer
+tags: 
+---
+Albert: Be careful with this one Abigail. 
+Fellini: Yeah bunny deer is serious business you should know. 
+===
+title: HauntedHouseTeens1Stickyhand
+tags: 
+---
+Albert: Whoa that rocks I love those sticky hand toys.
+Fellini: When I was a kid I threw one of those on my grandma's ceiling and it's still there. 
+===
+title: HauntedHouseTeens1Ghost
+tags: 
+---
+Fellini: Do you ever get worried that the ghost doesn't like it when we throw rocks at them?
+Albert: No way man, he's got such a playful look in his eye. 
+Abigail: I'm pretty sure if he hated it you would be dead.  
+===
+title: HauntedHouseTeens1Gianluca
+tags: 
+---
+Albert: Oh god just seeing that tile makes me hungry. 
+Albert: Please dude you gotta loan me some money to go get a slice.
+Fellini: Absolutely not, it's not my fault you spent all your allowance on sea monkeys.
+Albert: They were so much tinier than anyone could have ever expected!
+===
+title: HauntedHouseTeens1Soccer
+tags: 
+---
+Fellini: There's too much aggression in soccer for me. 
+Albert: I have literally watched you throw rocks for hours.
+===
+title: HauntedHouseTeens1Butterfly
+tags: 
+---
+Fellini: Two butterflies went out at noon!
+Albert: It's only 11:30am man
+Fellini: Why are you always interrupting me when I try to recite Emily Dickinson?
+===
+title: HauntedHouseTeens1Cockroach
+tags: 
+---
+Albert: I could never kill a cockroach. 
+Abigail: Why not? 
+Albert: I imagine that every single cockroach is Franz Kafka and if I kill it I'm killing one of the greatest authors of all time. 
+===
+title: HauntedHouseTeens1Larva
+tags: 
+---
+Albert: Sometimes we need to learn how to evolve to become who we need to be. 
+Fellini: Like when you stopped doing rubix cube competitions!
+Albert: Dude you know that was a dark time for me. 
+Fellini: You wanna throw some rocks with us Abigail?
+Abigail: Sure.
+<<StartHauntedMinigame SceneController>>
+===
+//================Spider=============================
+title: Spider0
+tags: 
+---
+<<if visited("Spider0") is false>>
+Spider: Hey stupid nerd! What do you think you’re doing?
+Abigail: I was hoping to get past your web to see the forest.
+Abigail: Also stupid nerd is an oxymoron.
+Spider: Fine! Stay away from my web you twerp! I worked hard on that!
+Abigail: Twerp is good, I’ve really been feeling like a twerp these days.
+Spider: Maybe I’d consider letting you pass if you make it worth my while. 
+<<else>>
+Spider: You gonna make this worth my while?
+<<endif>>
+<<StartAzulejoConversation Spider>>
+===
+title: Spider1
+tags: 
+---
+Spider: Ah…tastes just like home.
+Abigail: Are you Italian?
+Spider: Nah, just born and raised at Gianluca’s.
+Spider: That was before he had to start getting serious about health code violations.
+Spider: Anyways, I’ve been meaning to pick a sunnier spot for my web. Feel free to pass through now.
+Abigail: Thanks!
+===
+//================Tanya=============================
+title: Tanya
+tags: 
+---
+<<if visited("Tanya") is false>>
+Tanya:<b>HeLlo abiGaIl</b>
+Tanya:<b>a ThrOwN rOCK</b>
+Tanya:<b>a PowDeR keG</b>
+Tanya:<b>thE CLay ThAT mAKEs us AlL</b>
+Tanya:<b>It'S goiNg TO bE A sunNY WeEk</b>
+Tanya:<b>Do nOT foRGEt tO WeAR sunScREEN oN WeDnESDaY</b>
+Abigail: What.
+Tanya:<b>HaVe YoU sEeN mY FriEND?</b>
+Tanya:<b>ThEy'Ll HeLp yOU ImPRess ThE NEw beSt FrIEnD. </b>
+<<GiveBunnyDeer SceneController>>
+<<else>>
+Tanya:<b>Do nOT foRGEt tO WeAR sunScREEN oN WeDnESDaY</b>
+<<endif>>
+===
+//================Misc=============================
+
+
+
+
