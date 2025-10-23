@@ -6,11 +6,9 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
         _Tiling("UV Tiling (U,V) [MID]", Vector) = (1,1,0,0)
         _Speed("Downstream Speed (+U) [MID]", Range(-3,3)) = 0.2
 
-        // keep strands aligned without changing flow
         _FiberAngleDeg("Fiber Angle (deg)", Range(0,360)) = 0
         _FlipV("Flip V (0/1)", Float) = 0
 
-        // tiny optional warp so it doesn’t feel static
         _WarpAmp("Warp Amplitude (UV)", Range(0,0.3)) = 0.05
         _WarpFreq("Warp Frequency", Range(0,8)) = 1.5
         _WarpScale("Warp Spatial Scale", Range(0.1,10)) = 2.0
@@ -33,15 +31,19 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
         _FoamTiling("Foam Tiling (U,V)", Vector) = (1.5,1.0,0,0)
         _FoamSpeed("Foam Scroll (+U)", Float) = 0.15
 
-        // shoreline band width (in V) and falloff
         _ShoreWidth("Shoreline Width (V-space)", Range(0,0.5)) = 0.12
         _ShoreSoftness("Shoreline Softness", Range(0.1,10)) = 3.0
         _FoamIntensity("Foam Intensity", Range(0,2)) = 0.9
 
-        // optional contact foam via depth (rocks/banks). requires URP Depth Texture.
         _UseDepthFoam("Use Depth Foam (0/1)", Float) = 1
         _DepthRange("Depth Fade (meters)", Range(0.01,1.0)) = 0.2
         _DepthSharp("Depth Edge Sharpness", Range(0.5,8.0)) = 2.0
+
+        // ---------------- Flow-following overlays (TOP) ----------------
+        _DecalTex("Overlay/Decal Texture (RGBA)", 2D) = "white" {}
+        _DecalEdgeSoft("Overlay Edge Softness", Range(0,10)) = 3.0
+        _DecalGlobalTint("Overlay Global Tint", Color) = (1,1,1,1)
+        _DecalCount("Overlay Count (0-16)", Range(0,16)) = 0
     }
     SubShader{
         Tags{ "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" "RenderPipeline"="UniversalPipeline" }
@@ -62,7 +64,11 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
             // Textures
             TEXTURE2D(_MainTex);   SAMPLER(sampler_MainTex);     // MID
             TEXTURE2D(_BottomTex); SAMPLER(sampler_BottomTex);   // BOTTOM
-            TEXTURE2D(_FoamTex);   SAMPLER(sampler_FoamTex);     // TOP (foam)
+            TEXTURE2D(_FoamTex);   SAMPLER(sampler_FoamTex);     // TOP foam
+            TEXTURE2D(_DecalTex);  SAMPLER(sampler_DecalTex);    // TOP overlays
+
+            // ---------- Constants ----------
+            #define MAX_DECALS 16
 
             CBUFFER_START(UnityPerMaterial)
                 // Mid
@@ -97,11 +103,23 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
                 float _UseDepthFoam;
                 float _DepthRange;
                 float _DepthSharp;
+
+                // Overlays (set via script)
+                // _DecalUVLen: (uCenter, vCenter, uLength, vWidth) in mesh UV space
+                float4 _DecalUVLen[MAX_DECALS];
+                // _DecalMisc: (speedU, rotDeg, alpha, enabled>0.5)
+                float4 _DecalMisc[MAX_DECALS];
+                // _DecalTintA: per-decal tint rgba (alpha multiplies _DecalMisc.z)
+                float4 _DecalTintA[MAX_DECALS];
+
+                float _DecalEdgeSoft;
+                float4 _DecalGlobalTint;
+                float _DecalCount;
             CBUFFER_END
 
             struct appdata {
                 float4 vertex : POSITION;
-                float2 uv     : TEXCOORD0;  // YarnRiverStrip: U=downstream, V=across
+                float2 uv     : TEXCOORD0;  // U=downstream, V=across
             };
             struct v2f {
                 float4 pos : SV_POSITION;
@@ -111,9 +129,7 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
                 float4 screenPos : TEXCOORD3;
             };
 
-            float2 rotate_by(float2 v, float2 cs){
-                return float2(cs.x*v.x - cs.y*v.y, cs.y*v.x + cs.x*v.y);
-            }
+            float2 rotate_by(float2 v, float2 cs){ return float2(cs.x*v.x - cs.y*v.y, cs.y*v.x + cs.x*v.y); }
 
             v2f vert(appdata v){
                 v2f o;
@@ -125,21 +141,20 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
 
                 float ang = radians(_FiberAngleDeg);
                 o.csFiber = float2(cos(ang), sin(ang));
-                float angP = ang + 1.57079632679; // +90°
+                float angP = ang + 1.57079632679;
                 o.csPerp  = float2(cos(angP), sin(angP));
 
                 o.screenPos = ComputeScreenPos(o.pos);
                 return o;
             }
 
-            // Helper for flowing yarn UV with shared warp
             float2 flow_uv(float2 uvMesh, float2 csFiber, float2 csPerp, float speed, float t, float warpAmp, float warpFreq, float warpScale)
             {
-                float2 uvBase = rotate_by(uvMesh, csFiber);                 // orient strands
-                float2 uv     = uvBase + rotate_by(float2(t * speed, 0), csFiber); // scroll downstream
+                float2 uvBase = rotate_by(uvMesh, csFiber);
+                float2 uv     = uvBase + rotate_by(float2(t * speed, 0), csFiber);
                 if (warpAmp > 0.0001){
                     float phase = t * warpFreq + (uvBase.x + uvBase.y) * warpScale;
-                    uv += csPerp * (sin(phase) * warpAmp);                  // small perpendicular wobble
+                    uv += csPerp * (sin(phase) * warpAmp);
                 }
                 return uv;
             }
@@ -147,46 +162,34 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
             half4 frag(v2f i) : SV_Target{
                 float t = _Time.y;
 
-                // ---------------- Mid layer (original yarn) ----------------
+                // ----------- Mid (original yarn) -----------
                 float2 uvMid = flow_uv(i.uvMesh, i.csFiber, i.csPerp, _Speed, t, _WarpAmp, _WarpFreq, _WarpScale);
                 half3 midCol = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uvMid).rgb * _Tint.rgb;
                 half alpha   = _Alpha * _Tint.a;
 
-                // ---------------- Bottom layer ----------------
-                // Separate tiling/speed, a tiny cross-river parallax to fake depth.
-                // Parallax is strongest where "depth" is high; we use center-vs-banks as a cheap depth proxy.
+                // ----------- Bottom -----------
                 float vStrip = abs(frac(i.uvMesh.y));           // 0..1 across
                 float dEdge  = min(vStrip, 1.0 - vStrip);       // 0 at banks, 0.5 center
-                float depth01 = 1.0 - saturate(dEdge / 0.5);    // 0 banks -> 1 center (deeper in middle)
-
-                // We'll reveal BOTTOM more toward the banks (shallows); shape with a power curve.
+                float depth01 = 1.0 - saturate(dEdge / 0.5);    // 0 banks -> 1 center
                 float shallowness = pow(1.0 - depth01, _BottomShallowPow); // 0 center -> 1 banks
 
-                // Bottom flow UV
-                float2 uvMeshBottom = i.uvMesh * _BottomTiling.xy; // independent tiling
+                float2 uvMeshBottom = i.uvMesh * _BottomTiling.xy;
                 float2 uvBottom = flow_uv(uvMeshBottom, i.csFiber, i.csPerp, _BottomSpeed, t, _WarpAmp, _WarpFreq, _WarpScale);
-
-                // Add tiny parallax across width (looks like refraction/height layering)
                 uvBottom += i.csPerp * (_ParallaxAmp * depth01); // more offset in center
 
                 half3 bottomCol = SAMPLE_TEXTURE2D(_BottomTex, sampler_BottomTex, uvBottom).rgb * _BottomTint.rgb;
 
-                // Blend bottom into mid near banks
                 float bottomMask = saturate(shallowness * _BottomStrength);
                 half3 baseCol = lerp(midCol, bottomCol, bottomMask);
 
-                // ---------------- Foam (shoreline + optional depth contact) ----------------
-                // shoreline foam: band at V=0 and V=1
+                // ----------- Foam -----------
                 float shoreMask = saturate(1.0 - pow(saturate(dEdge / max(_ShoreWidth, 1e-4)), _ShoreSoftness));
-
-                // foam UV scrolls along U
                 float2 foamUV = (i.uvMesh * _FoamTiling.xy);
                 foamUV.x += t * _FoamSpeed;
 
                 half foamNoise = SAMPLE_TEXTURE2D(_FoamTex, sampler_FoamTex, foamUV).r;
                 half foamEdge  = shoreMask * foamNoise;
 
-                // optional contact foam using scene depth
                 float foamDepthMask = 0.0;
                 if (_UseDepthFoam > 0.5){
                     float2 uvScreen = i.screenPos.xy / i.screenPos.w;
@@ -197,12 +200,58 @@ Shader "Custom/YarnRiver_SimpleFlow_Foam"
                     float contact = pow(1.0 - saturate(diff / max(_DepthRange, 1e-3)), _DepthSharp);
                     foamDepthMask = contact;
                 }
-
                 float foamMask = saturate(foamEdge * _FoamIntensity + foamDepthMask * 0.6);
 
-                // Composite foam on top
                 half3 col = lerp(baseCol, _FoamColor.rgb, foamMask);
-                half  a   = max(alpha, foamMask); // foam can lift alpha a bit
+                half  a   = max(alpha, foamMask);
+
+                // ----------- Overlays (TOP, follow curvature) -----------
+                // Overlays defined in mesh UV space (U downstream, V across).
+                // Each overlay uses (uCenter + t*speedU, vCenter) as center,
+                // with uLength x vWidth coverage, optional rotation around center.
+                int count = (int)_DecalCount;
+                [loop]
+                for (int k = 0; k < MAX_DECALS; k++)
+                {
+                    if (k >= count) break;
+
+                    float4 uvlen  = _DecalUVLen[k];    // (uC, vC, uLen, vWid)
+                    float4 misc   = _DecalMisc[k];     // (speedU, rotDeg, alpha, enabled)
+                    float4 tintA  = _DecalTintA[k];    // per-decal tint RGBA
+
+                    if (misc.w <= 0.5) continue;
+
+                    // center, with downstream drift
+                    float uC = uvlen.x + t * misc.x;
+                    float vC = uvlen.y;
+
+                    // local coords in "flow space" (aligned to river)
+                    float2 localUV; // (du, dv) normalized to [-1..1] box
+                    localUV.x = (i.uvMesh.x - uC) / max(uvlen.z, 1e-4);
+                    localUV.y = (i.uvMesh.y - vC) / max(uvlen.w, 1e-4);
+
+                    // rotate the overlay around its center (degrees)
+                    float rot = radians(misc.y);
+                    float2 cs = float2(cos(rot), sin(rot));
+                    float2 rotated = float2( cs.x*localUV.x - cs.y*localUV.y,
+                                             cs.y*localUV.x + cs.x*localUV.y );
+
+                    // map to 0..1 for sampling
+                    float2 uvDecal = rotated * 0.5 + 0.5;
+
+                    // edge falloff (box soft mask), multiplies decal alpha
+                    float2 edge = 1.0 - abs(rotated);
+                    float soft = pow(saturate(min(edge.x, edge.y)), _DecalEdgeSoft);
+
+                    // sample decal
+                    half4 samp = SAMPLE_TEXTURE2D(_DecalTex, sampler_DecalTex, uvDecal);
+                    half  decalA = samp.a * soft * (misc.z * tintA.a) * _DecalGlobalTint.a;
+
+                    // composite (non-premultiplied src-over)
+                    half3 decalRGB = samp.rgb * tintA.rgb * _DecalGlobalTint.rgb;
+                    col = lerp(col, decalRGB, decalA);
+                    a   = max(a, decalA);
+                }
 
                 return half4(col, a);
             }
