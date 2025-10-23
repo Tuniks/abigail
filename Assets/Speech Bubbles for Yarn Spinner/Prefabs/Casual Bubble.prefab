@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 1972423252766336204}
   - component: {fileID: 1390350175871071377}
   - component: {fileID: 8978088808441212697}
+  - component: {fileID: 5284748965214978525}
   m_Layer: 5
   m_Name: Casual Bubble
   m_TagString: Untagged
@@ -996,7 +997,65 @@ MonoBehaviour:
   defaultBubbleData: {fileID: 11400000, guid: e719bd1336e334a459390d363c5e016b, type: 2}
   OnTextAppeared:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5284748965214978525}
+        m_TargetAssemblyTypeName: SpeechSFXController, Assembly-CSharp
+        m_MethodName: OnCharacterTyped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5284748965214978525}
+        m_TargetAssemblyTypeName: SpeechSFXController, Assembly-CSharp
+        m_MethodName: ResetLineState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SquashStretchOnTalk3D, Assembly-CSharp
+        m_MethodName: OnCharacterTick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+--- !u!114 &5284748965214978525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100749781419895160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a116f1e044b52bc4f88d4fc18bf90afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTMP: {fileID: 0}
+  speakerNameTMP: {fileID: 0}
+  defaultVoice: {fileID: 0}
+  speakerVoices:
+  - speakerName: Chase
+    voice: {fileID: 11400000, guid: 5767a1b0f4affdc43aabc8e19c07fb2d, type: 2}
+  - speakerName: Abigail
+    voice: {fileID: 11400000, guid: 2008c23c32a6c7f4baa2963805096442, type: 2}
+  audioSourcePoolSize: 5
+  mixerGroup: {fileID: 0}
 --- !u!1 &6045155342960315037
 GameObject:
   m_ObjectHideFlags: 0
