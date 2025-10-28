@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class PlayerUIManager : MonoBehaviour{
     public static PlayerUIManager instance;
     private Inventory playerInventory;
+    private PlayerInteractor playerInteractor;
     private MenuManager menuManager;
 
     [Header("Inventory")]
@@ -55,6 +56,7 @@ public class PlayerUIManager : MonoBehaviour{
         instance = this;
         playerInventory = PlayerInventory.Instance;
         SetInventoryUI();
+        playerInteractor = PlayerInteractor.instance;
         menuManager = GetComponent<MenuManager>();
     }
 
@@ -89,15 +91,18 @@ public class PlayerUIManager : MonoBehaviour{
         inventoryAnimator.SetTrigger("onOpen");
         inventoryAnimator.ResetTrigger("onClose");
 
+        if(isManual) playerInteractor.SetIsBusy(true);
+
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagOpenSound);
     }
 
     public void HideInventory(bool isManual = false){
         if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Closing Inventory")) return;
 
-
         inventoryAnimator.SetTrigger("onClose");
         inventoryAnimator.ResetTrigger("onOpen");
+
+        if(isManual) playerInteractor.SetIsBusy(false);
 
         tileDetailsScreen.SetActive(false);
         phenomenonUI.HideUI();

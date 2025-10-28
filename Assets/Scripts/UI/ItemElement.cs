@@ -10,6 +10,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
     // Parent Tile
     private GameObject ogTile;
+    private Tile childTile;
 
     // Repositioning
     private Vector3 previousPos;
@@ -63,9 +64,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         previousPos = transform.position;
         cg.blocksRaycasts = false;
         transform.SetParent(ui.GetHeldItemParent(), false);
-        Vector3 screenPoint = Input.mousePosition;
-        screenPoint.z = 10.0f; 
-        transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+        transform.position = Input.mousePosition;
 
         UpdateSpriteOrder(1000);
         UpdateMaskBehaviour(false);
@@ -74,9 +73,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
 
     public void OnDrag(PointerEventData eventData){
-        Vector3 screenPoint = Input.mousePosition;
-        screenPoint.z = 10.0f; 
-        transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+        transform.position = Input.mousePosition;
         
         Vector3 slotPos = PlayerUIManager.instance.GetSlotPosition();
         float targetScale = PlayerUIManager.instance.GetSlotScale();
@@ -115,6 +112,9 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
         tileCopy.SetActive(false);
 
+        childTile = tileCopy.GetComponent<Tile>();
+        childTile.RebuildTile();
+
         // Creating tile UI
         tileUI.BuildTileUI(ogTile.GetComponent<Tile>());
         tileUI.transform.localScale = tileUIScale;
@@ -122,7 +122,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
 
     public Tile GetTile(){
-        return GetComponentInChildren<Tile>();
+        return childTile;
     }
 
     public void UpdateSpriteOrder(int order){

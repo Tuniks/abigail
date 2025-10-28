@@ -37,7 +37,7 @@ public class Tile : MonoBehaviour {
         RebuildTile();
     }
 
-    private void RebuildTile() {
+    public void RebuildTile() {
         List<GameObject> toDestroy = new List<GameObject>();
         foreach (Transform child in transform) {
             if (child.gameObject.GetComponent<TileComponent>() != null) {

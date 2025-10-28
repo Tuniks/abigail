@@ -14,7 +14,8 @@ public class PlayerInteractor : MonoBehaviour{
     public GameObject interactPrompt;
     
     // Player State
-    private PlayerController pc;
+    private PlayerController twopc;
+    private ThirdPersonSimpleController threepc;
     private List<GameObject> interactables = new List<GameObject>();
     private bool isTalking = false;
     private bool isAzulejoing = false;
@@ -29,7 +30,8 @@ public class PlayerInteractor : MonoBehaviour{
 
     void Start(){
         instance = this;
-        pc = GetComponent<PlayerController>();
+        twopc = GetComponent<PlayerController>();
+        threepc = GetComponent<ThirdPersonSimpleController>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -47,7 +49,7 @@ public class PlayerInteractor : MonoBehaviour{
         if(Input.GetKeyDown("q") && currentShop != null && !isTalking){
             currentShop.HideShop();
             currentShop = null;
-            pc.SetIsBusy(false);
+            SetIsBusy(false);
         }
 
         if(Input.GetKeyDown(KeyCode.Tab) && hijackCallback!=null){
@@ -58,9 +60,9 @@ public class PlayerInteractor : MonoBehaviour{
     void LateUpdate(){
         if(dialogueRunner.IsDialogueRunning || isAzulejoing){
             isTalking = true;
-            pc.SetIsBusy(true);
+            SetIsBusy(true);
         } else {
-            if(isTalking) pc.SetIsBusy(false);
+            if(isTalking) SetIsBusy(false);
             isTalking = false;
         }
     }
@@ -84,7 +86,7 @@ public class PlayerInteractor : MonoBehaviour{
                 currentShop.ShowShop();
                 string node = currentShop.GetCurrentNode();
                 if(node != null) StartConversation(node);
-                pc.SetIsBusy(true);
+                SetIsBusy(true);
                 return;
             } else if(portal) {
                 string node = portal.AttemptTravel();
@@ -99,7 +101,7 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     public void StartConversation(string node){
-        pc.SetIsBusy(true);
+        SetIsBusy(true);
         dialogueRunner.StartDialogue(node);
     }
 
@@ -145,8 +147,22 @@ public class PlayerInteractor : MonoBehaviour{
         }
     }
 
+    public void SetIsBusy(bool _isBusy){        
+        if(threepc != null){
+            threepc.SetIsBusy(_isBusy);
+        }
+        
+        if(twopc != null){
+            twopc.SetIsBusy(_isBusy);
+        }
+    }
+
     public bool IsPlayerBusy(){
-        return pc.GetIsBusy();
+        if(twopc != null){
+            return twopc.GetIsBusy();
+        }
+        
+        return threepc.GetIsBusy();
     }
 
     public void StartAzulejoConvo(){
