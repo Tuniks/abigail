@@ -4,20 +4,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler{
+    // Manager References
     private PlayerUIManager ui;
     private CanvasGroup cg;
 
+    // Parent Tile
     private GameObject ogTile;
 
+    // Repositioning
     private Vector3 previousPos;
     private Dictionary<SpriteRenderer, int> originalSpriteOrder = null;
 
-    public Vector3 tileScale = new Vector3(1, 1, 1);
+    // Tile UI
+    public TileUI tileUI;
+    public Vector3 tileUIScale = new Vector3(1, 1, 1);
 
     // Tile Scaling for Azulejo Convo
+    [Header("Tile Scale")]
+    public Vector3 tileScale = new Vector3(1, 1, 1);
     private float startingScale = 1f;
 
     // Animation for Azulejo Phenomenon
+    [Header("Phenomenon")]
     public float twitchRange = 1f;
     public float twitchRotationRange = 5f;
     public Vector2 twitchTimeLimits = new Vector2(0, 1);
@@ -25,6 +33,7 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     private float currentTwitchTimer = 0;
 
     // New tile decor
+    [Header("Tile Decoration")]
     public GameObject newTileDecor;
     
 
@@ -98,11 +107,18 @@ public class ItemElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
         ogTile = tile;
         
+        // Creating copy of tile
+        // TO DO might not be needed anymore
         GameObject tileCopy = Instantiate(tile, Vector3.zero, Quaternion.identity);
         tileCopy.transform.SetParent(transform, false);
         tileCopy.transform.localScale = tileScale;
 
-        tileCopy.SetActive(true);
+        tileCopy.SetActive(false);
+
+        // Creating tile UI
+        tileUI.BuildTileUI(ogTile.GetComponent<Tile>());
+        tileUI.transform.localScale = tileUIScale;
+        tileUI.gameObject.SetActive(true);
     }
 
     public Tile GetTile(){

@@ -153,7 +153,7 @@ public class PlayerUIManager : MonoBehaviour{
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
             element.transform.SetParent(bagRect);
-            element.transform.localScale = new Vector3(93, 93, 93);
+            element.transform.localScale = new Vector3(1, 1, 1);
             PlaceElement(element);
             element.GetComponent<ItemElement>().UpdateSpriteOrder(orderCount*4);
             orderCount++;
