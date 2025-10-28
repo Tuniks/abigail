@@ -15,9 +15,7 @@ public class PlayerUIManager : MonoBehaviour{
     public GameObject inventoryScreen;
     public RectTransform bagRect;
     public Transform heldItemParent;
-    public PlayableDirector invDirector;
-    public TimelineAsset openAnimation;
-    public TimelineAsset closeAnimation;
+    public Animator inventoryAnimator;
 
     [Header("Tile Details")]
     public GameObject tileDetailsScreen;
@@ -85,20 +83,22 @@ public class PlayerUIManager : MonoBehaviour{
 
     // ====== INVENTORY =======
     public void ShowInventory(bool isManual = false){
-        if(isManual && invDirector.state == PlayState.Playing) return;
+        if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Opening Inventory")) return;
         
         SetInventoryUI();
-        invDirector.playableAsset = openAnimation;
-        invDirector.Play();
+        inventoryAnimator.SetTrigger("onOpen");
+        inventoryAnimator.ResetTrigger("onClose");
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagOpenSound);
     }
 
     public void HideInventory(bool isManual = false){
-        if(isManual && invDirector.state == PlayState.Playing) return;
+        if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Closing Inventory")) return;
 
-        invDirector.playableAsset = closeAnimation;
-        invDirector.Play();
+
+        inventoryAnimator.SetTrigger("onClose");
+        inventoryAnimator.ResetTrigger("onOpen");
+
         tileDetailsScreen.SetActive(false);
         phenomenonUI.HideUI();
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagCloseSound);
@@ -279,34 +279,34 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     private void AnimateBagIcon(bool _status){
-        if(_status){
-            bagIconAnimation.Play();
-            PlayerInteractor.instance.GetAudioSource().PlayOneShot(PhenomenonPossibleSound);
-            //audioSource.loop = true;
-            //audioSource.Play(); 
+        // if(_status){
+        //     bagIconAnimation.Play();
+        //     PlayerInteractor.instance.GetAudioSource().PlayOneShot(PhenomenonPossibleSound);
+        //     //audioSource.loop = true;
+        //     //audioSource.Play(); 
 
-            if(inventoryScreen.activeSelf == true){
-                foreach(Transform child in bagRect){
-                    ItemElement itemElement = child.GetComponent<ItemElement>();
-                    if(itemElement != null && itemElement.HasTileWithFace(phenomenonTarget)){
-                        itemElement.SetTwitching(true);
-                    }
-                }
-            }
-        } else {
-            bagIconAnimation.Stop();
-            //audioSource.Stop();
-            InventoryIcon.transform.localRotation = Quaternion.identity; 
+        //     if(inventoryScreen.activeSelf == true){
+        //         foreach(Transform child in bagRect){
+        //             ItemElement itemElement = child.GetComponent<ItemElement>();
+        //             if(itemElement != null && itemElement.HasTileWithFace(phenomenonTarget)){
+        //                 itemElement.SetTwitching(true);
+        //             }
+        //         }
+        //     }
+        // } else {
+        //     bagIconAnimation.Stop();
+        //     //audioSource.Stop();
+        //     InventoryIcon.transform.localRotation = Quaternion.identity; 
 
-            phenomenonUI.HideUI();
+        //     phenomenonUI.HideUI();
 
-            if(inventoryScreen.activeSelf == true){
-                foreach(Transform child in bagRect){
-                    ItemElement itemElement = child.GetComponent<ItemElement>();
-                    if(itemElement != null) itemElement.SetTwitching(false);   
-                }
-            }
-        }
+        //     if(inventoryScreen.activeSelf == true){
+        //         foreach(Transform child in bagRect){
+        //             ItemElement itemElement = child.GetComponent<ItemElement>();
+        //             if(itemElement != null) itemElement.SetTwitching(false);   
+        //         }
+        //     }
+        // }
     }
     
     public void SetCurrentPhenomenonSlot(PhenomenonSlot _phenomenonSlot){

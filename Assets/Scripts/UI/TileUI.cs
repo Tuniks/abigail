@@ -36,6 +36,7 @@ public class TileUI : MonoBehaviour{
         float scale = spr.transform.localScale.x/referenceScale;
 
         img.sprite = spr.sprite;
+        img.SetNativeSize();
         rect.localPosition = spr.transform.localPosition;
         rect.localRotation = spr.transform.localRotation;
         rect.localScale = new Vector3(scale, scale, scale);
