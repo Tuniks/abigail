@@ -30,8 +30,9 @@ public class ThirdPersonSimpleController : MonoBehaviour
     float yaw;        
     float pitch;      
 
-    void Awake()
-    {
+    private bool isBusy = false;
+
+    void Awake(){
         controller = GetComponent<CharacterController>();
 
         if (Cam != null)
@@ -49,8 +50,9 @@ public class ThirdPersonSimpleController : MonoBehaviour
         if (lockCursor) SetCursorLocked(true);
     }
 
-    void Update()
-    {
+    void Update(){
+        if(isBusy) return;
+
         // Cursor toggle
         if (Input.GetKeyDown(toggleCursorKey))
         {
@@ -156,5 +158,15 @@ public class ThirdPersonSimpleController : MonoBehaviour
     {
         Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !locked;
+    }
+
+    public void SetIsBusy(bool _isBusy){
+        isBusy = _isBusy;
+
+        SetCursorLocked(!isBusy);
+    }
+
+    public bool GetIsBusy(){
+        return isBusy;
     }
 }
