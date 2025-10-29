@@ -15,7 +15,6 @@ public class ChessAzuPiece : MonoBehaviour
     [Tooltip("If true, this piece is selectable by the player.")]
     public bool isPlayerTile = false;
 
-
     [Header("References")]
     public ChessAzuManager manager;
 
@@ -60,7 +59,8 @@ public class ChessAzuPiece : MonoBehaviour
             case StartSnapMode.FromInspector:
                 // Honor the inspector indices exactly
                 ClampIndicesToBoard();
-                transform.position = manager.GetCellWorldPosition(gridX, gridY);
+                EnsurePiecesParent();
+                transform.position = manager.GetPieceWorldPosition(gridX, gridY);
                 break;
 
             case StartSnapMode.FromWorldNearest:
@@ -89,6 +89,14 @@ public class ChessAzuPiece : MonoBehaviour
     }
 
     // ---------- Placement helpers ----------
+    private void EnsurePiecesParent()
+    {
+        if (manager == null) return;
+        var root = manager.GetPiecesRoot();
+        if (root != null && transform.parent != root)
+            transform.SetParent(root, worldPositionStays: true);
+    }
+
     public void SnapToNearestCell()
     {
         if (manager == null) return;
@@ -111,8 +119,12 @@ public class ChessAzuPiece : MonoBehaviour
         if (manager == null) return;
         gridX = Mathf.Clamp(x, 0, manager.columns - 1);
         gridY = Mathf.Clamp(y, 0, manager.rows - 1);
+
         if (teleport)
-            transform.position = manager.GetCellWorldPosition(gridX, gridY);
+        {
+            EnsurePiecesParent();
+            transform.position = manager.GetPieceWorldPosition(gridX, gridY);
+        }
     }
 
     public Vector2Int GetGridPosition() => new Vector2Int(gridX, gridY);
@@ -133,7 +145,9 @@ public class ChessAzuPiece : MonoBehaviour
 
         gridX = targetX;
         gridY = targetY;
-        transform.position = manager.GetCellWorldPosition(gridX, gridY);
+
+        EnsurePiecesParent();
+        transform.position = manager.GetPieceWorldPosition(gridX, gridY);
         return true;
     }
 
@@ -156,17 +170,17 @@ public class ChessAzuPiece : MonoBehaviour
         if (manager == null || !manager.IsGridReady() || mask == null) yield break;
 
         for (int dy = -RADIUS; dy <= RADIUS; dy++)
-            for (int dx = -RADIUS; dx <= RADIUS; dx++)
-            {
-                if (dx == 0 && dy == 0) continue;
-                int idx = OffsetToIndex(dx, dy);
-                if (idx == AzuMovementProfile.CENTER_INDEX || !mask[idx]) continue;
+        for (int dx = -RADIUS; dx <= RADIUS; dx++)
+        {
+            if (dx == 0 && dy == 0) continue;
+            int idx = OffsetToIndex(dx, dy);
+            if (idx == AzuMovementProfile.CENTER_INDEX || !mask[idx]) continue;
 
-                int tx = gridX + dx;
-                int ty = gridY + dy;
-                if (IsInsideBoard(tx, ty))
-                    yield return new Vector2Int(tx, ty);
-            }
+            int tx = gridX + dx;
+            int ty = gridY + dy;
+            if (IsInsideBoard(tx, ty))
+                yield return new Vector2Int(tx, ty);
+        }
     }
 
     // ---------- Helpers ----------
