@@ -5,7 +5,7 @@ tags:
 <<if visited("ChaseOz0") is false>>
 Oz: Can I help you with anything m’lady?
 Abigail: Yeah…I’m looking for my buddy Chase.
-Oz: Ah, you must be the famed Abigail.
+Oz: Dare I even approach? Famed Abigail in the flesh?
 Abigail: I don’t know about the famed part but I am definitely Abigail.
 Oz: I only tell the whereabouts of my best friend to those with superior Azulejo collections.
 Abigail: I got a couple of cool tiles…I think…
@@ -18,13 +18,13 @@ Oz: Let’s see the best from your collection Abigail!
 title: ChaseOz1Failure
 tags:
 ---
-Oz: I don’t think so Abigail, I have pretty eccentric taste in Azulejo tiles.
+Oz: Oz: Sorry Big A! I'm a creature of eclectic proclivities.
 Oz: I’m looking for a collection that feels weird, mythical, haunting, nostalgic, if you catch my drift?
 ===
 title: ChaseOz1Success
 tags:
 ---
-Oz: Whoa! These tiles rock!
+Oz: Oh m'lady! Now you're plucking my strings big time.
 Oz: I can see why Chase is always talking about how much he misses playing Azulejo with you.
 Oz: We gotta play some Power Azulejo.
 Abigail: Power Azulejo? Do you need to plug it in?
@@ -83,13 +83,14 @@ title: Margarette1Cockroach
 tags:
 ---
 Margarette: I heard there's a horde of cockroaches inside the sewer tunnels.
-Margarette: That was their solution to the plague of '88!
+Abigail: Wasn't that was their solution to the plague of '88?
 <<jump MargarettePostChatChecks>>
 ===
 title: Margarette1Caterpillar
 tags:
 ---
-Margarette: You should show this to the Ryans at the playground they'll get a big kick out of it. 
+Margarette: This reminds me of the Ryans at the playground. 
+Margarette: They both want to be entomologists when they grow up apparently!
 <<jump MargarettePostChatChecks>>
 ===
 title: Margarette1Sunflower
@@ -103,7 +104,7 @@ title: Margarette1Butterfly
 tags:
 ---
 Margarette: This tile looks so much like Tanya.
-Margarette: Any time I need a glimpse of my future I wander up to the forest and look for her.
+Margarette: Any time I need a weather report for my heart I talk to her. 
 Margarette: You look like you could use some of her wisdom. 
 <<jump MargarettePostChatChecks>>
 ===
@@ -183,6 +184,7 @@ tags:
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
 Abigail: I just showed you that I already have this.
 Gianluca: You can have another!
+Gianluca: I know you're used to that stingy Neptune Diner, where they make you buy something to get one of their cheaply made tiles. 
 <<GiveGianlucaTile SceneController>>
 <<jump PostChatChecksGianLuca>>
 ===
@@ -255,7 +257,7 @@ title: Gianluca1Soccer
 tags:
 ---
 Gianluca: What are you talking about Abigail? Soccer ball pizza doesn't even make sense!
-Gianluca: Wait...if I put a giant meatball inside it might just work!
+Gianluca: Many have fallen sick to the quest for spherical pizza... when I was a younger man it cost me my entire sticky hand collection.
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
 <<GiveGianlucaTile SceneController>>
 <<jump PostChatChecksGianLuca>>
@@ -394,7 +396,7 @@ Ryan 2: Every time I see a purple bug tile it makes me feel impossibly alive.
 title: Ryans1Butterfly
 tags:
 ---
-Ryan 2: Nice try, but we're purple bug kinda guys. This is more of a pink. 
+Ryan 2: Nice try, but we're purple bug kinda guys. This is more of a rosé.
 <<jump PostChatChecksRyans>>
 ===
 title: Ryans1Cockroach
@@ -519,15 +521,15 @@ Albert: They were so much tinier than anyone could have ever expected!
 title: HauntedHouseTeens1Soccer
 tags: 
 ---
-Fellini: There's too much aggression in soccer for me. 
-Albert: I have literally watched you throw rocks for hours.
+Albert: Ah sport, mans lowest form of animalistic aggression
+Fellini: Just too much aggression for me.
 ===
 title: HauntedHouseTeens1Butterfly
 tags: 
 ---
 Fellini: Two butterflies went out at noon!
 Albert: It's only 11:30am man
-Fellini: Why are you always interrupting me when I try to recite Emily Dickinson?
+Fellini: Why are you always interrupting me when I try to recite my Emily Dickinson?
 ===
 title: HauntedHouseTeens1Cockroach
 tags: 
@@ -569,8 +571,8 @@ Spider: Ah…tastes just like home.
 Abigail: Are you Italian?
 Spider: Nah, just born and raised at Gianluca’s.
 Spider: That was before he had to start getting serious about health code violations.
-Spider: Anyways, I’ve been meaning to pick a sunnier spot for my web. Feel free to pass through now.
-Abigail: Thanks!
+Spider: Anyways, I've been meaning to move to a spot where I can practice dancing the tarantella. 
+Abigail: Ciao ragno!
 //Yarncommand for making spider go away and removing blockade.
 ===
 title: Spider1Failure
