@@ -97,7 +97,9 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     public void HideInventory(bool isManual = false){
+        Debug.Log("aaa");
         if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Closing Inventory")) return;
+        Debug.Log("bbb");
 
         inventoryAnimator.SetTrigger("onClose");
         inventoryAnimator.ResetTrigger("onOpen");

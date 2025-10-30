@@ -3,8 +3,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class ThirdPersonSimpleController : MonoBehaviour
-{
+public class ThirdPersonSimpleController : MonoBehaviour{
+    private PlayerStatus ps;
+
     [Header("Movement")]
     public float moveSpeed = 6f;
     public float jumpHeight = 1.6f;
@@ -21,23 +22,16 @@ public class ThirdPersonSimpleController : MonoBehaviour
     public float cameraCollisionRadius = 0.2f; 
     public float cameraFollowLerp = 20f;       
 
-    [Header("Cursor")]
-    public bool lockCursor = true;
-    public KeyCode toggleCursorKey = KeyCode.Escape;
-
     CharacterController controller;
     Vector3 velocity; 
     float yaw;        
     float pitch;      
 
-    private bool isBusy = false;
-
     void Awake(){
         controller = GetComponent<CharacterController>();
 
         if (Cam != null)
-        {
-            
+        {   
             Vector3 toCam = Cam.position - GetPivot();
             Vector3 flat = new Vector3(toCam.x, 0f, toCam.z);
             if (flat.sqrMagnitude > 0.0001f)
@@ -46,19 +40,14 @@ public class ThirdPersonSimpleController : MonoBehaviour
             if (dist > 0.0001f)
                 pitch = Mathf.Asin(Mathf.Clamp(toCam.normalized.y, -1f, 1f)) * Mathf.Rad2Deg;
         }
+    }
 
-        if (lockCursor) SetCursorLocked(true);
+    void Start(){
+        ps = PlayerStatus.Instance;
+        if (ps.CanPoint()) SetCursorLocked(true);
     }
 
     void Update(){
-        if(isBusy) return;
-
-        // Cursor toggle
-        if (Input.GetKeyDown(toggleCursorKey))
-        {
-            SetCursorLocked(!Cursor.lockState.Equals(CursorLockMode.Locked));
-        }
-
         // Mouse look updates yaw/pitch
         if (Cursor.lockState == CursorLockMode.Locked)
         {
@@ -72,6 +61,9 @@ public class ThirdPersonSimpleController : MonoBehaviour
         // Move input (WASD)
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         moveInput = Vector3.ClampMagnitude(moveInput, 1f);
+        
+        // Negate movement if can't move
+        if(!ps.CanMove()) moveInput = Vector3.zero;
 
         // Camera-relative move
         Vector3 camF = Vector3.forward;
@@ -94,8 +86,7 @@ public class ThirdPersonSimpleController : MonoBehaviour
             velocity.y = -2f; // small downward force to keep grounded
 
         // Jump
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space) && ps.CanMove()){
             velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity);
         }
 
@@ -119,7 +110,7 @@ public class ThirdPersonSimpleController : MonoBehaviour
         }
 
         // Update camera position/orbit
-        if (Cam != null)
+        if (Cam != null )
         {
             UpdateCamera();
         }
@@ -154,19 +145,9 @@ public class ThirdPersonSimpleController : MonoBehaviour
         return transform.position + Vector3.up * cameraHeight;
     }
 
-    void SetCursorLocked(bool locked)
+    public void SetCursorLocked(bool locked)
     {
         Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !locked;
-    }
-
-    public void SetIsBusy(bool _isBusy){
-        isBusy = _isBusy;
-
-        SetCursorLocked(!isBusy);
-    }
-
-    public bool GetIsBusy(){
-        return isBusy;
     }
 }
