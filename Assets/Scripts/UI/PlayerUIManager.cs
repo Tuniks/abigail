@@ -40,11 +40,9 @@ public class PlayerUIManager : MonoBehaviour{
 
     [Header("Azulejo Phenomenon")]
     public PhenomenonUI phenomenonUI;
-    public PlayableDirector bagIconAnimation;
     private AzulejoPhenomenon currentPhenomenon;
     private PhenomenonSlot phenomenonSlot = null;
     private TileComponent phenomenonTarget = null;
-    public GameObject InventoryIcon;
 
     [Header("Sounds")]
     public AudioSource audioSource;
@@ -283,34 +281,31 @@ public class PlayerUIManager : MonoBehaviour{
     }
 
     private void AnimateBagIcon(bool _status){
-        // if(_status){
-        //     bagIconAnimation.Play();
-        //     PlayerInteractor.instance.GetAudioSource().PlayOneShot(PhenomenonPossibleSound);
-        //     //audioSource.loop = true;
-        //     //audioSource.Play(); 
+        if(_status){
+            inventoryAnimator.SetBool("IsShaking", true);
 
-        //     if(inventoryScreen.activeSelf == true){
-        //         foreach(Transform child in bagRect){
-        //             ItemElement itemElement = child.GetComponent<ItemElement>();
-        //             if(itemElement != null && itemElement.HasTileWithFace(phenomenonTarget)){
-        //                 itemElement.SetTwitching(true);
-        //             }
-        //         }
-        //     }
-        // } else {
-        //     bagIconAnimation.Stop();
-        //     //audioSource.Stop();
-        //     InventoryIcon.transform.localRotation = Quaternion.identity; 
+            PlayerInteractor.instance.GetAudioSource().PlayOneShot(PhenomenonPossibleSound);
 
-        //     phenomenonUI.HideUI();
+            if(inventoryScreen.activeSelf == true){
+                foreach(Transform child in bagRect){
+                    ItemElement itemElement = child.GetComponent<ItemElement>();
+                    if(itemElement != null && itemElement.HasTileWithFace(phenomenonTarget)){
+                        itemElement.SetTwitching(true);
+                    }
+                }
+            }
+        } else {
+            inventoryAnimator.SetBool("IsShaking", false);
 
-        //     if(inventoryScreen.activeSelf == true){
-        //         foreach(Transform child in bagRect){
-        //             ItemElement itemElement = child.GetComponent<ItemElement>();
-        //             if(itemElement != null) itemElement.SetTwitching(false);   
-        //         }
-        //     }
-        // }
+            phenomenonUI.HideUI();
+
+            if(inventoryScreen.activeSelf == true){
+                foreach(Transform child in bagRect){
+                    ItemElement itemElement = child.GetComponent<ItemElement>();
+                    if(itemElement != null) itemElement.SetTwitching(false);   
+                }
+            }
+        }
     }
     
     public void SetCurrentPhenomenonSlot(PhenomenonSlot _phenomenonSlot){
