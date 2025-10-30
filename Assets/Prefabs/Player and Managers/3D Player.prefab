@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 5421096763752842406}
   - component: {fileID: 3749410886032009022}
   - component: {fileID: 4109955272045615744}
+  - component: {fileID: -8488979086923291776}
   m_Layer: 0
   m_Name: 3D Player
   m_TagString: Player
@@ -739,8 +740,6 @@ MonoBehaviour:
   pitchLimits: {x: -30, y: 75}
   cameraCollisionRadius: 0.2
   cameraFollowLerp: 20
-  lockCursor: 1
-  toggleCursorKey: 27
 --- !u!114 &4109955272045615744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,3 +755,16 @@ MonoBehaviour:
   dialogueRunner: {fileID: 0}
   interactPrompt: {fileID: 3277725151840042637}
   phenomenonNearbySoundLoop: {fileID: 0}
+--- !u!114 &-8488979086923291776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112340555954384338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94decb45a601f604dae9b29eefeb18d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 0}

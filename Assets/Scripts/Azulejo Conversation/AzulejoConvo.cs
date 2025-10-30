@@ -12,6 +12,8 @@ public struct FaceDialoguePair{
 public class AzulejoConvo : BaseConvo{
     public AzulejoConvoUI convoUI;
 
+    private PlayerStatus ps;
+
     [Header("Conversation Nodes")]
     public List<FaceDialoguePair> faceDialoguePairs;
     public string defaultNode;
@@ -23,13 +25,13 @@ public class AzulejoConvo : BaseConvo{
     public AudioClip TilePlacedInHand;
     public AudioSource audioSource;
 
-    void Start()
-    {
+    void Start(){
+        ps = PlayerStatus.Instance;
         audioSource = GetComponent<AudioSource>();
     }
     
     protected override void StartConvo(){
-        PlayerInteractor.instance.StartAzulejoConvo();
+        ps.OnStartAzulejoConversation();
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();
         convoUI.Show();
@@ -38,7 +40,7 @@ public class AzulejoConvo : BaseConvo{
     private IEnumerator EndConvo(string node){
         yield return new WaitForSeconds(endConvoDelay);
 
-        PlayerInteractor.instance.EndAzulejoConvo();
+        ps.OnEndAzulejoConversation();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
@@ -47,7 +49,7 @@ public class AzulejoConvo : BaseConvo{
     }
 
     public override void QuitConvo(){
-        PlayerInteractor.instance.EndAzulejoConvo();
+        ps.OnEndAzulejoConversation();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
