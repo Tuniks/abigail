@@ -88,7 +88,7 @@ public class PlayerUIManager : MonoBehaviour{
         inventoryAnimator.SetTrigger("onOpen");
         inventoryAnimator.ResetTrigger("onClose");
 
-        if(isManual) ps.OnInventoryOpen();
+        ps.OnInventoryOpen();
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagOpenSound);
     }
@@ -99,7 +99,7 @@ public class PlayerUIManager : MonoBehaviour{
         inventoryAnimator.SetTrigger("onClose");
         inventoryAnimator.ResetTrigger("onOpen");
 
-        if(isManual) ps.OnInventoryClose();
+        ps.OnInventoryClose();
 
         tileDetailsScreen.SetActive(false);
         phenomenonUI.HideUI();
