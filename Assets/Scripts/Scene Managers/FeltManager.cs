@@ -10,8 +10,8 @@ public class FeltManager : AreaManager{
     [Header("NPCs")]
     public GameObject chase;
     public GameObject oz;
-    public GameObject linda;
-    public GameObject HOA;
+    //public GameObject linda;
+    //public GameObject HOA;
 
     [Header("Portals")]
     public GameObject doorColBlocked;
@@ -27,8 +27,8 @@ public class FeltManager : AreaManager{
 
     public Tile[] bunnydeerTile;
 
-    [Header("GameObjects")] 
-    public Image RyanDrawing;
+    //[Header("GameObjects")] 
+    //public Image RyanDrawing;
 
     [Header("Oz Power Azulejo")]
     public string OzPowerAzulejoScene = "PWR_oz";
@@ -116,13 +116,13 @@ public class FeltManager : AreaManager{
         PlayerInventory.Instance.AddTilesToCollection(bunnydeerTile);
     }
     
-    [YarnCommand]
+    /*[YarnCommand]
     public void PostOrangeLindaConvo(){
         UpdateDialogueNode(linda, "PostOrangeLinda");
         UpdateDialogueNode(HOA, "PostOrangeLinda");
-    }
+    }*/
     
-    [YarnCommand]
+    /*[YarnCommand]
     public void ShowRyanDrawing(){
         RyanDrawing.enabled = true;
         RyanDrawing.gameObject.SetActive(true);
@@ -131,7 +131,7 @@ public class FeltManager : AreaManager{
     [YarnCommand]
     public void LindaHouse(){
         HouseCollider.SetActive(true);
-    }
+    }*/
 
     [YarnCommand]
     public void StartOzPowerAzulejo(){

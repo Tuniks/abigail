@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicInteraction : MonoBehaviour
 {
-    public bool CurtainInteractionHappened = false; //keeps track of if the interaction has triggered 
+    public bool InteractionHappened = false; //keeps track of if the interaction has triggered 
     public GameObject BeforeInteraction; //Sprite for before interaction
     public GameObject AfterInteraction; //Sprite for after interaction
     public AudioClip Sound;
@@ -28,12 +28,12 @@ public class BasicInteraction : MonoBehaviour
         {
             float distance = Vector2.Distance(BeforeInteraction.transform.position, player.position);//calculating the distance between player and before interaction object
 
-            if (Input.GetKeyDown(KeyCode.E) && !CurtainInteractionHappened && distance <= interactionRadius) //if the player pressess E, the curtain interaction hasn't happened and the distance is within the interactino radisu then set after interaction sprite and chnage the bool
+            if (Input.GetKeyDown(KeyCode.E) && !InteractionHappened && distance <= interactionRadius) //if the player pressess E, the curtain interaction hasn't happened and the distance is within the interactino radisu then set after interaction sprite and chnage the bool
             {
                 AfterInteraction.SetActive(true);
                 audioSource.PlayOneShot(Sound, 0.7F);
                 BeforeInteraction.SetActive(false);
-                CurtainInteractionHappened = true;
+                InteractionHappened = true;
                 
                 if (tile != null && tile.Length > 0)
                 {

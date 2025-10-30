@@ -12,6 +12,7 @@ Abigail: I got a couple of cool tiles…I think…
 <<else>>
 Oz: Let’s see the best from your collection Abigail!
 <<endif>>
+<<StartAzulejoConversation Oz>>
 //Open Azulejo Convo for Showing Oz 3 cool tiles
 ===
 title: ChaseOz1Failure
@@ -170,15 +171,13 @@ tags:
 Gianluca: If it isn’t my favorite customer!
 Abigail: You say that to everyone Gianluca.
 Gianluca: Well at this exact moment it feels true!
-//Open azueljo
 <<else>>
 Gianluca: You'll never guess my secret ingredient! 
 Gianluca: Well actually you might...
-//Open azulejo
 <<endif>>
-//<<StartAzulejoConversation Gianluca>>
+<<StartAzulejoConversation Gianluca>>
 ===
-title: Gianluca1Gianlucas
+title: Gianluca1Gianluca
 tags:
 ---
 Gianluca: Here take a tile so you can show your support for Gianluca’s!
@@ -295,7 +294,7 @@ Timothy: I have this feeling that we were champions…
 <<else>>
 Timothy: Where do we know each other from?
 <<endif>>
-//<<StartAzulejoConversation Timothy>>
+<<StartAzulejoConversation Timothy>>
 ===
 title: Timothy1Soccer
 tags:
@@ -378,7 +377,7 @@ Ryan 2: Yeah, and if you plan on sticking around you better be ready for some Az
 Ryan 2: You better have something cooler this time old lady!
 Abigail: Hey! I'm not old, I'm in my mid twenties!
 <<endif>>
-//<<StartAzulejoConversation Ryan1>>
+<<StartAzulejoConversation Ryan1>>
 ===
 title: Ryans1Caterpillar
 tags:
@@ -471,7 +470,7 @@ Fellini: I see a space dripping with meaning. With life!
 <<else>>
 Fellini: Got anything new for us on the meaning of life?
 <<endif>>
-//<<StartAzulejoConversation Fellini>>
+<<StartAzulejoConversation Fellini>>
 ===
 title: HauntedHouseTeens1RatSkull
 tags: 
@@ -561,7 +560,7 @@ Spider: Maybe I’d consider letting you pass if you make it worth my while.
 <<else>>
 Spider: You gonna make this worth my while?
 <<endif>>
-//<<StartAzulejoConversation Spider>>
+<<StartAzulejoConversation Spider>>
 ===
 title: Spider1Success
 tags: 
