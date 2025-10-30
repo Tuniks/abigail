@@ -11,6 +11,7 @@ public class PlayerUIManager : MonoBehaviour{
     private Inventory playerInventory;
     private PlayerInteractor playerInteractor;
     private MenuManager menuManager;
+    private PlayerStatus ps;
 
     [Header("Inventory")]
     public GameObject inventoryScreen;
@@ -58,29 +59,27 @@ public class PlayerUIManager : MonoBehaviour{
         SetInventoryUI();
         playerInteractor = PlayerInteractor.instance;
         menuManager = GetComponent<MenuManager>();
+        ps = PlayerStatus.Instance;
     }
 
     void Update(){
         if(Input.GetKeyDown("i") || Input.GetKeyDown(KeyCode.Tab)){
-            if(!IsPlayerBusy()){
-                if(inventoryScreen.activeSelf){
-                    HideInventory(true);
-                } else ShowInventory(true);
-            } else if(currentConvo != null){
+            if(ps.CanOpenMenu()){
+                ShowInventory(true);
+            }else if(currentConvo != null){
                 currentConvo.QuitConvo();
+            }else if(inventoryScreen.activeSelf){
+                HideInventory(true);
             }
         } else if (Input.GetKeyDown(KeyCode.Escape)){
-            if(!IsPlayerBusy()){
-                menuManager.ToggleMenu();
+            if(ps.CanOpenMenu()){
+                menuManager.ShowMenu();
+            } else if (inventoryScreen.activeSelf){
+                HideInventory(true);
+            } else if(menuManager.IsMenuOpen()){
+                menuManager.HideMenu();
             }
         }
-    }
-
-    private bool IsPlayerBusy(){
-        if(currentConvo != null) return true;
-        if(PlayerInteractor.instance.IsPlayerBusy()) return true;
-
-        return false;
     }
 
     // ====== INVENTORY =======
@@ -91,20 +90,18 @@ public class PlayerUIManager : MonoBehaviour{
         inventoryAnimator.SetTrigger("onOpen");
         inventoryAnimator.ResetTrigger("onClose");
 
-        if(isManual) playerInteractor.SetIsBusy(true);
+        if(isManual) ps.OnInventoryOpen();
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagOpenSound);
     }
 
     public void HideInventory(bool isManual = false){
-        Debug.Log("aaa");
         if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Closing Inventory")) return;
-        Debug.Log("bbb");
 
         inventoryAnimator.SetTrigger("onClose");
         inventoryAnimator.ResetTrigger("onOpen");
 
-        if(isManual) playerInteractor.SetIsBusy(false);
+        if(isManual) ps.OnInventoryClose();
 
         tileDetailsScreen.SetActive(false);
         phenomenonUI.HideUI();

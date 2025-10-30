@@ -9,16 +9,13 @@ public class PlayerInteractor : MonoBehaviour{
     static public PlayerInteractor instance;
     public DialogueRunner dialogueRunner;
     private AudioSource audioSource;
+    private PlayerStatus ps;
     
     // UI
     public GameObject interactPrompt;
     
     // Player State
-    private PlayerController twopc;
-    private ThirdPersonSimpleController threepc;
     private List<GameObject> interactables = new List<GameObject>();
-    private bool isTalking = false;
-    private bool isAzulejoing = false;
 
     // Interaction History
     private Tile lastTileUsed = null;
@@ -29,34 +26,23 @@ public class PlayerInteractor : MonoBehaviour{
 
     void Start(){
         instance = this;
-        twopc = GetComponent<PlayerController>();
-        threepc = GetComponent<ThirdPersonSimpleController>();
+        ps = PlayerStatus.Instance;
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update(){
-        if(interactables.Count > 0 && !isTalking){
+        if(interactables.Count > 0 && !ps.IsTalking()){
             interactPrompt.SetActive(true);
         } else interactPrompt.SetActive(false);
 
         if(Input.GetKeyDown("e")){
-            if(!isTalking){
+            if(!ps.IsTalking()){
                 AttemptInteraction();
             } 
         }
 
         if(Input.GetKeyDown(KeyCode.Tab) && hijackCallback!=null){
             hijackCallback();
-        }
-    }
-
-    void LateUpdate(){
-        if(dialogueRunner.IsDialogueRunning || isAzulejoing){
-            isTalking = true;
-            SetIsBusy(true);
-        } else {
-            if(isTalking) SetIsBusy(false);
-            isTalking = false;
         }
     }
 
@@ -86,7 +72,6 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     public void StartConversation(string node){
-        SetIsBusy(true);
         dialogueRunner.StartDialogue(node);
     }
 
@@ -130,14 +115,6 @@ public class PlayerInteractor : MonoBehaviour{
             audioSource.Stop();
             audioSource.loop = false;
         }
-    }
-
-    public void StartAzulejoConvo(){
-        isAzulejoing = true;
-    }
-
-    public void EndAzulejoConvo(){
-        isAzulejoing = false;
     }
 
     public void RemoveInteractor(GameObject obj){

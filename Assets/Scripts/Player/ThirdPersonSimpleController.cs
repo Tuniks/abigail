@@ -44,7 +44,7 @@ public class ThirdPersonSimpleController : MonoBehaviour{
 
     void Start(){
         ps = PlayerStatus.Instance;
-        if (ps.CanPoint()) SetCursorLocked(true);
+        SetCursorLocked(true);
     }
 
     void Update(){
@@ -145,8 +145,7 @@ public class ThirdPersonSimpleController : MonoBehaviour{
         return transform.position + Vector3.up * cameraHeight;
     }
 
-    public void SetCursorLocked(bool locked)
-    {
+    public void SetCursorLocked(bool locked){
         Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !locked;
     }

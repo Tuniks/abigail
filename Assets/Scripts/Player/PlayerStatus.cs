@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class PlayerStatus : MonoBehaviour{
     public static PlayerStatus Instance = null;
+
+    public DialogueRunner dialogueRunner;
     private ThirdPersonSimpleController threepc = null;
     
     // Status
     private bool isInventoryOpen = false;
     private bool isMenuOpen = false;
-    
-    // Allowances
-    private bool canMove = true;
-    private bool canPoint = false;
-    private bool canOpenMenu = true;
+    private bool isAzulejoConvoOpen = false;
 
     private void Awake(){
         if(Instance == null){
@@ -31,49 +30,35 @@ public class PlayerStatus : MonoBehaviour{
     public void OnMenuOpen(){
         isMenuOpen = true;
 
-        canMove = false;
-        canPoint = true;
-        canOpenMenu = false;
-
-        if(threepc) threepc.SetCursorLocked(true);
+        if(threepc) threepc.SetCursorLocked(false);
     }
 
     public void OnMenuClose(){
         isMenuOpen = false;
 
-        canMove = true;
-        canPoint = false;
-        canOpenMenu = false;
-
-        if(threepc) threepc.SetCursorLocked(false);
+        if(threepc) threepc.SetCursorLocked(true);
     }
 
     public void OnInventoryOpen(){
         isInventoryOpen = true;
 
-        canMove = false;
-        canPoint = true;
-        canOpenMenu = false;
-
-        if(threepc) threepc.SetCursorLocked(true);
+        if(threepc) threepc.SetCursorLocked(false);
     }
 
     public void OnInventoryClose(){
         isInventoryOpen = false;
 
-        canMove = true;
-        canPoint = false;
-        canOpenMenu = false;
-
-        if(threepc) threepc.SetCursorLocked(false);
+        if(threepc) threepc.SetCursorLocked(true);
     }
 
-    public void OnStartDialogue(){
-        
+    public void OnStartAzulejoConversation(){
+        isAzulejoConvoOpen = true;
+        OnInventoryOpen();
     }
 
-    public void OnEndDialogue(){
-        
+    public void OnEndAzulejoConversation(){
+        isAzulejoConvoOpen = false;
+        OnInventoryClose();
     }
 
     // ==== GETTERS =====
@@ -86,15 +71,15 @@ public class PlayerStatus : MonoBehaviour{
     }
     
     public bool CanMove(){
-        return canMove;
-    }
-
-    public bool CanPoint(){
-        return canPoint;
+        return !isMenuOpen && !isInventoryOpen && !IsTalking();
     }
 
     public bool CanOpenMenu(){
-        return canOpenMenu;
+        return !isMenuOpen && !isInventoryOpen && !IsTalking();;
+    }
+
+    public bool IsTalking(){
+        return dialogueRunner.IsDialogueRunning || isAzulejoConvoOpen;
     }
 
 

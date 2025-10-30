@@ -59,7 +59,7 @@ public class FeltInteractions : AreaInteractions{
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(startMinigameSound);
 
-        PlayerInteractor.instance.StartAzulejoConvo();
+        PlayerStatus.Instance.OnStartAzulejoConversation();
         PlayerInteractor.instance.HijackInteractor(EndSoccerMinigame);
 
     }
@@ -70,7 +70,7 @@ public class FeltInteractions : AreaInteractions{
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(endMinigameSound);
 
-        PlayerInteractor.instance.EndAzulejoConvo();
+        PlayerStatus.Instance.OnEndAzulejoConversation();
         PlayerInteractor.instance.EndHijack();
     }
 
@@ -83,7 +83,7 @@ public class FeltInteractions : AreaInteractions{
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(startMinigameSound);
 
-        PlayerInteractor.instance.StartAzulejoConvo();
+        PlayerStatus.Instance.OnStartAzulejoConversation();
         PlayerInteractor.instance.HijackInteractor(EndHauntedMinigame);
     }
 
@@ -93,7 +93,7 @@ public class FeltInteractions : AreaInteractions{
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(endMinigameSound);
 
-        PlayerInteractor.instance.EndAzulejoConvo();
+        PlayerStatus.Instance.OnEndAzulejoConversation();
         PlayerInteractor.instance.EndHijack();
     }
 }
