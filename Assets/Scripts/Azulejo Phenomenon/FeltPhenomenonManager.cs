@@ -13,7 +13,7 @@ public class FeltPhenomenonManager : MonoBehaviour{
     public float cockroachDelay = 1f;
     public AudioClip cockroachTriggerSound;
 
-    [Header("Sunflower")] 
+   [Header("Sunflower")] 
     public GameObject sunflowerInteractionDirt;
     public GameObject sunflowerInteraction;
     public AudioClip sunflowerTriggerSound;
@@ -21,6 +21,10 @@ public class FeltPhenomenonManager : MonoBehaviour{
     [Header("Pizza")]
     public GameObject[] pizzaObjects;
     public AudioClip pizzaTriggerSounds;
+
+    [Header("Ghost")]
+    public GameObject ghostNPC;
+    public AudioClip ghostTriggerSound;
 
     // Tanya Phenomenon
     public void ExecuteTanyaPhenomenon(){
@@ -51,5 +55,11 @@ public class FeltPhenomenonManager : MonoBehaviour{
         GameObject pizza = pizzaObjects[Random.Range(0, pizzaObjects.Length)];
         Instantiate(pizza, PlayerInteractor.instance.transform.position, Quaternion.identity);
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(pizzaTriggerSounds);
+    }
+
+    // Ghost Phenomenon
+    public void ExecuteGhostPhenomenon(){
+        ghostNPC.SetActive(true);
+        PlayerInteractor.instance.GetAudioSource().PlayOneShot(ghostTriggerSound);
     }
 }
