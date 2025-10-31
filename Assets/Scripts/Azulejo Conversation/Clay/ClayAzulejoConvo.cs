@@ -37,7 +37,7 @@ public class ClayAzulejoConvo : BaseConvo{
     private bool currentActive = true;
 
     protected override void StartConvo(){
-        PlayerInteractor.instance.StartAzulejoConvo();
+        // PlayerInteractor.instance.StartAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();
 
@@ -55,7 +55,7 @@ public class ClayAzulejoConvo : BaseConvo{
         
         yield return new WaitForSeconds(endConvoDelay);
 
-        PlayerInteractor.instance.EndAzulejoConvo();
+        // PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
@@ -64,7 +64,7 @@ public class ClayAzulejoConvo : BaseConvo{
     }
 
     public override void QuitConvo(){
-        PlayerInteractor.instance.EndAzulejoConvo();
+        // PlayerInteractor.instance.EndAzulejoConvo();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();

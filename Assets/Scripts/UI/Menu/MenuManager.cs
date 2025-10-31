@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour{
+    private PlayerStatus ps;
+
     [Header("Menu UI References")]
     public GameObject menuScreen;
     public GameObject[] menuPages;
@@ -10,6 +12,8 @@ public class MenuManager : MonoBehaviour{
     private int currentTab = 0;
 
     void Start(){
+        ps = PlayerStatus.Instance;
+
         foreach(GameObject page in menuPages){
             MenuTab tab = page.GetComponent<MenuTab>();
             if(tab != null){
@@ -26,25 +30,23 @@ public class MenuManager : MonoBehaviour{
         }
     }
 
-    public void ToggleMenu(){
-        if(menuScreen.activeSelf){
-            HideMenu();
-        } else ShowMenu();
-    }
-
-    private void ShowMenu(){
+    public void ShowMenu(){
         // Pause Game
         Time.timeScale = 0;
 
         ShowTab(currentTab);
         menuScreen.SetActive(true);
+
+        ps.OnMenuOpen();
     }
 
-    private void HideMenu(){
+    public void HideMenu(){
         // Unpause Game
         Time.timeScale = 1;
 
         menuScreen.SetActive(false);
+
+        ps.OnMenuClose();
     }
 
     private void ChangeMenuTab(int dif){
@@ -73,5 +75,9 @@ public class MenuManager : MonoBehaviour{
 
     private void HideTab(int _tab){
         menuPages[_tab].SetActive(false);
+    }
+
+    public bool IsMenuOpen(){
+        return menuScreen.activeSelf;
     }
 }

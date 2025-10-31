@@ -9,16 +9,13 @@ public class PlayerInteractor : MonoBehaviour{
     static public PlayerInteractor instance;
     public DialogueRunner dialogueRunner;
     private AudioSource audioSource;
+    private PlayerStatus ps;
     
     // UI
     public GameObject interactPrompt;
     
     // Player State
-    private PlayerController pc;
     private List<GameObject> interactables = new List<GameObject>();
-    private bool isTalking = false;
-    private bool isAzulejoing = false;
-    private Shop currentShop = null;
 
     // Interaction History
     private Tile lastTileUsed = null;
@@ -29,25 +26,19 @@ public class PlayerInteractor : MonoBehaviour{
 
     void Start(){
         instance = this;
-        pc = GetComponent<PlayerController>();
+        ps = PlayerStatus.Instance;
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update(){
-        if(interactables.Count > 0 && !isTalking && currentShop == null){
+        if(interactables.Count > 0 && !ps.IsTalking()){
             interactPrompt.SetActive(true);
         } else interactPrompt.SetActive(false);
 
-        if(Input.GetKeyDown("e") && currentShop == null){
-            if(!isTalking){
+        if(Input.GetKeyDown("e")){
+            if(!ps.IsTalking()){
                 AttemptInteraction();
             } 
-        }
-
-        if(Input.GetKeyDown("q") && currentShop != null && !isTalking){
-            currentShop.HideShop();
-            currentShop = null;
-            pc.SetIsBusy(false);
         }
 
         if(Input.GetKeyDown(KeyCode.Tab) && hijackCallback!=null){
@@ -55,20 +46,9 @@ public class PlayerInteractor : MonoBehaviour{
         }
     }
 
-    void LateUpdate(){
-        if(dialogueRunner.IsDialogueRunning || isAzulejoing){
-            isTalking = true;
-            pc.SetIsBusy(true);
-        } else {
-            if(isTalking) pc.SetIsBusy(false);
-            isTalking = false;
-        }
-    }
-
     private void AttemptInteraction(){
         foreach(GameObject interact in interactables){
             NPC npc = interact.GetComponent<NPC>();
-            Shop shop = interact.GetComponent<Shop>();
             ScenePortal portal = interact.GetComponent<ScenePortal>();
             WorldInteractable thing = interact.GetComponent<WorldInteractable>();
 
@@ -79,13 +59,6 @@ public class PlayerInteractor : MonoBehaviour{
                     PlayerInteractionData.Instance.RegisterNPCTalk(npc.GetCharacterName());
                     return;
                 }
-            } else if(shop != null){
-                currentShop = shop;
-                currentShop.ShowShop();
-                string node = currentShop.GetCurrentNode();
-                if(node != null) StartConversation(node);
-                pc.SetIsBusy(true);
-                return;
             } else if(portal) {
                 string node = portal.AttemptTravel();
                 if(node != null){
@@ -99,12 +72,11 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     public void StartConversation(string node){
-        pc.SetIsBusy(true);
         dialogueRunner.StartDialogue(node);
     }
 
     private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             interactables.Add(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
@@ -115,7 +87,7 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     private void OnTriggerExit(Collider other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(null);
@@ -125,7 +97,7 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
         private void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             interactables.Add(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(other.gameObject.GetComponent<AzulejoPhenomenon>());
@@ -136,25 +108,13 @@ public class PlayerInteractor : MonoBehaviour{
     }
 
     private void OnTriggerExit2D(Collider2D other){
-        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Shop") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
+        if(other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Portal") || other.gameObject.CompareTag("WorldInteractable")){
             if(interactables.Contains(other.gameObject)) interactables.Remove(other.gameObject);
         } else if (other.gameObject.CompareTag("Phenomenon")){
             SetCurrentPhenomenon(null);
             audioSource.Stop();
             audioSource.loop = false;
         }
-    }
-
-    public bool IsPlayerBusy(){
-        return pc.GetIsBusy();
-    }
-
-    public void StartAzulejoConvo(){
-        isAzulejoing = true;
-    }
-
-    public void EndAzulejoConvo(){
-        isAzulejoing = false;
     }
 
     public void RemoveInteractor(GameObject obj){

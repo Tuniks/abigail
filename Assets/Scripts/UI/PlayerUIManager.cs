@@ -9,15 +9,15 @@ using UnityEngine.UIElements;
 public class PlayerUIManager : MonoBehaviour{
     public static PlayerUIManager instance;
     private Inventory playerInventory;
+    private PlayerInteractor playerInteractor;
     private MenuManager menuManager;
+    private PlayerStatus ps;
 
     [Header("Inventory")]
     public GameObject inventoryScreen;
     public RectTransform bagRect;
     public Transform heldItemParent;
-    public PlayableDirector invDirector;
-    public TimelineAsset openAnimation;
-    public TimelineAsset closeAnimation;
+    public Animator inventoryAnimator;
 
     [Header("Tile Details")]
     public GameObject tileDetailsScreen;
@@ -40,11 +40,9 @@ public class PlayerUIManager : MonoBehaviour{
 
     [Header("Azulejo Phenomenon")]
     public PhenomenonUI phenomenonUI;
-    public PlayableDirector bagIconAnimation;
     private AzulejoPhenomenon currentPhenomenon;
     private PhenomenonSlot phenomenonSlot = null;
     private TileComponent phenomenonTarget = null;
-    public GameObject InventoryIcon;
 
     [Header("Sounds")]
     public AudioSource audioSource;
@@ -57,48 +55,52 @@ public class PlayerUIManager : MonoBehaviour{
         instance = this;
         playerInventory = PlayerInventory.Instance;
         SetInventoryUI();
+        playerInteractor = PlayerInteractor.instance;
         menuManager = GetComponent<MenuManager>();
+        ps = PlayerStatus.Instance;
     }
 
     void Update(){
         if(Input.GetKeyDown("i") || Input.GetKeyDown(KeyCode.Tab)){
-            if(!IsPlayerBusy()){
-                if(inventoryScreen.activeSelf){
-                    HideInventory(true);
-                } else ShowInventory(true);
-            } else if(currentConvo != null){
+            if(ps.CanOpenMenu()){
+                ShowInventory(true);
+            }else if(currentConvo != null){
                 currentConvo.QuitConvo();
+            }else if(inventoryScreen.activeSelf){
+                HideInventory(true);
             }
         } else if (Input.GetKeyDown(KeyCode.Escape)){
-            if(!IsPlayerBusy()){
-                menuManager.ToggleMenu();
+            if(ps.CanOpenMenu()){
+                menuManager.ShowMenu();
+            } else if (inventoryScreen.activeSelf){
+                HideInventory(true);
+            } else if(menuManager.IsMenuOpen()){
+                menuManager.HideMenu();
             }
         }
     }
 
-    private bool IsPlayerBusy(){
-        if(currentConvo != null) return true;
-        if(PlayerInteractor.instance.IsPlayerBusy()) return true;
-
-        return false;
-    }
-
     // ====== INVENTORY =======
     public void ShowInventory(bool isManual = false){
-        if(isManual && invDirector.state == PlayState.Playing) return;
+        if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Opening Inventory")) return;
         
         SetInventoryUI();
-        invDirector.playableAsset = openAnimation;
-        invDirector.Play();
+        inventoryAnimator.SetTrigger("onOpen");
+        inventoryAnimator.ResetTrigger("onClose");
+
+        ps.OnInventoryOpen();
 
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagOpenSound);
     }
 
     public void HideInventory(bool isManual = false){
-        if(isManual && invDirector.state == PlayState.Playing) return;
+        if(isManual && inventoryAnimator.GetCurrentAnimatorStateInfo(0).IsName("Closing Inventory")) return;
 
-        invDirector.playableAsset = closeAnimation;
-        invDirector.Play();
+        inventoryAnimator.SetTrigger("onClose");
+        inventoryAnimator.ResetTrigger("onOpen");
+
+        ps.OnInventoryClose();
+
         tileDetailsScreen.SetActive(false);
         phenomenonUI.HideUI();
         PlayerInteractor.instance.GetAudioSource().PlayOneShot(bagCloseSound);
@@ -153,7 +155,7 @@ public class PlayerUIManager : MonoBehaviour{
         foreach(GameObject item in collection){
             GameObject element = CreateItemElementFromTile(item);
             element.transform.SetParent(bagRect);
-            element.transform.localScale = new Vector3(93, 93, 93);
+            element.transform.localScale = new Vector3(1, 1, 1);
             PlaceElement(element);
             element.GetComponent<ItemElement>().UpdateSpriteOrder(orderCount*4);
             orderCount++;
@@ -280,10 +282,9 @@ public class PlayerUIManager : MonoBehaviour{
 
     private void AnimateBagIcon(bool _status){
         if(_status){
-            bagIconAnimation.Play();
+            inventoryAnimator.SetBool("IsShaking", true);
+
             PlayerInteractor.instance.GetAudioSource().PlayOneShot(PhenomenonPossibleSound);
-            //audioSource.loop = true;
-            //audioSource.Play(); 
 
             if(inventoryScreen.activeSelf == true){
                 foreach(Transform child in bagRect){
@@ -294,9 +295,7 @@ public class PlayerUIManager : MonoBehaviour{
                 }
             }
         } else {
-            bagIconAnimation.Stop();
-            //audioSource.Stop();
-            InventoryIcon.transform.localRotation = Quaternion.identity; 
+            inventoryAnimator.SetBool("IsShaking", false);
 
             phenomenonUI.HideUI();
 

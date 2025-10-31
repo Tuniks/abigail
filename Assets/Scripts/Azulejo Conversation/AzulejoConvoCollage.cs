@@ -5,6 +5,9 @@ using Yarn.Unity;
 
 public class AzulejoConvoCollage : BaseConvo{
     public AzulejoConvoUICollage convoUI;
+
+    private PlayerStatus ps;
+
     public bool NoSigilActivated = false;
     public GameObject InWorldSigil;
 
@@ -23,13 +26,13 @@ public class AzulejoConvoCollage : BaseConvo{
     public AudioClip TilePlacedInHand;
     public AudioSource audioSource;
     
-    void Start()
-    {
+    void Start(){
+        ps = PlayerStatus.Instance;
         audioSource = GetComponent<AudioSource>();
     }
 
     protected override void StartConvo(){
-        PlayerInteractor.instance.StartAzulejoConvo();
+        ps.OnStartAzulejoConversation();
         PlayerUIManager.instance.SetCurrentConvo(this);
         PlayerUIManager.instance.ShowInventory();
         NoSigilActivated = false;
@@ -43,7 +46,7 @@ public class AzulejoConvoCollage : BaseConvo{
             convoUI.HideNoSigil();
             audioSource.PlayOneShot(FailureSound, 0.7F);
             yield return new WaitForSeconds(endConvoDelay);
-            PlayerInteractor.instance.EndAzulejoConvo();
+            ps.OnEndAzulejoConversation();
             PlayerUIManager.instance.SetCurrentConvo(null);
             PlayerUIManager.instance.HideInventory();
             
@@ -56,7 +59,7 @@ public class AzulejoConvoCollage : BaseConvo{
             InWorldSigil.SetActive(false);
             audioSource.PlayOneShot(SigilActivated, 0.7F);
             yield return new WaitForSeconds(DelayforSigilAnimation);
-            PlayerInteractor.instance.EndAzulejoConvo();
+            ps.OnEndAzulejoConversation();
             PlayerUIManager.instance.SetCurrentConvo(null);
             PlayerUIManager.instance.HideInventory();
             convoUI.Hide();
@@ -75,7 +78,7 @@ public class AzulejoConvoCollage : BaseConvo{
     }
 
     public override void QuitConvo(){
-        PlayerInteractor.instance.EndAzulejoConvo();
+        ps.OnEndAzulejoConversation();
         PlayerUIManager.instance.SetCurrentConvo(null);
         PlayerUIManager.instance.HideInventory();
         convoUI.Hide();
