@@ -23,10 +23,10 @@ public class PhenomenonUI : MonoBehaviour{
         item.transform.localRotation = Quaternion.identity;
         item.transform.localScale = new Vector3(tileScale, tileScale, tileScale);
 
+        StartCoroutine(TriggerPhenomenon(phenomenon));
+
         PlayerUIManager.instance.HideInventory();
         PlayerInventory.Instance.RemoveTileFromCollection(tile);
-
-        StartCoroutine(TriggerPhenomenon(phenomenon));
     }
 
     private IEnumerator TriggerPhenomenon(AzulejoPhenomenon phenomenon){

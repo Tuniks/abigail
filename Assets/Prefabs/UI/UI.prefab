@@ -830,8 +830,6 @@ MonoBehaviour:
   maxRotation: 20
   newTileNotification: {fileID: 5870585551193311863}
   phenomenonUI: {fileID: 5070681733737608554}
-  bagIconAnimation: {fileID: 710430891402417385}
-  InventoryIcon: {fileID: 5761836440181392198}
   audioSource: {fileID: 0}
   bagOpenSound: {fileID: 8300000, guid: f80286f580e244e3da5538e728b8df4e, type: 3}
   bagCloseSound: {fileID: 8300000, guid: 39dd1483d11df4c8a9dd7c1cd7fa2a66, type: 3}
@@ -1916,7 +1914,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5088827827785273853}
-  - component: {fileID: 942341083344397648}
   - component: {fileID: 5075837328588952162}
   m_Layer: 5
   m_Name: Inventory
@@ -1946,29 +1943,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!320 &942341083344397648
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7043434772257792744}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 10595befb4183e64eb8a2d497d42caed, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 2521555678983860321, guid: 10595befb4183e64eb8a2d497d42caed, type: 2}
-    value: {fileID: 5075837328588952162}
-  - key: {fileID: 2521555678983860321, guid: 79f89dda9c696f749a8690497d43af1a, type: 2}
-    value: {fileID: 5075837328588952162}
-  - key: {fileID: 2521555678983860321, guid: 485269e06bc4138499ffb12618020917, type: 2}
-    value: {fileID: 5075837328588952162}
-  m_ExposedReferences:
-    m_References: []
 --- !u!95 &5075837328588952162
 Animator:
   serializedVersion: 7
